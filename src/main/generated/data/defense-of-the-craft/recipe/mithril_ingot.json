@@ -1,6 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "group": "mithril_ingot",
+  "category": "misc",
   "ingredients": [
     [
       {
@@ -34,7 +34,7 @@
     }
   ],
   "result": {
-    "id": "defense-of-the-craft:mithril_ingot",
-    "count": 1
+    "count": 1,
+    "id": "defense-of-the-craft:mithril_ingot"
   }
 }

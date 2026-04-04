@@ -1,5 +1,6 @@
 {
   "type": "minecraft:crafting_shapeless",
+  "category": "misc",
   "group": "crystal_dust",
   "ingredients": [
     {
@@ -7,7 +8,7 @@
     }
   ],
   "result": {
-    "id": "defense-of-the-craft:radiant_crystal_dust",
-    "count": 2
+    "count": 2,
+    "id": "defense-of-the-craft:radiant_crystal_dust"
   }
 }
