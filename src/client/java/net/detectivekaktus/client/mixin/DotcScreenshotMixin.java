@@ -15,7 +15,7 @@ import net.detectivekaktus.sound.DotcSounds;
 @Mixin(Screenshot.class)
 public class DotcScreenshotMixin {
     @Inject(at = @At("HEAD"), method = "takeScreenshot")
-    private static void takeScreenshoot(CallbackInfoReturnable<NativeImage> info) {
+    private static void takeScreenshot(CallbackInfoReturnable<NativeImage> info) {
         var client = Minecraft.getInstance();
         client.getSoundManager().play(SimpleSoundInstance.forUI(DotcSounds.STEAM_CAMERA, 1.0f));
     }
