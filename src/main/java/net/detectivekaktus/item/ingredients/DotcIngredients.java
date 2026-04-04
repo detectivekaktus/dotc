@@ -8,6 +8,10 @@ public class DotcIngredients {
             new RadiantCrystal(new Item.Properties()),
             "radiant_crystal"
     );
+    public static final Item DIRE_CRYSTAL = DotcItems.register(
+            new DireCrystal(new Item.Properties()),
+            "dire_crystal"
+    );
 
     public static void initialize() { }
 }
