@@ -1,21 +1,14 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_echo_shard": {
-      "conditions": {
-        "items": [
-          {
-            "items": "minecraft:echo_shard"
-          }
-        ]
-      },
-      "trigger": "minecraft:inventory_changed"
-    },
-    "has_heart_of_the_sea": {
+    "has_sacred_relic_components": {
       "conditions": {
         "items": [
           {
             "items": "minecraft:heart_of_the_sea"
+          },
+          {
+            "items": "minecraft:echo_shard"
           }
         ]
       },
@@ -31,8 +24,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_heart_of_the_sea",
-      "has_echo_shard"
+      "has_sacred_relic_components"
     ]
   ],
   "rewards": {

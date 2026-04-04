@@ -69,12 +69,8 @@ public class DotcIngredientsRecipeProvider extends FabricRecipeProvider {
                 .requires(Items.ECHO_SHARD)
                 .requires(Items.PHANTOM_MEMBRANE)
                 .unlockedBy(
-                        "has_heart_of_the_sea",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(Items.HEART_OF_THE_SEA)
-                )
-                .unlockedBy(
-                        "has_echo_shard",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(Items.ECHO_SHARD)
+                        "has_sacred_relic_components",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(Items.HEART_OF_THE_SEA, Items.ECHO_SHARD)
                 )
                 .save(exporter);
 

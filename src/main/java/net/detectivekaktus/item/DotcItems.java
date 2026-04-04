@@ -15,6 +15,8 @@ import net.minecraft.world.item.ItemStack;
 import net.detectivekaktus.DefenseOfTheCraft;
 import net.detectivekaktus.item.ingredients.DotcIngredients;
 
+import java.util.stream.Stream;
+
 public class DotcItems {
     public static final ResourceKey<CreativeModeTab> DOTC_ITEM_GROUP_KEY = ResourceKey.create(
             BuiltInRegistries.CREATIVE_MODE_TAB.key(),
@@ -30,16 +32,16 @@ public class DotcItems {
 
         DotcIngredients.initialize();
 
-        ItemGroupEvents.modifyEntriesEvent(DOTC_ITEM_GROUP_KEY).register(group -> {
-            group.accept(DotcIngredients.RADIANT_CRYSTAL);
-            group.accept(DotcIngredients.RADIANT_CRYSTAL_DUST);
-            group.accept(DotcIngredients.DIRE_CRYSTAL);
-            group.accept(DotcIngredients.DIRE_CRYSTAL_DUST);
-            group.accept(DotcIngredients.MITHRIL_INGOT);
-            group.accept(DotcIngredients.BLIGHT_STONE);
-            group.accept(DotcIngredients.GLOVES_OF_HASTE);
-            group.accept(DotcIngredients.SACRED_RELIC);
-        });
+        ItemGroupEvents.modifyEntriesEvent(DOTC_ITEM_GROUP_KEY).register(group -> Stream.of(
+                DotcIngredients.RADIANT_CRYSTAL,
+                DotcIngredients.RADIANT_CRYSTAL_DUST,
+                DotcIngredients.DIRE_CRYSTAL,
+                DotcIngredients.DIRE_CRYSTAL_DUST,
+                DotcIngredients.MITHRIL_INGOT,
+                DotcIngredients.BLIGHT_STONE,
+                DotcIngredients.GLOVES_OF_HASTE,
+                DotcIngredients.SACRED_RELIC
+        ).forEach(group::accept));
     }
 
     // https://docs.fabricmc.net/1.21.1/develop/items/first-item#preparing-your-items-class

@@ -8,6 +8,8 @@ import net.minecraft.data.models.BlockModelGenerators;
 import net.minecraft.data.models.ItemModelGenerators;
 import net.minecraft.data.models.model.ModelTemplates;
 
+import java.util.stream.Stream;
+
 public class DotcIngredientsModelProvider extends FabricModelProvider {
     public DotcIngredientsModelProvider(FabricDataOutput output) {
         super(output);
@@ -20,13 +22,15 @@ public class DotcIngredientsModelProvider extends FabricModelProvider {
 
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
-        itemModelGenerator.generateFlatItem(DotcIngredients.RADIANT_CRYSTAL, ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(DotcIngredients.RADIANT_CRYSTAL_DUST, ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(DotcIngredients.DIRE_CRYSTAL, ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(DotcIngredients.DIRE_CRYSTAL_DUST, ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(DotcIngredients.MITHRIL_INGOT, ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(DotcIngredients.BLIGHT_STONE, ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(DotcIngredients.SACRED_RELIC, ModelTemplates.FLAT_ITEM);
-        itemModelGenerator.generateFlatItem(DotcIngredients.GLOVES_OF_HASTE, ModelTemplates.FLAT_ITEM);
+        Stream.of(
+                DotcIngredients.RADIANT_CRYSTAL,
+                DotcIngredients.RADIANT_CRYSTAL_DUST,
+                DotcIngredients.DIRE_CRYSTAL,
+                DotcIngredients.DIRE_CRYSTAL_DUST,
+                DotcIngredients.MITHRIL_INGOT,
+                DotcIngredients.BLIGHT_STONE,
+                DotcIngredients.SACRED_RELIC,
+                DotcIngredients.GLOVES_OF_HASTE
+        ).forEach(item -> itemModelGenerator.generateFlatItem(item, ModelTemplates.FLAT_ITEM));
     }
 }
