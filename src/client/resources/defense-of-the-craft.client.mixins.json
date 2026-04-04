@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "net.detectivekaktus.client.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "DotcScreenshotMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
