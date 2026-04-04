@@ -11,5 +11,9 @@
 
   "item.defense-of-the-craft.radiant_crystal_dust": "Radiant crystal dust",
   "item.defense-of-the-craft.dire_crystal_dust": "Dire crystal dust",
-  "itemTooltip.l1.defense-of-the-craft.crystal_dust": "Magic dust with a little glow around it."
+  "itemTooltip.l1.defense-of-the-craft.crystal_dust": "Magic dust with a little glow around it.",
+
+  "item.defense-of-the-craft.mithril_ingot": "Mithril ingot",
+  "itemTooltip.l1.defense-of-the-craft.mithril_ingot": "Four times stronger than iron, yet much lighter.",
+  "itemTooltip.l2.defense-of-the-craft.mithril_ingot": "It has high malleability but it requires very high temperatures to be worked."
 }

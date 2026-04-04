@@ -22,5 +22,10 @@ public class DotcIngredients {
             "dire_crystal_dust"
     );
 
+    public static final Item MITHRIL_INGOT = DotcItems.register(
+            new MithrilIngot(new Item.Properties()),
+            "mithril_ingot"
+    );
+
     public static void initialize() { }
 }

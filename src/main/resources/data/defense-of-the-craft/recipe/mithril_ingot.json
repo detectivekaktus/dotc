@@ -1,0 +1,40 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "mithril_ingot",
+  "ingredients": [
+    [
+      {
+        "item": "defense-of-the-craft:radiant_crystal"
+      },
+      {
+        "item": "defense-of-the-craft:dire_crystal"
+      }
+    ],
+    [
+      {
+        "item": "defense-of-the-craft:radiant_crystal"
+      },
+      {
+        "item": "defense-of-the-craft:dire_crystal"
+      }
+    ],
+    [
+      {
+        "item": "defense-of-the-craft:radiant_crystal"
+      },
+      {
+        "item": "defense-of-the-craft:dire_crystal"
+      }
+    ],
+    {
+      "item": "minecraft:iron_ingot"
+    },
+    {
+      "item": "minecraft:iron_ingot"
+    }
+  ],
+  "result": {
+    "id": "defense-of-the-craft:mithril_ingot",
+    "count": 1
+  }
+}

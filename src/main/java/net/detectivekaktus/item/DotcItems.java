@@ -35,6 +35,7 @@ public class DotcItems {
             group.accept(DotcIngredients.RADIANT_CRYSTAL_DUST);
             group.accept(DotcIngredients.DIRE_CRYSTAL);
             group.accept(DotcIngredients.DIRE_CRYSTAL_DUST);
+            group.accept(DotcIngredients.MITHRIL_INGOT);
         });
     }
 
