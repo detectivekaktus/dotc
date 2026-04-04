@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_crystals_and_iron": {
+      "conditions": {
+        "items": [
+          {
+            "items": "defense-of-the-craft:radiant_crystal"
+          },
+          {
+            "items": "defense-of-the-craft:dire_crystal"
+          },
+          {
+            "items": "minecraft:iron_ingot"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "defense-of-the-craft:mithril_ingot"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_crystals_and_iron"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "defense-of-the-craft:mithril_ingot"
+    ]
+  }
+}

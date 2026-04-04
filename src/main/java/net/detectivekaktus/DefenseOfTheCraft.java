@@ -1,9 +1,10 @@
 package net.detectivekaktus;
 
 import net.fabricmc.api.ModInitializer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.detectivekaktus.item.DotcItems;
 
 public class DefenseOfTheCraft implements ModInitializer {
 	public static final String MOD_ID = "defense-of-the-craft";
@@ -11,6 +12,8 @@ public class DefenseOfTheCraft implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+        DotcItems.initialize();
+
 		LOGGER.info("Defense of the Craft has been successfully initialized!");
 	}
 }
