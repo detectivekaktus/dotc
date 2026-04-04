@@ -13,11 +13,7 @@ public class DotcItem extends Item {
     }
 
     protected List<Component> generateTooltipTranslationStrings(int count, String itemId) {
-        var components = new ArrayList<Component>();
-        for (int i = 0; i < count; i++)
-            components.add(Component.translatable("itemTooltip.l" + (i + 1) + ".defense-of-the-craft." + itemId)
-                    .withStyle(ChatFormatting.GRAY));
-        return components;
+        return this.generateTooltipTranslationStrings(count, itemId, ChatFormatting.GRAY);
     }
 
     protected List<Component> generateTooltipTranslationStrings(int count, String itemId, ChatFormatting formatting) {
