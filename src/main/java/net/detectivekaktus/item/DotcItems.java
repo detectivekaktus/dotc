@@ -36,6 +36,9 @@ public class DotcItems {
             group.accept(DotcIngredients.DIRE_CRYSTAL);
             group.accept(DotcIngredients.DIRE_CRYSTAL_DUST);
             group.accept(DotcIngredients.MITHRIL_INGOT);
+            group.accept(DotcIngredients.BLIGHT_STONE);
+            group.accept(DotcIngredients.GLOVES_OF_HASTE);
+            group.accept(DotcIngredients.SACRED_RELIC);
         });
     }
 
