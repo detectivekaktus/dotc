@@ -15,5 +15,8 @@
 
   "item.defense-of-the-craft.mithril_ingot": "Mithril ingot",
   "itemTooltip.l1.defense-of-the-craft.mithril_ingot": "Four times stronger than iron, yet much lighter.",
-  "itemTooltip.l2.defense-of-the-craft.mithril_ingot": "It has high malleability but it requires very high temperatures to be worked."
+  "itemTooltip.l2.defense-of-the-craft.mithril_ingot": "It has high malleability but it requires very high temperatures to be worked.",
+
+  "item.defense-of-the-craft.blight_stone": "Blight stone",
+  "itemTooltip.l1.defense-of-the-craft.blight_stone": "An unnerving stone unearthed beneath the Fields of Endless Carnage."
 }

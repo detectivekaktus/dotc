@@ -25,5 +25,6 @@ public class DotcModelProvider extends FabricModelProvider {
         itemModelGenerator.generateFlatItem(DotcIngredients.DIRE_CRYSTAL, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(DotcIngredients.DIRE_CRYSTAL_DUST, ModelTemplates.FLAT_ITEM);
         itemModelGenerator.generateFlatItem(DotcIngredients.MITHRIL_INGOT, ModelTemplates.FLAT_ITEM);
+        itemModelGenerator.generateFlatItem(DotcIngredients.BLIGHT_STONE, ModelTemplates.FLAT_ITEM);
     }
 }

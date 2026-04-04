@@ -50,5 +50,16 @@ public class DotcRecipeProvider extends FabricRecipeProvider {
                                 )
                 )
                 .save(exporter);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DotcIngredients.BLIGHT_STONE)
+                .requires(Items.ROTTEN_FLESH, 2)
+                .requires(Items.POISONOUS_POTATO)
+                .requires(Items.SPIDER_EYE)
+                .requires(Items.PUFFERFISH)
+                .unlockedBy(
+                        "has_rotten_flesh",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(Items.ROTTEN_FLESH)
+                )
+                .save(exporter);
     }
 }
