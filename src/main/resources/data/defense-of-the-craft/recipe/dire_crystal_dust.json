@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "crystal_dust",
+  "ingredients": [
+    {
+      "item": "defense-of-the-craft:dire_crystal"
+    }
+  ],
+  "result": {
+    "id": "defense-of-the-craft:dire_crystal_dust",
+    "count": 2
+  }
+}

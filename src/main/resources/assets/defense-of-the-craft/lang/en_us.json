@@ -1,11 +1,15 @@
 {
   "itemGroup.defense-of-the-craft": "Defense of the Craft",
 
-  "item.defense-of-the-craft.radiant_crystal": "Radiant Crystal",
+  "item.defense-of-the-craft.radiant_crystal": "Radiant crystal",
   "itemTooltip.l1.defense-of-the-craft.radiant_crystal": "Mineral known for its unpredictable structure.",
   "itemTooltip.l2.defense-of-the-craft.radiant_crystal": "It is a bluish, glowing substance blessed with benevolent magic.",
 
-  "item.defense-of-the-craft.dire_crystal": "Dire Crystal",
+  "item.defense-of-the-craft.dire_crystal": "Dire crystal",
   "itemTooltip.l1.defense-of-the-craft.dire_crystal": "Mineral known for its unpredictable evil structure.",
-  "itemTooltip.l2.defense-of-the-craft.dire_crystal": "It is a reddish, glowing substance blessed with unkind magic."
+  "itemTooltip.l2.defense-of-the-craft.dire_crystal": "It is a reddish, glowing substance blessed with unkind magic.",
+
+  "item.defense-of-the-craft.radiant_crystal_dust": "Radiant crystal dust",
+  "item.defense-of-the-craft.dire_crystal_dust": "Dire crystal dust",
+  "itemTooltip.l1.defense-of-the-craft.crystal_dust": "Magic dust with a little glow around it."
 }

@@ -13,5 +13,14 @@ public class DotcIngredients {
             "dire_crystal"
     );
 
+    public static final Item RADIANT_CRYSTAL_DUST = DotcItems.register(
+            new CrystalDust(new Item.Properties()),
+            "radiant_crystal_dust"
+    );
+    public static final Item DIRE_CRYSTAL_DUST = DotcItems.register(
+            new CrystalDust(new Item.Properties()),
+            "dire_crystal_dust"
+    );
+
     public static void initialize() { }
 }

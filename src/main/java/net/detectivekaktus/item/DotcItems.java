@@ -32,7 +32,9 @@ public class DotcItems {
 
         ItemGroupEvents.modifyEntriesEvent(DOTC_ITEM_GROUP_KEY).register(group -> {
             group.accept(DotcIngredients.RADIANT_CRYSTAL);
+            group.accept(DotcIngredients.RADIANT_CRYSTAL_DUST);
             group.accept(DotcIngredients.DIRE_CRYSTAL);
+            group.accept(DotcIngredients.DIRE_CRYSTAL_DUST);
         });
     }
 
