@@ -1,0 +1,33 @@
+{
+	"schemaVersion": 1,
+	"id": "defense-of-the-craft",
+	"version": "${version}",
+	"name": "Defense of the Craft",
+	"description": "Immersive survival-oriented Dota-based Minecraft mod",
+	"authors": [
+		"DetectiveKaktus"
+	],
+	"contact": {
+		"sources": "https://github.com/detectivekaktus/dotc"
+	},
+	"license": "MIT",
+	"icon": "assets/defense-of-the-craft/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.detectivekaktus.DefenseOfTheCraft"
+		],
+		"client": [
+			"net.detectivekaktus.client.DefenseOfTheCraftClient"
+		],
+		"fabric-datagen": [
+			"net.detectivekaktus.client.DefenseOfTheCraftDataGenerator"
+		]
+	},
+	"depends": {
+		"fabricloader": ">=0.18.6",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
