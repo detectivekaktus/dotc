@@ -3,7 +3,8 @@
   "package": "net.detectivekaktus.client.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "DotcScreenshotMixin"
+    "DotcScreenshotMixin",
+    "DotcAbstractWidgetMixin"
   ],
   "injectors": {
     "defaultRequire": 1

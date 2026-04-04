@@ -3,5 +3,10 @@
     "sounds": [
       "defense-of-the-craft:steam_camera"
     ]
+  },
+  "button_press": {
+    "sounds": [
+      "defense-of-the-craft:button_press"
+    ]
   }
 }
