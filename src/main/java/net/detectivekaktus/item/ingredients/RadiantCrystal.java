@@ -2,22 +2,20 @@ package net.detectivekaktus.item.ingredients;
 
 import java.util.List;
 
-import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 
-public class RadiantCrystal extends Item {
+import net.detectivekaktus.item.DotcItem;
+
+public class RadiantCrystal extends DotcItem {
     public RadiantCrystal(Properties properties) {
         super(properties);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        for (int i = 0; i < 2; i++)
-            tooltip.add(Component.translatable(
-                    "itemTooltip.l" + (i + 1) + ".defense-of-the-craft.radiant_crystal"
-            ).withStyle(ChatFormatting.GRAY));
+        var components = this.generateTooltipTranslationStrings(2, "radiant_crystal");
+        tooltip.addAll(components);
     }
 }

@@ -1,23 +1,21 @@
 package net.detectivekaktus.item.ingredients;
 
-import net.minecraft.ChatFormatting;
+import java.util.List;
+
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 
-import java.util.List;
+import net.detectivekaktus.item.DotcItem;
 
-public class DireCrystal extends Item {
+public class DireCrystal extends DotcItem {
     public DireCrystal(Properties properties) {
         super(properties);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        for (int i = 0; i < 2; i++)
-            tooltip.add(Component.translatable(
-                    "itemTooltip.l" + (i + 1) + ".defense-of-the-craft.dire_crystal"
-            ).withStyle(ChatFormatting.GRAY));
+        var components = this.generateTooltipTranslationStrings(2, "dire_crystal");
+        tooltip.addAll(components);
     }
 }
