@@ -21,5 +21,8 @@
   "itemTooltip.l1.defense-of-the-craft.blight_stone": "An unnerving stone unearthed beneath the Fields of Endless Carnage.",
 
   "item.defense-of-the-craft.sacred_relic": "Sacred relic",
-  "itemTooltip.l1.defense-of-the-craft.sacred_relic": "An ancient weapon that often turns the tides of war."
+  "itemTooltip.l1.defense-of-the-craft.sacred_relic": "An ancient weapon that often turns the tides of war.",
+
+  "item.defense-of-the-craft.gloves_of_haste": "Gloves of haste",
+  "itemTooltip.l1.defense-of-the-craft.gloves_of_haste": "A pair of magical gloves that seems to render weapons weightless."
 }

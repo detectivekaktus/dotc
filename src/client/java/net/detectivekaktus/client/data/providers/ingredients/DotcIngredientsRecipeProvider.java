@@ -7,6 +7,7 @@ import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -74,6 +75,17 @@ public class DotcIngredientsRecipeProvider extends FabricRecipeProvider {
                 .unlockedBy(
                         "has_echo_shard",
                         InventoryChangeTrigger.TriggerInstance.hasItems(Items.ECHO_SHARD)
+                )
+                .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DotcIngredients.GLOVES_OF_HASTE)
+                .pattern("## ")
+                .pattern("## ")
+                .pattern("  #")
+                .define('#', Items.LEATHER)
+                .unlockedBy(
+                        "has_leather",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(Items.LEATHER)
                 )
                 .save(exporter);
     }

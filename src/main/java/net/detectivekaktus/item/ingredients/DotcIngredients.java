@@ -32,6 +32,11 @@ public class DotcIngredients {
             new SacredRelic(new Item.Properties()),
             "sacred_relic"
     );
+    public static final Item GLOVES_OF_HASTE = DotcItems.register(
+            new GlovesOfHaste(new Item.Properties()),
+            "gloves_of_haste"
+    );
+
 
     public static void initialize() { }
 }
