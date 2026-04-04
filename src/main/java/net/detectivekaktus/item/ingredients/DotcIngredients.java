@@ -1,7 +1,7 @@
 package net.detectivekaktus.item.ingredients;
 
-import net.detectivekaktus.item.DotcItems;
 import net.minecraft.world.item.Item;
+import net.detectivekaktus.item.DotcItems;
 
 public class DotcIngredients {
     public static final Item RADIANT_CRYSTAL = DotcItems.register(
@@ -27,6 +27,10 @@ public class DotcIngredients {
     public static final Item BLIGHT_STONE = DotcItems.register(
             new BlightStone(new Item.Properties()),
             "blight_stone"
+    );
+    public static final Item SACRED_RELIC = DotcItems.register(
+            new SacredRelic(new Item.Properties()),
+            "sacred_relic"
     );
 
     public static void initialize() { }

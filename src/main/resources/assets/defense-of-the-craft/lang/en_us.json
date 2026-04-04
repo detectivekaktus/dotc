@@ -18,5 +18,8 @@
   "itemTooltip.l2.defense-of-the-craft.mithril_ingot": "It has high malleability but it requires very high temperatures to be worked.",
 
   "item.defense-of-the-craft.blight_stone": "Blight stone",
-  "itemTooltip.l1.defense-of-the-craft.blight_stone": "An unnerving stone unearthed beneath the Fields of Endless Carnage."
+  "itemTooltip.l1.defense-of-the-craft.blight_stone": "An unnerving stone unearthed beneath the Fields of Endless Carnage.",
+
+  "item.defense-of-the-craft.sacred_relic": "Sacred relic",
+  "itemTooltip.l1.defense-of-the-craft.sacred_relic": "An ancient weapon that often turns the tides of war."
 }

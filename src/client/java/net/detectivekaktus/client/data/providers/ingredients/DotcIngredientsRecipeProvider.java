@@ -61,5 +61,20 @@ public class DotcIngredientsRecipeProvider extends FabricRecipeProvider {
                         InventoryChangeTrigger.TriggerInstance.hasItems(Items.ROTTEN_FLESH)
                 )
                 .save(exporter);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DotcIngredients.SACRED_RELIC)
+                .requires(Items.HEART_OF_THE_SEA, 2)
+                .requires(Items.AMETHYST_SHARD)
+                .requires(Items.ECHO_SHARD)
+                .requires(Items.PHANTOM_MEMBRANE)
+                .unlockedBy(
+                        "has_heart_of_the_sea",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(Items.HEART_OF_THE_SEA)
+                )
+                .unlockedBy(
+                        "has_echo_shard",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(Items.ECHO_SHARD)
+                )
+                .save(exporter);
     }
 }
