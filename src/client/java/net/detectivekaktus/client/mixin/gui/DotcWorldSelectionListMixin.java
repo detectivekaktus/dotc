@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import net.detectivekaktus.sound.DotcSounds;
+import net.detectivekaktus.sound.gui.DotcGuiSounds;
 
 @Mixin(WorldSelectionList.class)
 public class DotcWorldSelectionListMixin {
@@ -18,6 +18,6 @@ public class DotcWorldSelectionListMixin {
             target = "Lnet/minecraft/client/sounds/SoundManager;play(Lnet/minecraft/client/resources/sounds/SoundInstance;)V"
     ), method = "keyPressed")
     private void changeKeyPressedUiSound(SoundManager soundManager, SoundInstance soundInstance) {
-        soundManager.play(SimpleSoundInstance.forUI(DotcSounds.BUTTON_PRESS, 1.0f));
+        soundManager.play(SimpleSoundInstance.forUI(DotcGuiSounds.UI_BUTTON_PRESS, 1.0f));
     }
 }

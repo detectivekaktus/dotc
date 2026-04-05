@@ -1,17 +1,17 @@
 {
-  "steam_camera": {
+  "ui_steam_camera": {
     "sounds": [
-      "defense-of-the-craft:steam_camera"
+      "defense-of-the-craft:ui_steam_camera"
     ]
   },
-  "button_press": {
+  "ui_button_press": {
     "sounds": [
-      "defense-of-the-craft:button_press"
+      "defense-of-the-craft:ui_button_press"
     ]
   },
-  "button_confirm": {
+  "ui_button_confirm": {
     "sounds": [
-      "defense-of-the-craft:button_confirm"
+      "defense-of-the-craft:ui_button_confirm"
     ]
   },
   "ui_change_tab": {

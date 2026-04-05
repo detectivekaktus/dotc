@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
 
-import net.detectivekaktus.sound.DotcSounds;
+import net.detectivekaktus.sound.gui.DotcGuiSounds;
 
 @Mixin(TabManager.class)
 public class DotcTabManagerMixin {
@@ -18,6 +18,6 @@ public class DotcTabManagerMixin {
             target = "Lnet/minecraft/client/sounds/SoundManager;play(Lnet/minecraft/client/resources/sounds/SoundInstance;)V"
     ), method = "setCurrentTab")
     private void changeSetCurrentTabUiSound(SoundManager soundManager, SoundInstance soundInstance) {
-        soundManager.play(SimpleSoundInstance.forUI(DotcSounds.UI_CHANGE_TAB, 1.0f));
+        soundManager.play(SimpleSoundInstance.forUI(DotcGuiSounds.UI_CHANGE_TAB, 1.0f));
     }
 }
