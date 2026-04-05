@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.mixin;
+package net.detectivekaktus.client.mixin.gui;
 
 import net.minecraft.client.gui.screens.worldselection.WorldSelectionList;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
@@ -11,13 +11,13 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import net.detectivekaktus.sound.DotcSounds;
 
-@Mixin(WorldSelectionList.class)
-public class DotcWorldSelectionListMixin {
+@Mixin(WorldSelectionList.WorldListEntry.class)
+public class DotcWorldListEntryMixin {
     @Redirect(at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/client/sounds/SoundManager;play(Lnet/minecraft/client/resources/sounds/SoundInstance;)V"
-    ), method = "keyPressed")
-    private void changeKeyPressedUiSound(SoundManager soundManager, SoundInstance soundInstance) {
-        soundManager.play(SimpleSoundInstance.forUI(DotcSounds.BUTTON_PRESS, 1.0f));
+    ), method = "mouseClicked")
+    private void changeMouseClickedUiSound(SoundManager soundManager, SoundInstance soundInstance) {
+        soundManager.play(SimpleSoundInstance.forUI(DotcSounds.BUTTON_CONFIRM, 1.0f));
     }
 }

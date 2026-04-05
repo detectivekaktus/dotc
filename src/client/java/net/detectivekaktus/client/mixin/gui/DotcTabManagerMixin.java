@@ -1,6 +1,6 @@
-package net.detectivekaktus.client.mixin;
+package net.detectivekaktus.client.mixin.gui;
 
-import net.minecraft.client.gui.screens.worldselection.WorldSelectionList;
+import net.minecraft.client.gui.components.tabs.TabManager;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.client.resources.sounds.SoundInstance;
 import net.minecraft.client.sounds.SoundManager;
@@ -11,13 +11,13 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 
 import net.detectivekaktus.sound.DotcSounds;
 
-@Mixin(WorldSelectionList.WorldListEntry.class)
-public class DotcWorldListEntryMixin {
+@Mixin(TabManager.class)
+public class DotcTabManagerMixin {
     @Redirect(at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/client/sounds/SoundManager;play(Lnet/minecraft/client/resources/sounds/SoundInstance;)V"
-    ), method = "mouseClicked")
-    private void changeMouseClickedUiSound(SoundManager soundManager, SoundInstance soundInstance) {
-        soundManager.play(SimpleSoundInstance.forUI(DotcSounds.BUTTON_CONFIRM, 1.0f));
+    ), method = "setCurrentTab")
+    private void changeSetCurrentTabUiSound(SoundManager soundManager, SoundInstance soundInstance) {
+        soundManager.play(SimpleSoundInstance.forUI(DotcSounds.UI_CHANGE_TAB, 1.0f));
     }
 }

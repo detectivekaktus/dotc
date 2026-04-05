@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.mixin;
+package net.detectivekaktus.client.mixin.gui;
 
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
