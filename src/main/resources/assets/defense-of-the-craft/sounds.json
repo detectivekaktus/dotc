@@ -13,5 +13,10 @@
     "sounds": [
       "defense-of-the-craft:button_confirm"
     ]
+  },
+  "ui_change_tab": {
+    "sounds": [
+      "defense-of-the-craft:ui_change_tab"
+    ]
   }
 }

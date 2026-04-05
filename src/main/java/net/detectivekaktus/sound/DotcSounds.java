@@ -10,6 +10,7 @@ public class DotcSounds {
     public static final SoundEvent STEAM_CAMERA = register("steam_camera");
     public static final SoundEvent BUTTON_PRESS = register("button_press");
     public static final SoundEvent BUTTON_CONFIRM = register("button_confirm");
+    public static final SoundEvent UI_CHANGE_TAB = register("ui_change_tab");
 
     private static SoundEvent register(String soundId) {
         var id = ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, soundId);
