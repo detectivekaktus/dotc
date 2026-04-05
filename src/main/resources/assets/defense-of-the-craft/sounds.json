@@ -8,5 +8,10 @@
     "sounds": [
       "defense-of-the-craft:button_press"
     ]
+  },
+  "button_confirm": {
+    "sounds": [
+      "defense-of-the-craft:button_confirm"
+    ]
   }
 }

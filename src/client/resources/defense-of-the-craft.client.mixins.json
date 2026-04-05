@@ -4,7 +4,9 @@
   "compatibilityLevel": "JAVA_21",
   "client": [
     "DotcScreenshotMixin",
-    "DotcAbstractWidgetMixin"
+    "DotcAbstractWidgetMixin",
+    "DotcWorldSelectionListMixin",
+    "DotcWorldListEntryMixin"
   ],
   "injectors": {
     "defaultRequire": 1
