@@ -1,7 +1,22 @@
 {
-  "steam_camera": {
+  "ui_steam_camera": {
     "sounds": [
-      "defense-of-the-craft:steam_camera"
+      "defense-of-the-craft:ui_steam_camera"
+    ]
+  },
+  "ui_button_press": {
+    "sounds": [
+      "defense-of-the-craft:ui_button_press"
+    ]
+  },
+  "ui_button_confirm": {
+    "sounds": [
+      "defense-of-the-craft:ui_button_confirm"
+    ]
+  },
+  "ui_change_tab": {
+    "sounds": [
+      "defense-of-the-craft:ui_change_tab"
     ]
   }
 }

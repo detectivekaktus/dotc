@@ -28,6 +28,10 @@
 		{
 			"config": "defense-of-the-craft.client.mixins.json",
 			"environment": "client"
+		},
+		{
+			"config": "defense-of-the-craft.client.gui.mixins.json",
+			"environment": "client"
 		}
 	],
 	"depends": {
