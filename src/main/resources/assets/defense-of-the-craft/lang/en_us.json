@@ -27,5 +27,6 @@
   "itemTooltip.l1.defense-of-the-craft.gloves_of_haste": "A pair of magical gloves that seems to render weapons weightless.",
 
   "block.defense-of-the-craft.radiant_ore": "Radiant ore",
-  "block.defense-of-the-craft.deepslate_radiant_ore": "Deepslate radiant ore"
+  "block.defense-of-the-craft.deepslate_radiant_ore": "Deepslate radiant ore",
+  "block.defense-of-the-craft.dire_ore": "Dire ore"
 }

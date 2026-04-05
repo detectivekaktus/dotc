@@ -43,7 +43,8 @@ public class DotcItems {
                 DotcIngredients.GLOVES_OF_HASTE,
                 DotcIngredients.SACRED_RELIC,
                 DotcBlocks.RADIANT_ORE.asItem(),
-                DotcBlocks.DEEPSLATE_RADIANT_ORE.asItem()
+                DotcBlocks.DEEPSLATE_RADIANT_ORE.asItem(),
+                DotcBlocks.DIRE_ORE.asItem()
         ).forEach(group::accept));
     }
 

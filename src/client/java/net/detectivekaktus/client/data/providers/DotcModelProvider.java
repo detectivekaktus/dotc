@@ -18,8 +18,11 @@ public class DotcModelProvider extends FabricModelProvider {
 
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {
-        blockStateModelGenerator.createTrivialCube(DotcBlocks.RADIANT_ORE);
-        blockStateModelGenerator.createTrivialCube(DotcBlocks.DEEPSLATE_RADIANT_ORE);
+        Stream.of(
+                DotcBlocks.RADIANT_ORE,
+                DotcBlocks.DEEPSLATE_RADIANT_ORE,
+                DotcBlocks.DIRE_ORE
+        ).forEach(blockStateModelGenerator::createTrivialCube);
     }
 
     @Override

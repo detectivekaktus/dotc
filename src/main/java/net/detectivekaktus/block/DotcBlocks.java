@@ -20,6 +20,10 @@ public class DotcBlocks {
             new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE)),
             "deepslate_radiant_ore"
     );
+    public static final Block DIRE_ORE = register(
+            new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.ANCIENT_DEBRIS)),
+            "dire_ore"
+    );
 
     public static Block register(Block block, String name) {
         return register(block, name, true);
