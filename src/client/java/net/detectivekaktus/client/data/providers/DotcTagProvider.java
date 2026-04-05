@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.data.providers.ingredients;
+package net.detectivekaktus.client.data.providers;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -14,13 +14,13 @@ import java.util.concurrent.CompletableFuture;
 import net.detectivekaktus.DefenseOfTheCraft;
 import net.detectivekaktus.item.ingredients.DotcIngredients;
 
-public class DotcIngredientsTagProvider extends FabricTagProvider<Item> {
+public class DotcTagProvider extends FabricTagProvider<Item> {
     public static final TagKey<Item> CRYSTALS = TagKey.create(
             Registries.ITEM,
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "crystals")
     );
 
-    public DotcIngredientsTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+    public DotcTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, Registries.ITEM, registriesFuture);
     }
 

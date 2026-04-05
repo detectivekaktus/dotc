@@ -1,5 +1,6 @@
-package net.detectivekaktus.client.data.providers.ingredients;
+package net.detectivekaktus.client.data.providers;
 
+import net.detectivekaktus.block.DotcBlocks;
 import net.detectivekaktus.item.ingredients.DotcIngredients;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -10,14 +11,15 @@ import net.minecraft.data.models.model.ModelTemplates;
 
 import java.util.stream.Stream;
 
-public class DotcIngredientsModelProvider extends FabricModelProvider {
-    public DotcIngredientsModelProvider(FabricDataOutput output) {
+public class DotcModelProvider extends FabricModelProvider {
+    public DotcModelProvider(FabricDataOutput output) {
         super(output);
     }
 
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {
-
+        blockStateModelGenerator.createTrivialCube(DotcBlocks.RADIANT_ORE);
+        blockStateModelGenerator.createTrivialCube(DotcBlocks.DEEPSLATE_RADIANT_ORE);
     }
 
     @Override

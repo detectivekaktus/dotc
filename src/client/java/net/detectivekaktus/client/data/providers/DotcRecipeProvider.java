@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.data.providers.ingredients;
+package net.detectivekaktus.client.data.providers;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -16,8 +16,8 @@ import java.util.concurrent.CompletableFuture;
 
 import net.detectivekaktus.item.ingredients.DotcIngredients;
 
-public class DotcIngredientsRecipeProvider extends FabricRecipeProvider {
-    public DotcIngredientsRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class DotcRecipeProvider extends FabricRecipeProvider {
+    public DotcRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 

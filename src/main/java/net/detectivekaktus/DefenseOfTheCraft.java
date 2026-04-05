@@ -1,5 +1,6 @@
 package net.detectivekaktus;
 
+import net.detectivekaktus.block.DotcBlocks;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,6 +14,7 @@ public class DefenseOfTheCraft implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		DotcBlocks.initialize();
         DotcItems.initialize();
 		DotcSounds.initialize();
 		LOGGER.info("Defense of the Craft has been successfully initialized!");
