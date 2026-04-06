@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "defense-of-the-craft:block/dire_ore"
+  }
+}

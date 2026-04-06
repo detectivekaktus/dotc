@@ -1,4 +1,4 @@
-name: build
+name: datagen
 on: [pull_request]
 
 jobs:
@@ -17,9 +17,4 @@ jobs:
       - name: make gradle wrapper executable
         run: chmod +x ./gradlew
       - name: build
-        run: ./gradlew build
-      - name: capture build artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: Artifacts
-          path: build/libs/
+        run: ./gradlew runDatagen

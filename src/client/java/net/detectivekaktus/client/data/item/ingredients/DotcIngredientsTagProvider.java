@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.data.providers.ingredients;
+package net.detectivekaktus.client.data.item.ingredients;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -29,5 +29,10 @@ public class DotcIngredientsTagProvider extends FabricTagProvider<Item> {
         getOrCreateTagBuilder(CRYSTALS)
                 .add(DotcIngredients.RADIANT_CRYSTAL)
                 .add(DotcIngredients.DIRE_CRYSTAL);
+    }
+
+    @Override
+    public String getName() {
+        return "defense-of-the-craft:ingredient_tags";
     }
 }

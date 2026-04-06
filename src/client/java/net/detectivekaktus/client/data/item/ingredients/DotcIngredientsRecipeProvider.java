@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.data.providers.ingredients;
+package net.detectivekaktus.client.data.item.ingredients;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -84,5 +84,10 @@ public class DotcIngredientsRecipeProvider extends FabricRecipeProvider {
                         InventoryChangeTrigger.TriggerInstance.hasItems(Items.LEATHER)
                 )
                 .save(exporter);
+    }
+
+    @Override
+    public String getName() {
+        return "defense-of-the-craft:ingredient_recipes";
     }
 }
