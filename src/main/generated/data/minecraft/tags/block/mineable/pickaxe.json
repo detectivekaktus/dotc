@@ -2,6 +2,8 @@
   "values": [
     "defense-of-the-craft:radiant_ore",
     "defense-of-the-craft:deepslate_radiant_ore",
-    "defense-of-the-craft:dire_ore"
+    "defense-of-the-craft:dire_ore",
+    "defense-of-the-craft:radiant_crystal_block",
+    "defense-of-the-craft:dire_crystal_block"
   ]
 }

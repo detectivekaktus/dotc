@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.data.block.natural;
+package net.detectivekaktus.client.data;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -10,10 +10,13 @@ import net.minecraft.world.level.block.Block;
 
 import java.util.concurrent.CompletableFuture;
 
+import net.detectivekaktus.block.building.DotcBuildingBlocks;
 import net.detectivekaktus.block.natural.DotcNaturalBlocks;
 
-public class DotcNaturalBlockTagProvider extends FabricTagProvider<Block> {
-    public DotcNaturalBlockTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+// Unfortunately Fabric can't handle two providers writing into the same file,
+// so I had to combine two providers into one which actually sucks
+public class DotcBlockTagProvider extends FabricTagProvider<Block> {
+    public DotcBlockTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, Registries.BLOCK, registriesFuture);
     }
 
@@ -22,7 +25,9 @@ public class DotcNaturalBlockTagProvider extends FabricTagProvider<Block> {
         getOrCreateTagBuilder(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(DotcNaturalBlocks.RADIANT_ORE)
                 .add(DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE)
-                .add(DotcNaturalBlocks.DIRE_ORE);
+                .add(DotcNaturalBlocks.DIRE_ORE)
+                .add(DotcBuildingBlocks.RADIANT_CRYSTAL_BLOCK)
+                .add(DotcBuildingBlocks.DIRE_CRYSTAL_BLOCK);
         getOrCreateTagBuilder(BlockTags.NEEDS_IRON_TOOL)
                 .add(DotcNaturalBlocks.RADIANT_ORE)
                 .add(DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE);
@@ -32,6 +37,6 @@ public class DotcNaturalBlockTagProvider extends FabricTagProvider<Block> {
 
     @Override
     public String getName() {
-        return "defense-of-the-craft:natural_block_tags";
+        return "defense-of-the-craft:block_tags";
     }
 }
