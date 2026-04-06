@@ -11,7 +11,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguratio
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 
 import net.detectivekaktus.DefenseOfTheCraft;
-import net.detectivekaktus.block.DotcBlocks;
+import net.detectivekaktus.block.natural.DotcNaturalBlocks;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class RadiantOreConfiguredFeature {
         var deepslateOreReplaceableRule = new TagMatchTest(BlockTags.DEEPSLATE_ORE_REPLACEABLES);
 
         var radiantOreConfig = List.of(
-                OreConfiguration.target(deepslateOreReplaceableRule, DotcBlocks.DEEPSLATE_RADIANT_ORE.defaultBlockState())
+                OreConfiguration.target(deepslateOreReplaceableRule, DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE.defaultBlockState())
         );
 
         context.register(

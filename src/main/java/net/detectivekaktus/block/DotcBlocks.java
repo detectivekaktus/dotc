@@ -6,25 +6,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 
 import net.detectivekaktus.DefenseOfTheCraft;
 
 public class DotcBlocks {
-    public static final Block RADIANT_ORE = register(
-            new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DIAMOND_ORE)),
-            "radiant_ore"
-    );
-    public static final Block DEEPSLATE_RADIANT_ORE = register(
-            new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.DEEPSLATE_DIAMOND_ORE)),
-            "deepslate_radiant_ore"
-    );
-    public static final Block DIRE_ORE = register(
-            new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.ANCIENT_DEBRIS)),
-            "dire_ore"
-    );
-
     public static Block register(Block block, String name) {
         return register(block, name, true);
     }

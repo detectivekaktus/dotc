@@ -11,7 +11,7 @@ import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguratio
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 
 import net.detectivekaktus.DefenseOfTheCraft;
-import net.detectivekaktus.block.DotcBlocks;
+import net.detectivekaktus.block.natural.DotcNaturalBlocks;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ public class DireOreConfiguredFeature {
         var netherrackRule = new TagMatchTest(BlockTags.BASE_STONE_NETHER);
 
         var direOreConfig = List.of(
-                OreConfiguration.target(netherrackRule, DotcBlocks.DIRE_ORE.defaultBlockState())
+                OreConfiguration.target(netherrackRule, DotcNaturalBlocks.DIRE_ORE.defaultBlockState())
         );
 
         context.register(

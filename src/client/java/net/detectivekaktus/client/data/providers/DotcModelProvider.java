@@ -1,7 +1,5 @@
 package net.detectivekaktus.client.data.providers;
 
-import net.detectivekaktus.block.DotcBlocks;
-import net.detectivekaktus.item.ingredients.DotcIngredients;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
 
@@ -11,6 +9,9 @@ import net.minecraft.data.models.model.ModelTemplates;
 
 import java.util.stream.Stream;
 
+import net.detectivekaktus.block.natural.DotcNaturalBlocks;
+import net.detectivekaktus.item.ingredients.DotcIngredients;
+
 public class DotcModelProvider extends FabricModelProvider {
     public DotcModelProvider(FabricDataOutput output) {
         super(output);
@@ -19,9 +20,9 @@ public class DotcModelProvider extends FabricModelProvider {
     @Override
     public void generateBlockStateModels(BlockModelGenerators blockStateModelGenerator) {
         Stream.of(
-                DotcBlocks.RADIANT_ORE,
-                DotcBlocks.DEEPSLATE_RADIANT_ORE,
-                DotcBlocks.DIRE_ORE
+                DotcNaturalBlocks.RADIANT_ORE,
+                DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE,
+                DotcNaturalBlocks.DIRE_ORE
         ).forEach(blockStateModelGenerator::createTrivialCube);
     }
 

@@ -14,8 +14,8 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.concurrent.CompletableFuture;
 
-import net.detectivekaktus.block.DotcBlocks;
 import net.detectivekaktus.item.ingredients.DotcIngredients;
+import net.detectivekaktus.block.natural.DotcNaturalBlocks;
 
 public class DotcBlockLootTableProvider extends FabricBlockLootTableProvider {
     public DotcBlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
@@ -25,7 +25,7 @@ public class DotcBlockLootTableProvider extends FabricBlockLootTableProvider {
     @Override
     public void generate() {
         HolderLookup.RegistryLookup<Enchantment> registryLookup = this.registries.lookupOrThrow(Registries.ENCHANTMENT);
-        add(DotcBlocks.RADIANT_ORE, block ->
+        add(DotcNaturalBlocks.RADIANT_ORE, block ->
                 createSilkTouchDispatchTable(block,
                         applyExplosionDecay(block,
                                 LootItem.lootTableItem(DotcIngredients.RADIANT_CRYSTAL)
@@ -33,7 +33,7 @@ public class DotcBlockLootTableProvider extends FabricBlockLootTableProvider {
                                         .apply(ApplyBonusCount.addOreBonusCount(registryLookup.getOrThrow(Enchantments.FORTUNE)))
                         ))
         );
-        add(DotcBlocks.DEEPSLATE_RADIANT_ORE, block ->
+        add(DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE, block ->
                 createSilkTouchDispatchTable(block,
                         applyExplosionDecay(block,
                                 LootItem.lootTableItem(DotcIngredients.RADIANT_CRYSTAL)
@@ -41,7 +41,7 @@ public class DotcBlockLootTableProvider extends FabricBlockLootTableProvider {
                                         .apply(ApplyBonusCount.addOreBonusCount(registryLookup.getOrThrow(Enchantments.FORTUNE)))
                         ))
         );
-        add(DotcBlocks.DIRE_ORE, block ->
+        add(DotcNaturalBlocks.DIRE_ORE, block ->
                 createSilkTouchDispatchTable(block,
                         applyExplosionDecay(block,
                                 LootItem.lootTableItem(DotcIngredients.DIRE_CRYSTAL)

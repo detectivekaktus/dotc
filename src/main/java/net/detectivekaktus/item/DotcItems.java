@@ -13,7 +13,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
 import net.detectivekaktus.DefenseOfTheCraft;
-import net.detectivekaktus.block.DotcBlocks;
+import net.detectivekaktus.block.natural.DotcNaturalBlocks;
 import net.detectivekaktus.item.ingredients.DotcIngredients;
 
 import java.util.stream.Stream;
@@ -42,9 +42,9 @@ public class DotcItems {
                 DotcIngredients.BLIGHT_STONE,
                 DotcIngredients.GLOVES_OF_HASTE,
                 DotcIngredients.SACRED_RELIC,
-                DotcBlocks.RADIANT_ORE.asItem(),
-                DotcBlocks.DEEPSLATE_RADIANT_ORE.asItem(),
-                DotcBlocks.DIRE_ORE.asItem()
+                DotcNaturalBlocks.RADIANT_ORE.asItem(),
+                DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE.asItem(),
+                DotcNaturalBlocks.DIRE_ORE.asItem()
         ).forEach(group::accept));
     }
 
