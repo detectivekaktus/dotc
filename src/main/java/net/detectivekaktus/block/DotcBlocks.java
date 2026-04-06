@@ -8,6 +8,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 
 import net.detectivekaktus.DefenseOfTheCraft;
+import net.detectivekaktus.block.building.DotcBuildingBlocks;
+import net.detectivekaktus.block.natural.DotcNaturalBlocks;
 
 public class DotcBlocks {
     public static Block register(Block block, String name) {
@@ -23,5 +25,8 @@ public class DotcBlocks {
         return Registry.register(BuiltInRegistries.BLOCK, id, block);
     }
 
-    public static void initialize() { }
+    public static void initialize() {
+        DotcNaturalBlocks.initialize();
+        DotcBuildingBlocks.initialize();
+    }
 }

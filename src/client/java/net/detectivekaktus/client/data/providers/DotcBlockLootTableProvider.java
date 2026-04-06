@@ -14,8 +14,9 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.concurrent.CompletableFuture;
 
-import net.detectivekaktus.item.ingredients.DotcIngredients;
+import net.detectivekaktus.block.building.DotcBuildingBlocks;
 import net.detectivekaktus.block.natural.DotcNaturalBlocks;
+import net.detectivekaktus.item.ingredients.DotcIngredients;
 
 public class DotcBlockLootTableProvider extends FabricBlockLootTableProvider {
     public DotcBlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
@@ -49,5 +50,8 @@ public class DotcBlockLootTableProvider extends FabricBlockLootTableProvider {
                                         .apply(ApplyBonusCount.addOreBonusCount(registryLookup.getOrThrow(Enchantments.FORTUNE)))
                         ))
         );
+
+        dropSelf(DotcBuildingBlocks.RADIANT_CRYSTAL_BLOCK);
+        dropSelf(DotcBuildingBlocks.DIRE_CRYSTAL_BLOCK);
     }
 }

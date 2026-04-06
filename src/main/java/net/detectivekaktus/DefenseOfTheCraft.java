@@ -16,7 +16,7 @@ public class DefenseOfTheCraft implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		DotcBlocks.initialize();
-        DotcItems.initialize();
+		DotcItems.initialize();
 		DotcSounds.initialize();
 		DotcWorldgen.initialize();
 		LOGGER.info("Defense of the Craft has been successfully initialized!");

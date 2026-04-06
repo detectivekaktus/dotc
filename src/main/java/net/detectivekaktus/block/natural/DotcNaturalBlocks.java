@@ -19,4 +19,6 @@ public class DotcNaturalBlocks {
             new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.ANCIENT_DEBRIS)),
             "dire_ore"
     );
+
+    public static void initialize() { }
 }

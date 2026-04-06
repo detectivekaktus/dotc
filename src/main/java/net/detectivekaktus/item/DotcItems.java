@@ -14,6 +14,7 @@ import net.minecraft.world.item.ItemStack;
 
 import net.detectivekaktus.DefenseOfTheCraft;
 import net.detectivekaktus.block.natural.DotcNaturalBlocks;
+import net.detectivekaktus.block.building.DotcBuildingBlocks;
 import net.detectivekaktus.item.ingredients.DotcIngredients;
 
 import java.util.stream.Stream;
@@ -44,11 +45,12 @@ public class DotcItems {
                 DotcIngredients.SACRED_RELIC,
                 DotcNaturalBlocks.RADIANT_ORE.asItem(),
                 DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE.asItem(),
-                DotcNaturalBlocks.DIRE_ORE.asItem()
+                DotcNaturalBlocks.DIRE_ORE.asItem(),
+                DotcBuildingBlocks.RADIANT_CRYSTAL_BLOCK.asItem(),
+                DotcBuildingBlocks.DIRE_CRYSTAL_BLOCK.asItem()
         ).forEach(group::accept));
     }
 
-    // https://docs.fabricmc.net/1.21.1/develop/items/first-item#preparing-your-items-class
     public static Item register(Item item, String id) {
         ResourceLocation itemID = ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, id);
         return Registry.register(BuiltInRegistries.ITEM, itemID, item);

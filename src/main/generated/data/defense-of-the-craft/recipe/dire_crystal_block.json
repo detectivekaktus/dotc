@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    {
+      "item": "defense-of-the-craft:dire_crystal"
+    },
+    {
+      "item": "defense-of-the-craft:dire_crystal"
+    },
+    {
+      "item": "defense-of-the-craft:dire_crystal"
+    },
+    {
+      "item": "defense-of-the-craft:dire_crystal"
+    },
+    {
+      "item": "defense-of-the-craft:dire_crystal"
+    },
+    {
+      "item": "defense-of-the-craft:dire_crystal"
+    },
+    {
+      "item": "defense-of-the-craft:dire_crystal"
+    },
+    {
+      "item": "defense-of-the-craft:dire_crystal"
+    },
+    {
+      "item": "defense-of-the-craft:dire_crystal"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "defense-of-the-craft:dire_crystal_block"
+  }
+}

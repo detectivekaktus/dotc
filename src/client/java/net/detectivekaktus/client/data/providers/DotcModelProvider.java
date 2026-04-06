@@ -9,6 +9,7 @@ import net.minecraft.data.models.model.ModelTemplates;
 
 import java.util.stream.Stream;
 
+import net.detectivekaktus.block.building.DotcBuildingBlocks;
 import net.detectivekaktus.block.natural.DotcNaturalBlocks;
 import net.detectivekaktus.item.ingredients.DotcIngredients;
 
@@ -22,7 +23,9 @@ public class DotcModelProvider extends FabricModelProvider {
         Stream.of(
                 DotcNaturalBlocks.RADIANT_ORE,
                 DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE,
-                DotcNaturalBlocks.DIRE_ORE
+                DotcNaturalBlocks.DIRE_ORE,
+                DotcBuildingBlocks.RADIANT_CRYSTAL_BLOCK,
+                DotcBuildingBlocks.DIRE_CRYSTAL_BLOCK
         ).forEach(blockStateModelGenerator::createTrivialCube);
     }
 
