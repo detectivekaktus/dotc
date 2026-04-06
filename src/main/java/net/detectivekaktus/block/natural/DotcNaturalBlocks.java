@@ -16,7 +16,7 @@ public class DotcNaturalBlocks {
             "deepslate_radiant_ore"
     );
     public static final Block DIRE_ORE = DotcBlocks.register(
-            new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.ANCIENT_DEBRIS)),
+            new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.NETHER_GOLD_ORE)),
             "dire_ore"
     );
 
