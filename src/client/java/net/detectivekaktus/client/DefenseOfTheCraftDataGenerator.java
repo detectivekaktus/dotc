@@ -1,9 +1,14 @@
 package net.detectivekaktus.client;
 
+import net.minecraft.core.RegistrySetBuilder;
+import net.minecraft.core.registries.Registries;
+
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
 import net.detectivekaktus.client.data.providers.*;
+import net.detectivekaktus.worldgen.features.StoneRadiantOreConfiguredFeature;
+import net.detectivekaktus.worldgen.features.StoneRadiantOrePlacedFeature;
 
 public class DefenseOfTheCraftDataGenerator implements DataGeneratorEntrypoint {
 	@Override
@@ -14,5 +19,12 @@ public class DefenseOfTheCraftDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(DotcRecipeProvider::new);
 		pack.addProvider(DotcModelProvider::new);
 		pack.addProvider(DotcBlockLootTableProvider::new);
+		pack.addProvider(DotcDynamicRegistryProvider::new);
+	}
+
+	@Override
+	public void buildRegistry(RegistrySetBuilder registryBuilder) {
+		registryBuilder.add(Registries.CONFIGURED_FEATURE, StoneRadiantOreConfiguredFeature::configure);
+		registryBuilder.add(Registries.PLACED_FEATURE, StoneRadiantOrePlacedFeature::configure);
 	}
 }
