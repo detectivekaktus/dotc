@@ -1,6 +1,5 @@
-package net.detectivekaktus.client.data.providers;
+package net.detectivekaktus.client.data.item.ingredients;
 
-import net.detectivekaktus.block.building.DotcBuildingBlocks;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 
@@ -17,8 +16,8 @@ import java.util.concurrent.CompletableFuture;
 
 import net.detectivekaktus.item.ingredients.DotcIngredients;
 
-public class DotcRecipeProvider extends FabricRecipeProvider {
-    public DotcRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class DotcIngredientsRecipeProvider extends FabricRecipeProvider {
+    public DotcIngredientsRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, registriesFuture);
     }
 
@@ -85,37 +84,10 @@ public class DotcRecipeProvider extends FabricRecipeProvider {
                         InventoryChangeTrigger.TriggerInstance.hasItems(Items.LEATHER)
                 )
                 .save(exporter);
+    }
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, DotcBuildingBlocks.RADIANT_CRYSTAL_BLOCK)
-                .requires(DotcIngredients.RADIANT_CRYSTAL, 9)
-                .unlockedBy(
-                        "has_radiant_crystal",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.RADIANT_CRYSTAL)
-                )
-                .save(exporter);
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, DotcBuildingBlocks.DIRE_CRYSTAL_BLOCK)
-                .requires(DotcIngredients.DIRE_CRYSTAL, 9)
-                .unlockedBy(
-                        "has_dire_crystal",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.DIRE_CRYSTAL)
-                )
-                .save(exporter);
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DotcIngredients.RADIANT_CRYSTAL, 9)
-                .requires(DotcBuildingBlocks.RADIANT_CRYSTAL_BLOCK)
-                .unlockedBy(
-                        "has_radiant_crystal_block",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcBuildingBlocks.RADIANT_CRYSTAL_BLOCK)
-                )
-                .save(exporter);
-
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DotcIngredients.DIRE_CRYSTAL, 9)
-                .requires(DotcBuildingBlocks.DIRE_CRYSTAL_BLOCK)
-                .unlockedBy(
-                        "has_dire_crystal_block",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcBuildingBlocks.DIRE_CRYSTAL_BLOCK)
-                )
-                .save(exporter);
+    @Override
+    public String getName() {
+        return "defense-of-the-craft:ingredient_recipes";
     }
 }

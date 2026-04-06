@@ -6,18 +6,34 @@ import net.minecraft.core.registries.Registries;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
-import net.detectivekaktus.client.data.providers.*;
+import net.detectivekaktus.client.data.DotcDynamicRegistryProvider;
+import net.detectivekaktus.client.data.block.building.DotcBuildingBlockLootTableProvider;
+import net.detectivekaktus.client.data.block.building.DotcBuildingBlockModelProvider;
+import net.detectivekaktus.client.data.block.building.DotcBuildingBlockRecipeProvider;
+import net.detectivekaktus.client.data.block.natural.DotcNaturalBlockLootTableProvider;
+import net.detectivekaktus.client.data.block.natural.DotcNaturalBlockModelProvider;
+import net.detectivekaktus.client.data.block.natural.DotcNaturalBlockTagProvider;
+import net.detectivekaktus.client.data.item.ingredients.DotcIngredientsModelProvider;
+import net.detectivekaktus.client.data.item.ingredients.DotcIngredientsRecipeProvider;
+import net.detectivekaktus.client.data.item.ingredients.DotcIngredientsTagProvider;
 import net.detectivekaktus.worldgen.features.*;
 
 public class DefenseOfTheCraftDataGenerator implements DataGeneratorEntrypoint {
 	@Override
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		var pack = fabricDataGenerator.createPack();
-		pack.addProvider(DotcBlockTagProvider::new);
-		pack.addProvider(DotcItemTagProvider::new);
-		pack.addProvider(DotcRecipeProvider::new);
-		pack.addProvider(DotcModelProvider::new);
-		pack.addProvider(DotcBlockLootTableProvider::new);
+		pack.addProvider(DotcNaturalBlockModelProvider::new);
+		pack.addProvider(DotcNaturalBlockTagProvider::new);
+		pack.addProvider(DotcNaturalBlockLootTableProvider::new);
+
+		pack.addProvider(DotcBuildingBlockModelProvider::new);
+		pack.addProvider(DotcBuildingBlockRecipeProvider::new);
+		pack.addProvider(DotcBuildingBlockLootTableProvider::new);
+
+		pack.addProvider(DotcIngredientsModelProvider::new);
+		pack.addProvider(DotcIngredientsRecipeProvider::new);
+		pack.addProvider(DotcIngredientsTagProvider::new);
+
 		pack.addProvider(DotcDynamicRegistryProvider::new);
 	}
 

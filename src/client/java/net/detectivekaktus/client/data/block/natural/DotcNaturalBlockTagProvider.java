@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.data.providers;
+package net.detectivekaktus.client.data.block.natural;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -12,8 +12,8 @@ import java.util.concurrent.CompletableFuture;
 
 import net.detectivekaktus.block.natural.DotcNaturalBlocks;
 
-public class DotcBlockTagProvider extends FabricTagProvider<Block> {
-    public DotcBlockTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
+public class DotcNaturalBlockTagProvider extends FabricTagProvider<Block> {
+    public DotcNaturalBlockTagProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
         super(output, Registries.BLOCK, registriesFuture);
     }
 
@@ -28,5 +28,10 @@ public class DotcBlockTagProvider extends FabricTagProvider<Block> {
                 .add(DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE);
         getOrCreateTagBuilder(BlockTags.NEEDS_DIAMOND_TOOL)
                 .add(DotcNaturalBlocks.DIRE_ORE);
+    }
+
+    @Override
+    public String getName() {
+        return "defense-of-the-craft:natural_block_tags";
     }
 }

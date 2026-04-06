@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.data.providers;
+package net.detectivekaktus.client.data.block.natural;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricBlockLootTableProvider;
@@ -14,12 +14,11 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 import java.util.concurrent.CompletableFuture;
 
-import net.detectivekaktus.block.building.DotcBuildingBlocks;
 import net.detectivekaktus.block.natural.DotcNaturalBlocks;
 import net.detectivekaktus.item.ingredients.DotcIngredients;
 
-public class DotcBlockLootTableProvider extends FabricBlockLootTableProvider {
-    public DotcBlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
+public class DotcNaturalBlockLootTableProvider extends FabricBlockLootTableProvider {
+    public DotcNaturalBlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {
         super(dataOutput, registryLookup);
     }
 
@@ -50,8 +49,10 @@ public class DotcBlockLootTableProvider extends FabricBlockLootTableProvider {
                                         .apply(ApplyBonusCount.addOreBonusCount(registryLookup.getOrThrow(Enchantments.FORTUNE)))
                         ))
         );
+    }
 
-        dropSelf(DotcBuildingBlocks.RADIANT_CRYSTAL_BLOCK);
-        dropSelf(DotcBuildingBlocks.DIRE_CRYSTAL_BLOCK);
+    @Override
+    public String getName() {
+        return "defense-of-the-craft:natural_block_loottables";
     }
 }

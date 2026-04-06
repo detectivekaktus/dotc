@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.data.providers;
+package net.detectivekaktus.client.data;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricDynamicRegistryProvider;
