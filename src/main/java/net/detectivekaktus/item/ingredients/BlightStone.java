@@ -1,6 +1,7 @@
 package net.detectivekaktus.item.ingredients;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 
@@ -8,7 +9,7 @@ import java.util.List;
 
 import net.detectivekaktus.item.DotcItem;
 
-public class BlightStone extends DotcItem {
+public class BlightStone extends Item implements DotcItem {
     public BlightStone(Properties properties) {
         super(properties);
     }

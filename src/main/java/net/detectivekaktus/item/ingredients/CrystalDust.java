@@ -1,13 +1,15 @@
 package net.detectivekaktus.item.ingredients;
 
-import net.detectivekaktus.item.DotcItem;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-public class CrystalDust extends DotcItem {
+import net.detectivekaktus.item.DotcItem;
+
+public class CrystalDust extends Item implements DotcItem {
     public CrystalDust(Properties properties) {
         super(properties);
     }
