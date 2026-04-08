@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "defense-of-the-craft:radiant_crystal"
+    },
+    "$": {
+      "item": "minecraft:diamond"
+    },
+    "@": {
+      "item": "minecraft:stick"
+    }
+  },
+  "pattern": [
+    " # ",
+    " $ ",
+    " @ "
+  ],
+  "result": {
+    "count": 1,
+    "id": "defense-of-the-craft:blade_of_alacrity"
+  }
+}

@@ -26,9 +26,16 @@ public class DotcTools {
     public static final Item CLAYMORE = DotcItems.register(
             new Claymore(DotcToolMaterial.DIRE_COMPONENT, new Item.Properties()
                     .attributes(SwordItem.createAttributes(
-                            DotcToolMaterial.RADIANT_COMPONENT, 5, -1.5f
+                            DotcToolMaterial.DIRE_COMPONENT, 5, -1.5f
                     ))),
             "claymore"
+    );
+    public static final Item BLADE_OF_ALACRITY = DotcItems.register(
+            new BladeOfAlacrity(DotcToolMaterial.RADIANT_COMPONENT, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(
+                            DotcToolMaterial.RADIANT_COMPONENT, 0, -1.0f
+                    ))),
+            "blade_of_alacrity"
     );
 
     public static void initialize() { }

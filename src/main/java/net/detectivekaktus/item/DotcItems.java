@@ -45,6 +45,7 @@ public class DotcItems {
                 DotcIngredients.BLIGHT_STONE,
                 DotcIngredients.GLOVES_OF_HASTE,
                 DotcIngredients.SACRED_RELIC,
+                DotcTools.BLADE_OF_ALACRITY,
                 DotcTools.MITHRIL_HAMMER,
                 DotcTools.BROADSWORD,
                 DotcTools.CLAYMORE,
