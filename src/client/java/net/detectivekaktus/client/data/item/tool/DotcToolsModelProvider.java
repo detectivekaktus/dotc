@@ -27,7 +27,8 @@ public class DotcToolsModelProvider extends FabricModelProvider {
                 DotcTools.CLAYMORE,
                 DotcTools.BLADE_OF_ALACRITY,
                 DotcTools.OGRE_AXE,
-                DotcTools.STAFF_OF_WIZARDRY
+                DotcTools.STAFF_OF_WIZARDRY,
+                DotcTools.DEMON_EDGE
         ).forEach(item -> itemModelGenerator.generateFlatItem(item, ModelTemplates.FLAT_HANDHELD_ITEM));
     }
 

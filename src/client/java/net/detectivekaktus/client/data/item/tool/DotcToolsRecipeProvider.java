@@ -94,6 +94,19 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.RADIANT_CRYSTAL)
                 )
                 .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcTools.DEMON_EDGE)
+                .pattern(" # ")
+                .pattern("$#$")
+                .pattern(" @ ")
+                .define('#', DotcIngredients.DIRE_CRYSTAL)
+                .define('$', DotcIngredients.RADIANT_CRYSTAL)
+                .define('@', Items.STICK)
+                .unlockedBy(
+                        "has_dire_crystal",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.DIRE_CRYSTAL)
+                )
+                .save(exporter);
     }
 
     @Override

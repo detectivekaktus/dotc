@@ -52,6 +52,13 @@ public class DotcTools {
                     ))),
             "staff_of_wizardry"
     );
+    public static final Item DEMON_EDGE = DotcItems.register(
+            new DemonEdge(DotcToolMaterial.DIRE_COMPONENT, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(
+                            DotcToolMaterial.DIRE_COMPONENT, 5, -2.0f
+                    ))),
+            "demon_edge"
+    );
 
     public static void initialize() { }
 }

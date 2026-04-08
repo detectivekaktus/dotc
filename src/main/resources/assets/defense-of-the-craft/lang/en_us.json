@@ -46,5 +46,8 @@
   "itemTooltip.l1.defense-of-the-craft.ogre_axe": "You grow stronger just by holding it.",
   "item.defense-of-the-craft.staff_of_wizardry": "Staff of wizardry",
   "itemTooltip.l1.defense-of-the-craft.staff_of_wizardry": "A staff of magical powers passed down",
-  "itemTooltip.l2.defense-of-the-craft.staff_of_wizardry": "from the eldest mages."
+  "itemTooltip.l2.defense-of-the-craft.staff_of_wizardry": "from the eldest mages.",
+  "item.defense-of-the-craft.demon_edge": "Demon edge",
+  "itemTooltip.l1.defense-of-the-craft.demon_edge": "One of the oldest weapons forged by the Demon-Smith",
+  "itemTooltip.l2.defense-of-the-craft.demon_edge": "Abzidian, it killed its maker when he tested its edge."
 }

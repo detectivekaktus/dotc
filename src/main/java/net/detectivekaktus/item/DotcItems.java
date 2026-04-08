@@ -51,6 +51,7 @@ public class DotcItems {
                 DotcTools.MITHRIL_HAMMER,
                 DotcTools.BROADSWORD,
                 DotcTools.CLAYMORE,
+                DotcTools.DEMON_EDGE,
                 DotcNaturalBlocks.RADIANT_ORE.asItem(),
                 DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE.asItem(),
                 DotcNaturalBlocks.DIRE_ORE.asItem(),
