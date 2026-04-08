@@ -41,5 +41,7 @@
   "itemTooltip.l1.defense-of-the-craft.claymore": "A sword that can cut through armor, it's a commonly",
   "itemTooltip.l2.defense-of-the-craft.claymore": "chosen first weapon for budding swordsmen.",
   "item.defense-of-the-craft.blade_of_alacrity": "Blade of alacrity",
-  "itemTooltip.l1.defense-of-the-craft.blade_of_alacrity": "A long blade imbued with time magic."
+  "itemTooltip.l1.defense-of-the-craft.blade_of_alacrity": "A long blade imbued with time magic.",
+  "item.defense-of-the-craft.ogre_axe": "Ogre axe",
+  "itemTooltip.l1.defense-of-the-craft.ogre_axe": "You grow stronger just by holding it."
 }

@@ -1,5 +1,6 @@
 package net.detectivekaktus.item.tool;
 
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.SwordItem;
@@ -26,7 +27,7 @@ public class DotcTools {
     public static final Item CLAYMORE = DotcItems.register(
             new Claymore(DotcToolMaterial.DIRE_COMPONENT, new Item.Properties()
                     .attributes(SwordItem.createAttributes(
-                            DotcToolMaterial.DIRE_COMPONENT, 5, -1.5f
+                            DotcToolMaterial.DIRE_COMPONENT, 4, -1.5f
                     ))),
             "claymore"
     );
@@ -36,6 +37,13 @@ public class DotcTools {
                             DotcToolMaterial.RADIANT_COMPONENT, 0, -1.0f
                     ))),
             "blade_of_alacrity"
+    );
+    public static final Item OGRE_AXE = DotcItems.register(
+            new OgreAxe(DotcToolMaterial.DIRE_COMPONENT, new Item.Properties()
+                    .attributes(AxeItem.createAttributes(
+                            DotcToolMaterial.DIRE_COMPONENT, 6, -3.0f
+                    ))),
+            "ogre_axe"
     );
 
     public static void initialize() { }
