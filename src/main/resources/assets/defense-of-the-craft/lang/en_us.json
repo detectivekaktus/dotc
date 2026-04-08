@@ -33,5 +33,8 @@
   "block.defense-of-the-craft.dire_crystal_block": "Dire crystal block",
 
   "item.defense-of-the-craft.mithril_hammer": "Mithril hammer",
-  "itemTooltip.l1.defense-of-the-craft.mithril_hammer": "A hammer forged of pure mithril."
+  "itemTooltip.l1.defense-of-the-craft.mithril_hammer": "A hammer forged of pure mithril.",
+  "item.defense-of-the-craft.broadsword": "Broadsword",
+  "itemTooltip.l1.defense-of-the-craft.broadsword": "A sword that can cut through armor, it's a commonly",
+  "itemTooltip.l2.defense-of-the-craft.broadsword": "chosen first weapon for budding swordsmen."
 }

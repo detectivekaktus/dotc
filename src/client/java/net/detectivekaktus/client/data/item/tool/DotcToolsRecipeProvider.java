@@ -33,6 +33,18 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.MITHRIL_INGOT)
                 )
                 .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcTools.BROADSWORD)
+                .pattern(" # ")
+                .pattern(" # ")
+                .pattern(" @ ")
+                .define('#', DotcIngredients.RADIANT_CRYSTAL)
+                .define('@', Items.STICK)
+                .unlockedBy(
+                        "has_raidant_crystal",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.RADIANT_CRYSTAL)
+                )
+                .save(exporter);
     }
 
     @Override

@@ -22,7 +22,8 @@ public class DotcToolsModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
         Stream.of(
-                DotcTools.MITHRIL_HAMMER
+                DotcTools.MITHRIL_HAMMER,
+                DotcTools.BROADSWORD
         ).forEach(item -> itemModelGenerator.generateFlatItem(item, ModelTemplates.FLAT_HANDHELD_ITEM));
     }
 
