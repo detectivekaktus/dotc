@@ -15,7 +15,8 @@ import net.minecraft.world.item.ItemStack;
 import net.detectivekaktus.DefenseOfTheCraft;
 import net.detectivekaktus.block.natural.DotcNaturalBlocks;
 import net.detectivekaktus.block.building.DotcBuildingBlocks;
-import net.detectivekaktus.item.ingredients.DotcIngredients;
+import net.detectivekaktus.item.ingredient.DotcIngredients;
+import net.detectivekaktus.item.tool.DotcTools;
 
 import java.util.stream.Stream;
 
@@ -33,6 +34,7 @@ public class DotcItems {
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, DOTC_ITEM_GROUP_KEY, DOTC_ITEM_GROUP);
 
         DotcIngredients.initialize();
+        DotcTools.initialize();
 
         ItemGroupEvents.modifyEntriesEvent(DOTC_ITEM_GROUP_KEY).register(group -> Stream.of(
                 DotcIngredients.RADIANT_CRYSTAL,
@@ -43,6 +45,13 @@ public class DotcItems {
                 DotcIngredients.BLIGHT_STONE,
                 DotcIngredients.GLOVES_OF_HASTE,
                 DotcIngredients.SACRED_RELIC,
+                DotcTools.BLADE_OF_ALACRITY,
+                DotcTools.OGRE_AXE,
+                DotcTools.STAFF_OF_WIZARDRY,
+                DotcTools.MITHRIL_HAMMER,
+                DotcTools.BROADSWORD,
+                DotcTools.CLAYMORE,
+                DotcTools.DEMON_EDGE,
                 DotcNaturalBlocks.RADIANT_ORE.asItem(),
                 DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE.asItem(),
                 DotcNaturalBlocks.DIRE_ORE.asItem(),

@@ -12,7 +12,7 @@ import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import java.util.concurrent.CompletableFuture;
 
 import net.detectivekaktus.block.building.DotcBuildingBlocks;
-import net.detectivekaktus.item.ingredients.DotcIngredients;
+import net.detectivekaktus.item.ingredient.DotcIngredients;
 
 public class DotcBuildingBlockRecipeProvider extends FabricRecipeProvider {
     public DotcBuildingBlockRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {

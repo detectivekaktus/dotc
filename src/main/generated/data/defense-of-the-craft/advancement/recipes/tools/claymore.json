@@ -1,14 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_radiant_crystal_and_iron": {
+    "has_dire_crystal": {
       "conditions": {
         "items": [
           {
-            "items": "defense-of-the-craft:radiant_crystal"
-          },
-          {
-            "items": "minecraft:iron_ingot"
+            "items": "defense-of-the-craft:dire_crystal"
           }
         ]
       },
@@ -16,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "defense-of-the-craft:mithril_ingot"
+        "recipe": "defense-of-the-craft:claymore"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -24,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_radiant_crystal_and_iron"
+      "has_dire_crystal"
     ]
   ],
   "rewards": {
     "recipes": [
-      "defense-of-the-craft:mithril_ingot"
+      "defense-of-the-craft:claymore"
     ]
   }
 }

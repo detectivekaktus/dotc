@@ -13,9 +13,11 @@ import net.detectivekaktus.client.data.block.building.DotcBuildingBlockModelProv
 import net.detectivekaktus.client.data.block.building.DotcBuildingBlockRecipeProvider;
 import net.detectivekaktus.client.data.block.natural.DotcNaturalBlockLootTableProvider;
 import net.detectivekaktus.client.data.block.natural.DotcNaturalBlockModelProvider;
-import net.detectivekaktus.client.data.item.ingredients.DotcIngredientsModelProvider;
-import net.detectivekaktus.client.data.item.ingredients.DotcIngredientsRecipeProvider;
-import net.detectivekaktus.client.data.item.ingredients.DotcIngredientsTagProvider;
+import net.detectivekaktus.client.data.item.ingredient.DotcIngredientsModelProvider;
+import net.detectivekaktus.client.data.item.ingredient.DotcIngredientsRecipeProvider;
+import net.detectivekaktus.client.data.item.ingredient.DotcIngredientsTagProvider;
+import net.detectivekaktus.client.data.item.tool.DotcToolsModelProvider;
+import net.detectivekaktus.client.data.item.tool.DotcToolsRecipeProvider;
 import net.detectivekaktus.worldgen.features.*;
 
 public class DefenseOfTheCraftDataGenerator implements DataGeneratorEntrypoint {
@@ -34,6 +36,9 @@ public class DefenseOfTheCraftDataGenerator implements DataGeneratorEntrypoint {
 		pack.addProvider(DotcIngredientsModelProvider::new);
 		pack.addProvider(DotcIngredientsRecipeProvider::new);
 		pack.addProvider(DotcIngredientsTagProvider::new);
+
+		pack.addProvider(DotcToolsModelProvider::new);
+		pack.addProvider(DotcToolsRecipeProvider::new);
 
 		pack.addProvider(DotcDynamicRegistryProvider::new);
 	}
