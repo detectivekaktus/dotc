@@ -1,4 +1,4 @@
-package net.detectivekaktus.item.ingredients;
+package net.detectivekaktus.item.ingredient;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;

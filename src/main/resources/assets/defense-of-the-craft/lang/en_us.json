@@ -30,5 +30,8 @@
   "block.defense-of-the-craft.deepslate_radiant_ore": "Deepslate radiant ore",
   "block.defense-of-the-craft.dire_ore": "Dire ore",
   "block.defense-of-the-craft.radiant_crystal_block": "Radiant crystal block",
-  "block.defense-of-the-craft.dire_crystal_block": "Dire crystal block"
+  "block.defense-of-the-craft.dire_crystal_block": "Dire crystal block",
+
+  "item.defense-of-the-craft.mithril_hammer": "Mithril hammer",
+  "itemTooltip.l1.defense-of-the-craft.mithril_hammer": "A hammer forged of pure mithril."
 }

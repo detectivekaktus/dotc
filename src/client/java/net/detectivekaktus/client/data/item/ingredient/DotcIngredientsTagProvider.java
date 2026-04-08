@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.data.item.ingredients;
+package net.detectivekaktus.client.data.item.ingredient;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
@@ -12,7 +12,7 @@ import net.minecraft.world.item.Item;
 import java.util.concurrent.CompletableFuture;
 
 import net.detectivekaktus.DefenseOfTheCraft;
-import net.detectivekaktus.item.ingredients.DotcIngredients;
+import net.detectivekaktus.item.ingredient.DotcIngredients;
 
 public class DotcIngredientsTagProvider extends FabricTagProvider<Item> {
     public static final TagKey<Item> CRYSTALS = TagKey.create(

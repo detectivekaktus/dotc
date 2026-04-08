@@ -1,4 +1,4 @@
-package net.detectivekaktus.item.ingredients;
+package net.detectivekaktus.item.ingredient;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
@@ -9,14 +9,14 @@ import java.util.List;
 
 import net.detectivekaktus.item.DotcItem;
 
-public class BlightStone extends Item implements DotcItem {
-    public BlightStone(Properties properties) {
+public class MithrilIngot extends Item implements DotcItem {
+    public MithrilIngot(Properties properties) {
         super(properties);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(1, "blight_stone");
+        var components = this.generateTooltipTranslationStrings(2, "mithril_ingot");
         tooltip.addAll(components);
     }
 }

@@ -15,7 +15,7 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import java.util.concurrent.CompletableFuture;
 
 import net.detectivekaktus.block.natural.DotcNaturalBlocks;
-import net.detectivekaktus.item.ingredients.DotcIngredients;
+import net.detectivekaktus.item.ingredient.DotcIngredients;
 
 public class DotcNaturalBlockLootTableProvider extends FabricBlockLootTableProvider {
     public DotcNaturalBlockLootTableProvider(FabricDataOutput dataOutput, CompletableFuture<HolderLookup.Provider> registryLookup) {

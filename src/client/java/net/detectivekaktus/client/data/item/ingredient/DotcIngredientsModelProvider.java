@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.data.item.ingredients;
+package net.detectivekaktus.client.data.item.ingredient;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -9,7 +9,7 @@ import net.minecraft.data.models.model.ModelTemplates;
 
 import java.util.stream.Stream;
 
-import net.detectivekaktus.item.ingredients.DotcIngredients;
+import net.detectivekaktus.item.ingredient.DotcIngredients;
 
 public class DotcIngredientsModelProvider extends FabricModelProvider {
     public DotcIngredientsModelProvider(FabricDataOutput output) {

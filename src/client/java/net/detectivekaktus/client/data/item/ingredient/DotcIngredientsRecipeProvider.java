@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.data.item.ingredients;
+package net.detectivekaktus.client.data.item.ingredient;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -14,7 +14,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.concurrent.CompletableFuture;
 
-import net.detectivekaktus.item.ingredients.DotcIngredients;
+import net.detectivekaktus.item.ingredient.DotcIngredients;
 
 public class DotcIngredientsRecipeProvider extends FabricRecipeProvider {
     public DotcIngredientsRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
@@ -45,10 +45,10 @@ public class DotcIngredientsRecipeProvider extends FabricRecipeProvider {
                 .requires(Ingredient.of(DotcIngredients.RADIANT_CRYSTAL, DotcIngredients.DIRE_CRYSTAL), 3)
                 .requires(Items.IRON_INGOT, 2)
                 .unlockedBy(
-                        "has_crystals_and_iron",
+                        "has_radiant_crystal_and_iron",
                         InventoryChangeTrigger.TriggerInstance.hasItems(
-                                DotcIngredients.RADIANT_CRYSTAL, DotcIngredients.DIRE_CRYSTAL, Items.IRON_INGOT
-                                )
+                                DotcIngredients.RADIANT_CRYSTAL, Items.IRON_INGOT
+                        )
                 )
                 .save(exporter);
 
