@@ -47,6 +47,7 @@ public class DotcItems {
                 DotcIngredients.SACRED_RELIC,
                 DotcTools.BLADE_OF_ALACRITY,
                 DotcTools.OGRE_AXE,
+                DotcTools.STAFF_OF_WIZARDRY,
                 DotcTools.MITHRIL_HAMMER,
                 DotcTools.BROADSWORD,
                 DotcTools.CLAYMORE,

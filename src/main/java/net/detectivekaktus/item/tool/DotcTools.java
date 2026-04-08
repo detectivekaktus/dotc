@@ -45,6 +45,13 @@ public class DotcTools {
                     ))),
             "ogre_axe"
     );
+    public static final Item STAFF_OF_WIZARDRY = DotcItems.register(
+            new StaffOfWizardry(DotcToolMaterial.RADIANT_COMPONENT, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(
+                            DotcToolMaterial.RADIANT_COMPONENT, 1, -1.5f
+                    ))),
+            "staff_of_wizardry"
+    );
 
     public static void initialize() { }
 }

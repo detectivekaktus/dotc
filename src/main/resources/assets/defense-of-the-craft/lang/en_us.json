@@ -43,5 +43,8 @@
   "item.defense-of-the-craft.blade_of_alacrity": "Blade of alacrity",
   "itemTooltip.l1.defense-of-the-craft.blade_of_alacrity": "A long blade imbued with time magic.",
   "item.defense-of-the-craft.ogre_axe": "Ogre axe",
-  "itemTooltip.l1.defense-of-the-craft.ogre_axe": "You grow stronger just by holding it."
+  "itemTooltip.l1.defense-of-the-craft.ogre_axe": "You grow stronger just by holding it.",
+  "item.defense-of-the-craft.staff_of_wizardry": "Staff of wizardry",
+  "itemTooltip.l1.defense-of-the-craft.staff_of_wizardry": "A staff of magical powers passed down",
+  "itemTooltip.l2.defense-of-the-craft.staff_of_wizardry": "from the eldest mages."
 }
