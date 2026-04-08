@@ -23,6 +23,13 @@ public class DotcTools {
                     ))),
             "broadsword"
     );
+    public static final Item CLAYMORE = DotcItems.register(
+            new Claymore(DotcToolMaterial.DIRE_COMPONENT, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(
+                            DotcToolMaterial.RADIANT_COMPONENT, 5, -1.5f
+                    ))),
+            "claymore"
+    );
 
     public static void initialize() { }
 }

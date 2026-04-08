@@ -47,6 +47,7 @@ public class DotcItems {
                 DotcIngredients.SACRED_RELIC,
                 DotcTools.MITHRIL_HAMMER,
                 DotcTools.BROADSWORD,
+                DotcTools.CLAYMORE,
                 DotcNaturalBlocks.RADIANT_ORE.asItem(),
                 DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE.asItem(),
                 DotcNaturalBlocks.DIRE_ORE.asItem(),

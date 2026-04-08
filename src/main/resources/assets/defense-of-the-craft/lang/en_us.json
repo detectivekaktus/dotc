@@ -35,6 +35,9 @@
   "item.defense-of-the-craft.mithril_hammer": "Mithril hammer",
   "itemTooltip.l1.defense-of-the-craft.mithril_hammer": "A hammer forged of pure mithril.",
   "item.defense-of-the-craft.broadsword": "Broadsword",
-  "itemTooltip.l1.defense-of-the-craft.broadsword": "A sword that can cut through armor, it's a commonly",
-  "itemTooltip.l2.defense-of-the-craft.broadsword": "chosen first weapon for budding swordsmen."
+  "itemTooltip.l1.defense-of-the-craft.broadsword": "The classic weapon of choice for knights, this",
+  "itemTooltip.l2.defense-of-the-craft.broadsword": "blade is sturdy and reliable for slaying enemies.",
+  "item.defense-of-the-craft.claymore": "Claymore",
+  "itemTooltip.l1.defense-of-the-craft.claymore": "A sword that can cut through armor, it's a commonly",
+  "itemTooltip.l2.defense-of-the-craft.claymore": "chosen first weapon for budding swordsmen."
 }
