@@ -43,8 +43,7 @@ public class Mana {
     // of implementation.
     public record ManaData(AttachmentTarget target) {
         public float getCurrentMana() {
-            var maxMana = getMaxMana();
-            return target.getAttachedOrSet(CURRENT_MANA, maxMana);
+            return target.getAttachedOrCreate(CURRENT_MANA);
         }
 
         public float consume(float val) {
@@ -78,7 +77,7 @@ public class Mana {
         }
 
         public float getMaxMana() {
-            return target.getAttachedOrSet(MAX_MANA, DotcAttachmentRules.DEFAULT_MAX_MANA);
+            return target.getAttachedOrCreate(MAX_MANA);
         }
 
         public float setMaxMana(float val) {
