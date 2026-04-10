@@ -12,6 +12,8 @@ import net.minecraft.resources.ResourceLocation;
 
 import net.detectivekaktus.DefenseOfTheCraft;
 
+import java.util.function.UnaryOperator;
+
 // If you ever come back to it, see the details in the docs
 // https://docs.fabricmc.net/develop/data-attachments#larger-attachments
 @SuppressWarnings({"ApiStatus.Experimental", "UnstableApiUsage"})
@@ -48,31 +50,31 @@ public class Mana {
         public float consume(float val) {
             var maxMana = getMaxMana();
             var current = getCurrentMana();
-            var res = target.modifyAttached(
+            return modifyOrFallback(
                     CURRENT_MANA,
-                    currentMana -> Math.clamp(currentMana - val, DotcAttachmentRules.MIN_MANA, maxMana)
+                    currentMana -> Math.clamp(currentMana - val, DotcAttachmentRules.MIN_MANA, maxMana),
+                    current
             );
-            return res == null ? current : res;
         }
 
         public float increment(float val) {
             var maxMana = getMaxMana();
             var current = getCurrentMana();
-            var res = target.modifyAttached(
+            return modifyOrFallback(
                     CURRENT_MANA,
-                    currentMana -> Math.clamp(currentMana + val, DotcAttachmentRules.MIN_MANA, maxMana)
+                    currentMana -> Math.clamp(currentMana + val, DotcAttachmentRules.MIN_MANA, maxMana),
+                    current
             );
-            return res == null ? current : res;
         }
 
         public float setCurrentMana(float val) {
             var maxMana = getMaxMana();
             var current = getCurrentMana();
-            var res = target.setAttached(
+            return setOrFallback(
                     CURRENT_MANA,
-                    Math.clamp(val, DotcAttachmentRules.MIN_MANA, maxMana)
+                    Math.clamp(val, DotcAttachmentRules.MIN_MANA, maxMana),
+                    current
             );
-            return res == null ? current : res;
         }
 
         public float getMaxMana() {
@@ -82,8 +84,21 @@ public class Mana {
         public float setMaxMana(float val) {
             // this call is needed to ensure the max value exists on the target
             var maxMana = getMaxMana();
-            var res = target.setAttached(MAX_MANA, val);
-            return res == null ? maxMana : res;
+            return setOrFallback(
+                    MAX_MANA,
+                    val,
+                    DotcAttachmentRules.DEFAULT_MAX_MANA
+            );
+        }
+
+        private float modifyOrFallback(AttachmentType<Float> key, UnaryOperator<Float> f, float fallback) {
+            var res = target.modifyAttached(key, f);
+            return res == null ? fallback : res;
+        }
+
+        private float setOrFallback(AttachmentType<Float> key, float value, float fallback) {
+            var res = target.setAttached(key, value);
+            return res == null ? fallback : res;
         }
     }
 }
