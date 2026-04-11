@@ -25,22 +25,39 @@ public class DotcStatusBar {
 
     private static final int HOTBAR_WIDTH = 182; // vanilla hotbar width
     private static final int HOTBAR_HEIGHT = 22; // vanilla hotbar height
-    private static final int TEXT_COLOR = 0xFFFFFFFF;
+
+    private static final int MANA_BAR_HEIGHT = 9;
+    private static final int CURRENT_MANA_COLOR = 0xFF257DAE;
+    private static final int MANA_BAR_COLOR = 0xFF134D6E;
+
     private static final int ICON_TO_TEXT_MARGIN = 13;
     private static final int STAT_TO_STAT_MARGIN = 25;
-    private static final int STATS_TO_MANA_MARGIN = 20;
+    private static final int STATS_TO_MANA_MARGIN = 10;
+
+    private static final int TEXT_COLOR = 0xFFFFFFFF;
 
     private static int getStatusBarYPos(int height) {
-        return (int) (height - (HOTBAR_HEIGHT * 3.15f));
+        return height - (int) (HOTBAR_HEIGHT * 3.25f);
     }
 
-    private static void drawMana(GuiGraphics context, int x, int y) {
+    private static void drawMana(GuiGraphics context, int statusBarStartX, int x1, int y1) {
         var client = Minecraft.getInstance();
         var mana = Mana.get(client.player);
-        var current = (int) mana.getCurrentMana();
-        var max = (int) mana.getMaxMana();
-        var str = String.format("%d/%d", current, max);
-        context.drawString(client.font, str, x, y, TEXT_COLOR);
+        var current = mana.getCurrentMana();
+        var max = mana.getMaxMana();
+        var manaPercent = current / max;
+
+        var x2 = statusBarStartX + HOTBAR_WIDTH;
+        var manaBarWidth = x2 - x1;
+        var y2 = y1 + MANA_BAR_HEIGHT;
+        context.fill(x1, y1, x2, y2, MANA_BAR_COLOR);
+
+        var currentManaX = x1 + (int) (manaBarWidth * manaPercent);
+        context.fill(x1, y1, currentManaX, y2, CURRENT_MANA_COLOR);
+
+        var strX = (x1 + x2) / 2;
+        var str = String.valueOf((int) current);
+        context.drawCenteredString(client.font, str, strX, y1, TEXT_COLOR);
     }
 
     private static int drawIconAndValue(GuiGraphics context, ResourceLocation icon, int value, int x, int y) {
@@ -67,12 +84,10 @@ public class DotcStatusBar {
         var width = client.getWindow().getGuiScaledWidth();
         var height = client.getWindow().getGuiScaledHeight();
 
-        var x = (width - HOTBAR_WIDTH) / 2;
-        var y = getStatusBarYPos(height);
-        x = drawStats(context, stats, x, y);
-        x += STATS_TO_MANA_MARGIN;
-        drawMana(context, x, y);
+        var statusBarStartX = (width - HOTBAR_WIDTH) / 2;
+        var statusBarStartY = getStatusBarYPos(height);
+        var statusBarAfterStatsX = drawStats(context, stats, statusBarStartX, statusBarStartY);
+        statusBarAfterStatsX += STATS_TO_MANA_MARGIN;
+        drawMana(context, statusBarStartX, statusBarAfterStatsX, statusBarStartY);
     }
-
-
 }
