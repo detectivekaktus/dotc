@@ -25,7 +25,7 @@ public class ServerPlayerMixin {
             var intelligence = 0;
 
             var player = (ServerPlayer) (Object) ServerPlayerMixin.this;
-            var hotbarItems = player.getInventory().items.subList(0, 8);
+            var hotbarItems = player.getInventory().items.subList(0, 9);
             for (var item : hotbarItems) {
                 if (!item.has(DummyComponents.ITEM_STATS_COMPONENT))
                     continue;
@@ -36,8 +36,7 @@ public class ServerPlayerMixin {
                 intelligence += stats.intelligence();
             }
 
-            var manager = new DotcPlayerManager(player);
-            manager.changeStats(strength, agility, intelligence);
+            DotcPlayerManager.applyStatChanges(player, strength, agility, intelligence);
         }
 
         @Override
