@@ -81,13 +81,22 @@ public class Mana {
         }
 
         public float setMaxMana(float val) {
-            // this call is needed to ensure the max value exists on the target
-            var maxMana = getMaxMana();
-            return setOrFallback(
+            var previousMax = setOrFallback(
                     MAX_MANA,
                     val,
                     DotcAttachmentRules.DEFAULT_MAX_MANA
             );
+
+            var current = getCurrentMana();
+            var manaPercent = Math.clamp(current / previousMax, 0, 1);
+            var newMax = getMaxMana();
+            modifyOrFallback(
+                    CURRENT_MANA,
+                    currentMana -> newMax * manaPercent,
+                    current
+            );
+
+            return previousMax;
         }
 
         private float modifyOrFallback(AttachmentType<Float> key, UnaryOperator<Float> f, float fallback) {
