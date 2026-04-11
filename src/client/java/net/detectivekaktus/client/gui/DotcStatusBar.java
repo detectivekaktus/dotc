@@ -45,7 +45,7 @@ public class DotcStatusBar {
         var mana = Mana.get(client.player);
         var current = mana.getCurrentMana();
         var max = mana.getMaxMana();
-        var manaPercent = current / max;
+        var manaPercent = max > 0 ? Math.clamp(current / max, 0, 1) : 0;
 
         var x2 = statusBarStartX + HOTBAR_WIDTH;
         var manaBarWidth = x2 - x1;
@@ -82,7 +82,7 @@ public class DotcStatusBar {
 
     public static void drawStatusBar(GuiGraphics context, DeltaTracker tickCounter) {
         var client = Minecraft.getInstance();
-        if (client.options.hideGui) {
+        if (client.options.hideGui || client.player == null) {
             return;
         }
 
