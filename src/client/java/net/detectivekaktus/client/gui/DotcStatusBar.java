@@ -71,7 +71,9 @@ public class DotcStatusBar {
         return strX + STAT_TO_STAT_MARGIN;
     }
 
-    private static int drawStats(GuiGraphics context, Stats.StatsData stats, int x, int y) {
+    private static int drawStats(GuiGraphics context, int x, int y) {
+        var client = Minecraft.getInstance();
+        var stats = Stats.get(client.player);
         x = drawIconAndValue(context, STRENGTH_ICON, stats.getStrength(), x, y);
         x = drawIconAndValue(context, AGILITY_ICON, stats.getAgility(), x, y);
         x = drawIconAndValue(context, INTELLIGENCE_ICON, stats.getIntelligence(), x, y);
@@ -80,13 +82,16 @@ public class DotcStatusBar {
 
     public static void drawStatusBar(GuiGraphics context, DeltaTracker tickCounter) {
         var client = Minecraft.getInstance();
-        var stats = Stats.get(client.player);
+        if (client.options.hideGui) {
+            return;
+        }
+
         var width = client.getWindow().getGuiScaledWidth();
         var height = client.getWindow().getGuiScaledHeight();
-
         var statusBarStartX = (width - HOTBAR_WIDTH) / 2;
         var statusBarStartY = getStatusBarYPos(height);
-        var statusBarAfterStatsX = drawStats(context, stats, statusBarStartX, statusBarStartY);
+
+        var statusBarAfterStatsX = drawStats(context, statusBarStartX, statusBarStartY);
         statusBarAfterStatsX += STATS_TO_MANA_MARGIN;
         drawMana(context, statusBarStartX, statusBarAfterStatsX, statusBarStartY);
     }
