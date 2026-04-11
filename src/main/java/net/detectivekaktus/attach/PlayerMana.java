@@ -17,7 +17,7 @@ import java.util.function.UnaryOperator;
 // If you ever come back to it, see the details in the docs
 // https://docs.fabricmc.net/develop/data-attachments#larger-attachments
 @SuppressWarnings({"ApiStatus.Experimental", "UnstableApiUsage"})
-public class Mana {
+public class PlayerMana {
     private static final AttachmentType<Float> CURRENT_MANA = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "current_mana"),
             floatBuilder ->

@@ -5,6 +5,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.SwordItem;
 
+import net.detectivekaktus.component.dummy.DummyComponents;
+import net.detectivekaktus.component.dummy.ItemStatsComponent;
 import net.detectivekaktus.item.DotcItems;
 import net.detectivekaktus.item.material.DotcToolMaterial;
 
@@ -35,21 +37,33 @@ public class DotcTools {
             new BladeOfAlacrity(DotcToolMaterial.RADIANT_COMPONENT, new Item.Properties()
                     .attributes(SwordItem.createAttributes(
                             DotcToolMaterial.RADIANT_COMPONENT, 0, -1.0f
-                    ))),
+                    ))
+                    .component(
+                            DummyComponents.ITEM_STATS_COMPONENT,
+                            new ItemStatsComponent(0, 10, 0
+                            ))),
             "blade_of_alacrity"
     );
     public static final Item OGRE_AXE = DotcItems.register(
             new OgreAxe(DotcToolMaterial.DIRE_COMPONENT, new Item.Properties()
                     .attributes(AxeItem.createAttributes(
                             DotcToolMaterial.DIRE_COMPONENT, 6, -3.0f
-                    ))),
+                    ))
+                    .component(
+                            DummyComponents.ITEM_STATS_COMPONENT,
+                            new ItemStatsComponent(10, 0, 0
+                            ))),
             "ogre_axe"
     );
     public static final Item STAFF_OF_WIZARDRY = DotcItems.register(
             new StaffOfWizardry(DotcToolMaterial.RADIANT_COMPONENT, new Item.Properties()
                     .attributes(SwordItem.createAttributes(
                             DotcToolMaterial.RADIANT_COMPONENT, 1, -1.5f
-                    ))),
+                    ))
+                    .component(
+                            DummyComponents.ITEM_STATS_COMPONENT,
+                            new ItemStatsComponent(0, 0, 10
+                            ))),
             "staff_of_wizardry"
     );
     public static final Item DEMON_EDGE = DotcItems.register(
