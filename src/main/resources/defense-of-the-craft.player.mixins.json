@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "net.detectivekaktus.mixin.player",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ServerPlayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
+  }
+}
