@@ -23,6 +23,14 @@ public class PlayerStats {
                             .syncWith(ByteBufCodecs.INT, AttachmentSyncPredicate.all())
                             .persistent(Codec.INT)
     );
+    private static final AttachmentType<Float> HP_REGEN = AttachmentRegistry.create(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "hp_regen"),
+            floatBuilder ->
+                    floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_HP_REGEN)
+                            .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.all())
+                            .persistent(Codec.FLOAT)
+    );
+
     private static final AttachmentType<Integer> AGILITY = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "agility"),
             integerBuilder ->
@@ -30,12 +38,20 @@ public class PlayerStats {
                             .syncWith(ByteBufCodecs.INT, AttachmentSyncPredicate.all())
                             .persistent(Codec.INT)
     );
+
     private static final AttachmentType<Integer> INTELLIGENCE = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "intelligence"),
             integerBuilder ->
                     integerBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_INTELLIGENCE)
                             .syncWith(ByteBufCodecs.INT, AttachmentSyncPredicate.all())
                             .persistent(Codec.INT)
+    );
+    private static final AttachmentType<Float> MAGIC_RESISTANCE = AttachmentRegistry.create(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "magic_resistance"),
+            floatBuilder ->
+                    floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_MAGIC_RESISTANCE)
+                            .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.all())
+                            .persistent(Codec.FLOAT)
     );
 
     public static StatsData get(AttachmentTarget target) {
@@ -70,6 +86,37 @@ public class PlayerStats {
             return setOrFallback(
                     STRENGTH,
                     Math.max(val, DotcAttachmentRules.DEFAULT_STRENGTH),
+                    current
+            );
+        }
+
+        public float getHpRegen() {
+            return target.getAttachedOrCreate(HP_REGEN);
+        }
+
+        public float addHpRegen(float val) {
+            var current = getHpRegen();
+            return modifyOrFallback(
+                    HP_REGEN,
+                    hpRegen -> Math.max(hpRegen + val, DotcAttachmentRules.DEFAULT_HP_REGEN),
+                    current
+            );
+        }
+
+        public float removeHpRegen(float val) {
+            var current = getHpRegen();
+            return modifyOrFallback(
+                    HP_REGEN,
+                    hpRegen -> Math.max(hpRegen - val, DotcAttachmentRules.DEFAULT_HP_REGEN),
+                    current
+            );
+        }
+
+        public float setHpRegen(float val) {
+            var current = getHpRegen();
+            return setOrFallback(
+                    HP_REGEN,
+                    Math.max(val, DotcAttachmentRules.DEFAULT_HP_REGEN),
                     current
             );
         }
@@ -136,12 +183,53 @@ public class PlayerStats {
             );
         }
 
+        public float getMagicResistance() {
+            return target.getAttachedOrCreate(MAGIC_RESISTANCE);
+        }
+
+        public float addMagicResistance(float val) {
+            var current = getMagicResistance();
+            return modifyOrFallback(
+                    MAGIC_RESISTANCE,
+                    resist -> Math.max(resist + val, DotcAttachmentRules.DEFAULT_MAGIC_RESISTANCE),
+                    current
+            );
+        }
+
+        public float removeMagicResistance(float val) {
+            var current = getMagicResistance();
+            return modifyOrFallback(
+                    MAGIC_RESISTANCE,
+                    resist -> Math.max(resist - val, DotcAttachmentRules.DEFAULT_MAGIC_RESISTANCE),
+                    current
+            );
+        }
+
+        public float setMagicResistance(float val) {
+            var current = getMagicResistance();
+            return setOrFallback(
+                    MAGIC_RESISTANCE,
+                    Math.max(val, DotcAttachmentRules.DEFAULT_MAGIC_RESISTANCE),
+                    current
+            );
+        }
+
         private int modifyOrFallback(AttachmentType<Integer> key, UnaryOperator<Integer> value, int fallback) {
             var res = target.modifyAttached(key, value);
             return res == null ? fallback : res;
         }
 
         private int setOrFallback(AttachmentType<Integer> key, int value, int fallback) {
+            var res = target.setAttached(key, value);
+            return res == null ? fallback : res;
+        }
+
+        private float modifyOrFallback(AttachmentType<Float> key, UnaryOperator<Float> value, float fallback) {
+            var res = target.modifyAttached(key, value);
+            return res == null ? fallback : res;
+        }
+
+        private float setOrFallback(AttachmentType<Float> key, float value, float fallback) {
             var res = target.setAttached(key, value);
             return res == null ? fallback : res;
         }

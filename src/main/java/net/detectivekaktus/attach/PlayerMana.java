@@ -32,6 +32,14 @@ public class PlayerMana {
                             .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.all())
                             .persistent(Codec.FLOAT)
     );
+    private static final AttachmentType<Float> MANA_REGEN = AttachmentRegistry.create(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "mana_regen"),
+            floatBuilder ->
+                    floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_MANA_REGEN)
+                            .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.all())
+                            .persistent(Codec.FLOAT)
+    );
+
 
     public static ManaData get(AttachmentTarget target) {
         return new ManaData(target);
@@ -97,6 +105,37 @@ public class PlayerMana {
             );
 
             return previousMax;
+        }
+
+        public float getManaRegen() {
+            return target.getAttachedOrCreate(MANA_REGEN);
+        }
+
+        public float addManaRegen(float val) {
+            var current = getManaRegen();
+            return modifyOrFallback(
+                    MANA_REGEN,
+                    manaRegen -> Math.max(manaRegen + val, DotcAttachmentRules.DEFAULT_MANA_REGEN),
+                    current
+            );
+        }
+
+        public float removeManaRegen(float val) {
+            var current = getManaRegen();
+            return modifyOrFallback(
+                    MANA_REGEN,
+                    manaRegen -> Math.max(manaRegen - val, DotcAttachmentRules.DEFAULT_MANA_REGEN),
+                    current
+            );
+        }
+
+        public float setManaRegen(float val) {
+            var current = getManaRegen();
+            return setOrFallback(
+                    MANA_REGEN,
+                    Math.max(val, DotcAttachmentRules.DEFAULT_MANA_REGEN),
+                    current
+            );
         }
 
         private float modifyOrFallback(AttachmentType<Float> key, UnaryOperator<Float> f, float fallback) {
