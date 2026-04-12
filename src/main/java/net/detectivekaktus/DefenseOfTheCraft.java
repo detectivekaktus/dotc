@@ -4,6 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.detectivekaktus.attach.DotcAttachments;
 import net.detectivekaktus.block.DotcBlocks;
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.event.DotcEvents;
@@ -17,6 +18,7 @@ public class DefenseOfTheCraft implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		DotcAttachments.initialize();
 		DotcComponents.initialize();
 		DotcBlocks.initialize();
 		DotcItems.initialize();

@@ -18,21 +18,21 @@ import java.util.function.UnaryOperator;
 // https://docs.fabricmc.net/develop/data-attachments#larger-attachments
 @SuppressWarnings({"ApiStatus.Experimental", "UnstableApiUsage"})
 public class PlayerMana {
-    private static final AttachmentType<Float> CURRENT_MANA = AttachmentRegistry.create(
+    public static final AttachmentType<Float> CURRENT_MANA = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "current_mana"),
             floatBuilder ->
                     floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_MAX_MANA)
                             .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.all())
                             .persistent(Codec.FLOAT)
     );
-    private static final AttachmentType<Float> MAX_MANA = AttachmentRegistry.create(
+    public static final AttachmentType<Float> MAX_MANA = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "max_mana"),
             floatBuilder ->
                     floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_MAX_MANA)
                             .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.all())
                             .persistent(Codec.FLOAT)
     );
-    private static final AttachmentType<Float> MANA_REGEN = AttachmentRegistry.create(
+    public static final AttachmentType<Float> MANA_REGEN = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "mana_regen"),
             floatBuilder ->
                     floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_MANA_REGEN)
@@ -40,7 +40,7 @@ public class PlayerMana {
                             .persistent(Codec.FLOAT)
     );
 
-    private static final AttachmentType<Integer> MANA_TICK = AttachmentRegistry.create(
+    public static final AttachmentType<Integer> MANA_TICK = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "mana_tick"),
             integerBuilder ->
                     integerBuilder.initializer(() -> 0)
@@ -48,6 +48,7 @@ public class PlayerMana {
                             .persistent(Codec.INT)
     );
 
+    public static void initialize() { }
 
     public static ManaData get(AttachmentTarget target) {
         return new ManaData(target);
