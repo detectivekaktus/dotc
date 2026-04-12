@@ -23,8 +23,17 @@ public class DotcPlayerManager {
     private static final float MANA_REGEN_PER_INTELLIGENCE = 0.2f;
     private static final float MAGIC_RESISTANCE_PER_INTELLIGENCE = 0.0025f;
 
+    private static boolean hasStatChanges(PlayerStats.StatsData stats, int strength, int agility, int intelligence) {
+        return stats.getStrength() != strength
+                || stats.getAgility() != agility
+                || stats.getIntelligence() != intelligence;
+    }
+
     public static void applyStatChanges(Player player, int strength, int agility, int intelligence) {
         var stats = PlayerStats.get(player);
+        if (!hasStatChanges(stats, strength, agility, intelligence))
+            return;
+
         stats.setStrength(strength);
         applyStrength(player, strength);
 
