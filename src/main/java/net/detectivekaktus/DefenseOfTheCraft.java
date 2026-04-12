@@ -4,7 +4,10 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import net.detectivekaktus.attach.DotcAttachments;
 import net.detectivekaktus.block.DotcBlocks;
+import net.detectivekaktus.component.DotcComponents;
+import net.detectivekaktus.event.DotcEvents;
 import net.detectivekaktus.item.DotcItems;
 import net.detectivekaktus.sound.DotcSounds;
 import net.detectivekaktus.worldgen.DotcWorldgen;
@@ -15,10 +18,13 @@ public class DefenseOfTheCraft implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		DotcAttachments.initialize();
+		DotcComponents.initialize();
 		DotcBlocks.initialize();
 		DotcItems.initialize();
 		DotcSounds.initialize();
 		DotcWorldgen.initialize();
+		DotcEvents.initialize();
 		LOGGER.info("Defense of the Craft has been successfully initialized!");
 	}
 }

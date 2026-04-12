@@ -6,8 +6,9 @@ import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
 
 import net.detectivekaktus.DefenseOfTheCraft;
-import net.detectivekaktus.attach.Mana;
-import net.detectivekaktus.attach.Stats;
+import net.detectivekaktus.attach.PlayerMana;
+import net.detectivekaktus.attach.PlayerStats;
+import net.minecraft.world.level.GameType;
 
 public class DotcStatusBar {
     private static final ResourceLocation STRENGTH_ICON = ResourceLocation.fromNamespaceAndPath(
@@ -42,7 +43,7 @@ public class DotcStatusBar {
 
     private static void drawMana(GuiGraphics context, int statusBarStartX, int x1, int y1) {
         var client = Minecraft.getInstance();
-        var mana = Mana.get(client.player);
+        var mana = PlayerMana.get(client.player);
         var current = mana.getCurrentMana();
         var max = mana.getMaxMana();
         var manaPercent = max > 0 ? Math.clamp(current / max, 0, 1) : 0;
@@ -73,18 +74,24 @@ public class DotcStatusBar {
 
     private static int drawStats(GuiGraphics context, int x, int y) {
         var client = Minecraft.getInstance();
-        var stats = Stats.get(client.player);
+        var stats = PlayerStats.get(client.player);
         x = drawIconAndValue(context, STRENGTH_ICON, stats.getStrength(), x, y);
         x = drawIconAndValue(context, AGILITY_ICON, stats.getAgility(), x, y);
         x = drawIconAndValue(context, INTELLIGENCE_ICON, stats.getIntelligence(), x, y);
         return x;
     }
 
+    private static boolean shouldSkipDrawing(Minecraft client) {
+        return client.options.hideGui
+                || client.player == null
+                || client.gameMode == null
+                || client.gameMode.getPlayerMode() == GameType.CREATIVE;
+    }
+
     public static void drawStatusBar(GuiGraphics context, DeltaTracker tickCounter) {
         var client = Minecraft.getInstance();
-        if (client.options.hideGui || client.player == null) {
+        if (shouldSkipDrawing(client))
             return;
-        }
 
         var width = client.getWindow().getGuiScaledWidth();
         var height = client.getWindow().getGuiScaledHeight();

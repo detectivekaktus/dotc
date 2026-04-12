@@ -17,21 +17,37 @@ import java.util.function.UnaryOperator;
 // If you ever come back to it, see the details in the docs
 // https://docs.fabricmc.net/develop/data-attachments#larger-attachments
 @SuppressWarnings({"ApiStatus.Experimental", "UnstableApiUsage"})
-public class Mana {
-    private static final AttachmentType<Float> CURRENT_MANA = AttachmentRegistry.create(
+public class PlayerMana {
+    public static final AttachmentType<Float> CURRENT_MANA = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "current_mana"),
             floatBuilder ->
                     floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_MAX_MANA)
                             .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.all())
                             .persistent(Codec.FLOAT)
     );
-    private static final AttachmentType<Float> MAX_MANA = AttachmentRegistry.create(
+    public static final AttachmentType<Float> MAX_MANA = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "max_mana"),
             floatBuilder ->
                     floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_MAX_MANA)
                             .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.all())
                             .persistent(Codec.FLOAT)
     );
+    public static final AttachmentType<Float> MANA_REGEN = AttachmentRegistry.create(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "mana_regen"),
+            floatBuilder ->
+                    floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_MANA_REGEN)
+                            .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.all())
+                            .persistent(Codec.FLOAT)
+    );
+
+    public static final AttachmentType<Integer> MANA_TICK = AttachmentRegistry.create(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "mana_tick"),
+            integerBuilder ->
+                    integerBuilder.initializer(() -> 0)
+                            .persistent(Codec.INT)
+    );
+
+    public static void initialize() { }
 
     public static ManaData get(AttachmentTarget target) {
         return new ManaData(target);
@@ -99,12 +115,66 @@ public class Mana {
             return previousMax;
         }
 
+        public float getManaRegen() {
+            return target.getAttachedOrCreate(MANA_REGEN);
+        }
+
+        public float addManaRegen(float val) {
+            var current = getManaRegen();
+            return modifyOrFallback(
+                    MANA_REGEN,
+                    manaRegen -> Math.max(manaRegen + val, DotcAttachmentRules.DEFAULT_MANA_REGEN),
+                    current
+            );
+        }
+
+        public float removeManaRegen(float val) {
+            var current = getManaRegen();
+            return modifyOrFallback(
+                    MANA_REGEN,
+                    manaRegen -> Math.max(manaRegen - val, DotcAttachmentRules.DEFAULT_MANA_REGEN),
+                    current
+            );
+        }
+
+        public float setManaRegen(float val) {
+            var current = getManaRegen();
+            return setOrFallback(
+                    MANA_REGEN,
+                    Math.max(val, DotcAttachmentRules.DEFAULT_MANA_REGEN),
+                    current
+            );
+        }
+
+        public int getManaTick() {
+            return target.getAttachedOrCreate(MANA_TICK);
+        }
+
+        public int setManaTick(int val) {
+            var current = getManaTick();
+            return setOrFallback(
+                    MANA_TICK,
+                    Math.clamp(val, 0, 20),
+                    current
+            );
+        }
+
         private float modifyOrFallback(AttachmentType<Float> key, UnaryOperator<Float> f, float fallback) {
             var res = target.modifyAttached(key, f);
             return res == null ? fallback : res;
         }
 
         private float setOrFallback(AttachmentType<Float> key, float value, float fallback) {
+            var res = target.setAttached(key, value);
+            return res == null ? fallback : res;
+        }
+
+        private int modifyOrFallback(AttachmentType<Integer> key, UnaryOperator<Integer> f, int fallback) {
+            var res = target.modifyAttached(key, f);
+            return res == null ? fallback : res;
+        }
+
+        private int setOrFallback(AttachmentType<Integer> key, int value, int fallback) {
             var res = target.setAttached(key, value);
             return res == null ? fallback : res;
         }
