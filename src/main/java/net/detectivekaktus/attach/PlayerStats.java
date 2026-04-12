@@ -30,6 +30,13 @@ public class PlayerStats {
                             .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.all())
                             .persistent(Codec.FLOAT)
     );
+    public static final AttachmentType<Integer> HP_TICK = AttachmentRegistry.create(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "hp_tick"),
+            integerBuilder ->
+                    integerBuilder.initializer(() -> 0)
+                            .syncWith(ByteBufCodecs.INT, AttachmentSyncPredicate.all())
+                            .persistent(Codec.INT)
+    );
 
     public static final AttachmentType<Integer> AGILITY = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "agility"),
@@ -88,6 +95,19 @@ public class PlayerStats {
             return setOrFallback(
                     STRENGTH,
                     Math.max(val, DotcAttachmentRules.DEFAULT_STRENGTH),
+                    current
+            );
+        }
+
+        public int getHpTick() {
+            return target.getAttachedOrCreate(HP_TICK);
+        }
+
+        public int setHpTick(int val) {
+            var current = getHpTick();
+            return setOrFallback(
+                    HP_TICK,
+                    Math.clamp(val, 0, 20),
                     current
             );
         }
