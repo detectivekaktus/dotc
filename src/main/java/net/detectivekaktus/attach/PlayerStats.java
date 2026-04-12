@@ -34,7 +34,6 @@ public class PlayerStats {
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "hp_tick"),
             integerBuilder ->
                     integerBuilder.initializer(() -> 0)
-                            .syncWith(ByteBufCodecs.INT, AttachmentSyncPredicate.all())
                             .persistent(Codec.INT)
     );
 

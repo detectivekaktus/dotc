@@ -44,7 +44,6 @@ public class PlayerMana {
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "mana_tick"),
             integerBuilder ->
                     integerBuilder.initializer(() -> 0)
-                            .syncWith(ByteBufCodecs.INT, AttachmentSyncPredicate.all())
                             .persistent(Codec.INT)
     );
 
