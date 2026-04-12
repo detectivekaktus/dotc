@@ -40,6 +40,14 @@ public class PlayerMana {
                             .persistent(Codec.FLOAT)
     );
 
+    private static final AttachmentType<Integer> MANA_TICK = AttachmentRegistry.create(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "mana_tick"),
+            integerBuilder ->
+                    integerBuilder.initializer(() -> 0)
+                            .syncWith(ByteBufCodecs.INT, AttachmentSyncPredicate.all())
+                            .persistent(Codec.INT)
+    );
+
 
     public static ManaData get(AttachmentTarget target) {
         return new ManaData(target);
@@ -138,12 +146,35 @@ public class PlayerMana {
             );
         }
 
+        public int getManaTick() {
+            return target.getAttachedOrCreate(MANA_TICK);
+        }
+
+        public int setManaTick(int val) {
+            var current = getManaTick();
+            return setOrFallback(
+                    MANA_TICK,
+                    Math.clamp(val, 0, 20),
+                    current
+            );
+        }
+
         private float modifyOrFallback(AttachmentType<Float> key, UnaryOperator<Float> f, float fallback) {
             var res = target.modifyAttached(key, f);
             return res == null ? fallback : res;
         }
 
         private float setOrFallback(AttachmentType<Float> key, float value, float fallback) {
+            var res = target.setAttached(key, value);
+            return res == null ? fallback : res;
+        }
+
+        private int modifyOrFallback(AttachmentType<Integer> key, UnaryOperator<Integer> f, int fallback) {
+            var res = target.modifyAttached(key, f);
+            return res == null ? fallback : res;
+        }
+
+        private int setOrFallback(AttachmentType<Integer> key, int value, int fallback) {
             var res = target.setAttached(key, value);
             return res == null ? fallback : res;
         }
