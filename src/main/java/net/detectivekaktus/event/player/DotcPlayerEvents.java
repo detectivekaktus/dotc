@@ -5,8 +5,11 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 public class DotcPlayerEvents {
     public static void initialize() {
         ServerTickEvents.END_SERVER_TICK.register(server -> {
-            ManaRegenEvent.manaRegenTick(server);
-            HpRegenEvent.hpRegenTick(server);
+            var players = server.getPlayerList().getPlayers();
+            for (var player : players) {
+                ManaRegenEvent.tick(player);
+                HpRegenEvent.tick(player);
+            }
         });
     }
 }

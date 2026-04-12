@@ -1,23 +1,21 @@
 package net.detectivekaktus.event.player;
 
 import net.detectivekaktus.attach.PlayerStats;
-import net.minecraft.server.MinecraftServer;
+import net.minecraft.world.entity.player.Player;
 
 public class HpRegenEvent {
-    public static void hpRegenTick(MinecraftServer server) {
-        var players = server.getPlayerList().getPlayers();
-        for (var player : players) {
-            var stats = PlayerStats.get(player);
-            var hpTick = stats.getHpTick();
+    public static void tick(Player player) {
+        var stats = PlayerStats.get(player);
+        var hpTick = stats.getHpTick();
 
-            if (hpTick >= 20) {
-                stats.setHpTick(0);
-                var regen = stats.getHpRegen();
+        if (hpTick >= 20) {
+            stats.setHpTick(0);
+            var regen = stats.getHpRegen();
+            if (regen > 0)
                 player.heal(regen);
-                continue;
-            }
-
-            stats.setHpTick(++hpTick);
+            return;
         }
+
+        stats.setHpTick(++hpTick);
     }
 }
