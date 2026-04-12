@@ -17,7 +17,7 @@ import net.detectivekaktus.core.DotcPlayerManager;
 @Mixin(ServerPlayer.class)
 public class ServerPlayerMixin {
     @Unique
-    private final ContainerListener listener = new ContainerListener() {
+    private final ContainerListener dotc$playerInvListener = new ContainerListener() {
         @Override
         public void slotChanged(AbstractContainerMenu abstractContainerMenu, int i, ItemStack itemStack) {
             var strength = 0;
@@ -45,6 +45,6 @@ public class ServerPlayerMixin {
 
     @Inject(at = @At("HEAD"), method = "initMenu")
     public void initMenu(AbstractContainerMenu abstractContainerMenu, CallbackInfo ci) {
-        abstractContainerMenu.addSlotListener(listener);
+        abstractContainerMenu.addSlotListener(dotc$playerInvListener);
     }
 }
