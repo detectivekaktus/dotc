@@ -8,6 +8,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.detectivekaktus.DefenseOfTheCraft;
 import net.detectivekaktus.attach.PlayerMana;
 import net.detectivekaktus.attach.PlayerStats;
+import net.minecraft.world.level.GameType;
 
 public class DotcStatusBar {
     private static final ResourceLocation STRENGTH_ICON = ResourceLocation.fromNamespaceAndPath(
@@ -80,11 +81,17 @@ public class DotcStatusBar {
         return x;
     }
 
+    private static boolean shouldSkipDrawing(Minecraft client) {
+        return client.options.hideGui
+                || client.player == null
+                || client.gameMode == null
+                || client.gameMode.getPlayerMode() == GameType.CREATIVE;
+    }
+
     public static void drawStatusBar(GuiGraphics context, DeltaTracker tickCounter) {
         var client = Minecraft.getInstance();
-        if (client.options.hideGui || client.player == null) {
+        if (shouldSkipDrawing(client))
             return;
-        }
 
         var width = client.getWindow().getGuiScaledWidth();
         var height = client.getWindow().getGuiScaledHeight();
