@@ -1,0 +1,9 @@
+package net.detectivekaktus.core.rng;
+
+public class PseudoRandom {
+    public static float getProcChance(float baseChance, int scale) {
+        return scale == 0 ?
+                baseChance :
+                baseChance * scale;
+    }
+}
