@@ -22,21 +22,20 @@ public class PlayerMana {
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "current_mana"),
             floatBuilder ->
                     floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_MAX_MANA)
-                            .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.all())
+                            .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.targetOnly())
                             .persistent(Codec.FLOAT)
     );
     public static final AttachmentType<Float> MAX_MANA = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "max_mana"),
             floatBuilder ->
                     floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_MAX_MANA)
-                            .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.all())
+                            .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.targetOnly())
                             .persistent(Codec.FLOAT)
     );
     public static final AttachmentType<Float> MANA_REGEN = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "mana_regen"),
             floatBuilder ->
                     floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_MANA_REGEN)
-                            .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.all())
                             .persistent(Codec.FLOAT)
     );
 

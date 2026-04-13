@@ -20,14 +20,13 @@ public class PlayerStats {
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "strength"),
             integerBuilder ->
                     integerBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_STRENGTH)
-                            .syncWith(ByteBufCodecs.INT, AttachmentSyncPredicate.all())
+                            .syncWith(ByteBufCodecs.INT, AttachmentSyncPredicate.targetOnly())
                             .persistent(Codec.INT)
     );
     public static final AttachmentType<Float> HP_REGEN = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "hp_regen"),
             floatBuilder ->
                     floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_HP_REGEN)
-                            .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.all())
                             .persistent(Codec.FLOAT)
     );
     public static final AttachmentType<Integer> HP_TICK = AttachmentRegistry.create(
@@ -41,7 +40,7 @@ public class PlayerStats {
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "agility"),
             integerBuilder ->
                     integerBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_AGILITY)
-                            .syncWith(ByteBufCodecs.INT, AttachmentSyncPredicate.all())
+                            .syncWith(ByteBufCodecs.INT, AttachmentSyncPredicate.targetOnly())
                             .persistent(Codec.INT)
     );
 
@@ -49,14 +48,13 @@ public class PlayerStats {
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "intelligence"),
             integerBuilder ->
                     integerBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_INTELLIGENCE)
-                            .syncWith(ByteBufCodecs.INT, AttachmentSyncPredicate.all())
+                            .syncWith(ByteBufCodecs.INT, AttachmentSyncPredicate.targetOnly())
                             .persistent(Codec.INT)
     );
     public static final AttachmentType<Float> MAGIC_RESISTANCE = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "magic_resistance"),
             floatBuilder ->
                     floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_MAGIC_RESISTANCE)
-                            .syncWith(ByteBufCodecs.FLOAT, AttachmentSyncPredicate.all())
                             .persistent(Codec.FLOAT)
     );
 
