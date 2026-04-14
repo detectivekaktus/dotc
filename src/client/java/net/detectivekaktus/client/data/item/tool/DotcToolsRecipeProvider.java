@@ -22,85 +22,11 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public void buildRecipes(RecipeOutput exporter) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcTools.MITHRIL_HAMMER)
-                .pattern("###")
-                .pattern(" @ ")
-                .pattern(" @ ")
-                .define('#', DotcIngredients.MITHRIL_INGOT)
-                .define('@', Items.STICK)
-                .unlockedBy(
-                        "has_mithril_ingot",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.MITHRIL_INGOT)
-                )
-                .save(exporter);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcTools.BROADSWORD)
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcTools.JAVELIN)
                 .pattern(" # ")
-                .pattern(" # ")
-                .pattern(" @ ")
-                .define('#', DotcIngredients.RADIANT_CRYSTAL)
-                .define('@', Items.STICK)
-                .unlockedBy(
-                        "has_radiant_crystal",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.RADIANT_CRYSTAL)
-                )
-                .save(exporter);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcTools.CLAYMORE)
-                .pattern(" # ")
-                .pattern(" # ")
+                .pattern("#@#")
                 .pattern(" @ ")
                 .define('#', DotcIngredients.DIRE_CRYSTAL)
-                .define('@', Items.STICK)
-                .unlockedBy(
-                        "has_dire_crystal",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.DIRE_CRYSTAL)
-                )
-                .save(exporter);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcTools.BLADE_OF_ALACRITY)
-                .pattern(" # ")
-                .pattern(" $ ")
-                .pattern(" @ ")
-                .define('#', DotcIngredients.RADIANT_CRYSTAL)
-                .define('@', Items.STICK)
-                .define('$', Items.DIAMOND)
-                .unlockedBy(
-                        "has_radiant_crystal",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.RADIANT_CRYSTAL)
-                )
-                .save(exporter);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcTools.OGRE_AXE)
-                .pattern("## ")
-                .pattern("#@ ")
-                .pattern(" @ ")
-                .define('#', DotcIngredients.DIRE_CRYSTAL)
-                .define('@', Items.STICK)
-                .unlockedBy(
-                        "has_dire_crystal",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.DIRE_CRYSTAL)
-                )
-                .save(exporter);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcTools.STAFF_OF_WIZARDRY)
-                .pattern(" # ")
-                .pattern(" @ ")
-                .pattern(" @ ")
-                .define('#', DotcIngredients.RADIANT_CRYSTAL)
-                .define('@', Items.STICK)
-                .unlockedBy(
-                        "has_radiant_crystal",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.RADIANT_CRYSTAL)
-                )
-                .save(exporter);
-
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcTools.DEMON_EDGE)
-                .pattern(" # ")
-                .pattern("$#$")
-                .pattern(" @ ")
-                .define('#', DotcIngredients.DIRE_CRYSTAL)
-                .define('$', DotcIngredients.RADIANT_CRYSTAL)
                 .define('@', Items.STICK)
                 .unlockedBy(
                         "has_dire_crystal",

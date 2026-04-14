@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.detectivekaktus.DefenseOfTheCraft;
 import net.detectivekaktus.block.natural.DotcNaturalBlocks;
 import net.detectivekaktus.block.building.DotcBuildingBlocks;
+import net.detectivekaktus.item.component.DotcItemComponents;
 import net.detectivekaktus.item.ingredient.DotcIngredients;
 import net.detectivekaktus.item.tool.DotcTools;
 
@@ -34,6 +35,7 @@ public class DotcItems {
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, DOTC_ITEM_GROUP_KEY, DOTC_ITEM_GROUP);
 
         DotcIngredients.initialize();
+        DotcItemComponents.initialize();
         DotcTools.initialize();
 
         ItemGroupEvents.modifyEntriesEvent(DOTC_ITEM_GROUP_KEY).register(group -> Stream.of(
@@ -45,13 +47,14 @@ public class DotcItems {
                 DotcIngredients.BLIGHT_STONE,
                 DotcIngredients.GLOVES_OF_HASTE,
                 DotcIngredients.SACRED_RELIC,
-                DotcTools.BLADE_OF_ALACRITY,
-                DotcTools.OGRE_AXE,
-                DotcTools.STAFF_OF_WIZARDRY,
-                DotcTools.MITHRIL_HAMMER,
-                DotcTools.BROADSWORD,
-                DotcTools.CLAYMORE,
-                DotcTools.DEMON_EDGE,
+                DotcItemComponents.BLADE_OF_ALACRITY,
+                DotcItemComponents.OGRE_AXE,
+                DotcItemComponents.STAFF_OF_WIZARDRY,
+                DotcItemComponents.MITHRIL_HAMMER,
+                DotcItemComponents.BROADSWORD,
+                DotcItemComponents.CLAYMORE,
+                DotcItemComponents.DEMON_EDGE,
+                DotcTools.JAVELIN,
                 DotcNaturalBlocks.RADIANT_ORE.asItem(),
                 DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE.asItem(),
                 DotcNaturalBlocks.DIRE_ORE.asItem(),
@@ -61,7 +64,10 @@ public class DotcItems {
     }
 
     public static Item register(Item item, String id) {
-        ResourceLocation itemID = ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, id);
-        return Registry.register(BuiltInRegistries.ITEM, itemID, item);
+        return Registry.register(
+                BuiltInRegistries.ITEM,
+                ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, id),
+                item
+        );
     }
 }
