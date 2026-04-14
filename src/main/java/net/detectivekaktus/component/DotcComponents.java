@@ -10,9 +10,10 @@ import net.minecraft.resources.ResourceLocation;
 
 import net.detectivekaktus.DefenseOfTheCraft;
 import net.detectivekaktus.component.records.ItemStatsComponent;
+import net.detectivekaktus.component.records.ProcableComponent;
 
 public class DotcComponents {
-    private static final Codec<ItemStatsComponent> ITEM_STATS_COMPONENT_CODEC = RecordCodecBuilder.create(
+    public static final Codec<ItemStatsComponent> ITEM_STATS_COMPONENT_CODEC = RecordCodecBuilder.create(
             builder -> builder.group(
                     Codec.INT.optionalFieldOf("strength", 0).forGetter(ItemStatsComponent::strength),
                     Codec.INT.optionalFieldOf("agility", 0).forGetter(ItemStatsComponent::agility),
@@ -22,6 +23,17 @@ public class DotcComponents {
     public static final DataComponentType<ItemStatsComponent> ITEM_STATS_COMPONENT = register(
             "item_stats",
             ITEM_STATS_COMPONENT_CODEC
+    );
+
+    public static final Codec<ProcableComponent> PROCABLE_COMPONENT_CODEC = RecordCodecBuilder.create(
+            builder -> builder.group(
+                    Codec.FLOAT.fieldOf("currentChance").forGetter(ProcableComponent::currentChance),
+                    Codec.INT.optionalFieldOf("scale", 0).forGetter(ProcableComponent::scale)
+            ).apply(builder, ProcableComponent::new)
+    );
+    public static final DataComponentType<ProcableComponent> PROCABLE_COMPONENT = register(
+            "procable",
+            PROCABLE_COMPONENT_CODEC
     );
 
     public static <T> DataComponentType<T> register(String id, Codec<T> codec) {
