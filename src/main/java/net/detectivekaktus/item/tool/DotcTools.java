@@ -5,8 +5,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.SwordItem;
 
-import net.detectivekaktus.component.dummy.DummyComponents;
-import net.detectivekaktus.component.dummy.ItemStatsComponent;
+import net.detectivekaktus.component.DotcComponents;
+import net.detectivekaktus.component.records.ItemStatsComponent;
 import net.detectivekaktus.item.DotcItems;
 import net.detectivekaktus.item.material.DotcToolMaterial;
 
@@ -39,7 +39,7 @@ public class DotcTools {
                             DotcToolMaterial.RADIANT_COMPONENT, 0, -1.0f
                     ))
                     .component(
-                            DummyComponents.ITEM_STATS_COMPONENT,
+                            DotcComponents.ITEM_STATS_COMPONENT,
                             new ItemStatsComponent(0, 10, 0
                             ))),
             "blade_of_alacrity"
@@ -50,7 +50,7 @@ public class DotcTools {
                             DotcToolMaterial.DIRE_COMPONENT, 6, -3.0f
                     ))
                     .component(
-                            DummyComponents.ITEM_STATS_COMPONENT,
+                            DotcComponents.ITEM_STATS_COMPONENT,
                             new ItemStatsComponent(10, 0, 0
                             ))),
             "ogre_axe"
@@ -61,7 +61,7 @@ public class DotcTools {
                             DotcToolMaterial.RADIANT_COMPONENT, 1, -1.5f
                     ))
                     .component(
-                            DummyComponents.ITEM_STATS_COMPONENT,
+                            DotcComponents.ITEM_STATS_COMPONENT,
                             new ItemStatsComponent(0, 0, 10
                             ))),
             "staff_of_wizardry"
