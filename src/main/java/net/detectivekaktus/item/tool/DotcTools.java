@@ -10,7 +10,7 @@ public class DotcTools {
     public static final Item JAVELIN = DotcItems.register(
             new Javelin(DotcToolMaterial.DIRE_COMPONENT, new Item.Properties()
                     .attributes(SpearItem.createAttributes(
-                            DotcToolMaterial.DIRE_COMPONENT, 1, -1.75f
+                            DotcToolMaterial.DIRE_COMPONENT, 1, -2.0f
                     ))
                     .component(
                             DotcComponents.PROCABLE_COMPONENT,

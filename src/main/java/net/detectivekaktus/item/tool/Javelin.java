@@ -1,6 +1,8 @@
 package net.detectivekaktus.item.tool;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
@@ -10,8 +12,9 @@ import java.util.List;
 import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
 import net.detectivekaktus.item.DotcItem;
 
-public class Javelin extends SpearItem implements DotcItem {
+public class Javelin extends SpearItem implements DotcItem, HasBonusDamage {
     public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_25;
+    private static final float BONUS_DAMAGE = 2.0f;
 
     public Javelin(Tier tier, Properties properties) {
         super(tier, properties);
@@ -21,5 +24,15 @@ public class Javelin extends SpearItem implements DotcItem {
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
         var components = this.generateTooltipTranslationStrings(2, "javelin");
         tooltip.addAll(components);
+    }
+
+    @Override
+    public float getBonusDamage() {
+        return BONUS_DAMAGE;
+    }
+
+    @Override
+    public DamageSource getBonusDamageSource(Player player) {
+        return player.level().damageSources().magic();
     }
 }

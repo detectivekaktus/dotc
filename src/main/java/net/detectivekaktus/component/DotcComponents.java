@@ -27,7 +27,7 @@ public class DotcComponents {
 
     public static final Codec<ProcableComponent> PROCABLE_COMPONENT_CODEC = RecordCodecBuilder.create(
             builder -> builder.group(
-                    Codec.FLOAT.fieldOf("currentChance").forGetter(ProcableComponent::currentChance),
+                    Codec.FLOAT.fieldOf("baseChance").forGetter(ProcableComponent::baseChance),
                     Codec.INT.optionalFieldOf("scale", 0).forGetter(ProcableComponent::scale)
             ).apply(builder, ProcableComponent::new)
     );
