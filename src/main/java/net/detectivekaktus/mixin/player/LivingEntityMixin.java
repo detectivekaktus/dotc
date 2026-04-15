@@ -32,6 +32,6 @@ public class LivingEntityMixin {
             return f;
 
         var stats = PlayerStats.get(entity);
-        return f * 1 - stats.getMagicResistance();
+        return f * (1.0f - stats.getMagicResistance());
     }
 }
