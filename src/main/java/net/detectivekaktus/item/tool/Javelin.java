@@ -1,5 +1,6 @@
 package net.detectivekaktus.item.tool;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
@@ -10,6 +11,7 @@ import net.minecraft.world.item.TooltipFlag;
 import java.util.List;
 
 import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
+import net.detectivekaktus.damage.DotcDamageTypes;
 import net.detectivekaktus.item.DotcItem;
 
 public class Javelin extends SpearItem implements DotcItem, HasBonusDamage {
@@ -33,6 +35,10 @@ public class Javelin extends SpearItem implements DotcItem, HasBonusDamage {
 
     @Override
     public DamageSource getBonusDamageSource(Player player) {
-        return player.level().damageSources().magic();
+        return new DamageSource(
+                player.registryAccess()
+                        .registryOrThrow(Registries.DAMAGE_TYPE)
+                        .getHolderOrThrow(DotcDamageTypes.MAGICAL)
+        );
     }
 }
