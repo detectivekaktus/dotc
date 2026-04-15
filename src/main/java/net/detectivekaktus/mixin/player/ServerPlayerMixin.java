@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.detectivekaktus.component.dummy.DummyComponents;
+import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.core.DotcPlayerManager;
 
 @Mixin(ServerPlayer.class)
@@ -27,10 +27,10 @@ public class ServerPlayerMixin {
             var player = (ServerPlayer) (Object) ServerPlayerMixin.this;
             var hotbarItems = player.getInventory().items.subList(0, 9);
             for (var item : hotbarItems) {
-                if (!item.has(DummyComponents.ITEM_STATS_COMPONENT))
+                if (!item.has(DotcComponents.ITEM_STATS_COMPONENT))
                     continue;
 
-                var stats = item.get(DummyComponents.ITEM_STATS_COMPONENT);
+                var stats = item.get(DotcComponents.ITEM_STATS_COMPONENT);
                 strength += stats.strength();
                 agility += stats.agility();
                 intelligence += stats.intelligence();

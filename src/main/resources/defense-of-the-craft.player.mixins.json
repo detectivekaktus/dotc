@@ -3,7 +3,9 @@
   "package": "net.detectivekaktus.mixin.player",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ServerPlayerMixin"
+    "ServerPlayerMixin",
+    "PlayerMixin",
+    "LivingEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

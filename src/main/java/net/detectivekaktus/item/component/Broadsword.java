@@ -1,4 +1,4 @@
-package net.detectivekaktus.item.tool;
+package net.detectivekaktus.item.component;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -10,14 +10,14 @@ import java.util.List;
 
 import net.detectivekaktus.item.DotcItem;
 
-public class DemonEdge extends SwordItem implements DotcItem {
-    public DemonEdge(Tier tier, Properties properties) {
+public class Broadsword extends SwordItem implements DotcItem {
+    public Broadsword(Tier tier, Properties properties) {
         super(tier, properties);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(2, "demon_edge");
+        var components = this.generateTooltipTranslationStrings(2, "broadsword");
         tooltip.addAll(components);
     }
 }

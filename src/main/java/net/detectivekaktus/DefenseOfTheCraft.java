@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import net.detectivekaktus.attach.DotcAttachments;
 import net.detectivekaktus.block.DotcBlocks;
 import net.detectivekaktus.component.DotcComponents;
+import net.detectivekaktus.damage.DotcDamageTypes;
 import net.detectivekaktus.event.DotcEvents;
 import net.detectivekaktus.item.DotcItems;
 import net.detectivekaktus.sound.DotcSounds;
@@ -19,8 +20,9 @@ public class DefenseOfTheCraft implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		DotcAttachments.initialize();
-		DotcComponents.initialize();
 		DotcBlocks.initialize();
+		DotcComponents.initialize();
+		DotcDamageTypes.initialize();
 		DotcItems.initialize();
 		DotcSounds.initialize();
 		DotcWorldgen.initialize();

@@ -49,5 +49,11 @@
   "itemTooltip.l2.defense-of-the-craft.staff_of_wizardry": "from the eldest mages.",
   "item.defense-of-the-craft.demon_edge": "Demon edge",
   "itemTooltip.l1.defense-of-the-craft.demon_edge": "One of the oldest weapons forged by the Demon-Smith",
-  "itemTooltip.l2.defense-of-the-craft.demon_edge": "Abzidian, it killed its maker when he tested its edge."
+  "itemTooltip.l2.defense-of-the-craft.demon_edge": "Abzidian, it killed its maker when he tested its edge.",
+
+  "item.defense-of-the-craft.javelin": "Javelin",
+  "itemTooltip.l1.defense-of-the-craft.javelin": "A rather typical spear that can sometimes pierce through",
+  "itemTooltip.l2.defense-of-the-craft.javelin": "an enemy's armor when used to attack.",
+
+  "death.attack.defense-of-the-craft.magical": "%1$s died from Defense Of The Craft magic!"
 }
