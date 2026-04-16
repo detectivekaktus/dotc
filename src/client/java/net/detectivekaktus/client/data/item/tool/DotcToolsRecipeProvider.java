@@ -12,6 +12,7 @@ import net.minecraft.world.item.Items;
 
 import java.util.concurrent.CompletableFuture;
 
+import net.detectivekaktus.item.component.DotcItemComponents;
 import net.detectivekaktus.item.ingredient.DotcIngredients;
 import net.detectivekaktus.item.tool.DotcTools;
 
@@ -22,7 +23,7 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public void buildRecipes(RecipeOutput exporter) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcTools.JAVELIN)
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DotcTools.JAVELIN)
                 .pattern(" # ")
                 .pattern("#@#")
                 .pattern(" @ ")
@@ -31,6 +32,19 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
                 .unlockedBy(
                         "has_dire_crystal",
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.DIRE_CRYSTAL)
+                )
+                .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DotcTools.MONKEY_KING_BAR)
+                .pattern(" # ")
+                .pattern(" | ")
+                .pattern(" @ ")
+                .define('#', DotcTools.JAVELIN)
+                .define('|', DotcIngredients.DIRE_CRYSTAL)
+                .define('@', DotcItemComponents.DEMON_EDGE)
+                .unlockedBy(
+                        "has_javelin",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcTools.JAVELIN)
                 )
                 .save(exporter);
     }

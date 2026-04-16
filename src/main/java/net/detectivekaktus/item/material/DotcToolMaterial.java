@@ -14,6 +14,12 @@ public enum DotcToolMaterial implements Tier {
     ),
     DIRE_COMPONENT(
             512, 7.5f, 3.0f, 18, Ingredient.of(DotcIngredients.DIRE_CRYSTAL)
+    ),
+    RADIANT_ARTEFACT(
+            2048, 7.0f, 4.0f, 10, Ingredient.of(DotcIngredients.RADIANT_CRYSTAL)
+    ),
+    DIRE_ARTEFACT(
+            2048, 7.5f, 5.0f, 12, Ingredient.of(DotcIngredients.DIRE_CRYSTAL)
     );
 
     private final int durability;
