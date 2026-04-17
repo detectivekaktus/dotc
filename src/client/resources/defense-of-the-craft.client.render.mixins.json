@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "net.detectivekaktus.client.mixin.render",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ItemRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

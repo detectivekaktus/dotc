@@ -22,8 +22,7 @@ public class DotcToolsModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
         Stream.of(
-                DotcTools.JAVELIN,
-                DotcTools.MONKEY_KING_BAR
+                DotcTools.JAVELIN
         ).forEach(item -> itemModelGenerator.generateFlatItem(item, ModelTemplates.FLAT_HANDHELD_ITEM));
     }
 
