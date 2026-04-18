@@ -1,0 +1,15 @@
+package net.detectivekaktus.client.render;
+
+import net.minecraft.client.resources.model.ModelResourceLocation;
+import net.minecraft.resources.ResourceLocation;
+
+import net.detectivekaktus.DefenseOfTheCraft;
+
+public class DotcItemModels {
+    public static final ModelResourceLocation MONKEY_KING_BAR = ModelResourceLocation.inventory(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "monkey_king_bar")
+    );
+    public static final ModelResourceLocation MONKEY_KING_BAR_IN_HAND = ModelResourceLocation.inventory(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "monkey_king_bar_in_hand")
+    );
+}
