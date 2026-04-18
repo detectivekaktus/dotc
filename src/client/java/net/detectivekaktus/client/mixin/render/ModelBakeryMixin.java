@@ -40,7 +40,6 @@ public class ModelBakeryMixin {
             Map<ResourceLocation, List<BlockStateModelLoader.LoadedJson>> map2,
             CallbackInfo callbackInfo
     ) {
-        var bakery = (ModelBakery) (Object) this;
         loadSpecialItemModelAndDependencies(DotcItemModels.MONKEY_KING_BAR_IN_HAND);
     }
 }
