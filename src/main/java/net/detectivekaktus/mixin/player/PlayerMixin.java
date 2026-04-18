@@ -6,17 +6,68 @@ import net.minecraft.world.entity.player.Player;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
-import net.detectivekaktus.DefenseOfTheCraft;
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ProcableComponent;
 import net.detectivekaktus.core.rng.PseudoRandom;
+import net.detectivekaktus.item.tool.Critable;
 import net.detectivekaktus.item.tool.HasBonusDamage;
 
 @Mixin(Player.class)
 public class PlayerMixin {
+    private boolean isNotMixinTarget(Player player) {
+        return player.level().isClientSide || !(player instanceof ServerPlayer);
+    }
+
+    @ModifyVariable(
+            method = "attack",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/item/ItemStack;getItem()Lnet/minecraft/world/item/Item;",
+                    shift = At.Shift.AFTER
+            ),
+            name = "f"
+    )
+    private float applyCritProcs(float original) {
+        var player = (Player) (Object) this;
+        if (isNotMixinTarget(player))
+            return original;
+
+        var stack = player.getMainHandItem();
+        if (!stack.has(DotcComponents.PROCABLE_COMPONENT)
+                || !(stack.getItem() instanceof Critable item))
+            return original;
+
+        var component = stack.get(DotcComponents.PROCABLE_COMPONENT);
+        var chance = PseudoRandom.getProcChance(component.baseChance(), component.scale());
+        if (player.getRandom().nextFloat() > chance) {
+            stack.set(
+                    DotcComponents.PROCABLE_COMPONENT,
+                    new ProcableComponent(component.baseChance(), component.scale() + 1)
+            );
+            return original;
+        }
+
+        stack.set(
+                DotcComponents.PROCABLE_COMPONENT,
+                new ProcableComponent(component.baseChance(), 0)
+        );
+
+        var sound = item.getProcSound();
+        sound.ifPresent(soundEvent -> player.level().playSound(
+                null,
+                player.getX(), player.getY(), player.getZ(),
+                soundEvent,
+                player.getSoundSource(),
+                1.0f, 1.0f
+        ));
+
+        return original * item.getCritPercent();
+    }
+
     @ModifyExpressionValue(
             method = "attack",
             at = @At(
@@ -24,16 +75,17 @@ public class PlayerMixin {
                     target = "Lnet/minecraft/world/entity/Entity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
             )
     )
-    private boolean onAttack(boolean hurt, Entity entity) {
+    private boolean applyPostAttackProcs(boolean hurt, Entity entity) {
         if (!hurt)
             return false;
 
         var player = (Player) (Object) this;
-        if (player.level().isClientSide || !(player instanceof ServerPlayer))
+        if (isNotMixinTarget(player))
             return hurt;
 
         var stack = player.getMainHandItem();
-        if (!stack.has(DotcComponents.PROCABLE_COMPONENT))
+        if (!stack.has(DotcComponents.PROCABLE_COMPONENT)
+                || !(stack.getItem() instanceof HasBonusDamage item))
             return hurt;
 
         var component = stack.get(DotcComponents.PROCABLE_COMPONENT);
@@ -52,25 +104,18 @@ public class PlayerMixin {
                 new ProcableComponent(component.baseChance(), 0)
         );
 
-        if (stack.getItem() instanceof HasBonusDamage item) {
-            var damageSource = item.getBonusDamageSource(player);
-            var bonusDamage = item.getBonusDamage();
-            var sound = item.getProcSound();
+        var damageSource = item.getBonusDamageSource(player);
+        var bonusDamage = item.getBonusDamage();
+        var sound = item.getProcSound();
 
-            sound.ifPresent(soundEvent -> player.level().playSound(
-                    null,
-                    player.getX(), player.getY(), player.getZ(),
-                    soundEvent,
-                    player.getSoundSource(),
-                    1.0f, 1.0f
-            ));
-            entity.hurt(damageSource, bonusDamage);
-        }
-        else
-            DefenseOfTheCraft.LOGGER.warn(
-                    "{} has procable component but doesn't implement `HasBonusDamage` interface",
-                    stack.getItem().toString()
-            );
+        sound.ifPresent(soundEvent -> player.level().playSound(
+                null,
+                player.getX(), player.getY(), player.getZ(),
+                soundEvent,
+                player.getSoundSource(),
+                1.0f, 1.0f
+        ));
+        entity.hurt(damageSource, bonusDamage);
 
         return hurt;
     }

@@ -23,7 +23,7 @@ public class DotcTools {
     public static final Item CRYSTALYS = DotcItems.register(
             new Crystalys(DotcToolMaterial.DIRE_ARTEFACT, new Item.Properties()
                     .attributes(SwordItem.createAttributes(
-                            DotcToolMaterial.DIRE_ARTEFACT, 2, -2.0f
+                            DotcToolMaterial.DIRE_ARTEFACT, 1, -2.0f
                     ))
                     .component(
                             DotcComponents.PROCABLE_COMPONENT,
