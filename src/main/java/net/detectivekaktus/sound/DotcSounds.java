@@ -7,6 +7,7 @@ import net.minecraft.sounds.SoundEvent;
 
 import net.detectivekaktus.DefenseOfTheCraft;
 import net.detectivekaktus.sound.gui.DotcGuiSounds;
+import net.detectivekaktus.sound.item.DotcItemSounds;
 
 public class DotcSounds {
     public static SoundEvent register(String soundId) {
@@ -16,5 +17,6 @@ public class DotcSounds {
 
     public static void initialize() {
         DotcGuiSounds.initialize();
+        DotcItemSounds.initialize();
     }
 }

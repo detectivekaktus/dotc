@@ -15,18 +15,19 @@ import java.util.Optional;
 import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
 import net.detectivekaktus.damage.DotcDamageTypes;
 import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.sound.item.DotcItemSounds;
 
-public class Javelin extends SpearItem implements DotcItem, HasBonusDamage {
-    public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_25;
-    private static final float BONUS_DAMAGE = 2.0f;
+public class MonkeyKingBar extends SpearItem implements DotcItem, HasBonusDamage {
+    public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_50;
+    private static final float BONUS_DAMAGE = 4.0f;
 
-    public Javelin(Tier tier, Properties properties) {
+    public MonkeyKingBar(Tier tier, Properties properties) {
         super(tier, properties);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(2, "javelin");
+        var components = this.generateTooltipTranslationStrings(1, "monkey_king_bar");
         tooltip.addAll(components);
     }
 
@@ -46,6 +47,6 @@ public class Javelin extends SpearItem implements DotcItem, HasBonusDamage {
 
     @Override
     public Optional<SoundEvent> getBonusDamageSound() {
-        return Optional.empty();
+        return Optional.of(DotcItemSounds.MKB_PIERCE);
     }
 }

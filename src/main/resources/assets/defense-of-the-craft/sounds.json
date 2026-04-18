@@ -18,5 +18,11 @@
     "sounds": [
       "defense-of-the-craft:ui_change_tab"
     ]
+  },
+
+  "item_mkb_pierce": {
+    "sounds": [
+      "defense-of-the-craft:item_mkb_pierce"
+    ]
   }
 }

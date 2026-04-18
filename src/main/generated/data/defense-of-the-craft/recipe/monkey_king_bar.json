@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "defense-of-the-craft:javelin"
+    },
+    "@": {
+      "item": "defense-of-the-craft:demon_edge"
+    },
+    "|": {
+      "item": "defense-of-the-craft:dire_crystal"
+    }
+  },
+  "pattern": [
+    " # ",
+    " | ",
+    " @ "
+  ],
+  "result": {
+    "count": 1,
+    "id": "defense-of-the-craft:monkey_king_bar"
+  }
+}
