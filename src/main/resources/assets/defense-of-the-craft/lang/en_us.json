@@ -61,6 +61,9 @@
   "itemTooltip.l1.defense-of-the-craft.monkey_king_bar": "A powerful staff used by a master warrior.",
   "item.defense-of-the-craft.crystalys": "Crystalys",
   "itemTooltip.l1.defense-of-the-craft.crystalys": "A blade forged from rare crystals, it seeks weak points in enemy armor.",
+  "item.defense-of-the-craft.daedalus": "Daedalus",
+  "itemTooltip.l1.defense-of-the-craft.daedalus": "A weapon of incredible power that is difficult for even",
+  "itemTooltip.l2.defense-of-the-craft.daedalus": "the strongest of warriors to control.",
 
   "death.attack.defense-of-the-craft.magical": "%1$s died from Defense Of The Craft magic!"
 }

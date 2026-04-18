@@ -42,5 +42,6 @@ public class ModelBakeryMixin {
     ) {
         loadSpecialItemModelAndDependencies(DotcItemModels.MONKEY_KING_BAR_IN_HAND);
         loadSpecialItemModelAndDependencies(DotcItemModels.CRYSTALYS_IN_HAND);
+        loadSpecialItemModelAndDependencies(DotcItemModels.DAEDALUS_IN_HAND);
     }
 }

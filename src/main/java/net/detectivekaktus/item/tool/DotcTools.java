@@ -1,12 +1,15 @@
 package net.detectivekaktus.item.tool;
 
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.SwordItem;
 
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ProcableComponent;
 import net.detectivekaktus.item.DotcItems;
 import net.detectivekaktus.item.material.DotcToolMaterial;
+import net.minecraft.world.item.component.ItemAttributeModifiers;
 
 public class DotcTools {
     public static final Item JAVELIN = DotcItems.register(
@@ -30,6 +33,17 @@ public class DotcTools {
                             new ProcableComponent(Crystalys.BASE_PROC_CHANCE, 0)
                     )),
             "crystalys"
+    );
+    public static final Item DAEDALUS = DotcItems.register(
+            new Daedalus(DotcToolMaterial.DIRE_ARTEFACT, new Item.Properties()
+                    .attributes(PickaxeItem.createAttributes(
+                            DotcToolMaterial.DIRE_ARTEFACT, 3, -2.0f
+                    ))
+                    .component(
+                            DotcComponents.PROCABLE_COMPONENT,
+                            new ProcableComponent(Daedalus.BASE_PROC_CHANCE, 0)
+                    )),
+            "daedalus"
     );
     public static final Item MONKEY_KING_BAR = DotcItems.register(
             new MonkeyKingBar(DotcToolMaterial.DIRE_ARTEFACT, new Item.Properties()

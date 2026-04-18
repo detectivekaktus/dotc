@@ -24,6 +24,7 @@ public class DotcToolsModelProvider extends FabricModelProvider {
         Stream.of(
                 DotcTools.JAVELIN,
                 DotcTools.CRYSTALYS,
+                DotcTools.DAEDALUS,
                 DotcTools.MONKEY_KING_BAR
         ).forEach(item -> itemModelGenerator.generateFlatItem(item, ModelTemplates.FLAT_HANDHELD_ITEM));
     }

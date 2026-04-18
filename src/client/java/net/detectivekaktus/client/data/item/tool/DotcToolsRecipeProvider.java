@@ -48,6 +48,18 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
                 )
                 .save(exporter);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DotcTools.DAEDALUS)
+                .pattern("###")
+                .pattern(" @ ")
+                .pattern(" @ ")
+                .define('#', DotcTools.CRYSTALYS)
+                .define('@', DotcItemComponents.DEMON_EDGE)
+                .unlockedBy(
+                        "has_crystalys",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcTools.CRYSTALYS)
+                )
+                .save(exporter);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DotcTools.MONKEY_KING_BAR)
                 .pattern(" # ")
                 .pattern(" | ")
