@@ -55,6 +55,15 @@ public class PlayerMixin {
         if (stack.getItem() instanceof HasBonusDamage item) {
             var damageSource = item.getBonusDamageSource(player);
             var bonusDamage = item.getBonusDamage();
+            var sound = item.getBonusDamageSound();
+
+            sound.ifPresent(soundEvent -> player.level().playSound(
+                    null,
+                    player.getX(), player.getY(), player.getZ(),
+                    soundEvent,
+                    player.getSoundSource(),
+                    1.0f, 1.0f
+            ));
             entity.hurt(damageSource, bonusDamage);
         }
         else

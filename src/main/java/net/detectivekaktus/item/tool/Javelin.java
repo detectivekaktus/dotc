@@ -2,6 +2,7 @@ package net.detectivekaktus.item.tool;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -9,6 +10,7 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
+import java.util.Optional;
 
 import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
 import net.detectivekaktus.damage.DotcDamageTypes;
@@ -40,5 +42,10 @@ public class Javelin extends SpearItem implements DotcItem, HasBonusDamage {
                         .registryOrThrow(Registries.DAMAGE_TYPE)
                         .getHolderOrThrow(DotcDamageTypes.MAGICAL)
         );
+    }
+
+    @Override
+    public Optional<SoundEvent> getBonusDamageSound() {
+        return Optional.empty();
     }
 }
