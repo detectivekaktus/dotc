@@ -19,6 +19,13 @@ public class DotcTools {
                     )),
             "javelin"
     );
+    public static final Item CRYSTALYS = DotcItems.register(
+            new Crystalys(DotcToolMaterial.DIRE_ARTEFACT, new Item.Properties()
+                    .attributes(SpearItem.createAttributes(
+                            DotcToolMaterial.DIRE_ARTEFACT, 2, -2.0f
+                    ))),
+            "crystalys"
+    );
     public static final Item MONKEY_KING_BAR = DotcItems.register(
             new MonkeyKingBar(DotcToolMaterial.DIRE_ARTEFACT, new Item.Properties()
                     .attributes(SpearItem.createAttributes(

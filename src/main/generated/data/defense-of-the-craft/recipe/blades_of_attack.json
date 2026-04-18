@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "minecraft:iron_sword"
+    },
+    "@": {
+      "item": "defense-of-the-craft:gloves_of_haste"
+    }
+  },
+  "pattern": [
+    "###",
+    " @ ",
+    "   "
+  ],
+  "result": {
+    "count": 1,
+    "id": "defense-of-the-craft:blades_of_attack"
+  }
+}

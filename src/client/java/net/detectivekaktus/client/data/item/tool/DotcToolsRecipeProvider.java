@@ -35,6 +35,19 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
                 )
                 .save(exporter);
 
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DotcTools.CRYSTALYS)
+                .pattern(" # ")
+                .pattern(" | ")
+                .pattern(" @ ")
+                .define('#', DotcItemComponents.CLAYMORE)
+                .define('|', DotcIngredients.DIRE_CRYSTAL)
+                .define('@', DotcItemComponents.BLADES_OF_ATTACK)
+                .unlockedBy(
+                        "has_claymore",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcItemComponents.CLAYMORE)
+                )
+                .save(exporter);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DotcTools.MONKEY_KING_BAR)
                 .pattern(" # ")
                 .pattern(" | ")

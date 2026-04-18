@@ -22,6 +22,18 @@ public class DotcComponentsRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public void buildRecipes(RecipeOutput exporter) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcItemComponents.BLADES_OF_ATTACK)
+                .pattern("###")
+                .pattern(" @ ")
+                .pattern("   ")
+                .define('#', Items.IRON_SWORD)
+                .define('@', DotcIngredients.GLOVES_OF_HASTE)
+                .unlockedBy(
+                        "has_iron_sword",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_SWORD)
+                )
+                .save(exporter);
+
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcItemComponents.MITHRIL_HAMMER)
                 .pattern("###")
                 .pattern(" @ ")

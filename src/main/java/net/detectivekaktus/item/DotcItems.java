@@ -54,12 +54,14 @@ public class DotcItems {
                 DotcItemComponents.OGRE_AXE,
                 DotcItemComponents.BLADE_OF_ALACRITY,
                 DotcItemComponents.STAFF_OF_WIZARDRY,
+                DotcItemComponents.BLADES_OF_ATTACK,
                 DotcItemComponents.MITHRIL_HAMMER,
                 DotcItemComponents.CLAYMORE,
                 DotcItemComponents.BROADSWORD,
                 DotcIngredients.SACRED_RELIC,
                 DotcItemComponents.DEMON_EDGE,
                 DotcTools.JAVELIN,
+                DotcTools.CRYSTALYS,
                 DotcTools.MONKEY_KING_BAR
         ).forEach(group::accept));
     }

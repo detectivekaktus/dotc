@@ -41,5 +41,6 @@ public class ModelBakeryMixin {
             CallbackInfo callbackInfo
     ) {
         loadSpecialItemModelAndDependencies(DotcItemModels.MONKEY_KING_BAR_IN_HAND);
+        loadSpecialItemModelAndDependencies(DotcItemModels.CRYSTALYS_IN_HAND);
     }
 }
