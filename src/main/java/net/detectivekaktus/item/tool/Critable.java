@@ -1,5 +1,5 @@
 package net.detectivekaktus.item.tool;
 
-public interface Critable {
+public interface Critable extends HasProcSound {
     float getCritPercent();
 }

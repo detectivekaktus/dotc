@@ -45,7 +45,7 @@ public class Javelin extends SpearItem implements DotcItem, HasBonusDamage {
     }
 
     @Override
-    public Optional<SoundEvent> getBonusDamageSound() {
+    public Optional<SoundEvent> getProcSound() {
         return Optional.empty();
     }
 }

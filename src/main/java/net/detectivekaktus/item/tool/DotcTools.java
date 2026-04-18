@@ -1,6 +1,7 @@
 package net.detectivekaktus.item.tool;
 
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SwordItem;
 
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ProcableComponent;
@@ -21,9 +22,13 @@ public class DotcTools {
     );
     public static final Item CRYSTALYS = DotcItems.register(
             new Crystalys(DotcToolMaterial.DIRE_ARTEFACT, new Item.Properties()
-                    .attributes(SpearItem.createAttributes(
+                    .attributes(SwordItem.createAttributes(
                             DotcToolMaterial.DIRE_ARTEFACT, 2, -2.0f
-                    ))),
+                    ))
+                    .component(
+                            DotcComponents.PROCABLE_COMPONENT,
+                            new ProcableComponent(Crystalys.BASE_PROC_CHANCE, 0)
+                    )),
             "crystalys"
     );
     public static final Item MONKEY_KING_BAR = DotcItems.register(

@@ -46,7 +46,7 @@ public class MonkeyKingBar extends SpearItem implements DotcItem, HasBonusDamage
     }
 
     @Override
-    public Optional<SoundEvent> getBonusDamageSound() {
+    public Optional<SoundEvent> getProcSound() {
         return Optional.of(DotcItemSounds.MKB_PIERCE);
     }
 }
