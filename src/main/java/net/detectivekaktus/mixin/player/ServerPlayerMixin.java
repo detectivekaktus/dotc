@@ -37,7 +37,7 @@ public class ServerPlayerMixin {
 
                 if (item.has(DotcComponents.EVASION_COMPONENT)) {
                     var itemEvasion = item.get(DotcComponents.EVASION_COMPONENT);
-                    evasion += itemEvasion;
+                    evasion = 1.0f - (1.0f - evasion) * (1.0f - itemEvasion);
                 }
             }
 
