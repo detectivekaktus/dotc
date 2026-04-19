@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_radiant_cystal": {
+    "has_radiant_crystal": {
       "conditions": {
         "items": [
           {
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_radiant_cystal"
+      "has_radiant_crystal"
     ]
   ],
   "rewards": {

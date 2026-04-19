@@ -92,7 +92,7 @@ public class DotcIngredientsRecipeProvider extends FabricRecipeProvider {
                 .define('#', Items.GOLD_INGOT)
                 .define('@', DotcIngredients.RADIANT_CRYSTAL)
                 .unlockedBy(
-                        "has_radiant_cystal",
+                        "has_radiant_crystal",
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.RADIANT_CRYSTAL)
                 )
                 .save(exporter);
@@ -105,7 +105,7 @@ public class DotcIngredientsRecipeProvider extends FabricRecipeProvider {
                 .define('@', Items.GOLD_INGOT)
                 .define('$', DotcIngredients.RADIANT_CRYSTAL)
                 .unlockedBy(
-                        "has_radiant_cystal",
+                        "has_radiant_crystal",
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.RADIANT_CRYSTAL)
                 )
                 .save(exporter);
