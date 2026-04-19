@@ -9,6 +9,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 
 import net.detectivekaktus.item.component.DotcItemComponents;
+import net.detectivekaktus.item.ingredient.DotcIngredients;
 import net.detectivekaktus.item.tool.DotcTools;
 
 import java.util.concurrent.CompletableFuture;
@@ -22,6 +23,18 @@ public class DotcItemTagProvider extends FabricTagProvider<Item> {
         getOrCreateTagBuilder(ItemTags.PICKAXES)
                 .add(DotcItemComponents.MITHRIL_HAMMER)
                 .add(DotcTools.DAEDALUS);
+
+        getOrCreateTagBuilder(ItemTags.SWORDS)
+                .add(DotcIngredients.BLADES_OF_ATTACK)
+                .add(DotcItemComponents.BLADE_OF_ALACRITY)
+                .add(DotcItemComponents.BROADSWORD)
+                .add(DotcItemComponents.CLAYMORE)
+                .add(DotcItemComponents.DEMON_EDGE)
+                .add(DotcItemComponents.STAFF_OF_WIZARDRY)
+                .add(DotcTools.CRYSTALYS);
+
+        getOrCreateTagBuilder(ItemTags.AXES)
+                .add(DotcItemComponents.OGRE_AXE);
     }
 
     @Override

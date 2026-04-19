@@ -28,6 +28,7 @@ public class DotcIngredientsModelProvider extends FabricModelProvider {
                 DotcIngredients.DIRE_CRYSTAL_DUST,
                 DotcIngredients.MITHRIL_INGOT,
                 DotcIngredients.BLIGHT_STONE,
+                DotcIngredients.BLADES_OF_ATTACK,
                 DotcIngredients.SACRED_RELIC,
                 DotcIngredients.GLOVES_OF_HASTE
         ).forEach(item -> itemModelGenerator.generateFlatItem(item, ModelTemplates.FLAT_ITEM));

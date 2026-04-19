@@ -22,7 +22,7 @@ public class DotcComponentsRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public void buildRecipes(RecipeOutput exporter) {
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcItemComponents.BLADES_OF_ATTACK)
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcIngredients.BLADES_OF_ATTACK)
                 .pattern("###")
                 .pattern(" @ ")
                 .pattern("   ")

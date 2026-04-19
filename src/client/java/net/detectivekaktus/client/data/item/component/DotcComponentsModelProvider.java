@@ -22,7 +22,6 @@ public class DotcComponentsModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
         Stream.of(
-                DotcItemComponents.BLADES_OF_ATTACK,
                 DotcItemComponents.MITHRIL_HAMMER,
                 DotcItemComponents.BROADSWORD,
                 DotcItemComponents.CLAYMORE,

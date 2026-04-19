@@ -41,7 +41,7 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
                 .pattern(" @ ")
                 .define('#', DotcItemComponents.CLAYMORE)
                 .define('|', DotcIngredients.DIRE_CRYSTAL)
-                .define('@', DotcItemComponents.BLADES_OF_ATTACK)
+                .define('@', DotcIngredients.BLADES_OF_ATTACK)
                 .unlockedBy(
                         "has_claymore",
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcItemComponents.CLAYMORE)
