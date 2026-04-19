@@ -46,6 +46,8 @@ public class DotcPlayerManager {
 
         // Even if value is too high it'll be cut by `PseudoRandom.reduceChance()`
         stats.setEvasion(evasion);
+        // This is done intentionally because evasion mechanic is a little bit overpowered
+        stats.setEvasionScale(0);
     }
 
     private static void applyStrength(Player player, int val) {

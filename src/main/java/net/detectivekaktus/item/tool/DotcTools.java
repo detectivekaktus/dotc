@@ -56,7 +56,7 @@ public class DotcTools {
                     )
                     .component(
                             DotcComponents.EVASION_COMPONENT,
-                            PseudoRandomBaseChances.AVG_33
+                            Butterfly.BASE_PROC_CHANCE
                     )),
             "butterfly"
     );

@@ -12,7 +12,7 @@ import net.detectivekaktus.item.DotcItem;
 import java.util.List;
 
 public class Butterfly extends SwordItem implements DotcItem {
-    public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_33;
+    public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_20;
 
     public Butterfly(Tier tier, Properties properties) {
         super(tier, properties);

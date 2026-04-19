@@ -5,11 +5,15 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
+import net.detectivekaktus.attach.PlayerStats;
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ProcableComponent;
 import net.detectivekaktus.core.rng.PseudoRandom;
@@ -18,8 +22,42 @@ import net.detectivekaktus.item.tool.HasBonusDamage;
 
 @Mixin(Player.class)
 public class PlayerMixin {
+    @Unique
     private boolean isNotMixinTarget(Player player) {
         return player.level().isClientSide || !(player instanceof ServerPlayer);
+    }
+
+    @Inject(
+            method = "attack",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/item/ItemStack;getItem()Lnet/minecraft/world/item/Item;",
+                    shift = At.Shift.BEFORE,
+                    ordinal = 0
+            ),
+            cancellable = true
+    )
+    private void applyEvasion(Entity entity, CallbackInfo callbackInfo) {
+        var player = (Player) (Object) this;
+        if (isNotMixinTarget(player))
+            return;
+
+        if (!(entity instanceof ServerPlayer))
+            return;
+
+        var entityStats = PlayerStats.get(entity);
+        var evasion = entityStats.getEvasion();
+        if (evasion == 0.0f)
+            return;
+
+        var chance = PseudoRandom.getProcChance(evasion, entityStats.getEvasionScale());
+        if (entity.getRandom().nextFloat() > chance) {
+            entityStats.addEvasionScale(1);
+            return;
+        }
+
+        entityStats.setEvasionScale(0);
+        callbackInfo.cancel();
     }
 
     @ModifyVariable(
@@ -27,7 +65,8 @@ public class PlayerMixin {
             at = @At(
                     value = "INVOKE",
                     target = "Lnet/minecraft/world/item/ItemStack;getItem()Lnet/minecraft/world/item/Item;",
-                    shift = At.Shift.AFTER
+                    shift = At.Shift.AFTER,
+                    ordinal = 0
             ),
             name = "f"
     )
