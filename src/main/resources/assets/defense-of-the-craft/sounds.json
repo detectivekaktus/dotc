@@ -24,5 +24,10 @@
     "sounds": [
       "defense-of-the-craft:item_mkb_pierce"
     ]
+  },
+  "item_daedalus_crit": {
+    "sounds": [
+      "defense-of-the-craft:item_daedalus_crit"
+    ]
   }
 }

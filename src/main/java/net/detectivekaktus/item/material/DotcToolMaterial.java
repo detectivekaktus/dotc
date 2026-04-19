@@ -16,10 +16,10 @@ public enum DotcToolMaterial implements Tier {
             512, 7.5f, 3.0f, 18, Ingredient.of(DotcIngredients.DIRE_CRYSTAL)
     ),
     RADIANT_ARTEFACT(
-            2048, 7.0f, 4.0f, 10, Ingredient.of(DotcIngredients.RADIANT_CRYSTAL)
+            2048, 8.0f, 4.0f, 10, Ingredient.of(DotcIngredients.RADIANT_CRYSTAL)
     ),
     DIRE_ARTEFACT(
-            2048, 7.5f, 5.0f, 12, Ingredient.of(DotcIngredients.DIRE_CRYSTAL)
+            2048, 9.0f, 5.0f, 12, Ingredient.of(DotcIngredients.DIRE_CRYSTAL)
     );
 
     private final int durability;
@@ -53,7 +53,7 @@ public enum DotcToolMaterial implements Tier {
 
     @Override
     public TagKey<Block> getIncorrectBlocksForDrops() {
-        return BlockTags.INCORRECT_FOR_IRON_TOOL;
+        return BlockTags.INCORRECT_FOR_NETHERITE_TOOL;
     }
 
     @Override

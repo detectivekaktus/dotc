@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "defense-of-the-craft:claymore"
+    },
+    "@": {
+      "item": "defense-of-the-craft:blades_of_attack"
+    },
+    "|": {
+      "item": "defense-of-the-craft:dire_crystal"
+    }
+  },
+  "pattern": [
+    " # ",
+    " | ",
+    " @ "
+  ],
+  "result": {
+    "count": 1,
+    "id": "defense-of-the-craft:crystalys"
+  }
+}

@@ -40,6 +40,10 @@ public class ItemRendererMixin {
     ) {
         if (itemStack.is(DotcTools.MONKEY_KING_BAR))
             return itemModelShaper.getModelManager().getModel(DotcItemModels.MONKEY_KING_BAR_IN_HAND);
+        else if (itemStack.is(DotcTools.CRYSTALYS))
+            return itemModelShaper.getModelManager().getModel(DotcItemModels.CRYSTALYS_IN_HAND);
+        else if (itemStack.is(DotcTools.DAEDALUS))
+            return itemModelShaper.getModelManager().getModel(DotcItemModels.DAEDALUS_IN_HAND);
         return original;
     }
 
@@ -65,6 +69,10 @@ public class ItemRendererMixin {
         if (context == ItemDisplayContext.GUI || context == ItemDisplayContext.FIXED) {
             if (itemStack.is(DotcTools.MONKEY_KING_BAR))
                 return itemModelShaper.getModelManager().getModel(DotcItemModels.MONKEY_KING_BAR);
+            else if (itemStack.is(DotcTools.CRYSTALYS))
+                return itemModelShaper.getModelManager().getModel(DotcItemModels.CRYSTALYS);
+            else if (itemStack.is(DotcTools.DAEDALUS))
+                return itemModelShaper.getModelManager().getModel(DotcItemModels.DAEDALUS);
         }
         return original;
     }

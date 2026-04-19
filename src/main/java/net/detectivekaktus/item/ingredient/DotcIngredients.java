@@ -1,7 +1,10 @@
 package net.detectivekaktus.item.ingredient;
 
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.SwordItem;
+
 import net.detectivekaktus.item.DotcItems;
+import net.detectivekaktus.item.material.DotcToolMaterial;
 
 public class DotcIngredients {
     public static final Item RADIANT_CRYSTAL = DotcItems.register(
@@ -28,13 +31,20 @@ public class DotcIngredients {
             new BlightStone(new Item.Properties()),
             "blight_stone"
     );
-    public static final Item SACRED_RELIC = DotcItems.register(
-            new SacredRelic(new Item.Properties()),
-            "sacred_relic"
+    public static final Item BLADES_OF_ATTACK = DotcItems.register(
+            new BladesOfAttack(DotcToolMaterial.RADIANT_COMPONENT, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(
+                            DotcToolMaterial.RADIANT_COMPONENT, 0, -2.5f
+                    ))),
+            "blades_of_attack"
     );
     public static final Item GLOVES_OF_HASTE = DotcItems.register(
             new GlovesOfHaste(new Item.Properties()),
             "gloves_of_haste"
+    );
+    public static final Item SACRED_RELIC = DotcItems.register(
+            new SacredRelic(new Item.Properties()),
+            "sacred_relic"
     );
 
 

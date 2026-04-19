@@ -51,6 +51,7 @@ public class DotcItems {
                 DotcBuildingBlocks.DIRE_CRYSTAL_BLOCK.asItem(),
                 DotcIngredients.BLIGHT_STONE,
                 DotcIngredients.GLOVES_OF_HASTE,
+                DotcIngredients.BLADES_OF_ATTACK,
                 DotcItemComponents.OGRE_AXE,
                 DotcItemComponents.BLADE_OF_ALACRITY,
                 DotcItemComponents.STAFF_OF_WIZARDRY,
@@ -60,6 +61,7 @@ public class DotcItems {
                 DotcIngredients.SACRED_RELIC,
                 DotcItemComponents.DEMON_EDGE,
                 DotcTools.JAVELIN,
+                DotcTools.CRYSTALYS,
                 DotcTools.MONKEY_KING_BAR
         ).forEach(group::accept));
     }
