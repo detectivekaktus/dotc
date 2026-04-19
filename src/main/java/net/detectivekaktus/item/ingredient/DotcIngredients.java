@@ -2,6 +2,7 @@ package net.detectivekaktus.item.ingredient;
 
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ItemStatsComponent;
+import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
 
@@ -45,7 +46,13 @@ public class DotcIngredients {
             "gloves_of_haste"
     );
     public static final Item TALISMAN_OF_EVASION = DotcItems.register(
-            new TalismanOfEvasion(new Item.Properties()),
+            new TalismanOfEvasion(
+                    new Item.Properties()
+                            .component(
+                                    DotcComponents.EVASION_COMPONENT,
+                                    PseudoRandomBaseChances.AVG_10
+                            )
+            ),
             "talisman_of_evasion"
     );
     public static final Item EAGLESONG = DotcItems.register(

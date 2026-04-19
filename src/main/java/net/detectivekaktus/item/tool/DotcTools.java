@@ -7,6 +7,7 @@ import net.minecraft.world.item.SwordItem;
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ProcableComponent;
 import net.detectivekaktus.component.records.ItemStatsComponent;
+import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
 import net.detectivekaktus.item.DotcItems;
 import net.detectivekaktus.item.material.DotcToolMaterial;
 
@@ -54,8 +55,8 @@ public class DotcTools {
                             new ItemStatsComponent(0, 35, 0)
                     )
                     .component(
-                            DotcComponents.PROCABLE_COMPONENT,
-                            new ProcableComponent(Butterfly.BASE_PROC_CHANCE, 0)
+                            DotcComponents.EVASION_COMPONENT,
+                            PseudoRandomBaseChances.AVG_33
                     )),
             "butterfly"
     );

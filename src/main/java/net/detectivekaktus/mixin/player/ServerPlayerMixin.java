@@ -23,20 +23,25 @@ public class ServerPlayerMixin {
             var strength = 0;
             var agility = 0;
             var intelligence = 0;
+            var evasion = 0.0f;
 
             var player = (ServerPlayer) (Object) ServerPlayerMixin.this;
             var hotbarItems = player.getInventory().items.subList(0, 9);
             for (var item : hotbarItems) {
-                if (!item.has(DotcComponents.ITEM_STATS_COMPONENT))
-                    continue;
+                if (item.has(DotcComponents.ITEM_STATS_COMPONENT)) {
+                    var stats = item.get(DotcComponents.ITEM_STATS_COMPONENT);
+                    strength += stats.strength();
+                    agility += stats.agility();
+                    intelligence += stats.intelligence();
+                }
 
-                var stats = item.get(DotcComponents.ITEM_STATS_COMPONENT);
-                strength += stats.strength();
-                agility += stats.agility();
-                intelligence += stats.intelligence();
+                if (item.has(DotcComponents.EVASION_COMPONENT)) {
+                    var itemEvasion = item.get(DotcComponents.EVASION_COMPONENT);
+                    evasion += itemEvasion;
+                }
             }
 
-            DotcPlayerManager.applyStatChanges(player, strength, agility, intelligence);
+            DotcPlayerManager.applyStatChanges(player, strength, agility, intelligence, evasion);
         }
 
         @Override
