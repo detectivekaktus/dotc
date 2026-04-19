@@ -53,7 +53,7 @@ public enum DotcToolMaterial implements Tier {
 
     @Override
     public TagKey<Block> getIncorrectBlocksForDrops() {
-        return BlockTags.INCORRECT_FOR_IRON_TOOL;
+        return BlockTags.INCORRECT_FOR_NETHERITE_TOOL;
     }
 
     @Override
