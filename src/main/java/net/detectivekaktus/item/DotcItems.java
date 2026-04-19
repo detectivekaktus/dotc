@@ -64,6 +64,8 @@ public class DotcItems {
                 DotcItemComponents.DEMON_EDGE,
                 DotcTools.JAVELIN,
                 DotcTools.CRYSTALYS,
+                DotcTools.DAEDALUS,
+                DotcTools.BUTTERFLY,
                 DotcTools.MONKEY_KING_BAR
         ).forEach(group::accept));
     }

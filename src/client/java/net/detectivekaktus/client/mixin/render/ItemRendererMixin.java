@@ -44,6 +44,8 @@ public class ItemRendererMixin {
             return itemModelShaper.getModelManager().getModel(DotcItemModels.CRYSTALYS_IN_HAND);
         else if (itemStack.is(DotcTools.DAEDALUS))
             return itemModelShaper.getModelManager().getModel(DotcItemModels.DAEDALUS_IN_HAND);
+        else if (itemStack.is(DotcTools.BUTTERFLY))
+            return itemModelShaper.getModelManager().getModel(DotcItemModels.BUTTERFLY_IN_HAND);
         return original;
     }
 
@@ -73,6 +75,8 @@ public class ItemRendererMixin {
                 return itemModelShaper.getModelManager().getModel(DotcItemModels.CRYSTALYS);
             else if (itemStack.is(DotcTools.DAEDALUS))
                 return itemModelShaper.getModelManager().getModel(DotcItemModels.DAEDALUS);
+            else if (itemStack.is(DotcTools.BUTTERFLY))
+                return itemModelShaper.getModelManager().getModel(DotcItemModels.BUTTERFLY);
         }
         return original;
     }
