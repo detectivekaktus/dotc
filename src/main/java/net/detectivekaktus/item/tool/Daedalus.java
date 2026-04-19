@@ -35,6 +35,6 @@ public class Daedalus extends PickaxeItem implements DotcItem, Critable {
 
     @Override
     public Optional<SoundEvent> getProcSound() {
-        return Optional.of(DotcItemSounds.CRYSTALYS_CRIT);
+        return Optional.of(DotcItemSounds.DAEDALUS_CRIT);
     }
 }
