@@ -58,10 +58,14 @@ public class DotcItems {
                 DotcItemComponents.MITHRIL_HAMMER,
                 DotcItemComponents.CLAYMORE,
                 DotcItemComponents.BROADSWORD,
+                DotcIngredients.TALISMAN_OF_EVASION,
+                DotcIngredients.EAGLESONG,
                 DotcIngredients.SACRED_RELIC,
                 DotcItemComponents.DEMON_EDGE,
                 DotcTools.JAVELIN,
                 DotcTools.CRYSTALYS,
+                DotcTools.DAEDALUS,
+                DotcTools.BUTTERFLY,
                 DotcTools.MONKEY_KING_BAR
         ).forEach(group::accept));
     }

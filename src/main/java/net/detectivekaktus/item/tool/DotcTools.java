@@ -1,15 +1,15 @@
 package net.detectivekaktus.item.tool;
 
-import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.SwordItem;
 
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ProcableComponent;
+import net.detectivekaktus.component.records.ItemStatsComponent;
+import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
 import net.detectivekaktus.item.DotcItems;
 import net.detectivekaktus.item.material.DotcToolMaterial;
-import net.minecraft.world.item.component.ItemAttributeModifiers;
 
 public class DotcTools {
     public static final Item JAVELIN = DotcItems.register(
@@ -44,6 +44,21 @@ public class DotcTools {
                             new ProcableComponent(Daedalus.BASE_PROC_CHANCE, 0)
                     )),
             "daedalus"
+    );
+    public static final Item BUTTERFLY = DotcItems.register(
+            new Butterfly(DotcToolMaterial.RADIANT_ARTEFACT, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(
+                            DotcToolMaterial.RADIANT_ARTEFACT, 3, -2.0f
+                    ))
+                    .component(
+                            DotcComponents.ITEM_STATS_COMPONENT,
+                            new ItemStatsComponent(0, 35, 0)
+                    )
+                    .component(
+                            DotcComponents.EVASION_COMPONENT,
+                            Butterfly.BASE_PROC_CHANCE
+                    )),
+            "butterfly"
     );
     public static final Item MONKEY_KING_BAR = DotcItems.register(
             new MonkeyKingBar(DotcToolMaterial.DIRE_ARTEFACT, new Item.Properties()

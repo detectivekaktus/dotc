@@ -36,11 +36,21 @@ public class DotcComponents {
             PROCABLE_COMPONENT_CODEC
     );
 
+    public static final DataComponentType<Float> EVASION_COMPONENT = registerFloat("evasion");
+
     public static <T> DataComponentType<T> register(String id, Codec<T> codec) {
         return Registry.register(
                 BuiltInRegistries.DATA_COMPONENT_TYPE,
                 ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, id),
                 DataComponentType.<T>builder().persistent(codec).build()
+        );
+    }
+
+    public static DataComponentType<Float> registerFloat(String id) {
+        return Registry.register(
+                BuiltInRegistries.DATA_COMPONENT_TYPE,
+                ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, id),
+                DataComponentType.<Float>builder().persistent(Codec.FLOAT).build()
         );
     }
 

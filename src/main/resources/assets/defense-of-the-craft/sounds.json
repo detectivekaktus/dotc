@@ -29,5 +29,11 @@
     "sounds": [
       "defense-of-the-craft:item_daedalus_crit"
     ]
+  },
+
+  "core_evaded": {
+    "sounds": [
+      "defense-of-the-craft:core_evaded"
+    ]
   }
 }

@@ -84,6 +84,31 @@ public class DotcIngredientsRecipeProvider extends FabricRecipeProvider {
                         InventoryChangeTrigger.TriggerInstance.hasItems(Items.LEATHER)
                 )
                 .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DotcIngredients.TALISMAN_OF_EVASION)
+                .pattern("#@#")
+                .pattern("@ @")
+                .pattern("#@#")
+                .define('#', Items.GOLD_INGOT)
+                .define('@', DotcIngredients.RADIANT_CRYSTAL)
+                .unlockedBy(
+                        "has_radiant_crystal",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.RADIANT_CRYSTAL)
+                )
+                .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DotcIngredients.EAGLESONG)
+                .pattern("@@$")
+                .pattern("#  ")
+                .pattern("###")
+                .define('#', Items.IRON_INGOT)
+                .define('@', Items.GOLD_INGOT)
+                .define('$', DotcIngredients.RADIANT_CRYSTAL)
+                .unlockedBy(
+                        "has_radiant_crystal",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.RADIANT_CRYSTAL)
+                )
+                .save(exporter);
     }
 
     @Override

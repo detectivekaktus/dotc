@@ -23,15 +23,16 @@ public class DotcPlayerManager {
     private static final float MANA_REGEN_PER_INTELLIGENCE = 0.2f;
     private static final float MAGIC_RESISTANCE_PER_INTELLIGENCE = 0.0025f;
 
-    private static boolean hasStatChanges(PlayerStats.StatsData stats, int strength, int agility, int intelligence) {
+    private static boolean hasStatChanges(PlayerStats.StatsData stats, int strength, int agility, int intelligence, float evasion) {
         return stats.getStrength() != strength
                 || stats.getAgility() != agility
-                || stats.getIntelligence() != intelligence;
+                || stats.getIntelligence() != intelligence
+                || stats.getEvasion() != evasion;
     }
 
-    public static void applyStatChanges(Player player, int strength, int agility, int intelligence) {
+    public static void applyStatChanges(Player player, int strength, int agility, int intelligence, float evasion) {
         var stats = PlayerStats.get(player);
-        if (!hasStatChanges(stats, strength, agility, intelligence))
+        if (!hasStatChanges(stats, strength, agility, intelligence, evasion))
             return;
 
         stats.setStrength(strength);
@@ -42,6 +43,11 @@ public class DotcPlayerManager {
 
         stats.setIntelligence(intelligence);
         applyIntelligence(player, intelligence);
+
+        // Even if value is too high it'll be cut by `PseudoRandom.reduceChance()`
+        stats.setEvasion(evasion);
+        // This is done intentionally because evasion mechanic is a little bit overpowered
+        stats.setEvasionScale(0);
     }
 
     private static void applyStrength(Player player, int val) {

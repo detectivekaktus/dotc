@@ -43,6 +43,18 @@ public class PlayerStats {
                             .syncWith(ByteBufCodecs.INT, AttachmentSyncPredicate.targetOnly())
                             .persistent(Codec.INT)
     );
+    public static final AttachmentType<Float> EVASION = AttachmentRegistry.create(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "evasion"),
+            floatBuilder ->
+                    floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_EVASION)
+                            .persistent(Codec.FLOAT)
+    );
+    public static final AttachmentType<Integer> EVASION_SCALE = AttachmentRegistry.create(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "evasion_scale"),
+            integerBuilder ->
+                    integerBuilder.initializer(() -> 0)
+                            .persistent(Codec.INT)
+    );
 
     public static final AttachmentType<Integer> INTELLIGENCE = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "intelligence"),
@@ -167,6 +179,59 @@ public class PlayerStats {
             return setOrFallback(
                     AGILITY,
                     Math.max(val, DotcAttachmentRules.DEFAULT_AGILITY),
+                    current
+            );
+        }
+
+        public float getEvasion() {
+            return target.getAttachedOrCreate(EVASION);
+        }
+
+        public float addEvasion(float val) {
+            var current = getEvasion();
+            return modifyOrFallback(
+                    EVASION,
+                    evasion -> Math.min(evasion + val, 0.99f),
+                    current
+            );
+        }
+
+        public float removeEvasion(float val) {
+            var current = getEvasion();
+            return modifyOrFallback(
+                    EVASION,
+                    evasion -> Math.max(evasion - val, DotcAttachmentRules.DEFAULT_EVASION),
+                    current
+            );
+        }
+
+        public float setEvasion(float val) {
+            var current = getEvasion();
+            return setOrFallback(
+                    EVASION,
+                    Math.clamp(val, DotcAttachmentRules.DEFAULT_EVASION, 0.99f),
+                    current
+            );
+        }
+
+        public int getEvasionScale() {
+            return target.getAttachedOrCreate(EVASION_SCALE);
+        }
+
+        public int addEvasionScale(int val) {
+            var current = getEvasionScale();
+            return modifyOrFallback(
+                    EVASION_SCALE,
+                    scale -> Math.max(scale + val, 0),
+                    current
+            );
+        }
+
+        public int setEvasionScale(int val) {
+            var current = getEvasionScale();
+            return setOrFallback(
+                    EVASION_SCALE,
+                    Math.max(val, 0),
                     current
             );
         }
