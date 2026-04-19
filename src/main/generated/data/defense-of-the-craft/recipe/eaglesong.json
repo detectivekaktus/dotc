@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:iron_ingot"
+    },
+    "$": {
+      "item": "defense-of-the-craft:radiant_crystal"
+    },
+    "@": {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "pattern": [
+    "@@$",
+    "#  ",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "defense-of-the-craft:eaglesong"
+  }
+}

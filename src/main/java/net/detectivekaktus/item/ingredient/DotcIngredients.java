@@ -1,5 +1,7 @@
 package net.detectivekaktus.item.ingredient;
 
+import net.detectivekaktus.component.DotcComponents;
+import net.detectivekaktus.component.records.ItemStatsComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.SwordItem;
 
@@ -41,6 +43,20 @@ public class DotcIngredients {
     public static final Item GLOVES_OF_HASTE = DotcItems.register(
             new GlovesOfHaste(new Item.Properties()),
             "gloves_of_haste"
+    );
+    public static final Item TALISMAN_OF_EVASION = DotcItems.register(
+            new TalismanOfEvasion(new Item.Properties()),
+            "talisman_of_evasion"
+    );
+    public static final Item EAGLESONG = DotcItems.register(
+            new Eaglesong(
+                    new Item.Properties()
+                            .component(
+                                    DotcComponents.ITEM_STATS_COMPONENT,
+                                    new ItemStatsComponent(0, 25, 0)
+                            )
+            ),
+            "eaglesong"
     );
     public static final Item SACRED_RELIC = DotcItems.register(
             new SacredRelic(new Item.Properties()),

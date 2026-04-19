@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:gold_ingot"
+    },
+    "@": {
+      "item": "defense-of-the-craft:radiant_crystal"
+    }
+  },
+  "pattern": [
+    "#@#",
+    "@ @",
+    "#@#"
+  ],
+  "result": {
+    "count": 1,
+    "id": "defense-of-the-craft:talisman_of_evasion"
+  }
+}

@@ -58,6 +58,8 @@ public class DotcItems {
                 DotcItemComponents.MITHRIL_HAMMER,
                 DotcItemComponents.CLAYMORE,
                 DotcItemComponents.BROADSWORD,
+                DotcIngredients.TALISMAN_OF_EVASION,
+                DotcIngredients.EAGLESONG,
                 DotcIngredients.SACRED_RELIC,
                 DotcItemComponents.DEMON_EDGE,
                 DotcTools.JAVELIN,

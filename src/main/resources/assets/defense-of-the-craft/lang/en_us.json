@@ -23,6 +23,13 @@
   "item.defense-of-the-craft.sacred_relic": "Sacred relic",
   "itemTooltip.l1.defense-of-the-craft.sacred_relic": "An ancient weapon that often turns the tides of war.",
 
+  "item.defense-of-the-craft.talisman_of_evasion": "Talisman of evasion",
+  "itemTooltip.l1.defense-of-the-craft.talisman_of_evasion": "A necklace that allows you to anticipate enemy attacks.",
+
+  "item.defense-of-the-craft.eaglesong": "Eaglesong",
+  "itemTooltip.l1.defense-of-the-craft.eaglesong": "Capturing the majestic call of an eagle, this",
+  "itemTooltip.l2.defense-of-the-craft.eaglesong": "mystical horn brings limitless dexterity to those who hear it.",
+
   "item.defense-of-the-craft.gloves_of_haste": "Gloves of haste",
   "itemTooltip.l1.defense-of-the-craft.gloves_of_haste": "A pair of magical gloves that seems to render weapons weightless.",
 
@@ -35,35 +42,50 @@
 
   "item.defense-of-the-craft.blades_of_attack": "Blades of attack",
   "itemTooltip.l1.defense-of-the-craft.blades_of_attack": "The damage of these small, concealable blades should not be underestimated.",
+
   "item.defense-of-the-craft.mithril_hammer": "Mithril hammer",
   "itemTooltip.l1.defense-of-the-craft.mithril_hammer": "A hammer forged of pure mithril.",
+
   "item.defense-of-the-craft.broadsword": "Broadsword",
   "itemTooltip.l1.defense-of-the-craft.broadsword": "The classic weapon of choice for knights, this",
   "itemTooltip.l2.defense-of-the-craft.broadsword": "blade is sturdy and reliable for slaying enemies.",
+
   "item.defense-of-the-craft.claymore": "Claymore",
   "itemTooltip.l1.defense-of-the-craft.claymore": "A sword that can cut through armor, it's a commonly",
   "itemTooltip.l2.defense-of-the-craft.claymore": "chosen first weapon for budding swordsmen.",
+
   "item.defense-of-the-craft.blade_of_alacrity": "Blade of alacrity",
   "itemTooltip.l1.defense-of-the-craft.blade_of_alacrity": "A long blade imbued with time magic.",
+
   "item.defense-of-the-craft.ogre_axe": "Ogre axe",
   "itemTooltip.l1.defense-of-the-craft.ogre_axe": "You grow stronger just by holding it.",
+
   "item.defense-of-the-craft.staff_of_wizardry": "Staff of wizardry",
   "itemTooltip.l1.defense-of-the-craft.staff_of_wizardry": "A staff of magical powers passed down",
   "itemTooltip.l2.defense-of-the-craft.staff_of_wizardry": "from the eldest mages.",
+
   "item.defense-of-the-craft.demon_edge": "Demon edge",
   "itemTooltip.l1.defense-of-the-craft.demon_edge": "One of the oldest weapons forged by the Demon-Smith",
   "itemTooltip.l2.defense-of-the-craft.demon_edge": "Abzidian, it killed its maker when he tested its edge.",
 
+
   "item.defense-of-the-craft.javelin": "Javelin",
   "itemTooltip.l1.defense-of-the-craft.javelin": "A rather typical spear that can sometimes pierce through",
   "itemTooltip.l2.defense-of-the-craft.javelin": "an enemy's armor when used to attack.",
+
   "item.defense-of-the-craft.monkey_king_bar": "Monkey king bar",
   "itemTooltip.l1.defense-of-the-craft.monkey_king_bar": "A powerful staff used by a master warrior.",
+
   "item.defense-of-the-craft.crystalys": "Crystalys",
   "itemTooltip.l1.defense-of-the-craft.crystalys": "A blade forged from rare crystals, it seeks weak points in enemy armor.",
+
   "item.defense-of-the-craft.daedalus": "Daedalus",
   "itemTooltip.l1.defense-of-the-craft.daedalus": "A weapon of incredible power that is difficult for even",
   "itemTooltip.l2.defense-of-the-craft.daedalus": "the strongest of warriors to control.",
+
+  "item.defense-of-the-craft.butterfly": "Butterfly",
+  "itemTooltip.l1.defense-of-the-craft.butterfly": "Only the mightiest and most experienced of warriors can wield the",
+  "itemTooltip.l2.defense-of-the-craft.butterfly": "Butterfly, but it provides incredible dexterity in combat.",
 
   "death.attack.defense-of-the-craft.magical": "%1$s died from Defense Of The Craft magic!"
 }
