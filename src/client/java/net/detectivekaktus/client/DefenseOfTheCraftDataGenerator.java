@@ -1,7 +1,5 @@
 package net.detectivekaktus.client;
 
-import net.detectivekaktus.client.data.item.tool.DotcToolsModelProvider;
-import net.detectivekaktus.client.data.item.tool.DotcToolsRecipeProvider;
 import net.minecraft.core.RegistrySetBuilder;
 import net.minecraft.core.registries.Registries;
 
@@ -17,15 +15,18 @@ import net.detectivekaktus.client.data.block.natural.DotcNaturalBlockLootTablePr
 import net.detectivekaktus.client.data.block.natural.DotcNaturalBlockModelProvider;
 import net.detectivekaktus.client.data.item.ingredient.DotcIngredientsModelProvider;
 import net.detectivekaktus.client.data.item.ingredient.DotcIngredientsRecipeProvider;
-import net.detectivekaktus.client.data.item.ingredient.DotcIngredientsTagProvider;
+import net.detectivekaktus.client.data.DotcItemTagProvider;
 import net.detectivekaktus.client.data.item.component.DotcComponentsModelProvider;
 import net.detectivekaktus.client.data.item.component.DotcComponentsRecipeProvider;
+import net.detectivekaktus.client.data.item.tool.DotcToolsModelProvider;
+import net.detectivekaktus.client.data.item.tool.DotcToolsRecipeProvider;
 import net.detectivekaktus.worldgen.features.*;
 
 public class DefenseOfTheCraftDataGenerator implements DataGeneratorEntrypoint {
 	@Override
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		var pack = fabricDataGenerator.createPack();
+		pack.addProvider(DotcItemTagProvider::new);
 		pack.addProvider(DotcBlockTagProvider::new);
 
 		pack.addProvider(DotcNaturalBlockModelProvider::new);
@@ -37,7 +38,6 @@ public class DefenseOfTheCraftDataGenerator implements DataGeneratorEntrypoint {
 
 		pack.addProvider(DotcIngredientsModelProvider::new);
 		pack.addProvider(DotcIngredientsRecipeProvider::new);
-		pack.addProvider(DotcIngredientsTagProvider::new);
 
 		pack.addProvider(DotcComponentsModelProvider::new);
 		pack.addProvider(DotcComponentsRecipeProvider::new);
