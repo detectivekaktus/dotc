@@ -51,7 +51,7 @@ public class DotcItems {
                 DotcBuildingBlocks.DIRE_CRYSTAL_BLOCK.asItem(),
                 DotcIngredients.BLIGHT_STONE,
                 DotcIngredients.GLOVES_OF_HASTE,
-                DotcItemComponents.BLADES_OF_ATTACK,
+                DotcIngredients.BLADES_OF_ATTACK,
                 DotcItemComponents.OGRE_AXE,
                 DotcItemComponents.BLADE_OF_ALACRITY,
                 DotcItemComponents.STAFF_OF_WIZARDRY,

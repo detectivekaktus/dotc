@@ -11,13 +11,6 @@ import net.detectivekaktus.item.DotcItems;
 import net.detectivekaktus.item.material.DotcToolMaterial;
 
 public class DotcItemComponents {
-    public static final Item BLADES_OF_ATTACK = DotcItems.register(
-            new BladesOfAttack(DotcToolMaterial.RADIANT_COMPONENT, new Item.Properties()
-                    .attributes(SwordItem.createAttributes(
-                            DotcToolMaterial.RADIANT_COMPONENT, 0, -2.5f
-                    ))),
-            "blades_of_attack"
-    );
     public static final Item MITHRIL_HAMMER = DotcItems.register(
             new MithrilHammer(DotcToolMaterial.RADIANT_COMPONENT, new Item.Properties()
                     .attributes(PickaxeItem.createAttributes(
