@@ -3,6 +3,7 @@ package net.detectivekaktus.mixin.player;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -23,6 +24,9 @@ import net.detectivekaktus.sound.DotcSounds;
 
 @Mixin(Player.class)
 public class PlayerMixin {
+    @Unique
+    private boolean dotc$hitThroughEvasion = false;
+
     @Unique
     private boolean isNotMixinTarget(Player player) {
         return player.level().isClientSide || !(player instanceof ServerPlayer);
@@ -46,15 +50,31 @@ public class PlayerMixin {
         if (!(entity instanceof ServerPlayer))
             return;
 
+        dotc$hitThroughEvasion = false;
         var entityStats = PlayerStats.get(entity);
         var evasion = entityStats.getEvasion();
-        if (evasion == 0.0f)
-            return;
-
-        var chance = PseudoRandom.getProcChance(evasion, entityStats.getEvasionScale());
-        if (entity.getRandom().nextFloat() > chance) {
+        var evasionChance = PseudoRandom.getProcChance(evasion, entityStats.getEvasionScale());
+        if (entity.getRandom().nextFloat() > evasionChance) {
             entityStats.addEvasionScale(1);
             return;
+        }
+
+        var stack = player.getMainHandItem();
+        if (stack.getItem() instanceof HasBonusDamage && stack.has(DotcComponents.PROCABLE_COMPONENT)) {
+            var component = stack.get(DotcComponents.PROCABLE_COMPONENT);
+            var bonusDamageChance = PseudoRandom.getProcChance(component.baseChance(), component.scale());
+            if (player.getRandom().nextFloat() < bonusDamageChance) {
+                dotc$hitThroughEvasion = true;
+                return;
+            }
+
+            // I doubt if this is fair. You don't land a hit it means you shouldn't get your
+            // pseudo-random busted, however I still keep it here. Maybe it'll be deleted
+            // one day :)
+            stack.set(
+                    DotcComponents.PROCABLE_COMPONENT,
+                    new ProcableComponent(component.baseChance(), component.scale() + 1)
+            );
         }
 
         entityStats.setEvasionScale(0);
@@ -115,6 +135,30 @@ public class PlayerMixin {
         return original * item.getCritPercent();
     }
 
+    @Unique
+    private void doApplyPostAttackProcs(ItemStack stack, ProcableComponent component, Entity entity) {
+        var player = (Player) (Object) this;
+
+        stack.set(
+                DotcComponents.PROCABLE_COMPONENT,
+                new ProcableComponent(component.baseChance(), 0)
+        );
+        var item = (HasBonusDamage) stack.getItem();
+
+        var damageSource = item.getBonusDamageSource(player);
+        var bonusDamage = item.getBonusDamage();
+        var sound = item.getProcSound();
+
+        sound.ifPresent(soundEvent -> player.level().playSound(
+                null,
+                player.getX(), player.getY(), player.getZ(),
+                soundEvent,
+                player.getSoundSource(),
+                1.0f, 1.0f
+        ));
+        entity.hurt(damageSource, bonusDamage);
+    }
+
     @ModifyExpressionValue(
             method = "attack",
             at = @At(
@@ -132,10 +176,15 @@ public class PlayerMixin {
 
         var stack = player.getMainHandItem();
         if (!stack.has(DotcComponents.PROCABLE_COMPONENT)
-                || !(stack.getItem() instanceof HasBonusDamage item))
+                || !(stack.getItem() instanceof HasBonusDamage))
             return hurt;
 
         var component = stack.get(DotcComponents.PROCABLE_COMPONENT);
+        if (dotc$hitThroughEvasion) {
+            doApplyPostAttackProcs(stack, component, entity);
+            return hurt;
+        }
+
         var chance = PseudoRandom.getProcChance(component.baseChance(), component.scale());
         if (player.getRandom().nextFloat() > chance) {
             stack.set(
@@ -146,23 +195,7 @@ public class PlayerMixin {
             return hurt;
         }
 
-        stack.set(
-                DotcComponents.PROCABLE_COMPONENT,
-                new ProcableComponent(component.baseChance(), 0)
-        );
-
-        var damageSource = item.getBonusDamageSource(player);
-        var bonusDamage = item.getBonusDamage();
-        var sound = item.getProcSound();
-
-        sound.ifPresent(soundEvent -> player.level().playSound(
-                null,
-                player.getX(), player.getY(), player.getZ(),
-                soundEvent,
-                player.getSoundSource(),
-                1.0f, 1.0f
-        ));
-        entity.hurt(damageSource, bonusDamage);
+        doApplyPostAttackProcs(stack, component, entity);
 
         return hurt;
     }
