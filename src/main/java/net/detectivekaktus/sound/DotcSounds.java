@@ -10,6 +10,8 @@ import net.detectivekaktus.sound.gui.DotcGuiSounds;
 import net.detectivekaktus.sound.item.DotcItemSounds;
 
 public class DotcSounds {
+    public static final SoundEvent EVADED = register("core_evaded");
+
     public static SoundEvent register(String soundId) {
         var id = ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, soundId);
         return Registry.register(BuiltInRegistries.SOUND_EVENT, id, SoundEvent.createVariableRangeEvent(id));

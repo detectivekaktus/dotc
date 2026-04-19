@@ -19,6 +19,7 @@ import net.detectivekaktus.component.records.ProcableComponent;
 import net.detectivekaktus.core.rng.PseudoRandom;
 import net.detectivekaktus.item.tool.Critable;
 import net.detectivekaktus.item.tool.HasBonusDamage;
+import net.detectivekaktus.sound.DotcSounds;
 
 @Mixin(Player.class)
 public class PlayerMixin {
@@ -57,6 +58,13 @@ public class PlayerMixin {
         }
 
         entityStats.setEvasionScale(0);
+        entity.level().playSound(
+                null,
+                entity.getX(), entity.getY(), entity.getZ(),
+                DotcSounds.EVADED,
+                entity.getSoundSource(),
+                1.0f, 1.0f
+        );
         callbackInfo.cancel();
     }
 
