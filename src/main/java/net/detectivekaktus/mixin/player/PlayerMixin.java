@@ -22,12 +22,15 @@ import net.detectivekaktus.damage.DotcDamageTypes;
 import net.detectivekaktus.item.tool.Critable;
 import net.detectivekaktus.item.tool.HasBonusDamage;
 import net.detectivekaktus.mixin.interfaces.CanHitThroughEvasion;
+import net.detectivekaktus.mixin.interfaces.Evadable;
 import net.detectivekaktus.sound.DotcSounds;
 
 @Mixin(Player.class)
-public class PlayerMixin implements CanHitThroughEvasion {
+public class PlayerMixin implements Evadable, CanHitThroughEvasion {
     @Unique
     private boolean dotc$hitThroughEvasion = false;
+    @Unique
+    private boolean dotc$evaded = false;
 
     @Unique
     @Override
@@ -39,6 +42,16 @@ public class PlayerMixin implements CanHitThroughEvasion {
     @Override
     public void setHitThroughEvasion(boolean evaded) {
         dotc$hitThroughEvasion = evaded;
+    }
+
+    @Override
+    public boolean getEvaded() {
+        return dotc$evaded;
+    }
+
+    @Override
+    public void setEvaded(boolean evaded) {
+        dotc$evaded = evaded;
     }
 
     @Unique
@@ -171,6 +184,7 @@ public class PlayerMixin implements CanHitThroughEvasion {
         if (isNotMixinTarget(player) || damageSource.is(DotcDamageTypes.MAGICAL))
             return;
 
+        dotc$evaded = false;
         var stats = PlayerStats.get(player);
         var evasion = stats.getEvasion();
         var evasionChance = PseudoRandom.getProcChance(evasion, stats.getEvasionScale());
@@ -183,6 +197,7 @@ public class PlayerMixin implements CanHitThroughEvasion {
 
         var attacker = damageSource.getEntity();
         if (!(attacker instanceof ServerPlayer)) {
+            dotc$evaded = true;
             playEvasionSound();
             callbackInfo.cancel();
             return;
@@ -194,6 +209,7 @@ public class PlayerMixin implements CanHitThroughEvasion {
             return;
         }
 
+        dotc$evaded = true;
         playEvasionSound();
         callbackInfo.cancel();
     }
