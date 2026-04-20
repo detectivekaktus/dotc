@@ -23,7 +23,7 @@ import net.detectivekaktus.item.tool.HasBonusDamage;
 import net.detectivekaktus.sound.DotcSounds;
 
 @Mixin(Player.class)
-public class PlayerMixin {
+public class PlayerMixin implements CanHitThroughEvasion {
     @Unique
     private boolean dotc$hitThroughEvasion = false;
 
@@ -198,5 +198,17 @@ public class PlayerMixin {
         doApplyPostAttackProcs(stack, component, entity);
 
         return hurt;
+    }
+
+    @Unique
+    @Override
+    public boolean getHitThroughEvasion() {
+        return dotc$hitThroughEvasion;
+    }
+
+    @Unique
+    @Override
+    public void setHitThroughEvasion(boolean evaded) {
+        dotc$hitThroughEvasion = evaded;
     }
 }
