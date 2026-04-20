@@ -119,11 +119,11 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
         if (isNotMixinTarget(player))
             return;
 
+        dotc$proccedPostAttackDamage = false;
         var stack = player.getMainHandItem();
         if (!stack.has(DotcComponents.PROCABLE_COMPONENT) || !(stack.getItem() instanceof HasBonusDamage))
             return;
 
-        dotc$proccedPostAttackDamage = false;
         var component = stack.get(DotcComponents.PROCABLE_COMPONENT);
         var chance = PseudoRandom.getProcChance(component.baseChance(), component.scale());
         if (player.getRandom().nextFloat() > chance) {
@@ -217,6 +217,9 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
         stats.setEvasionScale(0);
 
         var attacker = damageSource.getEntity();
+        if (attacker == null)
+            return;
+
         if (!(attacker instanceof ServerPlayer)) {
             dotc$evaded = true;
             playEvasionSound();
