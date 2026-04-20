@@ -1,4 +1,4 @@
-package net.detectivekaktus.mixin.player;
+package net.detectivekaktus.mixin.interfaces;
 
 public interface CanHitThroughEvasion {
     boolean getHitThroughEvasion();

@@ -22,7 +22,7 @@ public class LivingEntityMixin {
             ),
             ordinal = 0
     )
-    private float reduceMagicalDamage(float f, DamageSource damageSource) {
+    private float applyDotcDamageReduction(float f, DamageSource damageSource) {
         var entity = (LivingEntity) (Object) this;
         var shouldSkip = entity.level().isClientSide
                 || !damageSource.is(DotcDamageTypes.MAGICAL)
