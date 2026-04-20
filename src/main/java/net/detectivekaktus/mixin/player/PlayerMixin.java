@@ -28,20 +28,20 @@ import net.detectivekaktus.sound.DotcSounds;
 @Mixin(Player.class)
 public class PlayerMixin implements Evadable, CanHitThroughEvasion {
     @Unique
-    private boolean dotc$hitThroughEvasion = false;
+    private boolean dotc$proccedPostAttackDamage = false;
     @Unique
     private boolean dotc$evaded = false;
 
     @Unique
     @Override
     public boolean getHitThroughEvasion() {
-        return dotc$hitThroughEvasion;
+        return dotc$proccedPostAttackDamage;
     }
 
     @Unique
     @Override
     public void setHitThroughEvasion(boolean evaded) {
-        dotc$hitThroughEvasion = evaded;
+        dotc$proccedPostAttackDamage = evaded;
     }
 
     @Override
@@ -106,6 +106,41 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
         return original * item.getCritPercent();
     }
 
+    @Inject(
+            method = "attack",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/entity/Entity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z",
+                    shift = At.Shift.BEFORE
+            )
+    )
+    private void calculatePostAttackProcs(Entity entity, CallbackInfo callbackInfo) {
+        var player = (Player) (Object) this;
+        if (isNotMixinTarget(player))
+            return;
+
+        var stack = player.getMainHandItem();
+        if (!stack.has(DotcComponents.PROCABLE_COMPONENT) || !(stack.getItem() instanceof HasBonusDamage))
+            return;
+
+        dotc$proccedPostAttackDamage = false;
+        var component = stack.get(DotcComponents.PROCABLE_COMPONENT);
+        var chance = PseudoRandom.getProcChance(component.baseChance(), component.scale());
+        if (player.getRandom().nextFloat() > chance) {
+            stack.set(
+                    DotcComponents.PROCABLE_COMPONENT,
+                    new ProcableComponent(component.baseChance(), component.scale() + 1)
+            );
+            return;
+        }
+
+        stack.set(
+                DotcComponents.PROCABLE_COMPONENT,
+                new ProcableComponent(component.baseChance(), 0)
+        );
+        dotc$proccedPostAttackDamage = true;
+    }
+
     @ModifyExpressionValue(
             method = "attack",
             at = @At(
@@ -122,25 +157,11 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
             return hurt;
 
         var stack = player.getMainHandItem();
-        if (!stack.has(DotcComponents.PROCABLE_COMPONENT)
-                || !(stack.getItem() instanceof HasBonusDamage item))
+        if (!stack.has(DotcComponents.PROCABLE_COMPONENT) || !(stack.getItem() instanceof HasBonusDamage item))
             return hurt;
 
-        var component = stack.get(DotcComponents.PROCABLE_COMPONENT);
-        var chance = PseudoRandom.getProcChance(component.baseChance(), component.scale());
-        if (player.getRandom().nextFloat() > chance) {
-            stack.set(
-                    DotcComponents.PROCABLE_COMPONENT,
-                    //                   weirdly enough you can't do ++component.scale()
-                    new ProcableComponent(component.baseChance(), component.scale() + 1)
-            );
+        if (!dotc$proccedPostAttackDamage)
             return hurt;
-        }
-
-        stack.set(
-                DotcComponents.PROCABLE_COMPONENT,
-                new ProcableComponent(component.baseChance(), 0)
-        );
 
         var damageSource = item.getBonusDamageSource(player);
         var bonusDamage = item.getBonusDamage();
@@ -204,10 +225,8 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
         }
 
         var hitThrough = ((CanHitThroughEvasion) attacker).getHitThroughEvasion();
-        if (hitThrough) {
-            ((CanHitThroughEvasion) attacker).setHitThroughEvasion(false);
+        if (hitThrough)
             return;
-        }
 
         dotc$evaded = true;
         playEvasionSound();
