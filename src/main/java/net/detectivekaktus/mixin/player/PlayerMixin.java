@@ -1,9 +1,9 @@
 package net.detectivekaktus.mixin.player;
 
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -18,74 +18,45 @@ import net.detectivekaktus.attach.PlayerStats;
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ProcableComponent;
 import net.detectivekaktus.core.rng.PseudoRandom;
+import net.detectivekaktus.damage.DotcDamageTypes;
 import net.detectivekaktus.item.tool.Critable;
 import net.detectivekaktus.item.tool.HasBonusDamage;
+import net.detectivekaktus.mixin.interfaces.CanHitThroughEvasion;
+import net.detectivekaktus.mixin.interfaces.Evadable;
 import net.detectivekaktus.sound.DotcSounds;
 
 @Mixin(Player.class)
-public class PlayerMixin {
+public class PlayerMixin implements Evadable, CanHitThroughEvasion {
     @Unique
-    private boolean dotc$hitThroughEvasion = false;
+    private boolean dotc$proccedPostAttackDamage = false;
+    @Unique
+    private boolean dotc$evaded = false;
+
+    @Unique
+    @Override
+    public boolean getHitThroughEvasion() {
+        return dotc$proccedPostAttackDamage;
+    }
+
+    @Unique
+    @Override
+    public void setHitThroughEvasion(boolean evaded) {
+        dotc$proccedPostAttackDamage = evaded;
+    }
+
+    @Override
+    public boolean getEvaded() {
+        return dotc$evaded;
+    }
+
+    @Override
+    public void setEvaded(boolean evaded) {
+        dotc$evaded = evaded;
+    }
 
     @Unique
     private boolean isNotMixinTarget(Player player) {
         return player.level().isClientSide || !(player instanceof ServerPlayer);
-    }
-
-    @Inject(
-            method = "attack",
-            at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/item/ItemStack;getItem()Lnet/minecraft/world/item/Item;",
-                    shift = At.Shift.BEFORE,
-                    ordinal = 0
-            ),
-            cancellable = true
-    )
-    private void applyEvasion(Entity entity, CallbackInfo callbackInfo) {
-        var player = (Player) (Object) this;
-        if (isNotMixinTarget(player))
-            return;
-
-        if (!(entity instanceof ServerPlayer))
-            return;
-
-        dotc$hitThroughEvasion = false;
-        var entityStats = PlayerStats.get(entity);
-        var evasion = entityStats.getEvasion();
-        var evasionChance = PseudoRandom.getProcChance(evasion, entityStats.getEvasionScale());
-        if (entity.getRandom().nextFloat() > evasionChance) {
-            entityStats.addEvasionScale(1);
-            return;
-        }
-
-        var stack = player.getMainHandItem();
-        if (stack.getItem() instanceof HasBonusDamage && stack.has(DotcComponents.PROCABLE_COMPONENT)) {
-            var component = stack.get(DotcComponents.PROCABLE_COMPONENT);
-            var bonusDamageChance = PseudoRandom.getProcChance(component.baseChance(), component.scale());
-            if (player.getRandom().nextFloat() < bonusDamageChance) {
-                dotc$hitThroughEvasion = true;
-                return;
-            }
-
-            // I doubt if this is fair. You don't land a hit it means you shouldn't get your
-            // pseudo-random busted, however I still keep it here. Maybe it'll be deleted
-            // one day :)
-            stack.set(
-                    DotcComponents.PROCABLE_COMPONENT,
-                    new ProcableComponent(component.baseChance(), component.scale() + 1)
-            );
-        }
-
-        entityStats.setEvasionScale(0);
-        entity.level().playSound(
-                null,
-                entity.getX(), entity.getY(), entity.getZ(),
-                DotcSounds.EVADED,
-                entity.getSoundSource(),
-                1.0f, 1.0f
-        );
-        callbackInfo.cancel();
     }
 
     @ModifyVariable(
@@ -135,28 +106,39 @@ public class PlayerMixin {
         return original * item.getCritPercent();
     }
 
-    @Unique
-    private void doApplyPostAttackProcs(ItemStack stack, ProcableComponent component, Entity entity) {
+    @Inject(
+            method = "attack",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/entity/Entity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z",
+                    shift = At.Shift.BEFORE
+            )
+    )
+    private void calculatePostAttackProcs(Entity entity, CallbackInfo callbackInfo) {
         var player = (Player) (Object) this;
+        if (isNotMixinTarget(player))
+            return;
+
+        dotc$proccedPostAttackDamage = false;
+        var stack = player.getMainHandItem();
+        if (!stack.has(DotcComponents.PROCABLE_COMPONENT) || !(stack.getItem() instanceof HasBonusDamage))
+            return;
+
+        var component = stack.get(DotcComponents.PROCABLE_COMPONENT);
+        var chance = PseudoRandom.getProcChance(component.baseChance(), component.scale());
+        if (player.getRandom().nextFloat() > chance) {
+            stack.set(
+                    DotcComponents.PROCABLE_COMPONENT,
+                    new ProcableComponent(component.baseChance(), component.scale() + 1)
+            );
+            return;
+        }
 
         stack.set(
                 DotcComponents.PROCABLE_COMPONENT,
                 new ProcableComponent(component.baseChance(), 0)
         );
-        var item = (HasBonusDamage) stack.getItem();
-
-        var damageSource = item.getBonusDamageSource(player);
-        var bonusDamage = item.getBonusDamage();
-        var sound = item.getProcSound();
-
-        sound.ifPresent(soundEvent -> player.level().playSound(
-                null,
-                player.getX(), player.getY(), player.getZ(),
-                soundEvent,
-                player.getSoundSource(),
-                1.0f, 1.0f
-        ));
-        entity.hurt(damageSource, bonusDamage);
+        dotc$proccedPostAttackDamage = true;
     }
 
     @ModifyExpressionValue(
@@ -175,28 +157,82 @@ public class PlayerMixin {
             return hurt;
 
         var stack = player.getMainHandItem();
-        if (!stack.has(DotcComponents.PROCABLE_COMPONENT)
-                || !(stack.getItem() instanceof HasBonusDamage))
+        if (!stack.has(DotcComponents.PROCABLE_COMPONENT) || !(stack.getItem() instanceof HasBonusDamage item))
             return hurt;
 
-        var component = stack.get(DotcComponents.PROCABLE_COMPONENT);
-        if (dotc$hitThroughEvasion) {
-            doApplyPostAttackProcs(stack, component, entity);
+        if (!dotc$proccedPostAttackDamage)
             return hurt;
-        }
 
-        var chance = PseudoRandom.getProcChance(component.baseChance(), component.scale());
-        if (player.getRandom().nextFloat() > chance) {
-            stack.set(
-                    DotcComponents.PROCABLE_COMPONENT,
-                    //                   weirdly enough you can't do ++component.scale()
-                    new ProcableComponent(component.baseChance(), component.scale() + 1)
-            );
-            return hurt;
-        }
+        var damageSource = item.getBonusDamageSource(player);
+        var bonusDamage = item.getBonusDamage();
+        var sound = item.getProcSound();
 
-        doApplyPostAttackProcs(stack, component, entity);
+        sound.ifPresent(soundEvent -> player.level().playSound(
+                null,
+                player.getX(), player.getY(), player.getZ(),
+                soundEvent,
+                player.getSoundSource(),
+                1.0f, 1.0f
+        ));
+        entity.hurt(damageSource, bonusDamage);
 
         return hurt;
+    }
+
+    @Unique
+    private void playEvasionSound() {
+        var entity = (Player) (Object) this;
+        entity.level().playSound(
+                null,
+                entity.getX(), entity.getY(), entity.getZ(),
+                DotcSounds.EVADED,
+                entity.getSoundSource(),
+                1.0f, 1.0f
+        );
+    }
+
+    @Inject(
+            method = "actuallyHurt",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/entity/player/Player;getDamageAfterArmorAbsorb(Lnet/minecraft/world/damagesource/DamageSource;F)F",
+                    shift = At.Shift.BEFORE
+            ),
+            cancellable = true
+    )
+    private void applyEvasion(DamageSource damageSource, float f, CallbackInfo callbackInfo) {
+        var player = (Player) (Object) this;
+        if (isNotMixinTarget(player) || damageSource.is(DotcDamageTypes.MAGICAL))
+            return;
+
+        dotc$evaded = false;
+        var stats = PlayerStats.get(player);
+        var evasion = stats.getEvasion();
+        var evasionChance = PseudoRandom.getProcChance(evasion, stats.getEvasionScale());
+        if (player.getRandom().nextFloat() > evasionChance) {
+            stats.addEvasionScale(1);
+            return;
+        }
+
+        stats.setEvasionScale(0);
+
+        var attacker = damageSource.getEntity();
+        if (attacker == null)
+            return;
+
+        if (!(attacker instanceof ServerPlayer)) {
+            dotc$evaded = true;
+            playEvasionSound();
+            callbackInfo.cancel();
+            return;
+        }
+
+        var hitThrough = ((CanHitThroughEvasion) attacker).getHitThroughEvasion();
+        if (hitThrough)
+            return;
+
+        dotc$evaded = true;
+        playEvasionSound();
+        callbackInfo.cancel();
     }
 }
