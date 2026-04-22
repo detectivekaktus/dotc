@@ -14,7 +14,7 @@ import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
 import net.detectivekaktus.item.DotcItem;
 
 public class Crystalys extends SwordItem implements DotcItem, Critable {
-    public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_10;
+    public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_20;
     private static final float CRIT_PERCENT = 1.25f;
 
     public Crystalys(Tier tier, Properties properties) {

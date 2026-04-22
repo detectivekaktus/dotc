@@ -102,8 +102,7 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
                 1.0f, 1.0f
         ));
 
-//        return original * item.getCritPercent();
-        return original * 100;
+        return original * item.getCritPercent();
     }
 
     @Inject(
