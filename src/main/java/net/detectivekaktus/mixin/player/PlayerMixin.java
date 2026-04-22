@@ -234,4 +234,21 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
         playEvasionSound();
         callbackInfo.cancel();
     }
+
+    @ModifyVariable(
+            method = "actuallyHurt",
+            at = @At(
+                    value = "INVOKE_ASSIGN",
+                    target = "Lnet/minecraft/world/entity/player/Player;getDamageAfterMagicAbsorb(Lnet/minecraft/world/damagesource/DamageSource;F)F"
+            ),
+            ordinal = 0
+    )
+    private float applyDamageReduction(float original, DamageSource damageSource) {
+        var player = (Player) (Object) this;
+        if (isNotMixinTarget(player) || !damageSource.is(DotcDamageTypes.MAGICAL))
+            return original;
+
+        var stats = PlayerStats.get(player);
+        return original * (1.0f - stats.getMagicResistance());
+    }
 }
