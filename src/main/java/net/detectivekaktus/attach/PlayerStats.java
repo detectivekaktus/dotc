@@ -81,24 +81,6 @@ public class PlayerStats {
             return target.getAttachedOrCreate(STRENGTH);
         }
 
-        public int addStrength(int val) {
-            var current = getStrength();
-            return modifyOrFallback(
-                    STRENGTH,
-                    strength -> Math.max(strength + val, DotcAttachmentRules.DEFAULT_STRENGTH),
-                    current
-            );
-        }
-
-        public int removeStrength(int val) {
-            var current = getStrength();
-            return modifyOrFallback(
-                    STRENGTH,
-                    strength -> Math.max(strength - val, DotcAttachmentRules.DEFAULT_STRENGTH),
-                    current
-            );
-        }
-
         public int setStrength(int val) {
             var current = getStrength();
             return setOrFallback(
@@ -125,24 +107,6 @@ public class PlayerStats {
             return target.getAttachedOrCreate(HP_REGEN);
         }
 
-        public float addHpRegen(float val) {
-            var current = getHpRegen();
-            return modifyOrFallback(
-                    HP_REGEN,
-                    hpRegen -> Math.max(hpRegen + val, DotcAttachmentRules.DEFAULT_HP_REGEN),
-                    current
-            );
-        }
-
-        public float removeHpRegen(float val) {
-            var current = getHpRegen();
-            return modifyOrFallback(
-                    HP_REGEN,
-                    hpRegen -> Math.max(hpRegen - val, DotcAttachmentRules.DEFAULT_HP_REGEN),
-                    current
-            );
-        }
-
         public float setHpRegen(float val) {
             var current = getHpRegen();
             return setOrFallback(
@@ -156,24 +120,6 @@ public class PlayerStats {
             return target.getAttachedOrCreate(AGILITY);
         }
 
-        public int addAgility(int val) {
-            var current = getAgility();
-            return modifyOrFallback(
-                    AGILITY,
-                    agility -> Math.max(agility + val, DotcAttachmentRules.DEFAULT_AGILITY),
-                    current
-            );
-        }
-
-        public int removeAgility(int val) {
-            var current = getAgility();
-            return modifyOrFallback(
-                    AGILITY,
-                    agility -> Math.max(agility - val, DotcAttachmentRules.DEFAULT_AGILITY),
-                    current
-            );
-        }
-
         public int setAgility(int val) {
             var current = getAgility();
             return setOrFallback(
@@ -185,24 +131,6 @@ public class PlayerStats {
 
         public float getEvasion() {
             return target.getAttachedOrCreate(EVASION);
-        }
-
-        public float addEvasion(float val) {
-            var current = getEvasion();
-            return modifyOrFallback(
-                    EVASION,
-                    evasion -> Math.min(evasion + val, 0.99f),
-                    current
-            );
-        }
-
-        public float removeEvasion(float val) {
-            var current = getEvasion();
-            return modifyOrFallback(
-                    EVASION,
-                    evasion -> Math.max(evasion - val, DotcAttachmentRules.DEFAULT_EVASION),
-                    current
-            );
         }
 
         public float setEvasion(float val) {
@@ -240,24 +168,6 @@ public class PlayerStats {
             return target.getAttachedOrCreate(INTELLIGENCE);
         }
 
-        public int addIntelligence(int val) {
-            var current = getIntelligence();
-            return modifyOrFallback(
-                    INTELLIGENCE,
-                    intelligence -> Math.max(intelligence + val, DotcAttachmentRules.DEFAULT_INTELLIGENCE),
-                    current
-            );
-        }
-
-        public int removeIntelligence(int val) {
-            var current = getIntelligence();
-            return modifyOrFallback(
-                    INTELLIGENCE,
-                    intelligence -> Math.max(intelligence - val, DotcAttachmentRules.DEFAULT_INTELLIGENCE),
-                    current
-            );
-        }
-
         public int setIntelligence(int val) {
             var current = getIntelligence();
             return setOrFallback(
@@ -271,29 +181,11 @@ public class PlayerStats {
             return target.getAttachedOrCreate(MAGIC_RESISTANCE);
         }
 
-        public float addMagicResistance(float val) {
-            var current = getMagicResistance();
-            return modifyOrFallback(
-                    MAGIC_RESISTANCE,
-                    resist -> Math.max(resist + val, DotcAttachmentRules.DEFAULT_MAGIC_RESISTANCE),
-                    current
-            );
-        }
-
-        public float removeMagicResistance(float val) {
-            var current = getMagicResistance();
-            return modifyOrFallback(
-                    MAGIC_RESISTANCE,
-                    resist -> Math.max(resist - val, DotcAttachmentRules.DEFAULT_MAGIC_RESISTANCE),
-                    current
-            );
-        }
-
         public float setMagicResistance(float val) {
             var current = getMagicResistance();
             return setOrFallback(
                     MAGIC_RESISTANCE,
-                    Math.max(val, DotcAttachmentRules.DEFAULT_MAGIC_RESISTANCE),
+                    Math.clamp(val, DotcAttachmentRules.DEFAULT_MAGIC_RESISTANCE, 1.0f),
                     current
             );
         }

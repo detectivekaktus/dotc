@@ -29,7 +29,7 @@ public class ItemRendererMixin {
     @ModifyVariable(
             method = "getModel",
             at = @At(value = "STORE"),
-            name = "bakedModel"
+            ordinal = 0
     )
     private BakedModel addDotcItemModelsInGetModel(
             BakedModel original,
@@ -56,7 +56,7 @@ public class ItemRendererMixin {
                     target = "Lnet/minecraft/client/resources/model/BakedModel;getTransforms()Lnet/minecraft/client/renderer/block/model/ItemTransforms;",
                     shift = At.Shift.BEFORE
             ),
-            name = "bakedModel"
+            ordinal = 0
     )
     private BakedModel addDotcItemModelsInRender(
             BakedModel original,

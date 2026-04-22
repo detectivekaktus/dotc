@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 public class Daedalus extends PickaxeItem implements DotcItem, Critable {
-    public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_10;
+    public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_20;
     private static final float CRIT_PERCENT = 1.5f;
 
     public Daedalus(Tier tier, Properties properties) {
