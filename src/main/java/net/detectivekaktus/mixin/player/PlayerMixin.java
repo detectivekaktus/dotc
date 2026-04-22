@@ -62,7 +62,7 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
     @ModifyVariable(
             method = "attack",
             at = @At(
-                    value = "INVOKE_ASSIGN",
+                    value = "INVOKE",
                     target = "Lnet/minecraft/world/entity/player/Player;getWeaponItem()Lnet/minecraft/world/item/ItemStack;",
                     shift = At.Shift.BEFORE
             ),
@@ -102,7 +102,8 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
                 1.0f, 1.0f
         ));
 
-        return original * item.getCritPercent();
+//        return original * item.getCritPercent();
+        return original * 100;
     }
 
     @Inject(
