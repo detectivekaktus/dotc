@@ -62,12 +62,11 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
     @ModifyVariable(
             method = "attack",
             at = @At(
-                    value = "INVOKE",
-                    target = "Lnet/minecraft/world/item/ItemStack;getItem()Lnet/minecraft/world/item/Item;",
-                    shift = At.Shift.AFTER,
-                    ordinal = 0
+                    value = "INVOKE_ASSIGN",
+                    target = "Lnet/minecraft/world/entity/player/Player;getWeaponItem()Lnet/minecraft/world/item/ItemStack;",
+                    shift = At.Shift.BEFORE
             ),
-            name = "f"
+            ordinal = 0
     )
     private float applyCritProcs(float original) {
         var player = (Player) (Object) this;
