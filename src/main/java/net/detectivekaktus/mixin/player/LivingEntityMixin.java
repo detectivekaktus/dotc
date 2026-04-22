@@ -31,16 +31,16 @@ public class LivingEntityMixin {
             ),
             ordinal = 0
     )
-    private float applyDotcDamageReduction(float f, DamageSource damageSource) {
+    private float applyDotcDamageReduction(float original, DamageSource damageSource) {
         var entity = (LivingEntity) (Object) this;
         var shouldSkip = isNotMixinTarget(entity)
                 || !damageSource.is(DotcDamageTypes.MAGICAL)
                 || !entity.hasAttached(PlayerStats.MAGIC_RESISTANCE);
         if (shouldSkip)
-            return f;
+            return original;
 
         var stats = PlayerStats.get(entity);
-        return f * (1.0f - stats.getMagicResistance());
+        return original * (1.0f - stats.getMagicResistance());
     }
 
 
