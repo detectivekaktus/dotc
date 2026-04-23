@@ -4,6 +4,7 @@ public class DotcAttachmentRules {
     public static final float DEFAULT_MAX_MANA = 200.0f;
     public static final float MIN_MANA = 0.0f;
     public static final float DEFAULT_MANA_REGEN = 1.0f;
+    public static final float DEFAULT_MANA_COST_REDUCTION = 0.0f;
 
     public static final int DEFAULT_INTELLIGENCE = 0;
     public static final float DEFAULT_MAGIC_RESISTANCE = 0.25f;

@@ -46,6 +46,13 @@ public class PlayerMana {
                             .persistent(Codec.INT)
     );
 
+    public static final AttachmentType<Float> MANA_COST_REDUCTION = AttachmentRegistry.create(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "mana_cost_reduction"),
+            floatBuilder ->
+                    floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_MANA_COST_REDUCTION)
+                            .persistent(Codec.FLOAT)
+    );
+
     public static void initialize() { }
 
     public static ManaData get(AttachmentTarget target) {
@@ -81,16 +88,6 @@ public class PlayerMana {
             );
         }
 
-        public float setCurrentMana(float val) {
-            var maxMana = getMaxMana();
-            var current = getCurrentMana();
-            return setOrFallback(
-                    CURRENT_MANA,
-                    Math.clamp(val, DotcAttachmentRules.MIN_MANA, maxMana),
-                    current
-            );
-        }
-
         public float getMaxMana() {
             return target.getAttachedOrCreate(MAX_MANA);
         }
@@ -118,24 +115,6 @@ public class PlayerMana {
             return target.getAttachedOrCreate(MANA_REGEN);
         }
 
-        public float addManaRegen(float val) {
-            var current = getManaRegen();
-            return modifyOrFallback(
-                    MANA_REGEN,
-                    manaRegen -> Math.max(manaRegen + val, DotcAttachmentRules.DEFAULT_MANA_REGEN),
-                    current
-            );
-        }
-
-        public float removeManaRegen(float val) {
-            var current = getManaRegen();
-            return modifyOrFallback(
-                    MANA_REGEN,
-                    manaRegen -> Math.max(manaRegen - val, DotcAttachmentRules.DEFAULT_MANA_REGEN),
-                    current
-            );
-        }
-
         public float setManaRegen(float val) {
             var current = getManaRegen();
             return setOrFallback(
@@ -154,6 +133,19 @@ public class PlayerMana {
             return setOrFallback(
                     MANA_TICK,
                     Math.clamp(val, 0, 20),
+                    current
+            );
+        }
+
+        public float getManaCostReduction() {
+            return target.getAttachedOrCreate(MANA_COST_REDUCTION);
+        }
+
+        public float setManaCostReduction(float val) {
+            var current = getManaRegen();
+            return setOrFallback(
+                    MANA_COST_REDUCTION,
+                    Math.max(val, DotcAttachmentRules.DEFAULT_MANA_COST_REDUCTION),
                     current
             );
         }
