@@ -61,6 +61,8 @@ public class DotcItems {
                 DotcPrimitives.OGRE_AXE,
                 DotcPrimitives.BLADE_OF_ALACRITY,
                 DotcPrimitives.STAFF_OF_WIZARDRY,
+                DotcIngredients.BELT_OF_STRENGTH,
+                DotcIngredients.BAND_OF_ELVENSKIN,
 
                 DotcTools.CRYSTALYS,
                 DotcTools.DAEDALUS,

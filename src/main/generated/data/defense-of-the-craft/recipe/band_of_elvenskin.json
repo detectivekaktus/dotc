@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "@": {
+      "item": "defense-of-the-craft:radiant_crystal"
+    }
+  },
+  "pattern": [
+    " @ ",
+    "@@@",
+    " @ "
+  ],
+  "result": {
+    "count": 1,
+    "id": "defense-of-the-craft:band_of_elvenskin"
+  }
+}
