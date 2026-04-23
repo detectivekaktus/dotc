@@ -11,8 +11,9 @@ import net.detectivekaktus.component.records.ItemStatsComponent;
 // Probably all of these values will be changed during future tests by the players
 // but for now I think they are reasonably balanced
 public class DotcPlayerManager {
-    private static final float BASE_ARMOR = 0.0f; // vanilla base armor value
-    private static final float BASE_ATTACK_SPEED = 4.0f; // see Attributes class
+    private static final float BASE_ARMOR = 0.0f;
+    private static final float BASE_ATTACK_SPEED = 4.0f;
+    private static final float BASE_MOVE_SPEED = 0.7f;
 
     private static final float HP_PER_STRENGTH = 0.25f;
     private static final float HP_REGEN_PER_STRENGTH = 0.025f;
@@ -29,7 +30,8 @@ public class DotcPlayerManager {
                 || stats.getAgility() != config.agility
                 || stats.getIntelligence() != config.intelligence
                 || Math.abs(stats.getEvasion() - config.evasion) > 1e-5f
-                || Math.abs(stats.getHpRegenAmplification() - config.hpRegenAmplification) > 1e-5f;
+                || Math.abs(stats.getHpRegenAmplification() - config.hpRegenAmplification) > 1e-5f
+                || Math.abs(stats.getMoveSpeed() - config.moveSpeed) > 1e-5f;
     }
 
     public static void applyChanges(Config config) {
@@ -43,6 +45,7 @@ public class DotcPlayerManager {
 
         stats.setAgility(config.agility);
         applyAgility(config.player, config.agility);
+        applyMoveSpeed(config.player, config.moveSpeed);
 
         stats.setIntelligence(config.intelligence);
         applyIntelligence(config.player, config.intelligence);
@@ -77,6 +80,17 @@ public class DotcPlayerManager {
         }
     }
 
+    private static void applyMoveSpeed(Player player, float val) {
+        var moveSpeedAttr = player.getAttribute(Attributes.MOVEMENT_SPEED);
+        if (moveSpeedAttr != null) {
+            var moveSpeed = BASE_MOVE_SPEED + val;
+            moveSpeedAttr.setBaseValue(moveSpeed);
+        }
+
+        var stats = PlayerStats.get(player);
+        stats.setMoveSpeed(val);
+    }
+
     private static void applyIntelligence(Player player, int val) {
         var mana = PlayerMana.get(player);
         var maxMana = DotcAttachmentRules.DEFAULT_MAX_MANA + (val * MANA_PER_INTELLIGENCE);
@@ -94,7 +108,7 @@ public class DotcPlayerManager {
         public final Player player;
 
         int strength, agility, intelligence;
-        float evasion, hpRegenAmplification;
+        float evasion, moveSpeed, hpRegenAmplification;
 
         public Config(Player player) {
             this.player = player;
@@ -103,6 +117,7 @@ public class DotcPlayerManager {
             this.agility = 0;
             this.intelligence = 0;
             this.evasion = 0.0f;
+            this.moveSpeed = 0.0f;
             this.hpRegenAmplification = 0.0f;
         }
 
@@ -114,6 +129,10 @@ public class DotcPlayerManager {
 
         public void addEvasion(float evasion) {
             this.evasion = 1.0f - (1.0f - this.evasion) * (1.0f - evasion);
+        }
+
+        public void addMoveSpeed(float moveSpeed) {
+            this.moveSpeed += moveSpeed;
         }
 
         public void addHpRegenAmplification(float amplification) {

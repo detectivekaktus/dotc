@@ -61,6 +61,12 @@ public class PlayerStats {
                     integerBuilder.initializer(() -> 0)
                             .persistent(Codec.INT)
     );
+    public static final AttachmentType<Float> MOVE_SPEED = AttachmentRegistry.create(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "move_speed"),
+            floatBuilder ->
+                    floatBuilder.initializer(() -> 0.0f)
+                            .persistent(Codec.FLOAT)
+    );
 
     public static final AttachmentType<Integer> INTELLIGENCE = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "intelligence"),
@@ -179,6 +185,19 @@ public class PlayerStats {
             return setOrFallback(
                     EVASION_SCALE,
                     Math.max(val, 0),
+                    current
+            );
+        }
+
+        public float getMoveSpeed() {
+            return target.getAttachedOrCreate(MOVE_SPEED);
+        }
+
+        public float setMoveSpeed(float val) {
+            var current = getMoveSpeed();
+            return setOrFallback(
+                    MOVE_SPEED,
+                    Math.max(val, 0.0f),
                     current
             );
         }
