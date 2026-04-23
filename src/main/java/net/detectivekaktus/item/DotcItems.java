@@ -15,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.detectivekaktus.DefenseOfTheCraft;
 import net.detectivekaktus.block.natural.DotcNaturalBlocks;
 import net.detectivekaktus.block.building.DotcBuildingBlocks;
-import net.detectivekaktus.item.component.DotcItemComponents;
+import net.detectivekaktus.item.primitive.DotcPrimitives;
 import net.detectivekaktus.item.ingredient.DotcIngredients;
 import net.detectivekaktus.item.tool.DotcTools;
 
@@ -35,7 +35,7 @@ public class DotcItems {
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, DOTC_ITEM_GROUP_KEY, DOTC_ITEM_GROUP);
 
         DotcIngredients.initialize();
-        DotcItemComponents.initialize();
+        DotcPrimitives.initialize();
         DotcTools.initialize();
 
         ItemGroupEvents.modifyEntriesEvent(DOTC_ITEM_GROUP_KEY).register(group -> Stream.of(
@@ -48,19 +48,19 @@ public class DotcItems {
                 DotcIngredients.TALISMAN_OF_EVASION,
                 DotcIngredients.EAGLESONG,
                 DotcIngredients.SACRED_RELIC,
-                DotcItemComponents.DEMON_EDGE,
+                DotcPrimitives.DEMON_EDGE,
 
                 DotcIngredients.BLIGHT_STONE,
                 DotcIngredients.GLOVES_OF_HASTE,
                 DotcIngredients.BLADES_OF_ATTACK,
-                DotcItemComponents.MITHRIL_HAMMER,
-                DotcItemComponents.BROADSWORD,
-                DotcItemComponents.CLAYMORE,
+                DotcPrimitives.MITHRIL_HAMMER,
+                DotcPrimitives.BROADSWORD,
+                DotcPrimitives.CLAYMORE,
                 DotcTools.JAVELIN,
 
-                DotcItemComponents.OGRE_AXE,
-                DotcItemComponents.BLADE_OF_ALACRITY,
-                DotcItemComponents.STAFF_OF_WIZARDRY,
+                DotcPrimitives.OGRE_AXE,
+                DotcPrimitives.BLADE_OF_ALACRITY,
+                DotcPrimitives.STAFF_OF_WIZARDRY,
 
                 DotcTools.CRYSTALYS,
                 DotcTools.DAEDALUS,

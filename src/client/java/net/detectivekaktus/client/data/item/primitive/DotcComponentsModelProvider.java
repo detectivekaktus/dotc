@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.data.item.component;
+package net.detectivekaktus.client.data.item.primitive;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricModelProvider;
@@ -9,7 +9,7 @@ import net.minecraft.data.models.model.ModelTemplates;
 
 import java.util.stream.Stream;
 
-import net.detectivekaktus.item.component.DotcItemComponents;
+import net.detectivekaktus.item.primitive.DotcPrimitives;
 
 public class DotcComponentsModelProvider extends FabricModelProvider {
     public DotcComponentsModelProvider(FabricDataOutput output) {
@@ -22,18 +22,18 @@ public class DotcComponentsModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
         Stream.of(
-                DotcItemComponents.MITHRIL_HAMMER,
-                DotcItemComponents.BROADSWORD,
-                DotcItemComponents.CLAYMORE,
-                DotcItemComponents.BLADE_OF_ALACRITY,
-                DotcItemComponents.OGRE_AXE,
-                DotcItemComponents.STAFF_OF_WIZARDRY,
-                DotcItemComponents.DEMON_EDGE
+                DotcPrimitives.MITHRIL_HAMMER,
+                DotcPrimitives.BROADSWORD,
+                DotcPrimitives.CLAYMORE,
+                DotcPrimitives.BLADE_OF_ALACRITY,
+                DotcPrimitives.OGRE_AXE,
+                DotcPrimitives.STAFF_OF_WIZARDRY,
+                DotcPrimitives.DEMON_EDGE
         ).forEach(item -> itemModelGenerator.generateFlatItem(item, ModelTemplates.FLAT_HANDHELD_ITEM));
     }
 
     @Override
     public String getName() {
-        return "defense-of-the-craft:components_models";
+        return "defense-of-the-craft:primitives_models";
     }
 }

@@ -8,7 +8,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Item;
 
-import net.detectivekaktus.item.component.DotcItemComponents;
+import net.detectivekaktus.item.primitive.DotcPrimitives;
 import net.detectivekaktus.item.ingredient.DotcIngredients;
 import net.detectivekaktus.item.tool.DotcTools;
 
@@ -21,21 +21,21 @@ public class DotcItemTagProvider extends FabricTagProvider<Item> {
     @Override
     protected void addTags(HolderLookup.Provider wrapperLookup) {
         getOrCreateTagBuilder(ItemTags.PICKAXES)
-                .add(DotcItemComponents.MITHRIL_HAMMER)
+                .add(DotcPrimitives.MITHRIL_HAMMER)
                 .add(DotcTools.DAEDALUS);
 
         getOrCreateTagBuilder(ItemTags.SWORDS)
                 .add(DotcIngredients.BLADES_OF_ATTACK)
-                .add(DotcItemComponents.BLADE_OF_ALACRITY)
-                .add(DotcItemComponents.BROADSWORD)
-                .add(DotcItemComponents.CLAYMORE)
-                .add(DotcItemComponents.DEMON_EDGE)
-                .add(DotcItemComponents.STAFF_OF_WIZARDRY)
+                .add(DotcPrimitives.BLADE_OF_ALACRITY)
+                .add(DotcPrimitives.BROADSWORD)
+                .add(DotcPrimitives.CLAYMORE)
+                .add(DotcPrimitives.DEMON_EDGE)
+                .add(DotcPrimitives.STAFF_OF_WIZARDRY)
                 .add(DotcTools.CRYSTALYS)
                 .add(DotcTools.BUTTERFLY);
 
         getOrCreateTagBuilder(ItemTags.AXES)
-                .add(DotcItemComponents.OGRE_AXE);
+                .add(DotcPrimitives.OGRE_AXE);
     }
 
     @Override

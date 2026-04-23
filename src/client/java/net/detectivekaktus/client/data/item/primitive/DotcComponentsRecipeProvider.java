@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.data.item.component;
+package net.detectivekaktus.client.data.item.primitive;
 
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
@@ -13,7 +13,7 @@ import net.minecraft.world.item.Items;
 import java.util.concurrent.CompletableFuture;
 
 import net.detectivekaktus.item.ingredient.DotcIngredients;
-import net.detectivekaktus.item.component.DotcItemComponents;
+import net.detectivekaktus.item.primitive.DotcPrimitives;
 
 public class DotcComponentsRecipeProvider extends FabricRecipeProvider {
     public DotcComponentsRecipeProvider(FabricDataOutput output, CompletableFuture<HolderLookup.Provider> registriesFuture) {
@@ -34,7 +34,7 @@ public class DotcComponentsRecipeProvider extends FabricRecipeProvider {
                 )
                 .save(exporter);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcItemComponents.MITHRIL_HAMMER)
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcPrimitives.MITHRIL_HAMMER)
                 .pattern("###")
                 .pattern(" @ ")
                 .pattern(" @ ")
@@ -46,7 +46,7 @@ public class DotcComponentsRecipeProvider extends FabricRecipeProvider {
                 )
                 .save(exporter);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcItemComponents.BROADSWORD)
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcPrimitives.BROADSWORD)
                 .pattern(" # ")
                 .pattern(" # ")
                 .pattern(" @ ")
@@ -58,7 +58,7 @@ public class DotcComponentsRecipeProvider extends FabricRecipeProvider {
                 )
                 .save(exporter);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcItemComponents.CLAYMORE)
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcPrimitives.CLAYMORE)
                 .pattern(" # ")
                 .pattern(" # ")
                 .pattern(" @ ")
@@ -70,7 +70,7 @@ public class DotcComponentsRecipeProvider extends FabricRecipeProvider {
                 )
                 .save(exporter);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcItemComponents.BLADE_OF_ALACRITY)
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcPrimitives.BLADE_OF_ALACRITY)
                 .pattern(" # ")
                 .pattern(" $ ")
                 .pattern(" @ ")
@@ -83,7 +83,7 @@ public class DotcComponentsRecipeProvider extends FabricRecipeProvider {
                 )
                 .save(exporter);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcItemComponents.OGRE_AXE)
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcPrimitives.OGRE_AXE)
                 .pattern("## ")
                 .pattern("#@ ")
                 .pattern(" @ ")
@@ -95,7 +95,7 @@ public class DotcComponentsRecipeProvider extends FabricRecipeProvider {
                 )
                 .save(exporter);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcItemComponents.STAFF_OF_WIZARDRY)
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcPrimitives.STAFF_OF_WIZARDRY)
                 .pattern(" # ")
                 .pattern(" @ ")
                 .pattern(" @ ")
@@ -107,7 +107,7 @@ public class DotcComponentsRecipeProvider extends FabricRecipeProvider {
                 )
                 .save(exporter);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcItemComponents.DEMON_EDGE)
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcPrimitives.DEMON_EDGE)
                 .pattern(" # ")
                 .pattern("$#$")
                 .pattern(" @ ")
@@ -123,6 +123,6 @@ public class DotcComponentsRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public String getName() {
-        return "defense-of-the-craft:components_recipes";
+        return "defense-of-the-craft:primitives_recipes";
     }
 }
