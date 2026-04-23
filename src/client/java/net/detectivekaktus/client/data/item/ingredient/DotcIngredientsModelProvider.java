@@ -33,7 +33,8 @@ public class DotcIngredientsModelProvider extends FabricModelProvider {
                 DotcIngredients.EAGLESONG,
                 DotcIngredients.SACRED_RELIC,
                 DotcIngredients.GLOVES_OF_HASTE,
-                DotcIngredients.BELT_OF_STRENGTH
+                DotcIngredients.BELT_OF_STRENGTH,
+                DotcIngredients.BAND_OF_ELVENSKIN
         ).forEach(item -> itemModelGenerator.generateFlatItem(item, ModelTemplates.FLAT_ITEM));
     }
 

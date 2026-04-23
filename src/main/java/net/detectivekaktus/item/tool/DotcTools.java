@@ -86,6 +86,21 @@ public class DotcTools {
                     )),
             "sange"
     );
+    public static final Item YASHA = DotcItems.register(
+            new Yasha(DotcToolMaterial.RADIANT_ARTEFACT, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(
+                            DotcToolMaterial.RADIANT_ARTEFACT, 2, -2.0f
+                    ))
+                    .component(
+                            DotcComponents.ITEM_STATS_COMPONENT,
+                            new ItemStatsComponent(0, 16, 0)
+                    )
+                    .component(
+                            DotcComponents.MOVE_SPEED_COMPONENT,
+                            Yasha.MOVE_SPEED_BONUS
+                    )),
+            "yasha"
+    );
 
     public static void initialize() { }
 }
