@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "minecraft:leather_chestplate"
+    },
+    "@": {
+      "item": "defense-of-the-craft:radiant_crystal"
+    }
+  },
+  "pattern": [
+    " @ ",
+    "@#@",
+    " @ "
+  ],
+  "result": {
+    "count": 1,
+    "id": "defense-of-the-craft:robe_of_the_magi"
+  }
+}

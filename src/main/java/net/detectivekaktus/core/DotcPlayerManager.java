@@ -29,18 +29,20 @@ public class DotcPlayerManager {
 
     private static final ResourceLocation MOVE_SPEED_BONUS_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "move_speed_bonus");
 
-    private static boolean hasStatChanges(PlayerStats.StatsData stats, Config config) {
+    private static boolean hasStatChanges(PlayerStats.StatsData stats, PlayerMana.ManaData mana, Config config) {
         return stats.getStrength() != config.strength
                 || stats.getAgility() != config.agility
                 || stats.getIntelligence() != config.intelligence
                 || Math.abs(stats.getEvasion() - config.evasion) > 1e-5f
                 || Math.abs(stats.getHpRegenAmplification() - config.hpRegenAmplification) > 1e-5f
-                || Math.abs(stats.getMoveSpeed() - config.moveSpeed) > 1e-5f;
+                || Math.abs(stats.getMoveSpeed() - config.moveSpeed) > 1e-5f
+                || Math.abs(mana.getManaCostReduction() - config.manaCostReduction) > 1e-5f;
     }
 
     public static void applyChanges(Config config) {
         var stats = PlayerStats.get(config.player);
-        if (!hasStatChanges(stats, config))
+        var mana = PlayerMana.get(config.player);
+        if (!hasStatChanges(stats, mana, config))
             return;
 
         stats.setStrength(config.strength);
@@ -50,12 +52,12 @@ public class DotcPlayerManager {
         stats.setAgility(config.agility);
         applyAgility(config.player, config.agility);
         applyMoveSpeed(config.player, config.moveSpeed);
+        stats.setEvasion(config.evasion);
+        stats.setEvasionScale(0);
 
         stats.setIntelligence(config.intelligence);
         applyIntelligence(config.player, config.intelligence);
-
-        stats.setEvasion(config.evasion);
-        stats.setEvasionScale(0);
+        mana.setManaCostReduction(config.manaCostReduction);
     }
 
     private static void applyStrength(Player player, int val) {
@@ -120,7 +122,7 @@ public class DotcPlayerManager {
         public final Player player;
 
         int strength, agility, intelligence;
-        float evasion, moveSpeed, hpRegenAmplification;
+        float evasion, moveSpeed, hpRegenAmplification, manaCostReduction;
 
         public Config(Player player) {
             this.player = player;
@@ -149,6 +151,10 @@ public class DotcPlayerManager {
 
         public void addHpRegenAmplification(float amplification) {
             this.hpRegenAmplification = 1.0f - (1.0f - this.hpRegenAmplification) * (1.0f - amplification);
+        }
+
+        public void addManaCostReduction(float reduction) {
+            this.manaCostReduction = 1.0f - (1.0f - this.manaCostReduction) * (1.0f - reduction);
         }
     }
 }

@@ -132,6 +132,18 @@ public class DotcIngredientsRecipeProvider extends FabricRecipeProvider {
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.RADIANT_CRYSTAL)
                 )
                 .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DotcIngredients.ROBE_OF_THE_MAGI)
+                .pattern(" @ ")
+                .pattern("@#@")
+                .pattern(" @ ")
+                .define('@', DotcIngredients.RADIANT_CRYSTAL)
+                .define('#', Items.LEATHER_CHESTPLATE)
+                .unlockedBy(
+                        "has_radiant_crystal",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.RADIANT_CRYSTAL)
+                )
+                .save(exporter);
     }
 
     @Override

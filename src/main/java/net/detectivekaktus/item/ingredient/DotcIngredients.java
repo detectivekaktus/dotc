@@ -61,6 +61,16 @@ public class DotcIngredients {
             ),
             "band_of_elvenskin"
     );
+    public static final Item ROBE_OF_THE_MAGI = DotcItems.register(
+            new RobeOfTheMagi(
+                    new Item.Properties()
+                            .component(
+                                    DotcComponents.ITEM_STATS_COMPONENT,
+                                    new ItemStatsComponent(0, 0, 6)
+                            )
+            ),
+            "robe_of_the_magi"
+    );
     public static final Item GLOVES_OF_HASTE = DotcItems.register(
             new GlovesOfHaste(new Item.Properties()),
             "gloves_of_haste"

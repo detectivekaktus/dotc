@@ -77,6 +77,10 @@
   "itemTooltip.l1.defense-of-the-craft.band_of_elvenskin": "A tensile fabric often used for its",
   "itemTooltip.l2.defense-of-the-craft.band_of_elvenskin": "light weight and ease of movement.",
 
+  "item.defense-of-the-craft.robe_of_the_magi": "Robe of the Magi",
+  "itemTooltip.l1.defense-of-the-craft.robe_of_the_magi": "This robe corrupts the soul of the",
+  "itemTooltip.l2.defense-of-the-craft.robe_of_the_magi": "user, but provides wisdom in return.",
+
 
 
   "item.defense-of-the-craft.sacred_relic": "Sacred relic",
@@ -124,6 +128,10 @@
   "item.defense-of-the-craft.yasha": "Yasha",
   "itemTooltip.l1.defense-of-the-craft.yasha": "Yasha is regarded as the swiftest",
   "itemTooltip.l2.defense-of-the-craft.yasha": "weapon ever created.",
+
+  "item.defense-of-the-craft.kaya": "Kaya",
+  "itemTooltip.l1.defense-of-the-craft.kaya": "The staff of a renowned sorceress,",
+  "itemTooltip.l2.defense-of-the-craft.kaya": "lost for countless millennia.",
 
 
 
