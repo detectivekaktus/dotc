@@ -16,7 +16,7 @@ public class GlovesOfHaste extends Item implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(1, "gloves_of_haste");
+        var components = this.generateTooltipTranslationStrings(2, "gloves_of_haste");
         tooltip.addAll(components);
     }
 }

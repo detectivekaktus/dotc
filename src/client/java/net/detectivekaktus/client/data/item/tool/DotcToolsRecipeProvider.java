@@ -12,7 +12,7 @@ import net.minecraft.world.item.Items;
 
 import java.util.concurrent.CompletableFuture;
 
-import net.detectivekaktus.item.component.DotcItemComponents;
+import net.detectivekaktus.item.primitive.DotcPrimitives;
 import net.detectivekaktus.item.ingredient.DotcIngredients;
 import net.detectivekaktus.item.tool.DotcTools;
 
@@ -39,21 +39,21 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
                 .pattern(" # ")
                 .pattern(" | ")
                 .pattern(" @ ")
-                .define('#', DotcItemComponents.CLAYMORE)
+                .define('#', DotcPrimitives.CLAYMORE)
                 .define('|', DotcIngredients.DIRE_CRYSTAL)
                 .define('@', DotcIngredients.BLADES_OF_ATTACK)
                 .unlockedBy(
                         "has_claymore",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcItemComponents.CLAYMORE)
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcPrimitives.CLAYMORE)
                 )
                 .save(exporter);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DotcTools.DAEDALUS)
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcTools.DAEDALUS)
                 .pattern("###")
                 .pattern(" @ ")
                 .pattern(" @ ")
                 .define('#', DotcTools.CRYSTALYS)
-                .define('@', DotcItemComponents.DEMON_EDGE)
+                .define('@', DotcPrimitives.DEMON_EDGE)
                 .unlockedBy(
                         "has_crystalys",
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcTools.CRYSTALYS)
@@ -66,10 +66,23 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
                 .pattern(" @ ")
                 .define('#', DotcTools.JAVELIN)
                 .define('|', DotcIngredients.DIRE_CRYSTAL)
-                .define('@', DotcItemComponents.DEMON_EDGE)
+                .define('@', DotcPrimitives.DEMON_EDGE)
                 .unlockedBy(
                         "has_javelin",
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcTools.JAVELIN)
+                )
+                .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DotcTools.SANGE)
+                .pattern(" | ")
+                .pattern(" @ ")
+                .pattern(" # ")
+                .define('|', DotcIngredients.DIRE_CRYSTAL)
+                .define('@', DotcPrimitives.OGRE_AXE)
+                .define('#', DotcIngredients.BELT_OF_STRENGTH)
+                .unlockedBy(
+                        "has_ogre_axe",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcPrimitives.OGRE_AXE)
                 )
                 .save(exporter);
     }

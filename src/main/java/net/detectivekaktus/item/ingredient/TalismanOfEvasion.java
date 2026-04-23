@@ -16,7 +16,7 @@ public class TalismanOfEvasion extends Item implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(1, "talisman_of_evasion");
+        var components = this.generateTooltipTranslationStrings(2, "talisman_of_evasion");
         tooltip.addAll(components);
     }
 }

@@ -20,28 +20,28 @@ public class ServerPlayerMixin {
     private final ContainerListener dotc$playerInvListener = new ContainerListener() {
         @Override
         public void slotChanged(AbstractContainerMenu abstractContainerMenu, int i, ItemStack itemStack) {
-            var strength = 0;
-            var agility = 0;
-            var intelligence = 0;
-            var evasion = 0.0f;
-
             var player = (ServerPlayer) (Object) ServerPlayerMixin.this;
+            var config = new DotcPlayerManager.Config(player);
             var hotbarItems = player.getInventory().items.subList(0, 9);
+
             for (var item : hotbarItems) {
                 if (item.has(DotcComponents.ITEM_STATS_COMPONENT)) {
                     var stats = item.get(DotcComponents.ITEM_STATS_COMPONENT);
-                    strength += stats.strength();
-                    agility += stats.agility();
-                    intelligence += stats.intelligence();
+                    config.addStats(stats);
                 }
 
                 if (item.has(DotcComponents.EVASION_COMPONENT)) {
-                    var itemEvasion = item.get(DotcComponents.EVASION_COMPONENT);
-                    evasion = 1.0f - (1.0f - evasion) * (1.0f - itemEvasion);
+                    var evasion = item.get(DotcComponents.EVASION_COMPONENT);
+                    config.addEvasion(evasion);
+                }
+
+                if (item.has(DotcComponents.HP_REGEN_AMPLIFICATION_COMPONENT)) {
+                    var amplification = item.get(DotcComponents.HP_REGEN_AMPLIFICATION_COMPONENT);
+                    config.addHpRegenAmplification(amplification);
                 }
             }
 
-            DotcPlayerManager.applyStatChanges(player, strength, agility, intelligence, evasion);
+            DotcPlayerManager.applyChanges(config);
         }
 
         @Override

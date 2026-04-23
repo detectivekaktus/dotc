@@ -1,26 +1,22 @@
-package net.detectivekaktus.item.tool;
+package net.detectivekaktus.item.primitive;
 
+import net.detectivekaktus.item.DotcItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 
-import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
-import net.detectivekaktus.item.DotcItem;
-
 import java.util.List;
 
-public class Butterfly extends SwordItem implements DotcItem {
-    public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_20;
-
-    public Butterfly(Tier tier, Properties properties) {
+public class BladeOfAlacrity extends SwordItem implements DotcItem {
+    public BladeOfAlacrity(Tier tier, Properties properties) {
         super(tier, properties);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(3, "butterfly");
+        var components = this.generateTooltipTranslationStrings(1, "blade_of_alacrity");
         tooltip.addAll(components);
     }
 }

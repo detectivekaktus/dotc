@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "defense-of-the-craft:belt_of_strength"
+    },
+    "@": {
+      "item": "defense-of-the-craft:ogre_axe"
+    },
+    "|": {
+      "item": "defense-of-the-craft:dire_crystal"
+    }
+  },
+  "pattern": [
+    " | ",
+    " @ ",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "defense-of-the-craft:sange"
+  }
+}

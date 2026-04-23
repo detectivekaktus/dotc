@@ -1,4 +1,4 @@
-package net.detectivekaktus.item.component;
+package net.detectivekaktus.item.primitive;
 
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
@@ -10,7 +10,7 @@ import net.detectivekaktus.component.records.ItemStatsComponent;
 import net.detectivekaktus.item.DotcItems;
 import net.detectivekaktus.item.material.DotcToolMaterial;
 
-public class DotcItemComponents {
+public class DotcPrimitives {
     public static final Item MITHRIL_HAMMER = DotcItems.register(
             new MithrilHammer(DotcToolMaterial.RADIANT_COMPONENT, new Item.Properties()
                     .attributes(PickaxeItem.createAttributes(

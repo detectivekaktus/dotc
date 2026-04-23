@@ -16,8 +16,8 @@ import net.detectivekaktus.client.data.block.natural.DotcNaturalBlockModelProvid
 import net.detectivekaktus.client.data.item.ingredient.DotcIngredientsModelProvider;
 import net.detectivekaktus.client.data.item.ingredient.DotcIngredientsRecipeProvider;
 import net.detectivekaktus.client.data.DotcItemTagProvider;
-import net.detectivekaktus.client.data.item.component.DotcComponentsModelProvider;
-import net.detectivekaktus.client.data.item.component.DotcComponentsRecipeProvider;
+import net.detectivekaktus.client.data.item.primitive.DotcComponentsModelProvider;
+import net.detectivekaktus.client.data.item.primitive.DotcComponentsRecipeProvider;
 import net.detectivekaktus.client.data.item.tool.DotcToolsModelProvider;
 import net.detectivekaktus.client.data.item.tool.DotcToolsRecipeProvider;
 import net.detectivekaktus.worldgen.features.*;

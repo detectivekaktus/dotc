@@ -6,6 +6,7 @@ import net.minecraft.world.entity.player.Player;
 import net.detectivekaktus.attach.DotcAttachmentRules;
 import net.detectivekaktus.attach.PlayerMana;
 import net.detectivekaktus.attach.PlayerStats;
+import net.detectivekaktus.component.records.ItemStatsComponent;
 
 // Probably all of these values will be changed during future tests by the players
 // but for now I think they are reasonably balanced
@@ -23,30 +24,30 @@ public class DotcPlayerManager {
     private static final float MANA_REGEN_PER_INTELLIGENCE = 0.2f;
     private static final float MAGIC_RESISTANCE_PER_INTELLIGENCE = 0.0025f;
 
-    private static boolean hasStatChanges(PlayerStats.StatsData stats, int strength, int agility, int intelligence, float evasion) {
-        return stats.getStrength() != strength
-                || stats.getAgility() != agility
-                || stats.getIntelligence() != intelligence
-                || stats.getEvasion() != evasion;
+    private static boolean hasStatChanges(PlayerStats.StatsData stats, Config config) {
+        return stats.getStrength() != config.strength
+                || stats.getAgility() != config.agility
+                || stats.getIntelligence() != config.intelligence
+                || Math.abs(stats.getEvasion() - config.evasion) > 1e-5f
+                || Math.abs(stats.getHpRegenAmplification() - config.hpRegenAmplification) > 1e-5f;
     }
 
-    public static void applyStatChanges(Player player, int strength, int agility, int intelligence, float evasion) {
-        var stats = PlayerStats.get(player);
-        if (!hasStatChanges(stats, strength, agility, intelligence, evasion))
+    public static void applyChanges(Config config) {
+        var stats = PlayerStats.get(config.player);
+        if (!hasStatChanges(stats, config))
             return;
 
-        stats.setStrength(strength);
-        applyStrength(player, strength);
+        stats.setStrength(config.strength);
+        applyStrength(config.player, config.strength);
+        stats.setHpRegenAmplification(config.hpRegenAmplification);
 
-        stats.setAgility(agility);
-        applyAgility(player, agility);
+        stats.setAgility(config.agility);
+        applyAgility(config.player, config.agility);
 
-        stats.setIntelligence(intelligence);
-        applyIntelligence(player, intelligence);
+        stats.setIntelligence(config.intelligence);
+        applyIntelligence(config.player, config.intelligence);
 
-        // Even if value is too high it'll be cut by `PseudoRandom.reduceChance()`
-        stats.setEvasion(evasion);
-        // This is done intentionally because evasion mechanic is a little bit overpowered
+        stats.setEvasion(config.evasion);
         stats.setEvasionScale(0);
     }
 
@@ -87,5 +88,36 @@ public class DotcPlayerManager {
         var stats = PlayerStats.get(player);
         var magicResistance = DotcAttachmentRules.DEFAULT_MAGIC_RESISTANCE + (val * MAGIC_RESISTANCE_PER_INTELLIGENCE);
         stats.setMagicResistance(magicResistance);
+    }
+
+    public static class Config {
+        public final Player player;
+
+        int strength, agility, intelligence;
+        float evasion, hpRegenAmplification;
+
+        public Config(Player player) {
+            this.player = player;
+
+            this.strength = 0;
+            this.agility = 0;
+            this.intelligence = 0;
+            this.evasion = 0.0f;
+            this.hpRegenAmplification = 0.0f;
+        }
+
+        public void addStats(ItemStatsComponent component) {
+            this.strength += component.strength();
+            this.agility += component.agility();
+            this.intelligence += component.intelligence();
+        }
+
+        public void addEvasion(float evasion) {
+            this.evasion = 1.0f - (1.0f - this.evasion) * (1.0f - evasion);
+        }
+
+        public void addHpRegenAmplification(float amplification) {
+            this.hpRegenAmplification = 1.0f - (1.0f - this.hpRegenAmplification) * (1.0f - amplification);
+        }
     }
 }

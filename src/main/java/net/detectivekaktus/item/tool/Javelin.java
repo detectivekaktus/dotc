@@ -26,7 +26,7 @@ public class Javelin extends SpearItem implements DotcItem, HasBonusDamage {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(2, "javelin");
+        var components = this.generateTooltipTranslationStrings(3, "javelin");
         tooltip.addAll(components);
     }
 

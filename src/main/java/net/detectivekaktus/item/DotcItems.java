@@ -15,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.detectivekaktus.DefenseOfTheCraft;
 import net.detectivekaktus.block.natural.DotcNaturalBlocks;
 import net.detectivekaktus.block.building.DotcBuildingBlocks;
-import net.detectivekaktus.item.component.DotcItemComponents;
+import net.detectivekaktus.item.primitive.DotcPrimitives;
 import net.detectivekaktus.item.ingredient.DotcIngredients;
 import net.detectivekaktus.item.tool.DotcTools;
 
@@ -35,7 +35,7 @@ public class DotcItems {
         Registry.register(BuiltInRegistries.CREATIVE_MODE_TAB, DOTC_ITEM_GROUP_KEY, DOTC_ITEM_GROUP);
 
         DotcIngredients.initialize();
-        DotcItemComponents.initialize();
+        DotcPrimitives.initialize();
         DotcTools.initialize();
 
         ItemGroupEvents.modifyEntriesEvent(DOTC_ITEM_GROUP_KEY).register(group -> Stream.of(
@@ -44,29 +44,34 @@ public class DotcItems {
                 DotcIngredients.DIRE_CRYSTAL,
                 DotcIngredients.DIRE_CRYSTAL_DUST,
                 DotcIngredients.MITHRIL_INGOT,
+
+                DotcIngredients.TALISMAN_OF_EVASION,
+                DotcIngredients.EAGLESONG,
+                DotcIngredients.SACRED_RELIC,
+                DotcPrimitives.DEMON_EDGE,
+
+                DotcIngredients.BLIGHT_STONE,
+                DotcIngredients.GLOVES_OF_HASTE,
+                DotcIngredients.BLADES_OF_ATTACK,
+                DotcPrimitives.MITHRIL_HAMMER,
+                DotcPrimitives.BROADSWORD,
+                DotcPrimitives.CLAYMORE,
+                DotcTools.JAVELIN,
+
+                DotcPrimitives.OGRE_AXE,
+                DotcPrimitives.BLADE_OF_ALACRITY,
+                DotcPrimitives.STAFF_OF_WIZARDRY,
+
+                DotcTools.CRYSTALYS,
+                DotcTools.DAEDALUS,
+                DotcTools.BUTTERFLY,
+                DotcTools.MONKEY_KING_BAR,
+
                 DotcNaturalBlocks.RADIANT_ORE.asItem(),
                 DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE.asItem(),
                 DotcNaturalBlocks.DIRE_ORE.asItem(),
                 DotcBuildingBlocks.RADIANT_CRYSTAL_BLOCK.asItem(),
-                DotcBuildingBlocks.DIRE_CRYSTAL_BLOCK.asItem(),
-                DotcIngredients.BLIGHT_STONE,
-                DotcIngredients.GLOVES_OF_HASTE,
-                DotcIngredients.BLADES_OF_ATTACK,
-                DotcItemComponents.OGRE_AXE,
-                DotcItemComponents.BLADE_OF_ALACRITY,
-                DotcItemComponents.STAFF_OF_WIZARDRY,
-                DotcItemComponents.MITHRIL_HAMMER,
-                DotcItemComponents.CLAYMORE,
-                DotcItemComponents.BROADSWORD,
-                DotcIngredients.TALISMAN_OF_EVASION,
-                DotcIngredients.EAGLESONG,
-                DotcIngredients.SACRED_RELIC,
-                DotcItemComponents.DEMON_EDGE,
-                DotcTools.JAVELIN,
-                DotcTools.CRYSTALYS,
-                DotcTools.DAEDALUS,
-                DotcTools.BUTTERFLY,
-                DotcTools.MONKEY_KING_BAR
+                DotcBuildingBlocks.DIRE_CRYSTAL_BLOCK.asItem()
         ).forEach(group::accept));
     }
 

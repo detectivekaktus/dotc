@@ -16,7 +16,7 @@ public class RadiantCrystal extends Item implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(2, "radiant_crystal");
+        var components = this.generateTooltipTranslationStrings(3, "radiant_crystal");
         tooltip.addAll(components);
     }
 }

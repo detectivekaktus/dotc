@@ -71,6 +71,21 @@ public class DotcTools {
                     )),
             "monkey_king_bar"
     );
+    public static final Item SANGE = DotcItems.register(
+            new Sange(DotcToolMaterial.DIRE_ARTEFACT, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(
+                            DotcToolMaterial.DIRE_ARTEFACT, 3, -2.5f
+                    ))
+                    .component(
+                            DotcComponents.ITEM_STATS_COMPONENT,
+                            new ItemStatsComponent(16, 0, 0)
+                    )
+                    .component(
+                            DotcComponents.HP_REGEN_AMPLIFICATION_COMPONENT,
+                            Sange.HP_REGEN_AMPLIFICATION
+                    )),
+            "sange"
+    );
 
     public static void initialize() { }
 }
