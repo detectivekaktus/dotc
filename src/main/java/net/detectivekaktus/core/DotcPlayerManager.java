@@ -27,6 +27,8 @@ public class DotcPlayerManager {
     private static final float MANA_REGEN_PER_INTELLIGENCE = 0.2f;
     private static final float MAGIC_RESISTANCE_PER_INTELLIGENCE = 0.0025f;
 
+    private static final ResourceLocation MOVE_SPEED_BONUS_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "move_speed_bonus");
+
     private static boolean hasStatChanges(PlayerStats.StatsData stats, Config config) {
         return stats.getStrength() != config.strength
                 || stats.getAgility() != config.agility
@@ -85,13 +87,16 @@ public class DotcPlayerManager {
     private static void applyMoveSpeed(Player player, float val) {
         var moveSpeedAttr = player.getAttribute(Attributes.MOVEMENT_SPEED);
         if (moveSpeedAttr != null) {
-            moveSpeedAttr.addOrUpdateTransientModifier(
-                    new AttributeModifier(
-                            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "speed_bonus"),
-                            val,
-                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
-                    )
-            );
+            if (val == 0.0f)
+                moveSpeedAttr.removeModifier(MOVE_SPEED_BONUS_MODIFIER_ID);
+            else
+                moveSpeedAttr.addOrUpdateTransientModifier(
+                        new AttributeModifier(
+                                MOVE_SPEED_BONUS_MODIFIER_ID,
+                                val,
+                                AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                        )
+                );
         }
 
         var stats = PlayerStats.get(player);
