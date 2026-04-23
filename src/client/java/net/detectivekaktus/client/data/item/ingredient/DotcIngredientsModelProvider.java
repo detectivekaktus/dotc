@@ -34,7 +34,8 @@ public class DotcIngredientsModelProvider extends FabricModelProvider {
                 DotcIngredients.SACRED_RELIC,
                 DotcIngredients.GLOVES_OF_HASTE,
                 DotcIngredients.BELT_OF_STRENGTH,
-                DotcIngredients.BAND_OF_ELVENSKIN
+                DotcIngredients.BAND_OF_ELVENSKIN,
+                DotcIngredients.ROBE_OF_THE_MAGI
         ).forEach(item -> itemModelGenerator.generateFlatItem(item, ModelTemplates.FLAT_ITEM));
     }
 

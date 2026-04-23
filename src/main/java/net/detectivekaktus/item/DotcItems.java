@@ -63,6 +63,7 @@ public class DotcItems {
                 DotcPrimitives.STAFF_OF_WIZARDRY,
                 DotcIngredients.BELT_OF_STRENGTH,
                 DotcIngredients.BAND_OF_ELVENSKIN,
+                DotcIngredients.ROBE_OF_THE_MAGI,
 
                 DotcTools.CRYSTALYS,
                 DotcTools.DAEDALUS,
