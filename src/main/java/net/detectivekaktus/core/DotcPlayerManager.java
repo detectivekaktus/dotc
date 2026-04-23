@@ -28,7 +28,8 @@ public class DotcPlayerManager {
         return stats.getStrength() != config.strength
                 || stats.getAgility() != config.agility
                 || stats.getIntelligence() != config.intelligence
-                || stats.getEvasion() != config.evasion;
+                || stats.getEvasion() != config.evasion
+                || stats.getHpRegenAmplification() != config.hpRegenAmplification;
     }
 
     public static void applyChanges(Config config) {
@@ -38,6 +39,7 @@ public class DotcPlayerManager {
 
         stats.setStrength(config.strength);
         applyStrength(config.player, config.strength);
+        stats.setHpRegenAmplification(config.hpRegenAmplification);
 
         stats.setAgility(config.agility);
         applyAgility(config.player, config.agility);
@@ -92,7 +94,7 @@ public class DotcPlayerManager {
         public final Player player;
 
         int strength, agility, intelligence;
-        float evasion;
+        float evasion, hpRegenAmplification;
 
         public Config(Player player) {
             this.player = player;
@@ -101,6 +103,7 @@ public class DotcPlayerManager {
             this.agility = 0;
             this.intelligence = 0;
             this.evasion = 0.0f;
+            this.hpRegenAmplification = 0.0f;
         }
 
         public void addStats(ItemStatsComponent component) {
@@ -111,6 +114,10 @@ public class DotcPlayerManager {
 
         public void addEvasion(float evasion) {
             this.evasion = 1.0f - (1.0f - this.evasion) * (1.0f - evasion);
+        }
+
+        public void addHpRegenAmplification(float amplification) {
+            this.hpRegenAmplification = amplification;
         }
     }
 }

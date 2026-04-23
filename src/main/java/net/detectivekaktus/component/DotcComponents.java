@@ -38,6 +38,8 @@ public class DotcComponents {
 
     public static final DataComponentType<Float> EVASION_COMPONENT = registerFloat("evasion");
 
+    public static final DataComponentType<Float> HP_REGEN_AMPLIFICATION_COMPONENT = registerFloat("hp_regen_amplification");
+
     public static <T> DataComponentType<T> register(String id, Codec<T> codec) {
         return Registry.register(
                 BuiltInRegistries.DATA_COMPONENT_TYPE,

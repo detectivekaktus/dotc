@@ -10,6 +10,7 @@ public class DotcAttachmentRules {
 
     public static final int DEFAULT_STRENGTH = 0;
     public static final float DEFAULT_HP_REGEN = 0.0f;
+    public static final float DEFAULT_HP_REGEN_AMPLIFICATION = 0.0f;
 
     public static final int DEFAULT_AGILITY = 0;
     public static final float DEFAULT_EVASION = 0.0f;
