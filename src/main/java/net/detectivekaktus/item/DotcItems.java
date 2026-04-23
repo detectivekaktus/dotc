@@ -69,6 +69,9 @@ public class DotcItems {
                 DotcTools.BUTTERFLY,
                 DotcTools.MONKEY_KING_BAR,
 
+                DotcTools.SANGE,
+                DotcTools.YASHA,
+
                 DotcNaturalBlocks.RADIANT_ORE.asItem(),
                 DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE.asItem(),
                 DotcNaturalBlocks.DIRE_ORE.asItem(),

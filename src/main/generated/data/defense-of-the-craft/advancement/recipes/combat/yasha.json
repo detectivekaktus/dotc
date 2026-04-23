@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_blade_of_alacrity": {
+      "conditions": {
+        "items": [
+          {
+            "items": "defense-of-the-craft:blade_of_alacrity"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "defense-of-the-craft:yasha"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_blade_of_alacrity"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "defense-of-the-craft:yasha"
+    ]
+  }
+}

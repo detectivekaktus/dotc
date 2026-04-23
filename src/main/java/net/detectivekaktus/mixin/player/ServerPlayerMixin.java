@@ -39,6 +39,11 @@ public class ServerPlayerMixin {
                     var amplification = item.get(DotcComponents.HP_REGEN_AMPLIFICATION_COMPONENT);
                     config.addHpRegenAmplification(amplification);
                 }
+
+                if (item.has(DotcComponents.MOVE_SPEED_COMPONENT)) {
+                    var moveSpeed = item.get(DotcComponents.MOVE_SPEED_COMPONENT);
+                    config.addMoveSpeed(moveSpeed);
+                }
             }
 
             DotcPlayerManager.applyChanges(config);

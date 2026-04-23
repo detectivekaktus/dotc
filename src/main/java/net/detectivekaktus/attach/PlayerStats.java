@@ -64,7 +64,7 @@ public class PlayerStats {
     public static final AttachmentType<Float> MOVE_SPEED = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "move_speed"),
             floatBuilder ->
-                    floatBuilder.initializer(() -> 0.0f)
+                    floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_MOVE_SPEED_BONUS)
                             .persistent(Codec.FLOAT)
     );
 

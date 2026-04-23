@@ -121,6 +121,10 @@
   "itemTooltip.l1.defense-of-the-craft.sange": "Sange is an unusually accurate weapon,",
   "itemTooltip.l2.defense-of-the-craft.sange": "seeking weak points automatically.",
 
+  "item.defense-of-the-craft.yasha": "Yasha",
+  "itemTooltip.l1.defense-of-the-craft.yasha": "Yasha is regarded as the swiftest",
+  "itemTooltip.l2.defense-of-the-craft.yasha": "weapon ever created.",
+
 
 
   "death.attack.defense-of-the-craft.magical": "%1$s died from Defense Of The Craft magic!"

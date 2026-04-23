@@ -1,8 +1,11 @@
 package net.detectivekaktus.core;
 
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 
+import net.detectivekaktus.DefenseOfTheCraft;
 import net.detectivekaktus.attach.DotcAttachmentRules;
 import net.detectivekaktus.attach.PlayerMana;
 import net.detectivekaktus.attach.PlayerStats;
@@ -13,7 +16,6 @@ import net.detectivekaktus.component.records.ItemStatsComponent;
 public class DotcPlayerManager {
     private static final float BASE_ARMOR = 0.0f;
     private static final float BASE_ATTACK_SPEED = 4.0f;
-    private static final float BASE_MOVE_SPEED = 0.7f;
 
     private static final float HP_PER_STRENGTH = 0.25f;
     private static final float HP_REGEN_PER_STRENGTH = 0.025f;
@@ -83,8 +85,13 @@ public class DotcPlayerManager {
     private static void applyMoveSpeed(Player player, float val) {
         var moveSpeedAttr = player.getAttribute(Attributes.MOVEMENT_SPEED);
         if (moveSpeedAttr != null) {
-            var moveSpeed = BASE_MOVE_SPEED + val;
-            moveSpeedAttr.setBaseValue(moveSpeed);
+            moveSpeedAttr.addOrUpdateTransientModifier(
+                    new AttributeModifier(
+                            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "speed_bonus"),
+                            val,
+                            AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                    )
+            );
         }
 
         var stats = PlayerStats.get(player);

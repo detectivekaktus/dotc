@@ -85,6 +85,19 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcPrimitives.OGRE_AXE)
                 )
                 .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DotcTools.YASHA)
+                .pattern(" | ")
+                .pattern(" @ ")
+                .pattern(" # ")
+                .define('|', DotcIngredients.RADIANT_CRYSTAL)
+                .define('@', DotcPrimitives.BLADE_OF_ALACRITY)
+                .define('#', DotcIngredients.BAND_OF_ELVENSKIN)
+                .unlockedBy(
+                        "has_blade_of_alacrity",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcPrimitives.BLADE_OF_ALACRITY)
+                )
+                .save(exporter);
     }
 
     @Override
