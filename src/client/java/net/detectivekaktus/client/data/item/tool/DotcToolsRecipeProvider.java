@@ -98,6 +98,19 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcPrimitives.BLADE_OF_ALACRITY)
                 )
                 .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DotcTools.KAYA)
+                .pattern(" | ")
+                .pattern(" @ ")
+                .pattern(" # ")
+                .define('|', DotcIngredients.RADIANT_CRYSTAL)
+                .define('@', DotcPrimitives.STAFF_OF_WIZARDRY)
+                .define('#', DotcIngredients.ROBE_OF_THE_MAGI)
+                .unlockedBy(
+                        "has_staff_of_wizardry",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcPrimitives.STAFF_OF_WIZARDRY)
+                )
+                .save(exporter);
     }
 
     @Override

@@ -101,6 +101,21 @@ public class DotcTools {
                     )),
             "yasha"
     );
+    public static final Item KAYA = DotcItems.register(
+            new Kaya(DotcToolMaterial.RADIANT_ARTEFACT, new Item.Properties()
+                    .attributes(SwordItem.createAttributes(
+                            DotcToolMaterial.RADIANT_ARTEFACT, 2, -2.5f
+                    ))
+                    .component(
+                            DotcComponents.ITEM_STATS_COMPONENT,
+                            new ItemStatsComponent(0, 0, 16)
+                    )
+                    .component(
+                            DotcComponents.MANA_COST_REDUCTION_COMPONENT,
+                            Kaya.MANA_COST_REDUCTION
+                    )),
+            "kaya"
+    );
 
     public static void initialize() { }
 }

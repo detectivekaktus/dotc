@@ -129,6 +129,10 @@
   "itemTooltip.l1.defense-of-the-craft.yasha": "Yasha is regarded as the swiftest",
   "itemTooltip.l2.defense-of-the-craft.yasha": "weapon ever created.",
 
+  "item.defense-of-the-craft.kaya": "Kaya",
+  "itemTooltip.l1.defense-of-the-craft.kaya": "The staff of a renowned sorceress,",
+  "itemTooltip.l2.defense-of-the-craft.kaya": "lost for countless millennia.",
+
 
 
   "death.attack.defense-of-the-craft.magical": "%1$s died from Defense Of The Craft magic!"

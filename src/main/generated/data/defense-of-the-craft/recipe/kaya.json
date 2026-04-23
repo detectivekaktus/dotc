@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "defense-of-the-craft:robe_of_the_magi"
+    },
+    "@": {
+      "item": "defense-of-the-craft:staff_of_wizardry"
+    },
+    "|": {
+      "item": "defense-of-the-craft:radiant_crystal"
+    }
+  },
+  "pattern": [
+    " | ",
+    " @ ",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "defense-of-the-craft:kaya"
+  }
+}

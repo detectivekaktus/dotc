@@ -44,6 +44,11 @@ public class ServerPlayerMixin {
                     var moveSpeed = item.get(DotcComponents.MOVE_SPEED_COMPONENT);
                     config.addMoveSpeed(moveSpeed);
                 }
+
+                if (item.has(DotcComponents.MANA_COST_REDUCTION_COMPONENT)) {
+                    var reduction = item.get(DotcComponents.MANA_COST_REDUCTION_COMPONENT);
+                    config.addManaCostReduction(reduction);
+                }
             }
 
             DotcPlayerManager.applyChanges(config);

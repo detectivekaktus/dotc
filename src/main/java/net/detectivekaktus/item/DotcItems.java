@@ -72,6 +72,7 @@ public class DotcItems {
 
                 DotcTools.SANGE,
                 DotcTools.YASHA,
+                DotcTools.KAYA,
 
                 DotcNaturalBlocks.RADIANT_ORE.asItem(),
                 DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE.asItem(),
