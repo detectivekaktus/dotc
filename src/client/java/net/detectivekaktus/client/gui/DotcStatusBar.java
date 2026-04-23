@@ -85,7 +85,8 @@ public class DotcStatusBar {
         return client.options.hideGui
                 || client.player == null
                 || client.gameMode == null
-                || client.gameMode.getPlayerMode() == GameType.CREATIVE;
+                || client.gameMode.getPlayerMode() == GameType.CREATIVE
+                || client.gameMode.getPlayerMode() == GameType.SPECTATOR;
     }
 
     public static void drawStatusBar(GuiGraphics context, DeltaTracker tickCounter) {
