@@ -117,7 +117,7 @@ public class DotcPlayerManager {
         }
 
         public void addHpRegenAmplification(float amplification) {
-            this.hpRegenAmplification = amplification;
+            this.hpRegenAmplification = 1.0f - (1.0f - this.hpRegenAmplification) * (1.0f - amplification);
         }
     }
 }

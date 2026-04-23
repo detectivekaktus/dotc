@@ -23,16 +23,19 @@ public class ServerPlayerMixin {
             var player = (ServerPlayer) (Object) ServerPlayerMixin.this;
             var config = new DotcPlayerManager.Config(player);
             var hotbarItems = player.getInventory().items.subList(0, 9);
+
             for (var item : hotbarItems) {
                 if (item.has(DotcComponents.ITEM_STATS_COMPONENT)) {
                     var stats = item.get(DotcComponents.ITEM_STATS_COMPONENT);
                     config.addStats(stats);
                 }
-                else if (item.has(DotcComponents.EVASION_COMPONENT)) {
+
+                if (item.has(DotcComponents.EVASION_COMPONENT)) {
                     var evasion = item.get(DotcComponents.EVASION_COMPONENT);
                     config.addEvasion(evasion);
                 }
-                else if (item.has(DotcComponents.HP_REGEN_AMPLIFICATION_COMPONENT)) {
+
+                if (item.has(DotcComponents.HP_REGEN_AMPLIFICATION_COMPONENT)) {
                     var amplification = item.get(DotcComponents.HP_REGEN_AMPLIFICATION_COMPONENT);
                     config.addHpRegenAmplification(amplification);
                 }
