@@ -44,29 +44,34 @@ public class DotcItems {
                 DotcIngredients.DIRE_CRYSTAL,
                 DotcIngredients.DIRE_CRYSTAL_DUST,
                 DotcIngredients.MITHRIL_INGOT,
-                DotcNaturalBlocks.RADIANT_ORE.asItem(),
-                DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE.asItem(),
-                DotcNaturalBlocks.DIRE_ORE.asItem(),
-                DotcBuildingBlocks.RADIANT_CRYSTAL_BLOCK.asItem(),
-                DotcBuildingBlocks.DIRE_CRYSTAL_BLOCK.asItem(),
-                DotcIngredients.BLIGHT_STONE,
-                DotcIngredients.GLOVES_OF_HASTE,
-                DotcIngredients.BLADES_OF_ATTACK,
-                DotcItemComponents.OGRE_AXE,
-                DotcItemComponents.BLADE_OF_ALACRITY,
-                DotcItemComponents.STAFF_OF_WIZARDRY,
-                DotcItemComponents.MITHRIL_HAMMER,
-                DotcItemComponents.CLAYMORE,
-                DotcItemComponents.BROADSWORD,
+
                 DotcIngredients.TALISMAN_OF_EVASION,
                 DotcIngredients.EAGLESONG,
                 DotcIngredients.SACRED_RELIC,
                 DotcItemComponents.DEMON_EDGE,
+
+                DotcIngredients.BLIGHT_STONE,
+                DotcIngredients.GLOVES_OF_HASTE,
+                DotcIngredients.BLADES_OF_ATTACK,
+                DotcItemComponents.MITHRIL_HAMMER,
+                DotcItemComponents.BROADSWORD,
+                DotcItemComponents.CLAYMORE,
                 DotcTools.JAVELIN,
+
+                DotcItemComponents.OGRE_AXE,
+                DotcItemComponents.BLADE_OF_ALACRITY,
+                DotcItemComponents.STAFF_OF_WIZARDRY,
+
                 DotcTools.CRYSTALYS,
                 DotcTools.DAEDALUS,
                 DotcTools.BUTTERFLY,
-                DotcTools.MONKEY_KING_BAR
+                DotcTools.MONKEY_KING_BAR,
+
+                DotcNaturalBlocks.RADIANT_ORE.asItem(),
+                DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE.asItem(),
+                DotcNaturalBlocks.DIRE_ORE.asItem(),
+                DotcBuildingBlocks.RADIANT_CRYSTAL_BLOCK.asItem(),
+                DotcBuildingBlocks.DIRE_CRYSTAL_BLOCK.asItem()
         ).forEach(group::accept));
     }
 
