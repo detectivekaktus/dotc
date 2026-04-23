@@ -32,7 +32,8 @@ public class DotcItemTagProvider extends FabricTagProvider<Item> {
                 .add(DotcPrimitives.DEMON_EDGE)
                 .add(DotcPrimitives.STAFF_OF_WIZARDRY)
                 .add(DotcTools.CRYSTALYS)
-                .add(DotcTools.BUTTERFLY);
+                .add(DotcTools.BUTTERFLY)
+                .add(DotcTools.SANGE);
 
         getOrCreateTagBuilder(ItemTags.AXES)
                 .add(DotcPrimitives.OGRE_AXE);

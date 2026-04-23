@@ -26,7 +26,8 @@ public class DotcToolsModelProvider extends FabricModelProvider {
                 DotcTools.CRYSTALYS,
                 DotcTools.DAEDALUS,
                 DotcTools.BUTTERFLY,
-                DotcTools.MONKEY_KING_BAR
+                DotcTools.MONKEY_KING_BAR,
+                DotcTools.SANGE
         ).forEach(item -> itemModelGenerator.generateFlatItem(item, ModelTemplates.FLAT_HANDHELD_ITEM));
     }
 

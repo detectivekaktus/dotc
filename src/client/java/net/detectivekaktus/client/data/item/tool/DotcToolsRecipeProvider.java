@@ -48,7 +48,7 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
                 )
                 .save(exporter);
 
-        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DotcTools.DAEDALUS)
+        ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcTools.DAEDALUS)
                 .pattern("###")
                 .pattern(" @ ")
                 .pattern(" @ ")
@@ -70,6 +70,19 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
                 .unlockedBy(
                         "has_javelin",
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcTools.JAVELIN)
+                )
+                .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DotcTools.SANGE)
+                .pattern(" | ")
+                .pattern(" @ ")
+                .pattern(" # ")
+                .define('|', DotcIngredients.DIRE_CRYSTAL)
+                .define('@', DotcPrimitives.OGRE_AXE)
+                .define('#', DotcIngredients.BELT_OF_STRENGTH)
+                .unlockedBy(
+                        "has_ogre_axe",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcPrimitives.OGRE_AXE)
                 )
                 .save(exporter);
     }
