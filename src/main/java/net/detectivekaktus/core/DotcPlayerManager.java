@@ -28,8 +28,8 @@ public class DotcPlayerManager {
         return stats.getStrength() != config.strength
                 || stats.getAgility() != config.agility
                 || stats.getIntelligence() != config.intelligence
-                || stats.getEvasion() != config.evasion
-                || stats.getHpRegenAmplification() != config.hpRegenAmplification;
+                || Math.abs(stats.getEvasion() - config.evasion) > 1e-5f
+                || Math.abs(stats.getHpRegenAmplification() - config.hpRegenAmplification) > 1e-5f;
     }
 
     public static void applyChanges(Config config) {
