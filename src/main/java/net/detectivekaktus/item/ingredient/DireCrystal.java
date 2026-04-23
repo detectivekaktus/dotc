@@ -16,7 +16,7 @@ public class DireCrystal extends Item implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(2, "dire_crystal");
+        var components = this.generateTooltipTranslationStrings(3, "dire_crystal");
         tooltip.addAll(components);
     }
 }

@@ -20,7 +20,7 @@ public class Butterfly extends SwordItem implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(2, "butterfly");
+        var components = this.generateTooltipTranslationStrings(3, "butterfly");
         tooltip.addAll(components);
     }
 }
