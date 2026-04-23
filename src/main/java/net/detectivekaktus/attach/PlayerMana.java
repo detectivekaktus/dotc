@@ -142,7 +142,7 @@ public class PlayerMana {
         }
 
         public float setManaCostReduction(float val) {
-            var current = getManaRegen();
+            var current = getManaCostReduction();
             return setOrFallback(
                     MANA_COST_REDUCTION,
                     Math.max(val, DotcAttachmentRules.DEFAULT_MANA_COST_REDUCTION),
