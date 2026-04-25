@@ -3,11 +3,17 @@
   "category": "misc",
   "ingredients": [
     {
-      "item": "defense-of-the-craft:radiant_crystal_block"
+      "item": "defense-of-the-craft:radiant_crystal_shards"
+    },
+    {
+      "item": "defense-of-the-craft:radiant_crystal_shards"
+    },
+    {
+      "item": "minecraft:diamond"
     }
   ],
   "result": {
-    "count": 9,
+    "count": 1,
     "id": "defense-of-the-craft:radiant_crystal"
   }
 }

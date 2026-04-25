@@ -39,8 +39,10 @@ public class DotcItems {
         DotcTools.initialize();
 
         ItemGroupEvents.modifyEntriesEvent(DOTC_ITEM_GROUP_KEY).register(group -> Stream.of(
+                DotcIngredients.RADIANT_CRYSTAL_SHARDS,
                 DotcIngredients.RADIANT_CRYSTAL,
                 DotcIngredients.RADIANT_CRYSTAL_DUST,
+                DotcIngredients.DIRE_CRYSTAL_SHARDS,
                 DotcIngredients.DIRE_CRYSTAL,
                 DotcIngredients.DIRE_CRYSTAL_DUST,
                 DotcIngredients.MITHRIL_INGOT,
