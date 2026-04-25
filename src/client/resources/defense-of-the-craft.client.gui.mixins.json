@@ -6,7 +6,8 @@
     "DotcAbstractWidgetMixin",
     "DotcWorldSelectionListMixin",
     "DotcWorldListEntryMixin",
-    "DotcTabManagerMixin"
+    "DotcTabManagerMixin",
+    "GuiGraphicsMixin"
   ],
   "injectors": {
     "defaultRequire": 1
