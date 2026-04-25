@@ -25,7 +25,7 @@
 		]
 	},
 	"mixins": [
-		"defense-of-the-craft.player.mixins.json",
+		"defense-of-the-craft.mixins.json",
 		{
 			"config": "defense-of-the-craft.client.mixins.json",
 			"environment": "client"
