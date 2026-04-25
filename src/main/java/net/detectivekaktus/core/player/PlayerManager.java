@@ -86,7 +86,7 @@ public class PlayerManager {
             }
             else {
                 var hp = val * StatConversionRules.HP_PER_STRENGTH;
-                maxHpAttr.addOrUpdateTransientModifier(
+                maxHpAttr.addOrReplacePermanentModifier(
                         new AttributeModifier(
                                 DotcAttributeModifiers.MAX_HP_BONUS_MODIFIER_ID,
                                 hp,
@@ -109,7 +109,7 @@ public class PlayerManager {
             }
             else {
                 var armor = val * StatConversionRules.ARMOR_PER_AGILITY;
-                armorAttr.addOrUpdateTransientModifier(
+                armorAttr.addOrReplacePermanentModifier(
                         new AttributeModifier(
                                 DotcAttributeModifiers.BASE_ARMOR_BONUS_MODIFIER_ID,
                                 armor,
@@ -126,7 +126,7 @@ public class PlayerManager {
             }
             else {
                 var attackSpeed = val * StatConversionRules.ATTACK_SPEED_PER_AGILITY;
-                attackSpeedAttr.addOrUpdateTransientModifier(
+                attackSpeedAttr.addOrReplacePermanentModifier(
                         new AttributeModifier(
                                 DotcAttributeModifiers.ATTACK_SPEED_BONUS_MODIFIER_ID,
                                 attackSpeed,
@@ -143,7 +143,7 @@ public class PlayerManager {
             if (val == 0.0f)
                 moveSpeedAttr.removeModifier(DotcAttributeModifiers.MOVE_SPEED_BONUS_MODIFIER_ID);
             else
-                moveSpeedAttr.addOrUpdateTransientModifier(
+                moveSpeedAttr.addOrReplacePermanentModifier(
                         new AttributeModifier(
                                 DotcAttributeModifiers.MOVE_SPEED_BONUS_MODIFIER_ID,
                                 val,
