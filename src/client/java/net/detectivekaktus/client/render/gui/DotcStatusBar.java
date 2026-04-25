@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.gui;
+package net.detectivekaktus.client.render.gui;
 
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
