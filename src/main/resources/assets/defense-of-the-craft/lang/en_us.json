@@ -2,10 +2,8 @@
   "itemGroup.defense-of-the-craft": "Defense of the Craft",
 
   "item.defense-of-the-craft.radiant_crystal_shards": "Radiant Crystal Shards",
-  "itemTooltip.defense-of-the-craft.radiant_crystal_shards": "Small pieces of bluish glowing material. What could they be used for?",
-
   "item.defense-of-the-craft.dire_crystal_shards": "Dire Crystal Shards",
-  "itemTooltip.defense-of-the-craft.dire_crystal_shards": "Small pieces of reddish glowing material. What could they be used for?",
+  "itemTooltip.defense-of-the-craft.crystal_shards": "Small pieces of glowing material. What could they be used for?",
 
   "item.defense-of-the-craft.radiant_crystal": "Radiant Crystal",
   "itemTooltip.defense-of-the-craft.radiant_crystal": "Mineral known for its unpredictable structure. It is a bluish, glowing substance blessed with benevolent magic.",
