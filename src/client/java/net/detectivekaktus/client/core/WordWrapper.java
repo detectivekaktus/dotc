@@ -7,7 +7,7 @@ import java.util.List;
 
 public class WordWrapper {
     public static List<Component> wrapComponents(List<Component> components) {
-        var result = new ArrayList<Component>();
+        var result = new ArrayList<Component>(components.size());
 
         var maxCharsPerLine = 32;
         for (var component : components) {
@@ -25,9 +25,16 @@ public class WordWrapper {
                     break;
                 }
                 // If it's a German word, aka fuckass long word
+                // makes hard wrap
                 else if (start == end) {
-                    result.add(component);
-                    break;
+                    end = Math.min(end + maxCharsPerLine, str.length());
+                    result.add(
+                            Component.literal(str.substring(start, end))
+                                    .withStyle(component.getStyle())
+                    );
+                    start = end + 1;
+                    end = start + maxCharsPerLine;
+                    continue;
                 }
 
                 if (str.charAt(end) == ' ') {
