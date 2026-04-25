@@ -1,14 +1,13 @@
 package net.detectivekaktus.core;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 
-import net.detectivekaktus.DefenseOfTheCraft;
 import net.detectivekaktus.attach.DotcAttachmentRules;
 import net.detectivekaktus.attach.PlayerMana;
 import net.detectivekaktus.attach.PlayerStats;
+import net.detectivekaktus.attribute.DotcAttributeModifiers;
 import net.detectivekaktus.component.records.ItemStatsComponent;
 
 // Probably all of these values will be changed during future tests by the players
@@ -26,8 +25,6 @@ public class DotcPlayerManager {
     private static final float MANA_PER_INTELLIGENCE = 1.0f;
     private static final float MANA_REGEN_PER_INTELLIGENCE = 0.2f;
     private static final float MAGIC_RESISTANCE_PER_INTELLIGENCE = 0.0025f;
-
-    private static final ResourceLocation MOVE_SPEED_BONUS_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "move_speed_bonus");
 
     private static boolean hasStatChanges(PlayerStats.StatsData stats, PlayerMana.ManaData mana, Config config) {
         return stats.getStrength() != config.strength
@@ -63,8 +60,19 @@ public class DotcPlayerManager {
     private static void applyStrength(Player player, int val) {
         var maxHpAttr = player.getAttribute(Attributes.MAX_HEALTH);
         if (maxHpAttr != null) {
-            var hp = Player.MAX_HEALTH + (val * HP_PER_STRENGTH);
-            maxHpAttr.setBaseValue(hp);
+            if (val == 0) {
+                maxHpAttr.removeModifier(DotcAttributeModifiers.MAX_HP_BONUS_MODIFIER_ID);
+            }
+            else {
+                var hp = val * HP_PER_STRENGTH;
+                maxHpAttr.addOrUpdateTransientModifier(
+                        new AttributeModifier(
+                                DotcAttributeModifiers.MAX_HP_BONUS_MODIFIER_ID,
+                                hp,
+                                AttributeModifier.Operation.ADD_VALUE
+                        )
+                );
+            }
         }
 
         var stats = PlayerStats.get(player);
@@ -90,11 +98,11 @@ public class DotcPlayerManager {
         var moveSpeedAttr = player.getAttribute(Attributes.MOVEMENT_SPEED);
         if (moveSpeedAttr != null) {
             if (val == 0.0f)
-                moveSpeedAttr.removeModifier(MOVE_SPEED_BONUS_MODIFIER_ID);
+                moveSpeedAttr.removeModifier(DotcAttributeModifiers.MOVE_SPEED_BONUS_MODIFIER_ID);
             else
                 moveSpeedAttr.addOrUpdateTransientModifier(
                         new AttributeModifier(
-                                MOVE_SPEED_BONUS_MODIFIER_ID,
+                                DotcAttributeModifiers.MOVE_SPEED_BONUS_MODIFIER_ID,
                                 val,
                                 AttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
                         )

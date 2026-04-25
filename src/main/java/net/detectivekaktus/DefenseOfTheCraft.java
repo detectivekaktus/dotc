@@ -5,6 +5,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.detectivekaktus.attach.DotcAttachments;
+import net.detectivekaktus.attribute.DotcAttributeModifiers;
 import net.detectivekaktus.block.DotcBlocks;
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.damage.DotcDamageTypes;
@@ -20,6 +21,7 @@ public class DefenseOfTheCraft implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		DotcAttachments.initialize();
+		DotcAttributeModifiers.initialize();
 		DotcBlocks.initialize();
 		DotcComponents.initialize();
 		DotcDamageTypes.initialize();
