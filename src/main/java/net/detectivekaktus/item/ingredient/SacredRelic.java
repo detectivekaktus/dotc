@@ -16,7 +16,6 @@ public class SacredRelic extends Item implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(2, "sacred_relic");
-        tooltip.addAll(components);
+        tooltip.add(getTooltipComponent("sacred_relic"));
     }
 }

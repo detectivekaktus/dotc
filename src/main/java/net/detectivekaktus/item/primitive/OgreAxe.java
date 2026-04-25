@@ -16,7 +16,6 @@ public class OgreAxe extends AxeItem implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(1, "ogre_axe");
-        tooltip.addAll(components);
+        tooltip.add(getTooltipComponent("ogre_axe"));
     }
 }

@@ -1,4 +1,4 @@
-package net.detectivekaktus.mixin.interfaces;
+package net.detectivekaktus.core.interfaces;
 
 public interface Evadable {
     boolean getEvaded();

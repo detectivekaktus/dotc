@@ -17,7 +17,6 @@ public class MithrilHammer extends PickaxeItem implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(1, "mithril_hammer");
-        tooltip.addAll(components);
+        tooltip.add(getTooltipComponent("mithril_hammer"));
     }
 }

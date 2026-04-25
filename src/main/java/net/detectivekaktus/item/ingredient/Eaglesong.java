@@ -16,7 +16,6 @@ public class Eaglesong extends Item implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(3, "eaglesong");
-        tooltip.addAll(components);
+        tooltip.add(getTooltipComponent("eaglesong"));
     }
 }

@@ -17,7 +17,6 @@ public class BladesOfAttack extends SwordItem implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(2, "blades_of_attack");
-        tooltip.addAll(components);
+        tooltip.add(getTooltipComponent("blades_of_attack"));
     }
 }

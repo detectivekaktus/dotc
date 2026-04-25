@@ -17,7 +17,6 @@ public class RobeOfTheMagi extends Item implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(2, "robe_of_the_magi");
-        tooltip.addAll(components);
+        tooltip.add(getTooltipComponent("robe_of_the_magi"));
     }
 }

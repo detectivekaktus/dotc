@@ -24,8 +24,7 @@ public class Daedalus extends PickaxeItem implements DotcItem, Critable {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(2, "daedalus");
-        tooltip.addAll(components);
+        tooltip.add(getTooltipComponent("daedalus"));
     }
 
     @Override

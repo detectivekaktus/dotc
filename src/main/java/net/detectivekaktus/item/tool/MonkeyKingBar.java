@@ -27,8 +27,7 @@ public class MonkeyKingBar extends SpearItem implements DotcItem, HasBonusDamage
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(1, "monkey_king_bar");
-        tooltip.addAll(components);
+        tooltip.add(getTooltipComponent("monkey_king_bar"));
     }
 
     @Override

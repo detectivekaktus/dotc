@@ -16,7 +16,6 @@ public class CrystalDust extends Item implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(1, "crystal_dust");
-        tooltip.addAll(components);
+        tooltip.add(getTooltipComponent("crystal_dust"));
     }
 }
