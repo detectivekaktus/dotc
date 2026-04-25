@@ -19,7 +19,6 @@ public class Sange extends SwordItem implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(2, "sange");
-        tooltip.addAll(components);
+        tooltip.add(getTooltipComponent("sange"));
     }
 }

@@ -16,7 +16,6 @@ public class BeltOfStrength extends Item implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(1, "belt_of_strength");
-        tooltip.addAll(components);
+        tooltip.add(getTooltipComponent("belt_of_strength"));
     }
 }

@@ -17,7 +17,6 @@ public class DemonEdge extends SwordItem implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(3, "demon_edge");
-        tooltip.addAll(components);
+        tooltip.add(getTooltipComponent("demon_edge"));
     }
 }

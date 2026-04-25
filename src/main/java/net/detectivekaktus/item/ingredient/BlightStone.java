@@ -16,7 +16,6 @@ public class BlightStone extends Item implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(2, "blight_stone");
-        tooltip.addAll(components);
+        tooltip.add(getTooltipComponent("blight_stone"));
     }
 }

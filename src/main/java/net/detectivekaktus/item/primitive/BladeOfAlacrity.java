@@ -16,7 +16,6 @@ public class BladeOfAlacrity extends SwordItem implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(1, "blade_of_alacrity");
-        tooltip.addAll(components);
+        tooltip.add(getTooltipComponent("blade_of_alacrity"));
     }
 }

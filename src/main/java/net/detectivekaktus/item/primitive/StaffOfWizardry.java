@@ -16,7 +16,6 @@ public class StaffOfWizardry extends SwordItem implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        var components = this.generateTooltipTranslationStrings(2, "staff_of_wizardry");
-        tooltip.addAll(components);
+        tooltip.add(getTooltipComponent("staff_of_wizardry"));
     }
 }
