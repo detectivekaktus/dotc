@@ -24,8 +24,10 @@ public class DotcIngredientsModelProvider extends FabricModelProvider {
         Stream.of(
                 DotcIngredients.RADIANT_CRYSTAL,
                 DotcIngredients.RADIANT_CRYSTAL_DUST,
+                DotcIngredients.RADIANT_CRYSTAL_SHARDS,
                 DotcIngredients.DIRE_CRYSTAL,
                 DotcIngredients.DIRE_CRYSTAL_DUST,
+                DotcIngredients.DIRE_CRYSTAL_SHARDS,
                 DotcIngredients.MITHRIL_INGOT,
                 DotcIngredients.BLIGHT_STONE,
                 DotcIngredients.BLADES_OF_ATTACK,

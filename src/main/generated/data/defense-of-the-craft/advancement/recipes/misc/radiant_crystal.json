@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_radiant_crystal_block": {
+    "has_radiant_crystal_shards": {
       "conditions": {
         "items": [
           {
-            "items": "defense-of-the-craft:radiant_crystal_block"
+            "items": "defense-of-the-craft:radiant_crystal_shards"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_radiant_crystal_block"
+      "has_radiant_crystal_shards"
     ]
   ],
   "rewards": {

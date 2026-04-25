@@ -28,7 +28,7 @@ public class DotcNaturalBlockLootTableProvider extends FabricBlockLootTableProvi
         add(DotcNaturalBlocks.RADIANT_ORE, block ->
                 createSilkTouchDispatchTable(block,
                         applyExplosionDecay(block,
-                                LootItem.lootTableItem(DotcIngredients.RADIANT_CRYSTAL)
+                                LootItem.lootTableItem(DotcIngredients.RADIANT_CRYSTAL_SHARDS)
                                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0f, 3.0f)))
                                         .apply(ApplyBonusCount.addOreBonusCount(registryLookup.getOrThrow(Enchantments.FORTUNE)))
                         ))
@@ -36,7 +36,7 @@ public class DotcNaturalBlockLootTableProvider extends FabricBlockLootTableProvi
         add(DotcNaturalBlocks.DEEPSLATE_RADIANT_ORE, block ->
                 createSilkTouchDispatchTable(block,
                         applyExplosionDecay(block,
-                                LootItem.lootTableItem(DotcIngredients.RADIANT_CRYSTAL)
+                                LootItem.lootTableItem(DotcIngredients.RADIANT_CRYSTAL_SHARDS)
                                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0f, 3.0f)))
                                         .apply(ApplyBonusCount.addOreBonusCount(registryLookup.getOrThrow(Enchantments.FORTUNE)))
                         ))
@@ -44,7 +44,7 @@ public class DotcNaturalBlockLootTableProvider extends FabricBlockLootTableProvi
         add(DotcNaturalBlocks.DIRE_ORE, block ->
                 createSilkTouchDispatchTable(block,
                         applyExplosionDecay(block,
-                                LootItem.lootTableItem(DotcIngredients.DIRE_CRYSTAL)
+                                LootItem.lootTableItem(DotcIngredients.DIRE_CRYSTAL_SHARDS)
                                         .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0f, 2.0f)))
                                         .apply(ApplyBonusCount.addOreBonusCount(registryLookup.getOrThrow(Enchantments.FORTUNE)))
                         ))

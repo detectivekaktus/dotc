@@ -1,37 +1,41 @@
 {
   "itemGroup.defense-of-the-craft": "Defense of the Craft",
 
-  "item.defense-of-the-craft.radiant_crystal": "Radiant crystal",
+  "item.defense-of-the-craft.radiant_crystal_shards": "Radiant Crystal Shards",
+  "item.defense-of-the-craft.dire_crystal_shards": "Dire Crystal Shards",
+  "itemTooltip.defense-of-the-craft.crystal_shards": "Small pieces of glowing material. What could they be used for?",
+
+  "item.defense-of-the-craft.radiant_crystal": "Radiant Crystal",
   "itemTooltip.defense-of-the-craft.radiant_crystal": "Mineral known for its unpredictable structure. It is a bluish, glowing substance blessed with benevolent magic.",
 
-  "item.defense-of-the-craft.dire_crystal": "Dire crystal",
+  "item.defense-of-the-craft.dire_crystal": "Dire Crystal",
   "itemTooltip.defense-of-the-craft.dire_crystal": "Mineral known for its unpredictable evil structure. It is a reddish, glowing substance blessed with unkind magic.",
 
-  "item.defense-of-the-craft.radiant_crystal_dust": "Radiant crystal dust",
-  "item.defense-of-the-craft.dire_crystal_dust": "Dire crystal dust",
+  "item.defense-of-the-craft.radiant_crystal_dust": "Radiant Crystal Dust",
+  "item.defense-of-the-craft.dire_crystal_dust": "Dire Crystal Dust",
   "itemTooltip.defense-of-the-craft.crystal_dust": "Magic dust with a little glow around it.",
 
-  "item.defense-of-the-craft.mithril_ingot": "Mithril ingot",
+  "item.defense-of-the-craft.mithril_ingot": "Mithril Ingot",
   "itemTooltip.defense-of-the-craft.mithril_ingot": "Four times stronger than iron, yet much lighter. It has high malleability but it requires very high temperatures to be worked.",
 
-  "block.defense-of-the-craft.radiant_ore": "Radiant ore",
-  "block.defense-of-the-craft.deepslate_radiant_ore": "Deepslate radiant ore",
-  "block.defense-of-the-craft.dire_ore": "Dire ore",
-  "block.defense-of-the-craft.radiant_crystal_block": "Radiant crystal block",
-  "block.defense-of-the-craft.dire_crystal_block": "Dire crystal block",
+  "block.defense-of-the-craft.radiant_ore": "Radiant Ore",
+  "block.defense-of-the-craft.deepslate_radiant_ore": "Deepslate Radiant Ore",
+  "block.defense-of-the-craft.dire_ore": "Dire Ore",
+  "block.defense-of-the-craft.radiant_crystal_block": "Radiant Crystal Block",
+  "block.defense-of-the-craft.dire_crystal_block": "Dire Crystal Block",
 
 
 
-  "item.defense-of-the-craft.blight_stone": "Blight stone",
+  "item.defense-of-the-craft.blight_stone": "Blight Stone",
   "itemTooltip.defense-of-the-craft.blight_stone": "An unnerving stone unearthed beneath the Fields of Endless Carnage.",
 
-  "item.defense-of-the-craft.gloves_of_haste": "Gloves of haste",
+  "item.defense-of-the-craft.gloves_of_haste": "Gloves of Haste",
   "itemTooltip.defense-of-the-craft.gloves_of_haste": "A pair of magical gloves that seems to render weapons weightless.",
 
-  "item.defense-of-the-craft.blades_of_attack": "Blades of attack",
+  "item.defense-of-the-craft.blades_of_attack": "Blades of Attack",
   "itemTooltip.defense-of-the-craft.blades_of_attack": "The damage of these small, concealable blades should not be underestimated.",
 
-  "item.defense-of-the-craft.mithril_hammer": "Mithril hammer",
+  "item.defense-of-the-craft.mithril_hammer": "Mithril Hammer",
   "itemTooltip.defense-of-the-craft.mithril_hammer": "A hammer forged of pure mithril.",
 
   "item.defense-of-the-craft.broadsword": "Broadsword",
@@ -45,13 +49,13 @@
 
 
 
-  "item.defense-of-the-craft.blade_of_alacrity": "Blade of alacrity",
+  "item.defense-of-the-craft.blade_of_alacrity": "Blade of Alacrity",
   "itemTooltip.defense-of-the-craft.blade_of_alacrity": "A long blade imbued with time magic.",
 
-  "item.defense-of-the-craft.ogre_axe": "Ogre axe",
+  "item.defense-of-the-craft.ogre_axe": "Ogre Axe",
   "itemTooltip.defense-of-the-craft.ogre_axe": "You grow stronger just by holding it.",
 
-  "item.defense-of-the-craft.staff_of_wizardry": "Staff of wizardry",
+  "item.defense-of-the-craft.staff_of_wizardry": "Staff of Wizardry",
   "itemTooltip.defense-of-the-craft.staff_of_wizardry": "A staff of magical powers passed down from the eldest mages.",
 
   "item.defense-of-the-craft.belt_of_strength": "Belt of Strength",
@@ -65,21 +69,21 @@
 
 
 
-  "item.defense-of-the-craft.sacred_relic": "Sacred relic",
+  "item.defense-of-the-craft.sacred_relic": "Sacred Relic",
   "itemTooltip.defense-of-the-craft.sacred_relic": "An ancient weapon that often turns the tides of war.",
 
-  "item.defense-of-the-craft.talisman_of_evasion": "Talisman of evasion",
+  "item.defense-of-the-craft.talisman_of_evasion": "Talisman of Evasion",
   "itemTooltip.defense-of-the-craft.talisman_of_evasion": "A necklace that allows you to anticipate enemy attacks.",
 
   "item.defense-of-the-craft.eaglesong": "Eaglesong",
   "itemTooltip.defense-of-the-craft.eaglesong": "Capturing the majestic call of an eagle, this mystical horn brings limitless dexterity to those who hear it.",
 
-  "item.defense-of-the-craft.demon_edge": "Demon edge",
+  "item.defense-of-the-craft.demon_edge": "Demon Edge",
   "itemTooltip.defense-of-the-craft.demon_edge": "One of the oldest weapons forged by the Demon-Smith Abzidian, it killed its maker when he tested its edge.",
 
 
 
-  "item.defense-of-the-craft.monkey_king_bar": "Monkey king bar",
+  "item.defense-of-the-craft.monkey_king_bar": "Monkey King Bar",
   "itemTooltip.defense-of-the-craft.monkey_king_bar": "A powerful staff used by a master warrior.",
 
   "item.defense-of-the-craft.crystalys": "Crystalys",

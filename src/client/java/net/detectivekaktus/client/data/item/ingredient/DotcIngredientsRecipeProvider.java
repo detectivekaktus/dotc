@@ -23,6 +23,24 @@ public class DotcIngredientsRecipeProvider extends FabricRecipeProvider {
 
     @Override
     public void buildRecipes(RecipeOutput exporter) {
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DotcIngredients.RADIANT_CRYSTAL)
+                .requires(DotcIngredients.RADIANT_CRYSTAL_SHARDS, 2)
+                .requires(Items.DIAMOND)
+                .unlockedBy(
+                        "has_radiant_crystal_shards",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.RADIANT_CRYSTAL_SHARDS)
+                )
+                .save(exporter);
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DotcIngredients.DIRE_CRYSTAL)
+                .requires(DotcIngredients.DIRE_CRYSTAL_SHARDS, 2)
+                .requires(Items.DIAMOND)
+                .unlockedBy(
+                        "has_dire_crystal_shards",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.DIRE_CRYSTAL_SHARDS)
+                )
+                .save(exporter);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DotcIngredients.RADIANT_CRYSTAL_DUST, 2)
                 .requires(DotcIngredients.RADIANT_CRYSTAL)
                 .unlockedBy(

@@ -26,6 +26,14 @@ public class DotcIngredients {
             new CrystalDust(new Item.Properties()),
             "dire_crystal_dust"
     );
+    public static final Item RADIANT_CRYSTAL_SHARDS = DotcItems.register(
+            new CrystalShards(new Item.Properties()),
+            "radiant_crystal_shards"
+    );
+    public static final Item DIRE_CRYSTAL_SHARDS = DotcItems.register(
+            new CrystalShards(new Item.Properties()),
+            "dire_crystal_shards"
+    );
     public static final Item MITHRIL_INGOT = DotcItems.register(
             new MithrilIngot(new Item.Properties()),
             "mithril_ingot"
