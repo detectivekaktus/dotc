@@ -13,9 +13,6 @@ import net.detectivekaktus.component.records.ItemStatsComponent;
 // Probably all of these values will be changed during future tests by the players
 // but for now I think they are reasonably balanced
 public class DotcPlayerManager {
-    private static final float BASE_ARMOR = 0.0f;
-    private static final float BASE_ATTACK_SPEED = 4.0f;
-
     private static final float HP_PER_STRENGTH = 0.25f;
     private static final float HP_REGEN_PER_STRENGTH = 0.025f;
 
@@ -83,14 +80,36 @@ public class DotcPlayerManager {
     private static void applyAgility(Player player, int val) {
         var armorAttr = player.getAttribute(Attributes.ARMOR);
         if (armorAttr != null) {
-            var armor = BASE_ARMOR + (val * ARMOR_PER_AGILITY);
-            armorAttr.setBaseValue(armor);
+            if (val == 0) {
+                armorAttr.removeModifier(DotcAttributeModifiers.BASE_ARMOR_BONUS_MODIFIER_ID);
+            }
+            else {
+                var armor = val * ARMOR_PER_AGILITY;
+                armorAttr.addOrUpdateTransientModifier(
+                        new AttributeModifier(
+                                DotcAttributeModifiers.BASE_ARMOR_BONUS_MODIFIER_ID,
+                                armor,
+                                AttributeModifier.Operation.ADD_VALUE
+                        )
+                );
+            }
         }
 
         var attackSpeedAttr = player.getAttribute(Attributes.ATTACK_SPEED);
         if (attackSpeedAttr != null) {
-            var attackSpeed = BASE_ATTACK_SPEED + (val * ATTACK_SPEED_PER_AGILITY);
-            attackSpeedAttr.setBaseValue(attackSpeed);
+            if (val == 0) {
+                attackSpeedAttr.removeModifier(DotcAttributeModifiers.ATTACK_SPEED_BONUS_MODIFIER_ID);
+            }
+            else {
+                var attackSpeed = val * ATTACK_SPEED_PER_AGILITY;
+                attackSpeedAttr.addOrUpdateTransientModifier(
+                        new AttributeModifier(
+                                DotcAttributeModifiers.ATTACK_SPEED_BONUS_MODIFIER_ID,
+                                attackSpeed,
+                                AttributeModifier.Operation.ADD_VALUE
+                        )
+                );
+            }
         }
     }
 
