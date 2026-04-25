@@ -21,8 +21,8 @@ import net.detectivekaktus.core.rng.PseudoRandom;
 import net.detectivekaktus.damage.DotcDamageTypes;
 import net.detectivekaktus.item.tool.Critable;
 import net.detectivekaktus.item.tool.HasBonusDamage;
-import net.detectivekaktus.core.interfaces.CanHitThroughEvasion;
-import net.detectivekaktus.core.interfaces.Evadable;
+import net.detectivekaktus.core.player.CanHitThroughEvasion;
+import net.detectivekaktus.core.player.Evadable;
 import net.detectivekaktus.sound.DotcSounds;
 
 @Mixin(Player.class)

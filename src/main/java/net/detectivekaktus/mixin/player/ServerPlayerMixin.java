@@ -11,8 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.detectivekaktus.component.DotcComponents;
-import net.detectivekaktus.core.DotcPlayerManager;
+import net.detectivekaktus.core.player.PlayerManager;
 
 @Mixin(ServerPlayer.class)
 public class ServerPlayerMixin {
@@ -21,37 +20,7 @@ public class ServerPlayerMixin {
         @Override
         public void slotChanged(AbstractContainerMenu abstractContainerMenu, int i, ItemStack itemStack) {
             var player = (ServerPlayer) (Object) ServerPlayerMixin.this;
-            var config = new DotcPlayerManager.Config(player);
-            var hotbarItems = player.getInventory().items.subList(0, 9);
-
-            for (var item : hotbarItems) {
-                if (item.has(DotcComponents.ITEM_STATS_COMPONENT)) {
-                    var stats = item.get(DotcComponents.ITEM_STATS_COMPONENT);
-                    config.addStats(stats);
-                }
-
-                if (item.has(DotcComponents.EVASION_COMPONENT)) {
-                    var evasion = item.get(DotcComponents.EVASION_COMPONENT);
-                    config.addEvasion(evasion);
-                }
-
-                if (item.has(DotcComponents.HP_REGEN_AMPLIFICATION_COMPONENT)) {
-                    var amplification = item.get(DotcComponents.HP_REGEN_AMPLIFICATION_COMPONENT);
-                    config.addHpRegenAmplification(amplification);
-                }
-
-                if (item.has(DotcComponents.MOVE_SPEED_COMPONENT)) {
-                    var moveSpeed = item.get(DotcComponents.MOVE_SPEED_COMPONENT);
-                    config.addMoveSpeed(moveSpeed);
-                }
-
-                if (item.has(DotcComponents.MANA_COST_REDUCTION_COMPONENT)) {
-                    var reduction = item.get(DotcComponents.MANA_COST_REDUCTION_COMPONENT);
-                    config.addManaCostReduction(reduction);
-                }
-            }
-
-            DotcPlayerManager.applyChanges(config);
+            PlayerManager.updateStats(player);
         }
 
         @Override

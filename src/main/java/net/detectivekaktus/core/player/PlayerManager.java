@@ -1,5 +1,6 @@
-package net.detectivekaktus.core;
+package net.detectivekaktus.core.player;
 
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
@@ -8,21 +9,10 @@ import net.detectivekaktus.attach.DotcAttachmentRules;
 import net.detectivekaktus.attach.PlayerMana;
 import net.detectivekaktus.attach.PlayerStats;
 import net.detectivekaktus.attribute.DotcAttributeModifiers;
+import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ItemStatsComponent;
 
-// Probably all of these values will be changed during future tests by the players
-// but for now I think they are reasonably balanced
-public class DotcPlayerManager {
-    private static final float HP_PER_STRENGTH = 0.25f;
-    private static final float HP_REGEN_PER_STRENGTH = 0.025f;
-
-    private static final float ARMOR_PER_AGILITY = 0.1f;
-    private static final float ATTACK_SPEED_PER_AGILITY = 0.033f;
-
-    private static final float MANA_PER_INTELLIGENCE = 1.0f;
-    private static final float MANA_REGEN_PER_INTELLIGENCE = 0.2f;
-    private static final float MAGIC_RESISTANCE_PER_INTELLIGENCE = 0.0025f;
-
+public class PlayerManager {
     private static boolean hasStatChanges(PlayerStats.StatsData stats, PlayerMana.ManaData mana, Config config) {
         return stats.getStrength() != config.strength
                 || stats.getAgility() != config.agility
@@ -33,7 +23,41 @@ public class DotcPlayerManager {
                 || Math.abs(mana.getManaCostReduction() - config.manaCostReduction) > 1e-5f;
     }
 
-    public static void applyChanges(Config config) {
+    public static void updateStats(ServerPlayer player) {
+        var config = new PlayerManager.Config(player);
+        var hotbarItems = player.getInventory().items.subList(0, 9);
+
+        for (var item : hotbarItems) {
+            if (item.has(DotcComponents.ITEM_STATS_COMPONENT)) {
+                var stats = item.get(DotcComponents.ITEM_STATS_COMPONENT);
+                config.addStats(stats);
+            }
+
+            if (item.has(DotcComponents.EVASION_COMPONENT)) {
+                var evasion = item.get(DotcComponents.EVASION_COMPONENT);
+                config.addEvasion(evasion);
+            }
+
+            if (item.has(DotcComponents.HP_REGEN_AMPLIFICATION_COMPONENT)) {
+                var amplification = item.get(DotcComponents.HP_REGEN_AMPLIFICATION_COMPONENT);
+                config.addHpRegenAmplification(amplification);
+            }
+
+            if (item.has(DotcComponents.MOVE_SPEED_COMPONENT)) {
+                var moveSpeed = item.get(DotcComponents.MOVE_SPEED_COMPONENT);
+                config.addMoveSpeed(moveSpeed);
+            }
+
+            if (item.has(DotcComponents.MANA_COST_REDUCTION_COMPONENT)) {
+                var reduction = item.get(DotcComponents.MANA_COST_REDUCTION_COMPONENT);
+                config.addManaCostReduction(reduction);
+            }
+        }
+
+        applyStats(config);
+    }
+
+    private static void applyStats(Config config) {
         var stats = PlayerStats.get(config.player);
         var mana = PlayerMana.get(config.player);
         if (!hasStatChanges(stats, mana, config))
@@ -61,8 +85,8 @@ public class DotcPlayerManager {
                 maxHpAttr.removeModifier(DotcAttributeModifiers.MAX_HP_BONUS_MODIFIER_ID);
             }
             else {
-                var hp = val * HP_PER_STRENGTH;
-                maxHpAttr.addOrUpdateTransientModifier(
+                var hp = val * StatConversionRules.HP_PER_STRENGTH;
+                maxHpAttr.addOrReplacePermanentModifier(
                         new AttributeModifier(
                                 DotcAttributeModifiers.MAX_HP_BONUS_MODIFIER_ID,
                                 hp,
@@ -73,7 +97,7 @@ public class DotcPlayerManager {
         }
 
         var stats = PlayerStats.get(player);
-        var hpRegen = DotcAttachmentRules.DEFAULT_HP_REGEN + (val * HP_REGEN_PER_STRENGTH);
+        var hpRegen = DotcAttachmentRules.DEFAULT_HP_REGEN + (val * StatConversionRules.HP_REGEN_PER_STRENGTH);
         stats.setHpRegen(hpRegen);
     }
 
@@ -84,8 +108,8 @@ public class DotcPlayerManager {
                 armorAttr.removeModifier(DotcAttributeModifiers.BASE_ARMOR_BONUS_MODIFIER_ID);
             }
             else {
-                var armor = val * ARMOR_PER_AGILITY;
-                armorAttr.addOrUpdateTransientModifier(
+                var armor = val * StatConversionRules.ARMOR_PER_AGILITY;
+                armorAttr.addOrReplacePermanentModifier(
                         new AttributeModifier(
                                 DotcAttributeModifiers.BASE_ARMOR_BONUS_MODIFIER_ID,
                                 armor,
@@ -101,8 +125,8 @@ public class DotcPlayerManager {
                 attackSpeedAttr.removeModifier(DotcAttributeModifiers.ATTACK_SPEED_BONUS_MODIFIER_ID);
             }
             else {
-                var attackSpeed = val * ATTACK_SPEED_PER_AGILITY;
-                attackSpeedAttr.addOrUpdateTransientModifier(
+                var attackSpeed = val * StatConversionRules.ATTACK_SPEED_PER_AGILITY;
+                attackSpeedAttr.addOrReplacePermanentModifier(
                         new AttributeModifier(
                                 DotcAttributeModifiers.ATTACK_SPEED_BONUS_MODIFIER_ID,
                                 attackSpeed,
@@ -119,7 +143,7 @@ public class DotcPlayerManager {
             if (val == 0.0f)
                 moveSpeedAttr.removeModifier(DotcAttributeModifiers.MOVE_SPEED_BONUS_MODIFIER_ID);
             else
-                moveSpeedAttr.addOrUpdateTransientModifier(
+                moveSpeedAttr.addOrReplacePermanentModifier(
                         new AttributeModifier(
                                 DotcAttributeModifiers.MOVE_SPEED_BONUS_MODIFIER_ID,
                                 val,
@@ -134,24 +158,24 @@ public class DotcPlayerManager {
 
     private static void applyIntelligence(Player player, int val) {
         var mana = PlayerMana.get(player);
-        var maxMana = DotcAttachmentRules.DEFAULT_MAX_MANA + (val * MANA_PER_INTELLIGENCE);
+        var maxMana = DotcAttachmentRules.DEFAULT_MAX_MANA + (val * StatConversionRules.MANA_PER_INTELLIGENCE);
         mana.setMaxMana(maxMana);
 
-        var manaRegen = DotcAttachmentRules.DEFAULT_MANA_REGEN + (val * MANA_REGEN_PER_INTELLIGENCE);
+        var manaRegen = DotcAttachmentRules.DEFAULT_MANA_REGEN + (val * StatConversionRules.MANA_REGEN_PER_INTELLIGENCE);
         mana.setManaRegen(manaRegen);
 
         var stats = PlayerStats.get(player);
-        var magicResistance = DotcAttachmentRules.DEFAULT_MAGIC_RESISTANCE + (val * MAGIC_RESISTANCE_PER_INTELLIGENCE);
+        var magicResistance = DotcAttachmentRules.DEFAULT_MAGIC_RESISTANCE + (val * StatConversionRules.MAGIC_RESISTANCE_PER_INTELLIGENCE);
         stats.setMagicResistance(magicResistance);
     }
 
     public static class Config {
-        public final Player player;
+        public final ServerPlayer player;
 
         int strength, agility, intelligence;
         float evasion, moveSpeed, hpRegenAmplification, manaCostReduction;
 
-        public Config(Player player) {
+        public Config(ServerPlayer player) {
             this.player = player;
 
             this.strength = 0;
