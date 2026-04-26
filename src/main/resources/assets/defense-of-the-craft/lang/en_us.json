@@ -2,21 +2,25 @@
   "itemGroup.defense-of-the-craft": "Defense of the Craft",
 
   "item.defense-of-the-craft.radiant_crystal_shards": "Radiant Crystal Shards",
+  "description.defense-of-the-craft.radiant_crystal_shards": "Small pieces of bluish glowing material. What could they be used for?",
+
   "item.defense-of-the-craft.dire_crystal_shards": "Dire Crystal Shards",
-  "itemTooltip.defense-of-the-craft.crystal_shards": "Small pieces of glowing material. What could they be used for?",
+  "description.defense-of-the-craft.dire_crystal_shards": "Small pieces of reddish glowing material. What could they be used for?",
 
   "item.defense-of-the-craft.radiant_crystal": "Radiant Crystal",
-  "itemTooltip.defense-of-the-craft.radiant_crystal": "Mineral known for its unpredictable structure. It is a bluish, glowing substance blessed with benevolent magic.",
+  "description.defense-of-the-craft.radiant_crystal": "Mineral known for its unpredictable structure. It is a bluish, glowing substance blessed with benevolent magic.",
 
   "item.defense-of-the-craft.dire_crystal": "Dire Crystal",
-  "itemTooltip.defense-of-the-craft.dire_crystal": "Mineral known for its unpredictable evil structure. It is a reddish, glowing substance blessed with unkind magic.",
+  "description.defense-of-the-craft.dire_crystal": "Mineral known for its unpredictable evil structure. It is a reddish, glowing substance blessed with unkind magic.",
 
   "item.defense-of-the-craft.radiant_crystal_dust": "Radiant Crystal Dust",
+  "description.defense-of-the-craft.radiant_crystal_dust": "Magic dust with a little blue glow around it.",
+
   "item.defense-of-the-craft.dire_crystal_dust": "Dire Crystal Dust",
-  "itemTooltip.defense-of-the-craft.crystal_dust": "Magic dust with a little glow around it.",
+  "description.defense-of-the-craft.dire_crystal_dust": "Magic dust with a little red glow around it.",
 
   "item.defense-of-the-craft.mithril_ingot": "Mithril Ingot",
-  "itemTooltip.defense-of-the-craft.mithril_ingot": "Four times stronger than iron, yet much lighter. It has high malleability but it requires very high temperatures to be worked.",
+  "description.defense-of-the-craft.mithril_ingot": "Four times stronger than iron, yet much lighter. It has high malleability but it requires very high temperatures to be worked.",
 
   "block.defense-of-the-craft.radiant_ore": "Radiant Ore",
   "block.defense-of-the-craft.deepslate_radiant_ore": "Deepslate Radiant Ore",
@@ -27,84 +31,93 @@
 
 
   "item.defense-of-the-craft.blight_stone": "Blight Stone",
-  "itemTooltip.defense-of-the-craft.blight_stone": "An unnerving stone unearthed beneath the Fields of Endless Carnage.",
+  "description.defense-of-the-craft.blight_stone": "An unnerving stone unearthed beneath the Fields of Endless Carnage.",
 
   "item.defense-of-the-craft.gloves_of_haste": "Gloves of Haste",
-  "itemTooltip.defense-of-the-craft.gloves_of_haste": "A pair of magical gloves that seems to render weapons weightless.",
+  "description.defense-of-the-craft.gloves_of_haste": "A pair of magical gloves that seems to render weapons weightless.",
 
   "item.defense-of-the-craft.blades_of_attack": "Blades of Attack",
-  "itemTooltip.defense-of-the-craft.blades_of_attack": "The damage of these small, concealable blades should not be underestimated.",
+  "description.defense-of-the-craft.blades_of_attack": "The damage of these small, concealable blades should not be underestimated.",
 
   "item.defense-of-the-craft.mithril_hammer": "Mithril Hammer",
-  "itemTooltip.defense-of-the-craft.mithril_hammer": "A hammer forged of pure mithril.",
+  "description.defense-of-the-craft.mithril_hammer": "A hammer forged of pure mithril.",
 
   "item.defense-of-the-craft.broadsword": "Broadsword",
-  "itemTooltip.defense-of-the-craft.broadsword": "The classic weapon of choice for knights, this blade is sturdy and reliable for slaying enemies.",
+  "description.defense-of-the-craft.broadsword": "The classic weapon of choice for knights, this blade is sturdy and reliable for slaying enemies.",
 
   "item.defense-of-the-craft.claymore": "Claymore",
-  "itemTooltip.defense-of-the-craft.claymore": "A sword that can cut through armor, it's a commonly chosen first weapon for budding swordsmen.",
+  "description.defense-of-the-craft.claymore": "A sword that can cut through armor, it's a commonly chosen first weapon for budding swordsmen.",
 
   "item.defense-of-the-craft.javelin": "Javelin",
-  "itemTooltip.defense-of-the-craft.javelin": "A rather typical spear that can sometimes pierce through an enemy's armor when used to attack.",
+  "description.defense-of-the-craft.javelin": "A rather typical spear that can sometimes pierce through an enemy's armor when used to attack.",
+  "passive.defense-of-the-craft.javelin": "Grants the wielder's attack a 25% chance to pierce through evasion and deal bonus magical damage.",
 
 
 
   "item.defense-of-the-craft.blade_of_alacrity": "Blade of Alacrity",
-  "itemTooltip.defense-of-the-craft.blade_of_alacrity": "A long blade imbued with time magic.",
+  "description.defense-of-the-craft.blade_of_alacrity": "A long blade imbued with time magic.",
 
   "item.defense-of-the-craft.ogre_axe": "Ogre Axe",
-  "itemTooltip.defense-of-the-craft.ogre_axe": "You grow stronger just by holding it.",
+  "description.defense-of-the-craft.ogre_axe": "You grow stronger just by holding it.",
 
   "item.defense-of-the-craft.staff_of_wizardry": "Staff of Wizardry",
-  "itemTooltip.defense-of-the-craft.staff_of_wizardry": "A staff of magical powers passed down from the eldest mages.",
+  "description.defense-of-the-craft.staff_of_wizardry": "A staff of magical powers passed down from the eldest mages.",
 
   "item.defense-of-the-craft.belt_of_strength": "Belt of Strength",
-  "itemTooltip.defense-of-the-craft.belt_of_strength": "A valued accessory for improving vitality.",
+  "description.defense-of-the-craft.belt_of_strength": "A valued accessory for improving vitality.",
 
   "item.defense-of-the-craft.band_of_elvenskin": "Band of Elvenskin",
-  "itemTooltip.defense-of-the-craft.band_of_elvenskin": "A tensile fabric often used for its light weight and ease of movement.",
+  "description.defense-of-the-craft.band_of_elvenskin": "A tensile fabric often used for its light weight and ease of movement.",
 
   "item.defense-of-the-craft.robe_of_the_magi": "Robe of the Magi",
-  "itemTooltip.defense-of-the-craft.robe_of_the_magi": "This robe corrupts the soul of the user, but provides wisdom in return.",
+  "description.defense-of-the-craft.robe_of_the_magi": "This robe corrupts the soul of the user, but provides wisdom in return.",
 
 
 
   "item.defense-of-the-craft.sacred_relic": "Sacred Relic",
-  "itemTooltip.defense-of-the-craft.sacred_relic": "An ancient weapon that often turns the tides of war.",
+  "description.defense-of-the-craft.sacred_relic": "An ancient weapon that often turns the tides of war.",
 
   "item.defense-of-the-craft.talisman_of_evasion": "Talisman of Evasion",
-  "itemTooltip.defense-of-the-craft.talisman_of_evasion": "A necklace that allows you to anticipate enemy attacks.",
+  "description.defense-of-the-craft.talisman_of_evasion": "A necklace that allows you to anticipate enemy attacks.",
+  "passive.defense-of-the-craft.talisman_of_evasion": "Grants the wielder a 10% chance to evade any hostile mob or player attack.",
 
   "item.defense-of-the-craft.eaglesong": "Eaglesong",
-  "itemTooltip.defense-of-the-craft.eaglesong": "Capturing the majestic call of an eagle, this mystical horn brings limitless dexterity to those who hear it.",
+  "description.defense-of-the-craft.eaglesong": "Capturing the majestic call of an eagle, this mystical horn brings limitless dexterity to those who hear it.",
 
   "item.defense-of-the-craft.demon_edge": "Demon Edge",
-  "itemTooltip.defense-of-the-craft.demon_edge": "One of the oldest weapons forged by the Demon-Smith Abzidian, it killed its maker when he tested its edge.",
+  "description.defense-of-the-craft.demon_edge": "One of the oldest weapons forged by the Demon-Smith Abzidian, it killed its maker when he tested its edge.",
 
 
 
   "item.defense-of-the-craft.monkey_king_bar": "Monkey King Bar",
-  "itemTooltip.defense-of-the-craft.monkey_king_bar": "A powerful staff used by a master warrior.",
+  "description.defense-of-the-craft.monkey_king_bar": "A powerful staff used by a master warrior.",
+  "passive.defense-of-the-craft.monkey_king_bar": "Grants the wielder's attack a 50% chance to pierce through evasion and deal bonus magical damage.",
 
   "item.defense-of-the-craft.crystalys": "Crystalys",
-  "itemTooltip.defense-of-the-craft.crystalys": "A blade forged from rare crystals, it seeks weak points in enemy armor.",
+  "description.defense-of-the-craft.crystalys": "A blade forged from rare crystals, it seeks weak points in enemy armor.",
+  "passive.defense-of-the-craft.crystalys": "The wielder's attacks have a 20% chance to inflict bonus 125% critical damage.",
 
   "item.defense-of-the-craft.daedalus": "Daedalus",
-  "itemTooltip.defense-of-the-craft.daedalus": "A weapon of incredible power that is difficult for even the strongest of warriors to control.",
+  "description.defense-of-the-craft.daedalus": "A weapon of incredible power that is difficult for even the strongest of warriors to control.",
+  "passive.defense-of-the-craft.daedalus": "The wielder's attacks have a 20% chance to inflict bonus 150% critical damage.",
 
   "item.defense-of-the-craft.butterfly": "Butterfly",
-  "itemTooltip.defense-of-the-craft.butterfly": "Only the mightiest and most experienced of warriors can wield the Butterfly but it provides incredible dexterity in combat.",
+  "description.defense-of-the-craft.butterfly": "Only the mightiest and most experienced of warriors can wield the Butterfly but it provides incredible dexterity in combat.",
+  "passive.defense-of-the-craft.butterfly": "Grants the wielder a 20% chance to evade any hostile mob or player attack.",
 
 
 
   "item.defense-of-the-craft.sange": "Sange",
-  "itemTooltip.defense-of-the-craft.sange": "Sange is an unusually accurate weapon, seeking weak points automatically.",
+  "description.defense-of-the-craft.sange": "Sange is an unusually accurate weapon, seeking weak points automatically.",
+  "passive.defense-of-the-craft.sange": "Grants the wielder a 12% health restore amplification.",
 
   "item.defense-of-the-craft.yasha": "Yasha",
-  "itemTooltip.defense-of-the-craft.yasha": "Yasha is regarded as the swiftest weapon ever created.",
+  "description.defense-of-the-craft.yasha": "Yasha is regarded as the swiftest weapon ever created.",
+  "passive.defense-of-the-craft.yasha": "Grants the wielder a 12.5% movement speed boost.",
 
   "item.defense-of-the-craft.kaya": "Kaya",
-  "itemTooltip.defense-of-the-craft.kaya": "The staff of a renowned sorceress, lost for countless millennia.",
+  "description.defense-of-the-craft.kaya": "The staff of a renowned sorceress, lost for countless millennia.",
+  "passive.defense-of-the-craft.kaya": "Grants the wielder a 10% mana cost reduction bonus.",
 
 
 
@@ -112,7 +125,7 @@
 
 
 
-  "strength.defense-of-the-craft": "%1$+d strength",
-  "agility.defense-of-the-craft": "%1$+d agility",
-  "intelligence.defense-of-the-craft": "%1$+d intelligence"
+  "strength.defense-of-the-craft": "%s strength",
+  "agility.defense-of-the-craft": "%s agility",
+  "intelligence.defense-of-the-craft": "%s intelligence"
 }
