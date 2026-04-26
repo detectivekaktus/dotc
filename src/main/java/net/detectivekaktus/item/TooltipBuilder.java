@@ -22,9 +22,9 @@ public class TooltipBuilder {
     }
 
     public TooltipBuilder stats(int strength, int agility, int intelligence) {
-        components.add(emitComponent("strength", ChatFormatting.BLUE, strength));
-        components.add(emitComponent("agility", ChatFormatting.BLUE, agility));
-        components.add(emitComponent("intelligence", ChatFormatting.BLUE, intelligence));
+        if (strength != 0) components.add(emitComponent("strength", ChatFormatting.BLUE, strength));
+        if (agility != 0) components.add(emitComponent("agility", ChatFormatting.BLUE, agility));
+        if (intelligence != 0) components.add(emitComponent("intelligence", ChatFormatting.BLUE, intelligence));
         return this;
     }
 
@@ -39,7 +39,7 @@ public class TooltipBuilder {
     }
 
     public List<Component> build() {
-        return new ArrayList<>(components);
+        return List.copyOf(components);
     }
 
     private Component emitComponent(String prefix, ChatFormatting formatting) {

@@ -8,19 +8,15 @@ import net.minecraft.world.item.TooltipFlag;
 import java.util.List;
 
 public class DotcItem extends Item {
-    private final TooltipBuilder tooltipBuilder;
+    private final List<Component> components;
 
     public DotcItem(Properties properties, TooltipBuilder tooltipBuilder) {
         super(properties);
-        this.tooltipBuilder = tooltipBuilder;
-    }
-
-    public TooltipBuilder tooltipBuilder() {
-        return tooltipBuilder;
+        this.components = tooltipBuilder.build();
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.addAll(tooltipBuilder.build());
+        tooltip.addAll(components);
     }
 }

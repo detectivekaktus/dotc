@@ -19,11 +19,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import java.util.List;
 
 public class DotcSpearItem extends TieredItem {
-    private final TooltipBuilder tooltipBuilder;
+    private final List<Component> components;
 
     public DotcSpearItem(Tier tier, Properties properties, TooltipBuilder tooltipBuilder) {
         super(tier, properties);
-        this.tooltipBuilder = tooltipBuilder;
+        this.components = tooltipBuilder.build();
     }
 
     public static ItemAttributeModifiers createAttributes(Tier tier, int attackDamage, float attackSpeed) {
@@ -64,12 +64,8 @@ public class DotcSpearItem extends TieredItem {
         itemStack.hurtAndBreak(1, livingEntity2, EquipmentSlot.MAINHAND);
     }
 
-    public TooltipBuilder tooltipBuilder() {
-        return tooltipBuilder;
-    }
-
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.addAll(tooltipBuilder.build());
+        tooltip.addAll(components);
     }
 }
