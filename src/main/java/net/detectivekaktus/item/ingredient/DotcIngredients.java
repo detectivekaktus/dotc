@@ -74,7 +74,7 @@ public class DotcIngredients {
                     DotcToolMaterial.RADIANT_COMPONENT,
                     new Item.Properties()
                             .attributes(SwordItem.createAttributes(
-                                    DotcToolMaterial.RADIANT_COMPONENT, 0, -2.5f
+                                    DotcToolMaterial.RADIANT_COMPONENT, 2, -2.5f
                             )),
                     new TooltipBuilder("blades_of_attack").description()
             ),

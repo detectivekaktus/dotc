@@ -46,7 +46,7 @@ public class DotcPrimitives {
                     DotcToolMaterial.DIRE_COMPONENT,
                     new Item.Properties()
                             .attributes(DotcAxeItem.createAttributes(
-                                    DotcToolMaterial.DIRE_COMPONENT, 6, -3.0f
+                                    DotcToolMaterial.DIRE_COMPONENT, 5, -3.0f
                             ))
                             .component(
                                     DotcComponents.ITEM_STATS_COMPONENT,
@@ -63,7 +63,7 @@ public class DotcPrimitives {
                     DotcToolMaterial.RADIANT_COMPONENT,
                     new Item.Properties()
                             .attributes(DotcSwordItem.createAttributes(
-                                    DotcToolMaterial.RADIANT_COMPONENT, 0, -1.0f
+                                    DotcToolMaterial.RADIANT_COMPONENT, 1, -1.0f
                             ))
                             .component(
                                     DotcComponents.ITEM_STATS_COMPONENT,

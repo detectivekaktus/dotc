@@ -1,15 +1,11 @@
 package net.detectivekaktus.item.tool;
 
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.PickaxeItem;
-import net.minecraft.world.item.SwordItem;
 
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ProcableComponent;
 import net.detectivekaktus.component.records.ItemStatsComponent;
-import net.detectivekaktus.item.DotcItems;
-import net.detectivekaktus.item.DotcSpearItem;
-import net.detectivekaktus.item.TooltipBuilder;
+import net.detectivekaktus.item.*;
 import net.detectivekaktus.item.material.DotcToolMaterial;
 
 public class DotcTools {
@@ -18,7 +14,7 @@ public class DotcTools {
                     DotcToolMaterial.DIRE_COMPONENT,
                     new Item.Properties()
                             .attributes(DotcSpearItem.createAttributes(
-                                    DotcToolMaterial.DIRE_COMPONENT, 1, -2.0f
+                                    DotcToolMaterial.DIRE_COMPONENT, 2, -2.0f
                             ))
                             .component(
                                     DotcComponents.PROCABLE_COMPONENT,
@@ -33,7 +29,7 @@ public class DotcTools {
                     DotcToolMaterial.DIRE_ARTEFACT,
                     new Item.Properties()
                             .attributes(
-                                    SwordItem.createAttributes(
+                                    DotcSwordItem.createAttributes(
                                             DotcToolMaterial.DIRE_ARTEFACT, 1, -2.0f
                                     )
                             )
@@ -49,7 +45,7 @@ public class DotcTools {
             new Daedalus(
                     DotcToolMaterial.DIRE_ARTEFACT,
                     new Item.Properties()
-                            .attributes(PickaxeItem.createAttributes(
+                            .attributes(DotcPickaxeItem.createAttributes(
                                     DotcToolMaterial.DIRE_ARTEFACT, 3, -2.0f
                             ))
                             .component(
@@ -65,7 +61,7 @@ public class DotcTools {
                     DotcToolMaterial.RADIANT_ARTEFACT,
                     new Item.Properties()
                             .attributes(
-                                    SwordItem.createAttributes(
+                                    DotcSwordItem.createAttributes(
                                             DotcToolMaterial.RADIANT_ARTEFACT, 3, -2.0f
                                     )
                             )
@@ -102,8 +98,8 @@ public class DotcTools {
             new Sange(
                     DotcToolMaterial.DIRE_ARTEFACT,
                     new Item.Properties()
-                            .attributes(SwordItem.createAttributes(
-                                    DotcToolMaterial.DIRE_ARTEFACT, 3, -2.5f
+                            .attributes(DotcSwordItem.createAttributes(
+                                    DotcToolMaterial.DIRE_ARTEFACT, 2, -2.5f
                             ))
                             .component(
                                     DotcComponents.ITEM_STATS_COMPONENT,
@@ -124,7 +120,7 @@ public class DotcTools {
             new Yasha(
                     DotcToolMaterial.RADIANT_ARTEFACT,
                     new Item.Properties()
-                            .attributes(SwordItem.createAttributes(
+                            .attributes(DotcSwordItem.createAttributes(
                                     DotcToolMaterial.RADIANT_ARTEFACT, 2, -2.0f
                             ))
                             .component(
@@ -146,7 +142,7 @@ public class DotcTools {
             new Kaya(
                     DotcToolMaterial.RADIANT_ARTEFACT,
                     new Item.Properties()
-                            .attributes(SwordItem.createAttributes(
+                            .attributes(DotcSwordItem.createAttributes(
                                     DotcToolMaterial.RADIANT_ARTEFACT, 2, -2.5f
                             ))
                             .component(
