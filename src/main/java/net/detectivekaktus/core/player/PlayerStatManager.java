@@ -12,9 +12,9 @@ import net.detectivekaktus.attribute.DotcAttributeModifiers;
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ItemStatsComponent;
 
-public class PlayerManager {
+public class PlayerStatManager {
     public static void updateStats(ServerPlayer player) {
-        var config = new PlayerManager.Config(player);
+        var config = new PlayerStatManager.Config(player);
         var hotbarItems = player.getInventory().items.subList(0, 9);
 
         for (var item : hotbarItems) {
