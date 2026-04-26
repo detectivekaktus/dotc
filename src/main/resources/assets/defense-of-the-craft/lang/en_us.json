@@ -74,6 +74,10 @@
 
 
 
+  "item.defense-of-the-craft.void_stone": "Void Stone",
+  "description.defense-of-the-craft.void_stone": "Jewelry that was once used to channel nether realm magic, this ring pulses with energy.",
+  "passive.defense-of-the-craft.void_stone": "Grants the wielder 1.75 mana regeneration.",
+
   "item.defense-of-the-craft.sacred_relic": "Sacred Relic",
   "description.defense-of-the-craft.sacred_relic": "An ancient weapon that often turns the tides of war.",
 
