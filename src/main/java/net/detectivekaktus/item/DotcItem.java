@@ -8,13 +8,14 @@ import net.minecraft.world.item.TooltipFlag;
 import java.util.List;
 
 public class DotcItem extends Item {
-    private final TooltipBuilder tooltipBuilder = new TooltipBuilder();
+    private final TooltipBuilder tooltipBuilder;
 
-    public DotcItem(Properties properties) {
+    public DotcItem(Properties properties, TooltipBuilder tooltipBuilder) {
         super(properties);
+        this.tooltipBuilder = tooltipBuilder;
     }
 
-    public TooltipBuilder tooltip() {
+    public TooltipBuilder tooltipBuilder() {
         return tooltipBuilder;
     }
 

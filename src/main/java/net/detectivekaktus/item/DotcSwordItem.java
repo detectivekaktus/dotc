@@ -9,13 +9,14 @@ import net.minecraft.world.item.TooltipFlag;
 import java.util.List;
 
 public class DotcSwordItem extends SwordItem {
-    private final TooltipBuilder tooltipBuilder = new TooltipBuilder();
+    private final TooltipBuilder tooltipBuilder;
 
-    public DotcSwordItem(Tier tier, Properties properties) {
+    public DotcSwordItem(Tier tier, Properties properties, TooltipBuilder tooltipBuilder) {
         super(tier, properties);
+        this.tooltipBuilder = tooltipBuilder;
     }
 
-    public TooltipBuilder tooltip() {
+    public TooltipBuilder tooltipBuilder() {
         return tooltipBuilder;
     }
 

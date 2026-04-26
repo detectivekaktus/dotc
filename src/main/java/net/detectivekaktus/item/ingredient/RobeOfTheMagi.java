@@ -5,12 +5,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 
-import net.detectivekaktus.item.TooltipProvider;
-
 import java.util.List;
 
 // TODO: Make this item a wearable armor
-public class RobeOfTheMagi extends Item implements TooltipProvider {
+public class RobeOfTheMagi extends Item {
     public RobeOfTheMagi(Properties properties) {
         super(properties);
     }

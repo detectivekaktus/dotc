@@ -1,30 +1,21 @@
 package net.detectivekaktus.item.tool;
 
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.TooltipFlag;
 
-import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
-import net.detectivekaktus.item.TooltipProvider;
-import net.detectivekaktus.sound.item.DotcItemSounds;
-
-import java.util.List;
 import java.util.Optional;
 
-public class Daedalus extends PickaxeItem implements TooltipProvider, Critable {
+import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
+import net.detectivekaktus.sound.item.DotcItemSounds;
+import net.detectivekaktus.item.DotcPickaxeItem;
+import net.detectivekaktus.item.TooltipBuilder;
+
+public class Daedalus extends DotcPickaxeItem implements Critable {
     public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_20;
     private static final float CRIT_PERCENT = 1.5f;
 
-    public Daedalus(Tier tier, Properties properties) {
-        super(tier, properties);
-    }
-
-    @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getDescriptionComponent("daedalus"));
+    public Daedalus(Tier tier, Properties properties, TooltipBuilder tooltipBuilder) {
+        super(tier, properties, tooltipBuilder);
     }
 
     @Override

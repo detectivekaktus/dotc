@@ -1,33 +1,25 @@
 package net.detectivekaktus.item.tool;
 
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
-import net.minecraft.world.item.TooltipFlag;
 
-import java.util.List;
 import java.util.Optional;
 
 import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
 import net.detectivekaktus.damage.DotcDamageTypes;
-import net.detectivekaktus.item.TooltipProvider;
 import net.detectivekaktus.sound.item.DotcItemSounds;
+import net.detectivekaktus.item.DotcSpearItem;
+import net.detectivekaktus.item.TooltipBuilder;
 
-public class MonkeyKingBar extends SpearItem implements TooltipProvider, HasBonusDamage {
+public class MonkeyKingBar extends DotcSpearItem implements HasBonusDamage {
     public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_50;
     private static final float BONUS_DAMAGE = 4.0f;
 
-    public MonkeyKingBar(Tier tier, Properties properties) {
-        super(tier, properties);
-    }
-
-    @Override
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getDescriptionComponent("monkey_king_bar"));
+    public MonkeyKingBar(Tier tier, Properties properties, TooltipBuilder tooltipBuilder) {
+        super(tier, properties, tooltipBuilder);
     }
 
     @Override

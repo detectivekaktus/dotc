@@ -8,9 +8,7 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.TooltipProvider;
-
-public class Broadsword extends SwordItem implements TooltipProvider {
+public class Broadsword extends SwordItem {
     public Broadsword(Tier tier, Properties properties) {
         super(tier, properties);
     }

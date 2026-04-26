@@ -7,9 +7,7 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.TooltipProvider;
-
-public class MithrilIngot extends Item implements TooltipProvider {
+public class MithrilIngot extends Item {
     public MithrilIngot(Properties properties) {
         super(properties);
     }

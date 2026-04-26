@@ -7,9 +7,7 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.TooltipProvider;
-
-public class CrystalShards extends Item implements TooltipProvider {
+public class CrystalShards extends Item {
     public CrystalShards(Properties properties) {
         super(properties);
     }

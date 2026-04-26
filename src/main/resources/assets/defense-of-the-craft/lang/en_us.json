@@ -108,5 +108,11 @@
 
 
 
-  "death.attack.defense-of-the-craft.magical": "%1$s died from Defense Of The Craft magic!"
+  "death.attack.defense-of-the-craft.magical": "%1$s died from Defense Of The Craft magic!",
+
+
+
+  "strength.defense-of-the-craft": "%1$+d strength",
+  "agility.defense-of-the-craft": "%1$+d agility",
+  "intelligence.defense-of-the-craft": "%1$+d intelligence"
 }

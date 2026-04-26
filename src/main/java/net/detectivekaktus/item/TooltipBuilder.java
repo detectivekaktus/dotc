@@ -6,34 +6,47 @@ import net.minecraft.network.chat.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TooltipBuilder implements TooltipProvider {
+import net.detectivekaktus.DefenseOfTheCraft;
+
+public class TooltipBuilder {
     private final List<Component> components = new ArrayList<>();
+    private final String itemId;
 
-    public TooltipBuilder() { }
+    public TooltipBuilder(String itemId) {
+        this.itemId = itemId;
+    }
 
-    public TooltipBuilder getDescriptionComponent(String id) {
-        components.add(emitComponent("description", id, ChatFormatting.GRAY));
+    public TooltipBuilder description() {
+        components.add(emitComponent("description", ChatFormatting.GRAY));
         return this;
     }
 
-    public TooltipBuilder getStatsComponent(int strength, int agility, int intelligence) {
+    public TooltipBuilder stats(int strength, int agility, int intelligence) {
         components.add(emitComponent("strength", ChatFormatting.BLUE, strength));
         components.add(emitComponent("agility", ChatFormatting.BLUE, agility));
         components.add(emitComponent("intelligence", ChatFormatting.BLUE, intelligence));
         return this;
     }
 
-    public TooltipBuilder getActiveComponent(String id) {
-        components.add(emitComponent("active", id, ChatFormatting.GOLD));
+    public TooltipBuilder active() {
+        components.add(emitComponent("active", ChatFormatting.GOLD));
         return this;
     }
 
-    public TooltipBuilder getPassiveComponent(String id) {
-        components.add(emitComponent("passive", id, ChatFormatting.DARK_AQUA));
+    public TooltipBuilder passive() {
+        components.add(emitComponent("passive", ChatFormatting.DARK_AQUA));
         return this;
     }
 
     public List<Component> build() {
-        return components;
+        return new ArrayList<>(components);
+    }
+
+    private Component emitComponent(String prefix, ChatFormatting formatting) {
+        return Component.translatable(prefix + "." + DefenseOfTheCraft.MOD_ID + "." + itemId).withStyle(formatting);
+    }
+
+    private Component emitComponent(String prefix, ChatFormatting formatting, Object... args) {
+        return Component.translatable(prefix + "." + DefenseOfTheCraft.MOD_ID, args).withStyle(formatting);
     }
 }

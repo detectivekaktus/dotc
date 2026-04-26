@@ -7,9 +7,7 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.TooltipProvider;
-
-public class GlovesOfHaste extends Item implements TooltipProvider {
+public class GlovesOfHaste extends Item {
     public GlovesOfHaste(Properties properties) {
         super(properties);
     }

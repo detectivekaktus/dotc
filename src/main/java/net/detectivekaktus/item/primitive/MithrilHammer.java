@@ -8,9 +8,7 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.TooltipProvider;
-
-public class MithrilHammer extends PickaxeItem implements TooltipProvider {
+public class MithrilHammer extends PickaxeItem {
     public MithrilHammer(Tier tier, Properties properties) {
         super(tier, properties);
     }

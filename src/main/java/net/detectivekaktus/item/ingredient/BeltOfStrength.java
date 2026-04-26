@@ -7,9 +7,7 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.TooltipProvider;
-
-public class BeltOfStrength extends Item implements TooltipProvider {
+public class BeltOfStrength extends Item {
     public BeltOfStrength(Properties properties) {
         super(properties);
     }

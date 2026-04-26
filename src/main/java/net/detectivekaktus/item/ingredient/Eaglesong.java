@@ -7,9 +7,7 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.TooltipProvider;
-
-public class Eaglesong extends Item implements TooltipProvider {
+public class Eaglesong extends Item {
     public Eaglesong(Properties properties) {
         super(properties);
     }

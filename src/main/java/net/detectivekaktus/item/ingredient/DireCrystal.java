@@ -7,9 +7,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 
-import net.detectivekaktus.item.TooltipProvider;
-
-public class DireCrystal extends Item implements TooltipProvider {
+public class DireCrystal extends Item {
     public DireCrystal(Properties properties) {
         super(properties);
     }

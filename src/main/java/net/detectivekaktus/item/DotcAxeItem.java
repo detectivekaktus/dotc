@@ -9,13 +9,14 @@ import net.minecraft.world.item.TooltipFlag;
 import java.util.List;
 
 public class DotcAxeItem extends AxeItem {
-    private final TooltipBuilder tooltipBuilder = new TooltipBuilder();
+    private final TooltipBuilder tooltipBuilder;
 
-    public DotcAxeItem(Tier tier, Properties properties) {
+    public DotcAxeItem(Tier tier, Properties properties, TooltipBuilder tooltipBuilder) {
         super(tier, properties);
+        this.tooltipBuilder = tooltipBuilder;
     }
 
-    public TooltipBuilder tooltip() {
+    public TooltipBuilder tooltipBuilder() {
         return tooltipBuilder;
     }
 

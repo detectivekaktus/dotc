@@ -8,9 +8,7 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.TooltipProvider;
-
-public class DemonEdge extends SwordItem implements TooltipProvider {
+public class DemonEdge extends SwordItem {
     public DemonEdge(Tier tier, Properties properties) {
         super(tier, properties);
     }
