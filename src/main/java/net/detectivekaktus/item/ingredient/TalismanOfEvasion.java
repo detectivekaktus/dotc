@@ -7,15 +7,15 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.item.TooltipProvider;
 
-public class TalismanOfEvasion extends Item implements DotcItem {
+public class TalismanOfEvasion extends Item implements TooltipProvider {
     public TalismanOfEvasion(Properties properties) {
         super(properties);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("talisman_of_evasion"));
+        tooltip.add(getDescriptionComponent("talisman_of_evasion"));
     }
 }

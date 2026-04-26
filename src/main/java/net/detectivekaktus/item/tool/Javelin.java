@@ -14,9 +14,9 @@ import java.util.Optional;
 
 import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
 import net.detectivekaktus.damage.DotcDamageTypes;
-import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.item.TooltipProvider;
 
-public class Javelin extends SpearItem implements DotcItem, HasBonusDamage {
+public class Javelin extends SpearItem implements TooltipProvider, HasBonusDamage {
     public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_25;
     private static final float BONUS_DAMAGE = 2.0f;
 
@@ -26,7 +26,7 @@ public class Javelin extends SpearItem implements DotcItem, HasBonusDamage {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("javelin"));
+        tooltip.add(getDescriptionComponent("javelin"));
     }
 
     @Override

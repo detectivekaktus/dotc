@@ -8,9 +8,9 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.item.TooltipProvider;
 
-public class Sange extends SwordItem implements DotcItem {
+public class Sange extends SwordItem implements TooltipProvider {
     public static final float HP_REGEN_AMPLIFICATION = 0.12f;
 
     public Sange(Tier tier, Properties properties) {
@@ -19,6 +19,6 @@ public class Sange extends SwordItem implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("sange"));
+        tooltip.add(getDescriptionComponent("sange"));
     }
 }

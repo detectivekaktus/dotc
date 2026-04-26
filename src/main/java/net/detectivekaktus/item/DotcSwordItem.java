@@ -1,4 +1,4 @@
-package net.detectivekaktus.item.tool;
+package net.detectivekaktus.item;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -6,20 +6,21 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 
-import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
-import net.detectivekaktus.item.TooltipProvider;
-
 import java.util.List;
 
-public class Butterfly extends SwordItem implements TooltipProvider {
-    public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_20;
+public class DotcSwordItem extends SwordItem {
+    private final TooltipBuilder tooltipBuilder = new TooltipBuilder();
 
-    public Butterfly(Tier tier, Properties properties) {
+    public DotcSwordItem(Tier tier, Properties properties) {
         super(tier, properties);
+    }
+
+    public TooltipBuilder tooltip() {
+        return tooltipBuilder;
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getDescriptionComponent("butterfly"));
+        tooltip.addAll(tooltipBuilder.build());
     }
 }

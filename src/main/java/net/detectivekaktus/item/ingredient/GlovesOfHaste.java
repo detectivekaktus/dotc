@@ -7,15 +7,15 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.item.TooltipProvider;
 
-public class GlovesOfHaste extends Item implements DotcItem {
+public class GlovesOfHaste extends Item implements TooltipProvider {
     public GlovesOfHaste(Properties properties) {
         super(properties);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("gloves_of_haste"));
+        tooltip.add(getDescriptionComponent("gloves_of_haste"));
     }
 }

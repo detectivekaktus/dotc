@@ -1,6 +1,6 @@
 package net.detectivekaktus.item.tool;
 
-import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.item.TooltipProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
@@ -9,7 +9,7 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-public class Kaya extends SwordItem implements DotcItem {
+public class Kaya extends SwordItem implements TooltipProvider {
     public static final float MANA_COST_REDUCTION = 0.1f;
 
     public Kaya(Tier tier, Properties properties) {
@@ -18,6 +18,6 @@ public class Kaya extends SwordItem implements DotcItem {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("kaya"));
+        tooltip.add(getDescriptionComponent("kaya"));
     }
 }

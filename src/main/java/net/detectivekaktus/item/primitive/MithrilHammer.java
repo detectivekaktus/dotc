@@ -8,15 +8,15 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.item.TooltipProvider;
 
-public class MithrilHammer extends PickaxeItem implements DotcItem {
+public class MithrilHammer extends PickaxeItem implements TooltipProvider {
     public MithrilHammer(Tier tier, Properties properties) {
         super(tier, properties);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("mithril_hammer"));
+        tooltip.add(getDescriptionComponent("mithril_hammer"));
     }
 }

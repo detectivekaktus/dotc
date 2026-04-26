@@ -11,9 +11,9 @@ import java.util.List;
 import java.util.Optional;
 
 import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
-import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.item.TooltipProvider;
 
-public class Crystalys extends SwordItem implements DotcItem, Critable {
+public class Crystalys extends SwordItem implements TooltipProvider, Critable {
     public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_20;
     private static final float CRIT_PERCENT = 1.25f;
 
@@ -23,7 +23,7 @@ public class Crystalys extends SwordItem implements DotcItem, Critable {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("crystalys"));
+        tooltip.add(getDescriptionComponent("crystalys"));
     }
 
     @Override

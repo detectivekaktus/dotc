@@ -1,22 +1,26 @@
-package net.detectivekaktus.item.primitive;
+package net.detectivekaktus.item;
 
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.TooltipProvider;
+public class DotcAxeItem extends AxeItem {
+    private final TooltipBuilder tooltipBuilder = new TooltipBuilder();
 
-public class Claymore extends SwordItem implements TooltipProvider {
-    public Claymore(Tier tier, Properties properties) {
+    public DotcAxeItem(Tier tier, Properties properties) {
         super(tier, properties);
+    }
+
+    public TooltipBuilder tooltip() {
+        return tooltipBuilder;
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getDescriptionComponent("claymore"));
+        tooltip.addAll(tooltipBuilder.build());
     }
 }

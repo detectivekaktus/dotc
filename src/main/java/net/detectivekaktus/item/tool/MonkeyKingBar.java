@@ -14,10 +14,10 @@ import java.util.Optional;
 
 import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
 import net.detectivekaktus.damage.DotcDamageTypes;
-import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.item.TooltipProvider;
 import net.detectivekaktus.sound.item.DotcItemSounds;
 
-public class MonkeyKingBar extends SpearItem implements DotcItem, HasBonusDamage {
+public class MonkeyKingBar extends SpearItem implements TooltipProvider, HasBonusDamage {
     public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_50;
     private static final float BONUS_DAMAGE = 4.0f;
 
@@ -27,7 +27,7 @@ public class MonkeyKingBar extends SpearItem implements DotcItem, HasBonusDamage
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("monkey_king_bar"));
+        tooltip.add(getDescriptionComponent("monkey_king_bar"));
     }
 
     @Override

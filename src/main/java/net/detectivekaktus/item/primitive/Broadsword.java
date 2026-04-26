@@ -8,15 +8,15 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.item.TooltipProvider;
 
-public class Broadsword extends SwordItem implements DotcItem {
+public class Broadsword extends SwordItem implements TooltipProvider {
     public Broadsword(Tier tier, Properties properties) {
         super(tier, properties);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("broadsword"));
+        tooltip.add(getDescriptionComponent("broadsword"));
     }
 }

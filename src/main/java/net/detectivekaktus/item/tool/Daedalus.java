@@ -8,13 +8,13 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 
 import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
-import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.item.TooltipProvider;
 import net.detectivekaktus.sound.item.DotcItemSounds;
 
 import java.util.List;
 import java.util.Optional;
 
-public class Daedalus extends PickaxeItem implements DotcItem, Critable {
+public class Daedalus extends PickaxeItem implements TooltipProvider, Critable {
     public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_20;
     private static final float CRIT_PERCENT = 1.5f;
 
@@ -24,7 +24,7 @@ public class Daedalus extends PickaxeItem implements DotcItem, Critable {
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("daedalus"));
+        tooltip.add(getDescriptionComponent("daedalus"));
     }
 
     @Override

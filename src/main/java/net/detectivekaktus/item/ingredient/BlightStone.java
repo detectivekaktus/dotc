@@ -7,15 +7,15 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.item.TooltipProvider;
 
-public class BlightStone extends Item implements DotcItem {
+public class BlightStone extends Item implements TooltipProvider {
     public BlightStone(Properties properties) {
         super(properties);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("blight_stone"));
+        tooltip.add(getDescriptionComponent("blight_stone"));
     }
 }

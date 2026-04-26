@@ -7,15 +7,15 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.item.TooltipProvider;
 
-public class Eaglesong extends Item implements DotcItem {
+public class Eaglesong extends Item implements TooltipProvider {
     public Eaglesong(Properties properties) {
         super(properties);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("eaglesong"));
+        tooltip.add(getDescriptionComponent("eaglesong"));
     }
 }

@@ -7,15 +7,15 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.item.TooltipProvider;
 
-public class SacredRelic extends Item implements DotcItem {
+public class SacredRelic extends Item implements TooltipProvider {
     public SacredRelic(Properties properties) {
         super(properties);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("sacred_relic"));
+        tooltip.add(getDescriptionComponent("sacred_relic"));
     }
 }

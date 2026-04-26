@@ -1,17 +1,18 @@
 package net.detectivekaktus.item;
 
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.PickaxeItem;
+import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-public class DotcItem extends Item {
+public class DotcPickaxeItem extends PickaxeItem {
     private final TooltipBuilder tooltipBuilder = new TooltipBuilder();
 
-    public DotcItem(Properties properties) {
-        super(properties);
+    public DotcPickaxeItem(Tier tier, Properties properties) {
+        super(tier, properties);
     }
 
     public TooltipBuilder tooltip() {

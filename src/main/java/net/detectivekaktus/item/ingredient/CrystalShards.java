@@ -7,15 +7,15 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.item.TooltipProvider;
 
-public class CrystalShards extends Item implements DotcItem {
+public class CrystalShards extends Item implements TooltipProvider {
     public CrystalShards(Properties properties) {
         super(properties);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("crystal_shards"));
+        tooltip.add(getDescriptionComponent("crystal_shards"));
     }
 }

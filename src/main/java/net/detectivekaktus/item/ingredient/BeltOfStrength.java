@@ -7,15 +7,15 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.item.TooltipProvider;
 
-public class BeltOfStrength extends Item implements DotcItem {
+public class BeltOfStrength extends Item implements TooltipProvider {
     public BeltOfStrength(Properties properties) {
         super(properties);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("belt_of_strength"));
+        tooltip.add(getDescriptionComponent("belt_of_strength"));
     }
 }

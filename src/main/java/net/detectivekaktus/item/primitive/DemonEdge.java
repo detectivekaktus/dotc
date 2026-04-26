@@ -8,15 +8,15 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.DotcItem;
+import net.detectivekaktus.item.TooltipProvider;
 
-public class DemonEdge extends SwordItem implements DotcItem {
+public class DemonEdge extends SwordItem implements TooltipProvider {
     public DemonEdge(Tier tier, Properties properties) {
         super(tier, properties);
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("demon_edge"));
+        tooltip.add(getDescriptionComponent("demon_edge"));
     }
 }
