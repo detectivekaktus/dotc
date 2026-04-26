@@ -1,6 +1,7 @@
-package net.detectivekaktus.item.tool;
+package net.detectivekaktus.item;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.EquipmentSlotGroup;
 import net.minecraft.world.entity.LivingEntity;
@@ -10,13 +11,19 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TieredItem;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.ItemAttributeModifiers;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class SpearItem extends TieredItem {
-    public SpearItem(Tier tier, Properties properties) {
+import java.util.List;
+
+public class DotcSpearItem extends TieredItem {
+    private final List<Component> components;
+
+    public DotcSpearItem(Tier tier, Properties properties, TooltipBuilder tooltipBuilder) {
         super(tier, properties);
+        this.components = tooltipBuilder.build();
     }
 
     public static ItemAttributeModifiers createAttributes(Tier tier, int attackDamage, float attackSpeed) {
@@ -55,5 +62,10 @@ public class SpearItem extends TieredItem {
     @Override
     public void postHurtEnemy(ItemStack itemStack, LivingEntity livingEntity, LivingEntity livingEntity2) {
         itemStack.hurtAndBreak(1, livingEntity2, EquipmentSlot.MAINHAND);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
+        tooltip.addAll(components);
     }
 }

@@ -1,4 +1,4 @@
-package net.detectivekaktus.item.primitive;
+package net.detectivekaktus.item;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
@@ -8,15 +8,16 @@ import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.DotcItem;
+public class DotcSwordItem extends SwordItem {
+    private final List<Component> components;
 
-public class Claymore extends SwordItem implements DotcItem {
-    public Claymore(Tier tier, Properties properties) {
+    public DotcSwordItem(Tier tier, Properties properties, TooltipBuilder tooltipBuilder) {
         super(tier, properties);
+        this.components = tooltipBuilder.build();
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("claymore"));
+        tooltip.addAll(components);
     }
 }

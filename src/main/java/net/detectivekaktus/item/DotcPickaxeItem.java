@@ -1,22 +1,23 @@
-package net.detectivekaktus.item.primitive;
+package net.detectivekaktus.item;
 
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.SwordItem;
+import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 
 import java.util.List;
 
-import net.detectivekaktus.item.DotcItem;
+public class DotcPickaxeItem extends PickaxeItem {
+    private final List<Component> components;
 
-public class Broadsword extends SwordItem implements DotcItem {
-    public Broadsword(Tier tier, Properties properties) {
+    public DotcPickaxeItem(Tier tier, Properties properties, TooltipBuilder tooltipBuilder) {
         super(tier, properties);
+        this.components = tooltipBuilder.build();
     }
 
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltip, TooltipFlag type) {
-        tooltip.add(getTooltipComponent("broadsword"));
+        tooltip.addAll(components);
     }
 }
