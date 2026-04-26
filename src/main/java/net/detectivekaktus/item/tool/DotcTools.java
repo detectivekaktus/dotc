@@ -161,7 +161,7 @@ public class DotcTools {
             "kaya"
     );
     public static final Item ECHO_SABRE = DotcItems.register(
-            new Kaya(
+            new DotcSwordItem(
                     DotcToolMaterial.RADIANT_ARTEFACT,
                     new Item.Properties()
                             .attributes(DotcSwordItem.createAttributes(
