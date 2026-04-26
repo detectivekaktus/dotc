@@ -13,16 +13,6 @@ import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ItemStatsComponent;
 
 public class PlayerManager {
-    private static boolean hasStatChanges(PlayerStats.StatsData stats, PlayerMana.ManaData mana, Config config) {
-        return stats.getStrength() != config.strength
-                || stats.getAgility() != config.agility
-                || stats.getIntelligence() != config.intelligence
-                || Math.abs(stats.getEvasion() - config.evasion) > 1e-5f
-                || Math.abs(stats.getHpRegenAmplification() - config.hpRegenAmplification) > 1e-5f
-                || Math.abs(stats.getMoveSpeed() - config.moveSpeed) > 1e-5f
-                || Math.abs(mana.getManaCostReduction() - config.manaCostReduction) > 1e-5f;
-    }
-
     public static void updateStats(ServerPlayer player) {
         var config = new PlayerManager.Config(player);
         var hotbarItems = player.getInventory().items.subList(0, 9);
@@ -48,6 +38,11 @@ public class PlayerManager {
                 config.addMoveSpeed(moveSpeed);
             }
 
+            if (item.has(DotcComponents.BONUS_MANA_REGEN_COMPONENT)) {
+                var manaRegen = item.get(DotcComponents.BONUS_MANA_REGEN_COMPONENT);
+                config.addBonusManaRegen(manaRegen);
+            }
+
             if (item.has(DotcComponents.MANA_COST_REDUCTION_COMPONENT)) {
                 var reduction = item.get(DotcComponents.MANA_COST_REDUCTION_COMPONENT);
                 config.addManaCostReduction(reduction);
@@ -55,6 +50,17 @@ public class PlayerManager {
         }
 
         applyStats(config);
+    }
+
+    private static boolean hasStatChanges(PlayerStats.StatsData stats, PlayerMana.ManaData mana, Config config) {
+        return stats.getStrength() != config.strength
+                || stats.getAgility() != config.agility
+                || stats.getIntelligence() != config.intelligence
+                || Math.abs(stats.getEvasion() - config.evasion) > 1e-5f
+                || Math.abs(stats.getHpRegenAmplification() - config.hpRegenAmplification) > 1e-5f
+                || Math.abs(stats.getMoveSpeed() - config.moveSpeed) > 1e-5f
+                || Math.abs(mana.getBonusManaRegen() - config.bonusManaRegen) > 1e-5f
+                || Math.abs(mana.getManaCostReduction() - config.manaCostReduction) > 1e-5f;
     }
 
     private static void applyStats(Config config) {
@@ -74,6 +80,7 @@ public class PlayerManager {
         stats.setEvasionScale(0);
 
         stats.setIntelligence(config.intelligence);
+        mana.setBonusManaRegen(config.bonusManaRegen);
         applyIntelligence(config.player, config.intelligence);
         mana.setManaCostReduction(config.manaCostReduction);
     }
@@ -161,7 +168,7 @@ public class PlayerManager {
         var maxMana = DotcAttachmentRules.DEFAULT_MAX_MANA + (val * StatConversionRules.MANA_PER_INTELLIGENCE);
         mana.setMaxMana(maxMana);
 
-        var manaRegen = DotcAttachmentRules.DEFAULT_MANA_REGEN + (val * StatConversionRules.MANA_REGEN_PER_INTELLIGENCE);
+        var manaRegen = DotcAttachmentRules.DEFAULT_MANA_REGEN + (val * StatConversionRules.MANA_REGEN_PER_INTELLIGENCE) + mana.getBonusManaRegen();
         mana.setManaRegen(manaRegen);
 
         var stats = PlayerStats.get(player);
@@ -173,17 +180,10 @@ public class PlayerManager {
         public final ServerPlayer player;
 
         int strength, agility, intelligence;
-        float evasion, moveSpeed, hpRegenAmplification, manaCostReduction;
+        float evasion, moveSpeed, hpRegenAmplification, bonusManaRegen, manaCostReduction;
 
         public Config(ServerPlayer player) {
             this.player = player;
-
-            this.strength = 0;
-            this.agility = 0;
-            this.intelligence = 0;
-            this.evasion = 0.0f;
-            this.moveSpeed = 0.0f;
-            this.hpRegenAmplification = 0.0f;
         }
 
         public void addStats(ItemStatsComponent component) {
@@ -202,6 +202,10 @@ public class PlayerManager {
 
         public void addHpRegenAmplification(float amplification) {
             this.hpRegenAmplification = 1.0f - (1.0f - this.hpRegenAmplification) * (1.0f - amplification);
+        }
+
+        public void addBonusManaRegen(float manaRegen) {
+            this.bonusManaRegen += manaRegen;
         }
 
         public void addManaCostReduction(float reduction) {

@@ -42,6 +42,7 @@ public class DotcComponents {
 
     public static final DataComponentType<Float> HP_REGEN_AMPLIFICATION_COMPONENT = registerFloat("hp_regen_amplification");
 
+    public static final DataComponentType<Float> BONUS_MANA_REGEN_COMPONENT = registerFloat("bonus_mana_regen");
     public static final DataComponentType<Float> MANA_COST_REDUCTION_COMPONENT = registerFloat("mana_cost_reduction");
 
     public static <T> DataComponentType<T> register(String id, Codec<T> codec) {
