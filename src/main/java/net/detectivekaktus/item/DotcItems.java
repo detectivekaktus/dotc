@@ -71,6 +71,7 @@ public class DotcItems {
                 DotcTools.DAEDALUS,
                 DotcTools.BUTTERFLY,
                 DotcTools.MONKEY_KING_BAR,
+                DotcPrimitives.DIVINE_RAPIER,
 
                 DotcTools.SANGE,
                 DotcTools.YASHA,

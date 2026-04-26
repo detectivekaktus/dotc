@@ -103,6 +103,17 @@ public class DotcPrimitives {
             ),
             "demon_edge"
     );
+    public static final Item DIVINE_RAPIER = DotcItems.register(
+            new DotcSwordItem(
+                    DotcToolMaterial.RADIANT_ARTEFACT,
+                    new Item.Properties()
+                            .attributes(DotcSwordItem.createAttributes(
+                                    DotcToolMaterial.RADIANT_ARTEFACT, 10, -3.0f
+                            )),
+                    new TooltipBuilder("divine_rapier").description()
+            ),
+            "divine_rapier"
+    );
 
     public static void initialize() {
     }

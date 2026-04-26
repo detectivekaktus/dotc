@@ -18,6 +18,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 import net.detectivekaktus.client.render.DotcItemModels;
+import net.detectivekaktus.item.primitive.DotcPrimitives;
 import net.detectivekaktus.item.tool.DotcTools;
 
 @Mixin(ItemRenderer.class)
@@ -46,6 +47,8 @@ public class ItemRendererMixin {
             return itemModelShaper.getModelManager().getModel(DotcItemModels.DAEDALUS_IN_HAND);
         else if (itemStack.is(DotcTools.BUTTERFLY))
             return itemModelShaper.getModelManager().getModel(DotcItemModels.BUTTERFLY_IN_HAND);
+        else if (itemStack.is(DotcPrimitives.DIVINE_RAPIER))
+            return itemModelShaper.getModelManager().getModel(DotcItemModels.DIVINE_RAPIER_IN_HAND);
         return original;
     }
 
@@ -77,6 +80,8 @@ public class ItemRendererMixin {
                 return itemModelShaper.getModelManager().getModel(DotcItemModels.DAEDALUS);
             else if (itemStack.is(DotcTools.BUTTERFLY))
                 return itemModelShaper.getModelManager().getModel(DotcItemModels.BUTTERFLY);
+            else if (itemStack.is(DotcPrimitives.DIVINE_RAPIER))
+                return itemModelShaper.getModelManager().getModel(DotcItemModels.DIVINE_RAPIER);
         }
         return original;
     }

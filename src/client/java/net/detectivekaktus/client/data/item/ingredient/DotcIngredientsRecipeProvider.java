@@ -81,14 +81,16 @@ public class DotcIngredientsRecipeProvider extends FabricRecipeProvider {
                 )
                 .save(exporter);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DotcIngredients.SACRED_RELIC)
-                .requires(Items.HEART_OF_THE_SEA, 2)
-                .requires(Items.AMETHYST_SHARD)
-                .requires(Items.ECHO_SHARD)
-                .requires(Items.PHANTOM_MEMBRANE)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DotcIngredients.SACRED_RELIC)
+                .pattern("$#$")
+                .pattern("#@#")
+                .pattern(" # ")
+                .define('@', Items.HEART_OF_THE_SEA)
+                .define('#', Items.GOLD_INGOT)
+                .define('$', DotcIngredients.DIRE_CRYSTAL)
                 .unlockedBy(
-                        "has_sacred_relic_components",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(Items.HEART_OF_THE_SEA, Items.ECHO_SHARD)
+                        "has_heart_of_the_sea",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(Items.HEART_OF_THE_SEA)
                 )
                 .save(exporter);
 

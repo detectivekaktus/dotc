@@ -119,6 +119,19 @@ public class DotcComponentsRecipeProvider extends FabricRecipeProvider {
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.DIRE_CRYSTAL)
                 )
                 .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DotcPrimitives.DIVINE_RAPIER)
+                .pattern(" | ")
+                .pattern(" @ ")
+                .pattern(" # ")
+                .define('|', Items.NETHERITE_SWORD)
+                .define('@', DotcPrimitives.DEMON_EDGE)
+                .define('#', DotcIngredients.SACRED_RELIC)
+                .unlockedBy(
+                        "has_sacred_relic",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.SACRED_RELIC)
+                )
+                .save(exporter);
     }
 
     @Override
