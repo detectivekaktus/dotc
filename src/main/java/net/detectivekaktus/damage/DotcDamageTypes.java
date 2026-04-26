@@ -9,6 +9,7 @@ import net.detectivekaktus.DefenseOfTheCraft;
 
 public class DotcDamageTypes {
     public static final ResourceKey<DamageType> MAGICAL = register("magical");
+    public static final ResourceKey<DamageType> PHYSICAL = register("physical");
 
     public static ResourceKey<DamageType> register(String id) {
         return ResourceKey.create(
