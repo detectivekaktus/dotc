@@ -93,6 +93,10 @@
 
 
 
+  "item.defense-of-the-craft.echo_sabre": "Echo Sabre",
+  "description.defense-of-the-craft.echo_sabre": "A deceptively swift blade imbued with resonant magic.",
+  "passive.defense-of-the-craft.echo_sabre": "The next attack grants the wielder a buff that greatly increases attack speed for one attack. Grants the wielder 1.75 mana regeneration.",
+
   "item.defense-of-the-craft.monkey_king_bar": "Monkey King Bar",
   "description.defense-of-the-craft.monkey_king_bar": "A powerful staff used by a master warrior.",
   "passive.defense-of-the-craft.monkey_king_bar": "Grants the wielder's attack a 50% chance to pierce through evasion and deal bonus magical damage.",

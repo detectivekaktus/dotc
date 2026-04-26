@@ -160,6 +160,28 @@ public class DotcTools {
             ),
             "kaya"
     );
+    public static final Item ECHO_SABRE = DotcItems.register(
+            new Kaya(
+                    DotcToolMaterial.RADIANT_ARTEFACT,
+                    new Item.Properties()
+                            .attributes(DotcSwordItem.createAttributes(
+                                    DotcToolMaterial.RADIANT_ARTEFACT, 2, -2.0f
+                            ))
+                            .component(
+                                    DotcComponents.ITEM_STATS_COMPONENT,
+                                    new ItemStatsComponent(15, 0, 0)
+                            )
+                            .component(
+                                    DotcComponents.BONUS_MANA_REGEN_COMPONENT,
+                                    1.75f
+                            ),
+                    new TooltipBuilder("echo_sabre")
+                            .description()
+                            .stats(15, 0, 0)
+                            .passive()
+            ),
+            "echo_sabre"
+    );
 
     public static void initialize() { }
 }

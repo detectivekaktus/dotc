@@ -24,7 +24,7 @@ public class DotcPrimitives {
                     DotcToolMaterial.RADIANT_COMPONENT,
                     new Item.Properties()
                             .attributes(DotcSwordItem.createAttributes(
-                                    DotcToolMaterial.RADIANT_COMPONENT, 4, -2.0f
+                                    DotcToolMaterial.RADIANT_COMPONENT, 2, -2.0f
                             )),
                     new TooltipBuilder("broadsword").description()
             ),
@@ -35,7 +35,7 @@ public class DotcPrimitives {
                     DotcToolMaterial.DIRE_COMPONENT,
                     new Item.Properties()
                             .attributes(DotcSwordItem.createAttributes(
-                                    DotcToolMaterial.DIRE_COMPONENT, 4, -1.5f
+                                    DotcToolMaterial.DIRE_COMPONENT, 3, -1.5f
                             )),
                     new TooltipBuilder("claymore").description()
             ),
@@ -46,7 +46,7 @@ public class DotcPrimitives {
                     DotcToolMaterial.DIRE_COMPONENT,
                     new Item.Properties()
                             .attributes(DotcAxeItem.createAttributes(
-                                    DotcToolMaterial.DIRE_COMPONENT, 5, -3.0f
+                                    DotcToolMaterial.DIRE_COMPONENT, 4, -3.0f
                             ))
                             .component(
                                     DotcComponents.ITEM_STATS_COMPONENT,

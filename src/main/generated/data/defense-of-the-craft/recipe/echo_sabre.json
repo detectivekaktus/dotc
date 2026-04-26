@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "#": {
+      "item": "defense-of-the-craft:void_stone"
+    },
+    "@": {
+      "item": "defense-of-the-craft:ogre_axe"
+    },
+    "|": {
+      "item": "defense-of-the-craft:broadsword"
+    }
+  },
+  "pattern": [
+    " | ",
+    " @ ",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "defense-of-the-craft:echo_sabre"
+  }
+}

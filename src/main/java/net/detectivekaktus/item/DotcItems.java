@@ -68,6 +68,7 @@ public class DotcItems {
                 DotcIngredients.BAND_OF_ELVENSKIN,
                 DotcIngredients.ROBE_OF_THE_MAGI,
 
+                DotcTools.ECHO_SABRE,
                 DotcTools.CRYSTALYS,
                 DotcTools.DAEDALUS,
                 DotcTools.BUTTERFLY,
