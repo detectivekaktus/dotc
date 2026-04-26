@@ -1,8 +1,10 @@
 package net.detectivekaktus.mixin.player;
 
+import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 
 import org.spongepowered.asm.mixin.Mixin;
@@ -20,6 +22,7 @@ import net.detectivekaktus.component.records.ProcableComponent;
 import net.detectivekaktus.core.rng.PseudoRandom;
 import net.detectivekaktus.damage.DotcDamageTypes;
 import net.detectivekaktus.item.tool.Critable;
+import net.detectivekaktus.item.tool.DotcTools;
 import net.detectivekaktus.item.tool.HasBonusDamage;
 import net.detectivekaktus.core.player.CanHitThroughEvasion;
 import net.detectivekaktus.core.player.Evadable;
@@ -156,24 +159,46 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
             return hurt;
 
         var stack = player.getMainHandItem();
-        if (!stack.has(DotcComponents.PROCABLE_COMPONENT) || !(stack.getItem() instanceof HasBonusDamage item))
-            return hurt;
+        var item = stack.getItem();
 
-        if (!dotc$proccedPostAttackDamage)
-            return hurt;
+        if (stack.has(DotcComponents.PROCABLE_COMPONENT) && (item instanceof HasBonusDamage itemWithBonusDamage)) {
+            if (!dotc$proccedPostAttackDamage)
+                return hurt;
 
-        var damageSource = item.getBonusDamageSource(player);
-        var bonusDamage = item.getBonusDamage();
-        var sound = item.getProcSound();
+            var damageSource = itemWithBonusDamage.getBonusDamageSource(player);
+            var damage = itemWithBonusDamage.getBonusDamage();
+            var sound = itemWithBonusDamage.getProcSound();
 
-        sound.ifPresent(soundEvent -> player.level().playSound(
-                null,
-                player.getX(), player.getY(), player.getZ(),
-                soundEvent,
-                player.getSoundSource(),
-                1.0f, 1.0f
-        ));
-        entity.hurt(damageSource, bonusDamage);
+            sound.ifPresent(soundEvent -> player.level().playSound(
+                    null,
+                    player.getX(), player.getY(), player.getZ(),
+                    soundEvent,
+                    player.getSoundSource(),
+                    1.0f, 1.0f
+            ));
+            entity.hurt(damageSource, damage);
+        }
+        else if (stack.is(DotcTools.ECHO_SABRE)) {
+            if (player.getCooldowns().isOnCooldown(item))
+                return hurt;
+
+            var damageSource = new DamageSource(
+                    player.registryAccess()
+                            .registryOrThrow(Registries.DAMAGE_TYPE)
+                            .getHolderOrThrow(DotcDamageTypes.PHYSICAL)
+            );
+
+            var damage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
+            var scale = player.getAttackStrengthScale(0.5f);
+            damage *= 0.2f + scale * scale * 0.8f;
+            damage += item.getAttackDamageBonus(entity, damage, damageSource);
+
+            // like in dota the echo sabre attack doesn't crit if the first one did,
+            // so there's no f *= 1.5 in case of a crit
+
+            player.getCooldowns().addCooldown(item, 5 * 20);
+            entity.hurt(damageSource, damage);
+        }
 
         return hurt;
     }
