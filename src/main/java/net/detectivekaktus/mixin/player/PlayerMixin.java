@@ -1,10 +1,15 @@
 package net.detectivekaktus.mixin.player;
 
+import com.mojang.authlib.GameProfile;
+
+import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 
+import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -14,19 +19,16 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
-import net.detectivekaktus.attach.PlayerStats;
-import net.detectivekaktus.component.DotcComponents;
-import net.detectivekaktus.component.records.ProcableComponent;
-import net.detectivekaktus.core.rng.PseudoRandom;
-import net.detectivekaktus.damage.DotcDamageTypes;
-import net.detectivekaktus.item.tool.Critable;
-import net.detectivekaktus.item.tool.HasBonusDamage;
 import net.detectivekaktus.core.player.CanHitThroughEvasion;
 import net.detectivekaktus.core.player.Evadable;
-import net.detectivekaktus.sound.DotcSounds;
+import net.detectivekaktus.core.player.PlayerCombatManager;
 
 @Mixin(Player.class)
 public class PlayerMixin implements Evadable, CanHitThroughEvasion {
+    @Unique
+    @Final
+    private PlayerCombatManager combatManager;
+
     @Unique
     private boolean dotc$proccedPostAttackDamage = false;
     @Unique
@@ -44,11 +46,13 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
         dotc$proccedPostAttackDamage = evaded;
     }
 
+    @Unique
     @Override
     public boolean getEvaded() {
         return dotc$evaded;
     }
 
+    @Unique
     @Override
     public void setEvaded(boolean evaded) {
         dotc$evaded = evaded;
@@ -57,6 +61,18 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
     @Unique
     private boolean isNotMixinTarget(Player player) {
         return player.level().isClientSide || !(player instanceof ServerPlayer);
+    }
+
+    @Inject(
+            method = "<init>",
+            at = @At(value = "TAIL")
+    )
+    private void addCombatManager(Level level, BlockPos blockPos, float f, GameProfile gameProfile, CallbackInfo callbackInfo) {
+        var player = (Player) (Object) this;
+        if (isNotMixinTarget(player))
+            return;
+
+        this.combatManager = new PlayerCombatManager(player);
     }
 
     @ModifyVariable(
@@ -73,36 +89,7 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
         if (isNotMixinTarget(player))
             return original;
 
-        var stack = player.getMainHandItem();
-        if (!stack.has(DotcComponents.PROCABLE_COMPONENT)
-                || !(stack.getItem() instanceof Critable item))
-            return original;
-
-        var component = stack.get(DotcComponents.PROCABLE_COMPONENT);
-        var chance = PseudoRandom.getProcChance(component.baseChance(), component.scale());
-        if (player.getRandom().nextFloat() > chance) {
-            stack.set(
-                    DotcComponents.PROCABLE_COMPONENT,
-                    new ProcableComponent(component.baseChance(), component.scale() + 1)
-            );
-            return original;
-        }
-
-        stack.set(
-                DotcComponents.PROCABLE_COMPONENT,
-                new ProcableComponent(component.baseChance(), 0)
-        );
-
-        var sound = item.getProcSound();
-        sound.ifPresent(soundEvent -> player.level().playSound(
-                null,
-                player.getX(), player.getY(), player.getZ(),
-                soundEvent,
-                player.getSoundSource(),
-                1.0f, 1.0f
-        ));
-
-        return original * item.getCritPercent();
+        return combatManager.crit(original);
     }
 
     @Inject(
@@ -118,26 +105,7 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
         if (isNotMixinTarget(player))
             return;
 
-        dotc$proccedPostAttackDamage = false;
-        var stack = player.getMainHandItem();
-        if (!stack.has(DotcComponents.PROCABLE_COMPONENT) || !(stack.getItem() instanceof HasBonusDamage))
-            return;
-
-        var component = stack.get(DotcComponents.PROCABLE_COMPONENT);
-        var chance = PseudoRandom.getProcChance(component.baseChance(), component.scale());
-        if (player.getRandom().nextFloat() > chance) {
-            stack.set(
-                    DotcComponents.PROCABLE_COMPONENT,
-                    new ProcableComponent(component.baseChance(), component.scale() + 1)
-            );
-            return;
-        }
-
-        stack.set(
-                DotcComponents.PROCABLE_COMPONENT,
-                new ProcableComponent(component.baseChance(), 0)
-        );
-        dotc$proccedPostAttackDamage = true;
+        combatManager.calculateProcs();
     }
 
     @ModifyExpressionValue(
@@ -155,39 +123,7 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
         if (isNotMixinTarget(player))
             return hurt;
 
-        var stack = player.getMainHandItem();
-        if (!stack.has(DotcComponents.PROCABLE_COMPONENT) || !(stack.getItem() instanceof HasBonusDamage item))
-            return hurt;
-
-        if (!dotc$proccedPostAttackDamage)
-            return hurt;
-
-        var damageSource = item.getBonusDamageSource(player);
-        var bonusDamage = item.getBonusDamage();
-        var sound = item.getProcSound();
-
-        sound.ifPresent(soundEvent -> player.level().playSound(
-                null,
-                player.getX(), player.getY(), player.getZ(),
-                soundEvent,
-                player.getSoundSource(),
-                1.0f, 1.0f
-        ));
-        entity.hurt(damageSource, bonusDamage);
-
-        return hurt;
-    }
-
-    @Unique
-    private void playEvasionSound() {
-        var entity = (Player) (Object) this;
-        entity.level().playSound(
-                null,
-                entity.getX(), entity.getY(), entity.getZ(),
-                DotcSounds.EVADED,
-                entity.getSoundSource(),
-                1.0f, 1.0f
-        );
+        return combatManager.proc(entity, hurt);
     }
 
     @Inject(
@@ -201,38 +137,11 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
     )
     private void applyEvasion(DamageSource damageSource, float f, CallbackInfo callbackInfo) {
         var player = (Player) (Object) this;
-        if (isNotMixinTarget(player) || damageSource.is(DotcDamageTypes.MAGICAL))
+        if (isNotMixinTarget(player))
             return;
 
-        dotc$evaded = false;
-        var stats = PlayerStats.get(player);
-        var evasion = stats.getEvasion();
-        var evasionChance = PseudoRandom.getProcChance(evasion, stats.getEvasionScale());
-        if (player.getRandom().nextFloat() > evasionChance) {
-            stats.addEvasionScale(1);
-            return;
-        }
-
-        stats.setEvasionScale(0);
-
-        var attacker = damageSource.getEntity();
-        if (attacker == null)
-            return;
-
-        if (!(attacker instanceof ServerPlayer)) {
-            dotc$evaded = true;
-            playEvasionSound();
+        if (combatManager.evade(damageSource))
             callbackInfo.cancel();
-            return;
-        }
-
-        var hitThrough = ((CanHitThroughEvasion) attacker).getHitThroughEvasion();
-        if (hitThrough)
-            return;
-
-        dotc$evaded = true;
-        playEvasionSound();
-        callbackInfo.cancel();
     }
 
     @ModifyVariable(
@@ -245,10 +154,9 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
     )
     private float applyDamageReduction(float original, DamageSource damageSource) {
         var player = (Player) (Object) this;
-        if (isNotMixinTarget(player) || !damageSource.is(DotcDamageTypes.MAGICAL))
+        if (isNotMixinTarget(player))
             return original;
 
-        var stats = PlayerStats.get(player);
-        return original * (1.0f - stats.getMagicResistance());
+        return combatManager.reduceDamage(original, damageSource);
     }
 }

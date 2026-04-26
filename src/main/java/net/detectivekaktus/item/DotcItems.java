@@ -47,6 +47,7 @@ public class DotcItems {
                 DotcIngredients.DIRE_CRYSTAL_DUST,
                 DotcIngredients.MITHRIL_INGOT,
 
+                DotcIngredients.VOID_STONE,
                 DotcIngredients.TALISMAN_OF_EVASION,
                 DotcIngredients.EAGLESONG,
                 DotcIngredients.SACRED_RELIC,
@@ -67,6 +68,7 @@ public class DotcItems {
                 DotcIngredients.BAND_OF_ELVENSKIN,
                 DotcIngredients.ROBE_OF_THE_MAGI,
 
+                DotcTools.ECHO_SABRE,
                 DotcTools.CRYSTALYS,
                 DotcTools.DAEDALUS,
                 DotcTools.BUTTERFLY,

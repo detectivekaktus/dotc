@@ -74,6 +74,10 @@
 
 
 
+  "item.defense-of-the-craft.void_stone": "Void Stone",
+  "description.defense-of-the-craft.void_stone": "Jewelry that was once used to channel nether realm magic, this ring pulses with energy.",
+  "passive.defense-of-the-craft.void_stone": "Grants the wielder 1.75 mana regeneration.",
+
   "item.defense-of-the-craft.sacred_relic": "Sacred Relic",
   "description.defense-of-the-craft.sacred_relic": "An ancient weapon that often turns the tides of war.",
 
@@ -88,6 +92,10 @@
   "description.defense-of-the-craft.demon_edge": "One of the oldest weapons forged by the Demon-Smith Abzidian, it killed its maker when he tested its edge.",
 
 
+
+  "item.defense-of-the-craft.echo_sabre": "Echo Sabre",
+  "description.defense-of-the-craft.echo_sabre": "A deceptively swift blade imbued with resonant magic.",
+  "passive.defense-of-the-craft.echo_sabre": "The next attack grants the wielder a buff that greatly increases attack speed for one attack. Grants the wielder 1.75 mana regeneration.",
 
   "item.defense-of-the-craft.monkey_king_bar": "Monkey King Bar",
   "description.defense-of-the-craft.monkey_king_bar": "A powerful staff used by a master warrior.",
@@ -125,6 +133,7 @@
 
 
   "death.attack.defense-of-the-craft.magical": "%1$s died from Defense Of The Craft magic!",
+  "death.attack.defense-of-the-craft.physical": "%1$s died from Defense Of The Craft physical damage!",
 
 
 

@@ -111,6 +111,19 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcPrimitives.STAFF_OF_WIZARDRY)
                 )
                 .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DotcTools.ECHO_SABRE)
+                .pattern(" | ")
+                .pattern(" @ ")
+                .pattern(" # ")
+                .define('|', DotcPrimitives.BROADSWORD)
+                .define('@', DotcPrimitives.OGRE_AXE)
+                .define('#', DotcIngredients.VOID_STONE)
+                .unlockedBy(
+                        "has_broadsword",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcPrimitives.BROADSWORD)
+                )
+                .save(exporter);
     }
 
     @Override

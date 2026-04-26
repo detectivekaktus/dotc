@@ -11,7 +11,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.detectivekaktus.core.player.PlayerManager;
+import net.detectivekaktus.core.player.PlayerStatManager;
 
 @Mixin(ServerPlayer.class)
 public class ServerPlayerMixin {
@@ -20,7 +20,7 @@ public class ServerPlayerMixin {
         @Override
         public void slotChanged(AbstractContainerMenu abstractContainerMenu, int i, ItemStack itemStack) {
             var player = (ServerPlayer) (Object) ServerPlayerMixin.this;
-            PlayerManager.updateStats(player);
+            PlayerStatManager.updateStats(player);
         }
 
         @Override

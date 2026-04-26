@@ -38,6 +38,12 @@ public class PlayerMana {
                     floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_MANA_REGEN)
                             .persistent(Codec.FLOAT)
     );
+    public static final AttachmentType<Float> BONUS_MANA_REGEN = AttachmentRegistry.create(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "bonus_mana_regen"),
+            floatBuilder ->
+                    floatBuilder.initializer(() -> 0.0f)
+                            .persistent(Codec.FLOAT)
+    );
 
     public static final AttachmentType<Integer> MANA_TICK = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "mana_tick"),
@@ -120,6 +126,19 @@ public class PlayerMana {
             return setOrFallback(
                     MANA_REGEN,
                     Math.max(val, DotcAttachmentRules.DEFAULT_MANA_REGEN),
+                    current
+            );
+        }
+
+        public float getBonusManaRegen() {
+            return target.getAttachedOrCreate(BONUS_MANA_REGEN);
+        }
+
+        public float setBonusManaRegen(float val) {
+            var current = getBonusManaRegen();
+            return setOrFallback(
+                    BONUS_MANA_REGEN,
+                    Math.max(val, 0.0f),
                     current
             );
         }

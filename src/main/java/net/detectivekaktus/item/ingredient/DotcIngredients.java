@@ -127,6 +127,19 @@ public class DotcIngredients {
             ),
             "robe_of_the_magi"
     );
+    public static final Item VOID_STONE = DotcItems.register(
+            new DotcItem(
+                    new Item.Properties()
+                            .component(
+                                    DotcComponents.BONUS_MANA_REGEN_COMPONENT,
+                                    1.75f
+                            ),
+                    new TooltipBuilder("void_stone")
+                            .description()
+                            .passive()
+            ),
+            "void_stone"
+    );
     public static final Item TALISMAN_OF_EVASION = DotcItems.register(
             new DotcItem(
                     new Item.Properties()
