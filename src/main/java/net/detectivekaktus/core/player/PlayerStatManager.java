@@ -93,6 +93,8 @@ public class PlayerStatManager {
     private void applyStrength(int val) {
         var maxHpAttr = player.getAttribute(Attributes.MAX_HEALTH);
         if (maxHpAttr != null) {
+            var hpPercent = (player.getHealth() / maxHpAttr.getValue());
+
             if (val == 0) {
                 maxHpAttr.removeModifier(DotcAttributeModifiers.MAX_HP_BONUS_MODIFIER_ID);
             }
@@ -106,6 +108,8 @@ public class PlayerStatManager {
                         )
                 );
             }
+
+            player.setHealth((float) (maxHpAttr.getValue() * hpPercent));
         }
 
         var stats = PlayerStats.get(player);
