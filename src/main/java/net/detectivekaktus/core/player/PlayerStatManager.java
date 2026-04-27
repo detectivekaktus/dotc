@@ -1,6 +1,5 @@
 package net.detectivekaktus.core.player;
 
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
@@ -13,8 +12,14 @@ import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ItemStatsComponent;
 
 public class PlayerStatManager {
-    public static void updateStats(ServerPlayer player) {
-        var config = new PlayerStatManager.Config(player);
+    private final Player player;
+
+    public PlayerStatManager(Player player) {
+        this.player = player;
+    }
+
+    public void updateStats() {
+        var config = new PlayerStatManager.Config();
         var hotbarItems = player.getInventory().items.subList(0, 9);
 
         for (var item : hotbarItems) {
@@ -52,7 +57,7 @@ public class PlayerStatManager {
         applyStats(config);
     }
 
-    private static boolean hasStatChanges(PlayerStats.StatsData stats, PlayerMana.ManaData mana, Config config) {
+    private boolean hasStatChanges(PlayerStats.StatsData stats, PlayerMana.ManaData mana, Config config) {
         return stats.getStrength() != config.strength
                 || stats.getAgility() != config.agility
                 || stats.getIntelligence() != config.intelligence
@@ -63,29 +68,29 @@ public class PlayerStatManager {
                 || Math.abs(mana.getManaCostReduction() - config.manaCostReduction) > 1e-5f;
     }
 
-    private static void applyStats(Config config) {
-        var stats = PlayerStats.get(config.player);
-        var mana = PlayerMana.get(config.player);
+    private void applyStats(Config config) {
+        var stats = PlayerStats.get(player);
+        var mana = PlayerMana.get(player);
         if (!hasStatChanges(stats, mana, config))
             return;
 
         stats.setStrength(config.strength);
-        applyStrength(config.player, config.strength);
+        applyStrength(config.strength);
         stats.setHpRegenAmplification(config.hpRegenAmplification);
 
         stats.setAgility(config.agility);
-        applyAgility(config.player, config.agility);
-        applyMoveSpeed(config.player, config.moveSpeed);
+        applyAgility(config.agility);
+        applyMoveSpeed(config.moveSpeed);
         stats.setEvasion(config.evasion);
         stats.setEvasionScale(0);
 
         stats.setIntelligence(config.intelligence);
         mana.setBonusManaRegen(config.bonusManaRegen);
-        applyIntelligence(config.player, config.intelligence);
+        applyIntelligence(config.intelligence);
         mana.setManaCostReduction(config.manaCostReduction);
     }
 
-    private static void applyStrength(Player player, int val) {
+    private void applyStrength(int val) {
         var maxHpAttr = player.getAttribute(Attributes.MAX_HEALTH);
         if (maxHpAttr != null) {
             if (val == 0) {
@@ -108,7 +113,7 @@ public class PlayerStatManager {
         stats.setHpRegen(hpRegen);
     }
 
-    private static void applyAgility(Player player, int val) {
+    private void applyAgility(int val) {
         var armorAttr = player.getAttribute(Attributes.ARMOR);
         if (armorAttr != null) {
             if (val == 0) {
@@ -144,7 +149,7 @@ public class PlayerStatManager {
         }
     }
 
-    private static void applyMoveSpeed(Player player, float val) {
+    private void applyMoveSpeed(float val) {
         var moveSpeedAttr = player.getAttribute(Attributes.MOVEMENT_SPEED);
         if (moveSpeedAttr != null) {
             if (val == 0.0f)
@@ -163,7 +168,7 @@ public class PlayerStatManager {
         stats.setMoveSpeed(val);
     }
 
-    private static void applyIntelligence(Player player, int val) {
+    private void applyIntelligence(int val) {
         var mana = PlayerMana.get(player);
         var maxMana = DotcAttachmentRules.DEFAULT_MAX_MANA + (val * StatConversionRules.MANA_PER_INTELLIGENCE);
         mana.setMaxMana(maxMana);
@@ -177,14 +182,10 @@ public class PlayerStatManager {
     }
 
     public static class Config {
-        public final ServerPlayer player;
-
         int strength, agility, intelligence;
         float evasion, moveSpeed, hpRegenAmplification, bonusManaRegen, manaCostReduction;
 
-        public Config(ServerPlayer player) {
-            this.player = player;
-        }
+        public Config() { }
 
         public void addStats(ItemStatsComponent component) {
             this.strength += component.strength();
