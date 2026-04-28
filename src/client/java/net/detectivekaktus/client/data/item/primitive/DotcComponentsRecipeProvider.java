@@ -23,11 +23,11 @@ public class DotcComponentsRecipeProvider extends FabricRecipeProvider {
     @Override
     public void buildRecipes(RecipeOutput exporter) {
         ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, DotcIngredients.BLADES_OF_ATTACK)
-                .pattern("###")
+                .pattern("# #")
+                .pattern("@@@")
                 .pattern(" @ ")
-                .pattern("   ")
-                .define('#', Items.IRON_SWORD)
-                .define('@', DotcIngredients.GLOVES_OF_HASTE)
+                .define('#', Items.IRON_INGOT)
+                .define('@', Items.LEATHER)
                 .unlockedBy(
                         "has_iron_sword",
                         InventoryChangeTrigger.TriggerInstance.hasItems(Items.IRON_SWORD)

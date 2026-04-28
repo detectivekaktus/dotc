@@ -3,16 +3,16 @@
   "category": "equipment",
   "key": {
     "#": {
-      "item": "minecraft:iron_sword"
+      "item": "minecraft:iron_ingot"
     },
     "@": {
-      "item": "defense-of-the-craft:gloves_of_haste"
+      "item": "minecraft:leather"
     }
   },
   "pattern": [
-    "###",
-    " @ ",
-    "   "
+    "# #",
+    "@@@",
+    " @ "
   ],
   "result": {
     "count": 1,
