@@ -29,6 +29,12 @@ public class PlayerStats {
                     floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_HP_REGEN)
                             .persistent(Codec.FLOAT)
     );
+    public static final AttachmentType<Float> BONUS_HP_REGEN = AttachmentRegistry.create(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "bonus_hp_regen"),
+            floatBuilder ->
+                    floatBuilder.initializer(() -> DotcAttachmentRules.DEFAULT_BONUS_HP_REGEN)
+                            .persistent(Codec.FLOAT)
+    );
     public static final AttachmentType<Float> HP_REGEN_AMPLIFICATION = AttachmentRegistry.create(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "hp_regen_amplification"),
             floatBuilder ->
@@ -124,6 +130,19 @@ public class PlayerStats {
             return setOrFallback(
                     HP_REGEN,
                     Math.max(val, DotcAttachmentRules.DEFAULT_HP_REGEN),
+                    current
+            );
+        }
+
+        public float getBonusHpRegen() {
+            return target.getAttachedOrCreate(BONUS_HP_REGEN);
+        }
+
+        public float setBonusHpRegen(float val) {
+            var current = getBonusHpRegen();
+            return setOrFallback(
+                    BONUS_HP_REGEN,
+                    Math.max(val, DotcAttachmentRules.DEFAULT_BONUS_HP_REGEN),
                     current
             );
         }
