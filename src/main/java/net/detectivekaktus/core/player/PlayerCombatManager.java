@@ -18,8 +18,6 @@ import net.detectivekaktus.item.tool.HasBonusDamage;
 import net.detectivekaktus.sound.DotcSounds;
 
 public class PlayerCombatManager {
-    private final int ONE_SECOND_IN_TICKS = 20;
-
     private final Player player;
 
     public PlayerCombatManager(Player player) {
@@ -125,7 +123,7 @@ public class PlayerCombatManager {
             // like in dota the echo sabre attack doesn't crit if the first one did,
             // so there's no f *= 1.5 in case of a crit
 
-            player.getCooldowns().addCooldown(item, 5 * ONE_SECOND_IN_TICKS);
+            player.getCooldowns().addCooldown(item, 5 * 20);
             entity.hurt(damageSource, damage);
         }
 

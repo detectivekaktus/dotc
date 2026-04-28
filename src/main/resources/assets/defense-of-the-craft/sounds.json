@@ -30,6 +30,11 @@
       "defense-of-the-craft:item_daedalus_crit"
     ]
   },
+  "item_tango": {
+    "sounds": [
+      "defense-of-the-craft:item_tango"
+    ]
+  },
 
   "core_evaded": {
     "sounds": [
