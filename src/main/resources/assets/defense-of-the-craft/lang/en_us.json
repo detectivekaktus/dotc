@@ -1,6 +1,19 @@
 {
   "itemGroup.defense-of-the-craft": "Defense of the Craft",
 
+
+
+  "item.defense-of-the-craft.tango": "Tango",
+  "description.defense-of-the-craft.tango": "Forage to survive on the battlefield.",
+  "active.defense-of-the-craft.tango": "Consumes the target tree leaves to gain health regeneration for some time. The tree leaves are destroyed in the process.",
+
+  "item.defense-of-the-craft.enchanted_mango": "Enchanted Mango",
+  "description.defense-of-the-craft.enchanted_mango": "The bittersweet flavors of Jidi Isle are irresistible to amphibians.",
+  "passive.defense-of-the-craft.enchanted_mango": "Passively provides 0.2 health regeneration.",
+  "active.defense-of-the-craft.enchanted_mango": "Consumes the mango and instantly restores 40 mana.",
+
+
+
   "item.defense-of-the-craft.radiant_crystal_shards": "Radiant Crystal Shards",
   "description.defense-of-the-craft.radiant_crystal_shards": "Small pieces of bluish glowing material. What could they be used for?",
 

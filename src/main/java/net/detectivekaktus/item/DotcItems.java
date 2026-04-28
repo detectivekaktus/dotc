@@ -15,6 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.detectivekaktus.DefenseOfTheCraft;
 import net.detectivekaktus.block.natural.DotcNaturalBlocks;
 import net.detectivekaktus.block.building.DotcBuildingBlocks;
+import net.detectivekaktus.item.consumable.DotcConsumables;
 import net.detectivekaktus.item.primitive.DotcPrimitives;
 import net.detectivekaktus.item.ingredient.DotcIngredients;
 import net.detectivekaktus.item.tool.DotcTools;
@@ -37,6 +38,7 @@ public class DotcItems {
         DotcIngredients.initialize();
         DotcPrimitives.initialize();
         DotcTools.initialize();
+        DotcConsumables.initialize();
 
         ItemGroupEvents.modifyEntriesEvent(DOTC_ITEM_GROUP_KEY).register(group -> Stream.of(
                 DotcIngredients.RADIANT_CRYSTAL_SHARDS,
@@ -46,6 +48,9 @@ public class DotcItems {
                 DotcIngredients.DIRE_CRYSTAL,
                 DotcIngredients.DIRE_CRYSTAL_DUST,
                 DotcIngredients.MITHRIL_INGOT,
+
+                DotcConsumables.TANGO,
+                DotcConsumables.ENCHANTED_MANGO,
 
                 DotcIngredients.VOID_STONE,
                 DotcIngredients.TALISMAN_OF_EVASION,

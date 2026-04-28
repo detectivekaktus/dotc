@@ -33,6 +33,11 @@ public class PlayerStatManager {
                 config.addEvasion(evasion);
             }
 
+            if (item.has(DotcComponents.BONUS_HP_REGEN_COMPONENT)) {
+                var regen = item.get(DotcComponents.BONUS_HP_REGEN_COMPONENT);
+                config.addBonusHpRegen(regen * item.getCount());
+            }
+
             if (item.has(DotcComponents.HP_REGEN_AMPLIFICATION_COMPONENT)) {
                 var amplification = item.get(DotcComponents.HP_REGEN_AMPLIFICATION_COMPONENT);
                 config.addHpRegenAmplification(amplification);
@@ -61,8 +66,9 @@ public class PlayerStatManager {
         return stats.getStrength() != config.strength
                 || stats.getAgility() != config.agility
                 || stats.getIntelligence() != config.intelligence
-                || Math.abs(stats.getEvasion() - config.evasion) > 1e-5f
+                || Math.abs(stats.getBonusHpRegen() - config.bonusHpRegen) > 1e-5f
                 || Math.abs(stats.getHpRegenAmplification() - config.hpRegenAmplification) > 1e-5f
+                || Math.abs(stats.getEvasion() - config.evasion) > 1e-5f
                 || Math.abs(stats.getMoveSpeed() - config.moveSpeed) > 1e-5f
                 || Math.abs(mana.getBonusManaRegen() - config.bonusManaRegen) > 1e-5f
                 || Math.abs(mana.getManaCostReduction() - config.manaCostReduction) > 1e-5f;
@@ -76,6 +82,7 @@ public class PlayerStatManager {
 
         stats.setStrength(config.strength);
         applyStrength(config.strength);
+        stats.setBonusHpRegen(config.bonusHpRegen);
         stats.setHpRegenAmplification(config.hpRegenAmplification);
 
         stats.setAgility(config.agility);
@@ -187,7 +194,9 @@ public class PlayerStatManager {
 
     public static class Config {
         int strength, agility, intelligence;
-        float evasion, moveSpeed, hpRegenAmplification, bonusManaRegen, manaCostReduction;
+        float bonusHpRegen, hpRegenAmplification;
+        float evasion, moveSpeed;
+        float bonusManaRegen, manaCostReduction;
 
         public Config() { }
 
@@ -203,6 +212,10 @@ public class PlayerStatManager {
 
         public void addMoveSpeed(float moveSpeed) {
             this.moveSpeed += moveSpeed;
+        }
+
+        public void addBonusHpRegen(float hpRegen) {
+            this.bonusHpRegen += hpRegen;
         }
 
         public void addHpRegenAmplification(float amplification) {

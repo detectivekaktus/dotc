@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "defense-of-the-craft:radiant_crystal_dust"
+    },
+    "@": {
+      "item": "minecraft:apple"
+    }
+  },
+  "pattern": [
+    " # ",
+    "#@#",
+    " # "
+  ],
+  "result": {
+    "count": 3,
+    "id": "defense-of-the-craft:tango"
+  }
+}
