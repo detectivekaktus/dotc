@@ -22,7 +22,8 @@ public class DotcConsumablesModelProvider extends FabricModelProvider {
     @Override
     public void generateItemModels(ItemModelGenerators itemModelGenerator) {
         Stream.of(
-                DotcConsumables.TANGO
+                DotcConsumables.TANGO,
+                DotcConsumables.ENCHANTED_MANGO
         ).forEach(item -> itemModelGenerator.generateFlatItem(item, ModelTemplates.FLAT_ITEM));
     }
 

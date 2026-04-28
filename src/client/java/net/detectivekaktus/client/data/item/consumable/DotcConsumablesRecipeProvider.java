@@ -33,6 +33,18 @@ public class DotcConsumablesRecipeProvider extends FabricRecipeProvider {
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.RADIANT_CRYSTAL)
                 )
                 .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DotcConsumables.ENCHANTED_MANGO, 2)
+                .pattern(" # ")
+                .pattern("#@#")
+                .pattern(" # ")
+                .define('@', Items.APPLE)
+                .define('#', DotcIngredients.RADIANT_CRYSTAL)
+                .unlockedBy(
+                        "has_radiant_crystal",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.RADIANT_CRYSTAL)
+                )
+                .save(exporter);
     }
 
     @Override

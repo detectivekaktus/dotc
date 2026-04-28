@@ -50,6 +50,7 @@ public class DotcItems {
                 DotcIngredients.MITHRIL_INGOT,
 
                 DotcConsumables.TANGO,
+                DotcConsumables.ENCHANTED_MANGO,
 
                 DotcIngredients.VOID_STONE,
                 DotcIngredients.TALISMAN_OF_EVASION,
