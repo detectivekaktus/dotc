@@ -8,10 +8,10 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 
-import net.detectivekaktus.DefenseOfTheCraft;
 import net.detectivekaktus.attach.PlayerMana;
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ChargeableComponent;
+import net.detectivekaktus.core.item.DotcItemCooldowns;
 import net.detectivekaktus.core.item.DotcItemRules;
 import net.detectivekaktus.item.DotcItem;
 import net.detectivekaktus.item.TooltipBuilder;
@@ -41,8 +41,8 @@ public class MagicStick extends DotcItem {
         player.heal(hpRegen);
         mana.increment(manaRegen);
 
-        player.getCooldowns().addCooldown(DotcTools.MAGIC_STICK, 15 * 20);
-        player.getCooldowns().addCooldown(DotcTools.MAGIC_WAND, 15 * 20);
+        player.getCooldowns().addCooldown(DotcTools.MAGIC_STICK, DotcItemCooldowns.MAGIC_STICK_COOLDOWN);
+        player.getCooldowns().addCooldown(DotcTools.MAGIC_WAND, DotcItemCooldowns.MAGIC_STICK_COOLDOWN);
         level.playSound(
                 null,
                 player.getX(), player.getY(), player.getZ(),
@@ -68,7 +68,7 @@ public class MagicStick extends DotcItem {
 
         var component = itemStack.get(DotcComponents.CHARGEABLE_COMPONENT);
 
-        if (Math.abs(level.getGameTime() - component.lastTickSync()) >= 30 * 20) {
+        if (Math.abs(level.getGameTime() - component.lastTickSync()) >= DotcItemCooldowns.MAGIC_STICK_CHARGE_INTERVAL) {
             itemStack.set(
                     DotcComponents.CHARGEABLE_COMPONENT,
                     ChargeableComponent.addCharge(component, level)
