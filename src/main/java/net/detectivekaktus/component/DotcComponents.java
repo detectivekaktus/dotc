@@ -9,6 +9,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 
 import net.detectivekaktus.DefenseOfTheCraft;
+import net.detectivekaktus.component.records.ChargeableComponent;
 import net.detectivekaktus.component.records.ItemStatsComponent;
 import net.detectivekaktus.component.records.ProcableComponent;
 
@@ -36,8 +37,19 @@ public class DotcComponents {
             PROCABLE_COMPONENT_CODEC
     );
 
-    public static final DataComponentType<Float> EVASION_COMPONENT = registerFloat("evasion");
+    public static final Codec<ChargeableComponent> CHARGEABLE_COMPONENT_CODEC = RecordCodecBuilder.create(
+            builder -> builder.group(
+                    Codec.INT.optionalFieldOf("charges", 0).forGetter(ChargeableComponent::charges),
+                    Codec.INT.fieldOf("maxCharges").forGetter(ChargeableComponent::maxCharges),
+                    Codec.LONG.optionalFieldOf("lastTickSync", 0L).forGetter(ChargeableComponent::lastTickSync)
+            ).apply(builder, ChargeableComponent::new)
+    );
+    public static final DataComponentType<ChargeableComponent> CHARGEABLE_COMPONENT = register(
+            "chargeable",
+            CHARGEABLE_COMPONENT_CODEC
+    );
 
+    public static final DataComponentType<Float> EVASION_COMPONENT = registerFloat("evasion");
     public static final DataComponentType<Float> MOVE_SPEED_COMPONENT = registerFloat("move_speed");
 
     public static final DataComponentType<Float> BONUS_HP_REGEN_COMPONENT = registerFloat("bonus_hp_regen");

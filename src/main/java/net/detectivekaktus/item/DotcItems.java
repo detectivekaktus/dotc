@@ -59,6 +59,7 @@ public class DotcItems {
                 DotcPrimitives.DEMON_EDGE,
 
                 DotcTools.MAGIC_STICK,
+                DotcTools.MAGIC_WAND,
 
                 DotcIngredients.BLIGHT_STONE,
                 DotcIngredients.GLOVES_OF_HASTE,

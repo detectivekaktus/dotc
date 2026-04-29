@@ -3,6 +3,7 @@ package net.detectivekaktus.item.tool;
 import net.minecraft.world.item.Item;
 
 import net.detectivekaktus.component.DotcComponents;
+import net.detectivekaktus.component.records.ChargeableComponent;
 import net.detectivekaktus.component.records.ProcableComponent;
 import net.detectivekaktus.component.records.ItemStatsComponent;
 import net.detectivekaktus.item.*;
@@ -185,11 +186,14 @@ public class DotcTools {
     public static final Item MAGIC_STICK = DotcItems.register(
             new MagicStick(
                     new Item.Properties()
-                            .stacksTo(1),
+                            .stacksTo(1)
+                            .component(
+                                    DotcComponents.CHARGEABLE_COMPONENT,
+                                    new ChargeableComponent(0, 10, 0)
+                            ),
                     new TooltipBuilder("magic_stick")
                             .description()
-                            .active(),
-                    10
+                            .active()
             ),
             "magic_stick"
     );
@@ -200,12 +204,15 @@ public class DotcTools {
                             .component(
                                     DotcComponents.ITEM_STATS_COMPONENT,
                                     new ItemStatsComponent(3, 3, 3)
+                            )
+                            .component(
+                                    DotcComponents.CHARGEABLE_COMPONENT,
+                                    new ChargeableComponent(0, 20, 0)
                             ),
                     new TooltipBuilder("magic_wand")
                             .description()
                             .stats(3, 3, 3)
-                            .active(),
-                    20
+                            .active()
             ),
             "magic_wand"
     );
