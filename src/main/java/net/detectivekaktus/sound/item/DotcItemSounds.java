@@ -8,6 +8,7 @@ public class DotcItemSounds {
     public static final SoundEvent DAEDALUS_CRIT = DotcSounds.register("item_daedalus_crit");
     public static final SoundEvent TANGO = DotcSounds.register("item_tango");
     public static final SoundEvent ENCHANTED_MANGO = DotcSounds.register("item_enchanted_mango");
+    public static final SoundEvent MAGIC_STICK = DotcSounds.register("item_magic_stick");
 
     public static void initialize() {}
 }

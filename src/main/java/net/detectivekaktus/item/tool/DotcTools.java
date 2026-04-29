@@ -182,6 +182,16 @@ public class DotcTools {
             ),
             "echo_sabre"
     );
+    public static final Item MAGIC_STICK = DotcItems.register(
+            new MagicStick(
+                    new Item.Properties()
+                            .stacksTo(1),
+                    new TooltipBuilder("magic_stick")
+                            .description()
+                            .active()
+            ),
+            "magic_stick"
+    );
 
     public static void initialize() { }
 }

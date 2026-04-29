@@ -40,6 +40,11 @@
       "defense-of-the-craft:item_enchanted_mango"
     ]
   },
+  "item_magic_stick": {
+    "sounds": [
+      "defense-of-the-craft:item_magic_stick"
+    ]
+  },
 
   "core_evaded": {
     "sounds": [

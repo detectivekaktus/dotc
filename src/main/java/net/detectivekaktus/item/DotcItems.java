@@ -58,6 +58,8 @@ public class DotcItems {
                 DotcIngredients.SACRED_RELIC,
                 DotcPrimitives.DEMON_EDGE,
 
+                DotcTools.MAGIC_STICK,
+
                 DotcIngredients.BLIGHT_STONE,
                 DotcIngredients.GLOVES_OF_HASTE,
                 DotcIngredients.BLADES_OF_ATTACK,
