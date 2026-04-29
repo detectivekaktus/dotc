@@ -2,6 +2,7 @@ package net.detectivekaktus.mixin.player;
 
 import com.mojang.authlib.GameProfile;
 
+import net.detectivekaktus.item.tool.DotcTools;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -59,12 +60,18 @@ public class PlayerMixin implements CombatManagerHolder {
             ),
             ordinal = 0
     )
-    private float preDamageCalculatedHook(float original) {
+    private float preDamageCalculatedHook(float original, Entity entity) {
         var player = (Player) (Object) this;
         if (isNotMixinTarget(player))
             return original;
 
-        return dotc$combatManager.crit(original);
+        var stack = player.getWeaponItem();
+        var damage =  dotc$combatManager.crit(original);
+
+        if (stack.is(DotcTools.DIFFUSAL_BLADE) && (entity instanceof Player attacked))
+            damage += dotc$combatManager.addManaBurnDamage(attacked);
+
+        return damage;
     }
 
     @Inject(
@@ -75,7 +82,7 @@ public class PlayerMixin implements CombatManagerHolder {
                     shift = At.Shift.BEFORE
             )
     )
-    private void preHurtHook(Entity entity, CallbackInfo callbackInfo) {
+    private void preTargetHurtHook(Entity entity, CallbackInfo callbackInfo) {
         var player = (Player) (Object) this;
         if (isNotMixinTarget(player))
             return;
@@ -90,7 +97,7 @@ public class PlayerMixin implements CombatManagerHolder {
                     target = "Lnet/minecraft/world/entity/Entity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
             )
     )
-    private boolean postHurtHook(boolean hurt, Entity entity) {
+    private boolean postTargetHurtHook(boolean hurt, Entity entity) {
         if (!hurt)
             return false;
 
@@ -98,7 +105,14 @@ public class PlayerMixin implements CombatManagerHolder {
         if (isNotMixinTarget(player))
             return hurt;
 
-        return dotc$combatManager.proc(entity, hurt);
+        hurt = dotc$combatManager.proc(entity, hurt);
+
+        var stack = player.getWeaponItem();
+        var hitPlayerThroughEvasion = dotc$combatManager.hitThroughEvasion() && (entity instanceof Player);
+        if (hitPlayerThroughEvasion && stack.is(DotcTools.DIFFUSAL_BLADE))
+            dotc$combatManager.burnMana((Player) entity);
+
+        return hurt;
     }
 
     @Inject(

@@ -7,11 +7,13 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 
+import net.detectivekaktus.attach.PlayerMana;
 import net.detectivekaktus.attach.PlayerStats;
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ChargeableComponent;
 import net.detectivekaktus.component.records.ProcableComponent;
 import net.detectivekaktus.core.item.DotcItemCooldowns;
+import net.detectivekaktus.core.item.DotcItemRules;
 import net.detectivekaktus.core.rng.PseudoRandom;
 import net.detectivekaktus.core.util.CombatManagerHolder;
 import net.detectivekaktus.damage.DotcDamageTypes;
@@ -24,6 +26,7 @@ public class PlayerCombatManager {
     private final Player player;
     private boolean hitThroughEvasion = false;
     private boolean evaded = false;
+    private float lastManaBurn;
 
     public PlayerCombatManager(Player player) {
         this.player = player;
@@ -59,6 +62,17 @@ public class PlayerCombatManager {
         ));
 
         return damage * item.getCritPercent();
+    }
+
+    public float addManaBurnDamage(Player attacked) {
+        var mana = PlayerMana.get(attacked);
+        lastManaBurn = Math.min(DotcItemRules.DIFFUSAL_MANA_BURN, mana.getCurrentMana());
+        return lastManaBurn * DotcItemRules.DIFFUSAL_DAMAGE_PER_MANA;
+    }
+
+    public void burnMana(Player target) {
+        var mana = PlayerMana.get(target);
+        mana.consume(lastManaBurn);
     }
 
     public void calculateProcs() {
