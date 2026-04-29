@@ -19,43 +19,18 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
-import net.detectivekaktus.core.player.CanHitThroughEvasion;
-import net.detectivekaktus.core.player.Evadable;
 import net.detectivekaktus.core.player.PlayerCombatManager;
+import net.detectivekaktus.mixin.util.CombatManagerHolder;
 
 @Mixin(Player.class)
-public class PlayerMixin implements Evadable, CanHitThroughEvasion {
+public class PlayerMixin implements CombatManagerHolder {
     @Unique
     @Final
-    private PlayerCombatManager combatManager;
+    public PlayerCombatManager dotc$combatManager;
 
-    @Unique
-    private boolean dotc$proccedPostAttackDamage = false;
-    @Unique
-    private boolean dotc$evaded = false;
-
-    @Unique
     @Override
-    public boolean getHitThroughEvasion() {
-        return dotc$proccedPostAttackDamage;
-    }
-
-    @Unique
-    @Override
-    public void setHitThroughEvasion(boolean evaded) {
-        dotc$proccedPostAttackDamage = evaded;
-    }
-
-    @Unique
-    @Override
-    public boolean getEvaded() {
-        return dotc$evaded;
-    }
-
-    @Unique
-    @Override
-    public void setEvaded(boolean evaded) {
-        dotc$evaded = evaded;
+    public PlayerCombatManager getCombatManager() {
+        return dotc$combatManager;
     }
 
     @Unique
@@ -72,7 +47,7 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
         if (isNotMixinTarget(player))
             return;
 
-        this.combatManager = new PlayerCombatManager(player);
+        this.dotc$combatManager = new PlayerCombatManager(player);
     }
 
     @ModifyVariable(
@@ -84,12 +59,12 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
             ),
             ordinal = 0
     )
-    private float applyCritProcs(float original) {
+    private float preDamageCalculatedHook(float original) {
         var player = (Player) (Object) this;
         if (isNotMixinTarget(player))
             return original;
 
-        return combatManager.crit(original);
+        return dotc$combatManager.crit(original);
     }
 
     @Inject(
@@ -100,12 +75,12 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
                     shift = At.Shift.BEFORE
             )
     )
-    private void calculatePostAttackProcs(Entity entity, CallbackInfo callbackInfo) {
+    private void preHurtHook(Entity entity, CallbackInfo callbackInfo) {
         var player = (Player) (Object) this;
         if (isNotMixinTarget(player))
             return;
 
-        combatManager.calculateProcs();
+        dotc$combatManager.calculateProcs();
     }
 
     @ModifyExpressionValue(
@@ -115,7 +90,7 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
                     target = "Lnet/minecraft/world/entity/Entity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
             )
     )
-    private boolean applyPostAttackProcs(boolean hurt, Entity entity) {
+    private boolean postHurtHook(boolean hurt, Entity entity) {
         if (!hurt)
             return false;
 
@@ -123,7 +98,7 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
         if (isNotMixinTarget(player))
             return hurt;
 
-        return combatManager.proc(entity, hurt);
+        return dotc$combatManager.proc(entity, hurt);
     }
 
     @Inject(
@@ -140,7 +115,7 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
         if (isNotMixinTarget(player))
             return;
 
-        if (combatManager.evade(damageSource))
+        if (dotc$combatManager.evade(damageSource))
             callbackInfo.cancel();
     }
 
@@ -157,6 +132,6 @@ public class PlayerMixin implements Evadable, CanHitThroughEvasion {
         if (isNotMixinTarget(player))
             return original;
 
-        return combatManager.reduceDamage(original, damageSource);
+        return dotc$combatManager.reduceDamage(original, damageSource);
     }
 }

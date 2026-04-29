@@ -1,5 +1,6 @@
 package net.detectivekaktus.core.player;
 
+import net.detectivekaktus.mixin.util.CombatManagerHolder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -21,6 +22,8 @@ import net.detectivekaktus.sound.DotcSounds;
 
 public class PlayerCombatManager {
     private final Player player;
+    private boolean hitThroughEvasion = false;
+    private boolean evaded = false;
 
     public PlayerCombatManager(Player player) {
         this.player = player;
@@ -59,8 +62,7 @@ public class PlayerCombatManager {
     }
 
     public void calculateProcs() {
-        var canHitThrough = (CanHitThroughEvasion) player;
-        canHitThrough.setHitThroughEvasion(false);
+        setHitThroughEvasion(false);
 
         var stack = player.getMainHandItem();
         if (!stack.has(DotcComponents.PROCABLE_COMPONENT) || !(stack.getItem() instanceof HasBonusDamage))
@@ -81,17 +83,15 @@ public class PlayerCombatManager {
                 ProcableComponent.resetScale(component)
         );
 
-        canHitThrough.setHitThroughEvasion(true);
+        setHitThroughEvasion(true);
     }
 
     public boolean proc(Entity entity, boolean hurt) {
-        var canHitThrough = (CanHitThroughEvasion) player;
-
         var stack = player.getMainHandItem();
         var item = stack.getItem();
 
         if (stack.has(DotcComponents.PROCABLE_COMPONENT) && (item instanceof HasBonusDamage itemWithBonusDamage)) {
-            if (!canHitThrough.getHitThroughEvasion())
+            if (!hitThroughEvasion())
                 return hurt;
 
             var damageSource = itemWithBonusDamage.getBonusDamageSource(player);
@@ -146,36 +146,35 @@ public class PlayerCombatManager {
         if (damageSource.is(DotcDamageTypes.MAGICAL))
             return false;
 
-        var evadable = (Evadable) player;
-        evadable.setEvaded(false);
+        setEvaded(false);
 
         var stats = PlayerStats.get(player);
         var evasion = stats.getEvasion();
         var evasionChance = PseudoRandom.getProcChance(evasion, stats.getEvasionScale());
         if (player.getRandom().nextFloat() > evasionChance) {
             stats.addEvasionScale(1);
-            return false;
+            return evaded;
         }
 
         stats.setEvasionScale(0);
 
         var attacker = damageSource.getEntity();
         if (attacker == null)
-            return false;
+            return evaded;
 
         if (!(attacker instanceof ServerPlayer)) {
-            evadable.setEvaded(true);
+            setEvaded(true);
             playEvasionSound();
-            return true;
+            return evaded;
         }
 
-        var hitThrough = ((CanHitThroughEvasion) attacker).getHitThroughEvasion();
+        var hitThrough = ((CombatManagerHolder) attacker).getCombatManager().hitThroughEvasion();
         if (hitThrough)
             return false;
 
-        evadable.setEvaded(true);
+        setEvaded(true);
         playEvasionSound();
-        return true;
+        return evaded;
     }
 
     public float reduceDamage(float damage, DamageSource damageSource) {
@@ -202,5 +201,21 @@ public class PlayerCombatManager {
                 return;
             }
         }
+    }
+
+    public boolean hitThroughEvasion() {
+        return hitThroughEvasion;
+    }
+
+    public void setHitThroughEvasion(boolean hitThroughEvasion) {
+        this.hitThroughEvasion = hitThroughEvasion;
+    }
+
+    public boolean hasEvaded() {
+        return evaded;
+    }
+
+    public void setEvaded(boolean evaded) {
+        this.evaded = evaded;
     }
 }
