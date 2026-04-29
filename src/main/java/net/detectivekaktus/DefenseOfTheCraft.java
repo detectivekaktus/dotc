@@ -1,6 +1,7 @@
 package net.detectivekaktus;
 
 import net.fabricmc.api.ModInitializer;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,6 +13,7 @@ import net.detectivekaktus.damage.DotcDamageTypes;
 import net.detectivekaktus.event.DotcEvents;
 import net.detectivekaktus.item.DotcItems;
 import net.detectivekaktus.sound.DotcSounds;
+import net.detectivekaktus.tag.DotcEntityTypeTags;
 import net.detectivekaktus.worldgen.DotcWorldgen;
 
 public class DefenseOfTheCraft implements ModInitializer {
@@ -25,6 +27,7 @@ public class DefenseOfTheCraft implements ModInitializer {
 		DotcBlocks.initialize();
 		DotcComponents.initialize();
 		DotcDamageTypes.initialize();
+		DotcEntityTypeTags.initialize();
 		DotcItems.initialize();
 		DotcSounds.initialize();
 		DotcWorldgen.initialize();

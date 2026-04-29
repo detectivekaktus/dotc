@@ -22,7 +22,7 @@ public class GuiGraphicsMixin {
     }
 
     @ModifyVariable(
-            method = "renderComponentTooltip(Lnet/minecraft/client/gui/Font;Ljava/util/List;Ljava/util/Optional;II)V",
+            method = "renderComponentTooltip(Lnet/minecraft/client/gui/Font;Ljava/util/List;II)V",
             at = @At(value = "HEAD")
     )
     private List<Component> wordWrapTooltipsElsewhere(List<Component> original) {

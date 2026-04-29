@@ -9,7 +9,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.detectivekaktus.core.player.Evadable;
+import net.detectivekaktus.core.util.CombatManagerHolder;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityMixin {
@@ -28,11 +28,11 @@ public class LivingEntityMixin {
         if (isNotMixinTarget(entity))
             return;
 
-        var player = (Evadable) entity;
-        if (!player.getEvaded())
+        var player = (CombatManagerHolder) entity;
+        if (!player.getCombatManager().hasEvaded())
             return;
 
-        player.setEvaded(false);
+        player.getCombatManager().setEvaded(false);
         callbackInfo.cancel();
     }
 }

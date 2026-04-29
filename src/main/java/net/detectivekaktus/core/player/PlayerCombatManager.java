@@ -1,5 +1,6 @@
 package net.detectivekaktus.core.player;
 
+import net.detectivekaktus.DefenseOfTheCraft;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -7,11 +8,15 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 
+import net.detectivekaktus.attach.PlayerMana;
 import net.detectivekaktus.attach.PlayerStats;
 import net.detectivekaktus.component.DotcComponents;
+import net.detectivekaktus.component.records.ChargeableComponent;
 import net.detectivekaktus.component.records.ProcableComponent;
 import net.detectivekaktus.core.item.DotcItemCooldowns;
+import net.detectivekaktus.core.item.DotcItemRules;
 import net.detectivekaktus.core.rng.PseudoRandom;
+import net.detectivekaktus.core.util.CombatManagerHolder;
 import net.detectivekaktus.damage.DotcDamageTypes;
 import net.detectivekaktus.item.tool.Critable;
 import net.detectivekaktus.item.tool.DotcTools;
@@ -20,6 +25,9 @@ import net.detectivekaktus.sound.DotcSounds;
 
 public class PlayerCombatManager {
     private final Player player;
+    private boolean hitThroughEvasion = false;
+    private boolean evaded = false;
+    private float lastManaBurn;
 
     public PlayerCombatManager(Player player) {
         this.player = player;
@@ -57,9 +65,19 @@ public class PlayerCombatManager {
         return damage * item.getCritPercent();
     }
 
+    public float manaBurn(Player attacker, Player victim) {
+        if (!attacker.getWeaponItem().is(DotcTools.DIFFUSAL_BLADE))
+            return 0.0f;
+
+        var mana = PlayerMana.get(victim);
+        lastManaBurn = Math.min(DotcItemRules.DIFFUSAL_MANA_BURN, mana.getCurrentMana());
+        mana.consume(lastManaBurn);
+
+        return lastManaBurn * DotcItemRules.DIFFUSAL_DAMAGE_PER_MANA;
+    }
+
     public void calculateProcs() {
-        var canHitThrough = (CanHitThroughEvasion) player;
-        canHitThrough.setHitThroughEvasion(false);
+        setHitThroughEvasion(false);
 
         var stack = player.getMainHandItem();
         if (!stack.has(DotcComponents.PROCABLE_COMPONENT) || !(stack.getItem() instanceof HasBonusDamage))
@@ -80,17 +98,15 @@ public class PlayerCombatManager {
                 ProcableComponent.resetScale(component)
         );
 
-        canHitThrough.setHitThroughEvasion(true);
+        setHitThroughEvasion(true);
     }
 
     public boolean proc(Entity entity, boolean hurt) {
-        var canHitThrough = (CanHitThroughEvasion) player;
-
         var stack = player.getMainHandItem();
         var item = stack.getItem();
 
         if (stack.has(DotcComponents.PROCABLE_COMPONENT) && (item instanceof HasBonusDamage itemWithBonusDamage)) {
-            if (!canHitThrough.getHitThroughEvasion())
+            if (!hitThroughEvasion())
                 return hurt;
 
             var damageSource = itemWithBonusDamage.getBonusDamageSource(player);
@@ -145,36 +161,35 @@ public class PlayerCombatManager {
         if (damageSource.is(DotcDamageTypes.MAGICAL))
             return false;
 
-        var evadable = (Evadable) player;
-        evadable.setEvaded(false);
+        setEvaded(false);
 
         var stats = PlayerStats.get(player);
         var evasion = stats.getEvasion();
         var evasionChance = PseudoRandom.getProcChance(evasion, stats.getEvasionScale());
         if (player.getRandom().nextFloat() > evasionChance) {
             stats.addEvasionScale(1);
-            return false;
+            return evaded;
         }
 
         stats.setEvasionScale(0);
 
         var attacker = damageSource.getEntity();
         if (attacker == null)
-            return false;
+            return evaded;
 
         if (!(attacker instanceof ServerPlayer)) {
-            evadable.setEvaded(true);
+            setEvaded(true);
             playEvasionSound();
-            return true;
+            return evaded;
         }
 
-        var hitThrough = ((CanHitThroughEvasion) attacker).getHitThroughEvasion();
+        var hitThrough = ((CombatManagerHolder) attacker).getCombatManager().hitThroughEvasion();
         if (hitThrough)
             return false;
 
-        evadable.setEvaded(true);
+        setEvaded(true);
         playEvasionSound();
-        return true;
+        return evaded;
     }
 
     public float reduceDamage(float damage, DamageSource damageSource) {
@@ -183,5 +198,39 @@ public class PlayerCombatManager {
 
         var stats = PlayerStats.get(player);
         return damage * (1.0f - stats.getMagicResistance());
+    }
+
+    public static void addStickCharge(Player player) {
+        var hotbarItems = player.getInventory().items.subList(0, 9);
+        for (var item : hotbarItems) {
+            boolean isTarget = (item.is(DotcTools.MAGIC_STICK) || item.is(DotcTools.MAGIC_WAND))
+                    && item.has(DotcComponents.CHARGEABLE_COMPONENT);
+            if (isTarget) {
+                var component = item.get(DotcComponents.CHARGEABLE_COMPONENT);
+                item.set(
+                        DotcComponents.CHARGEABLE_COMPONENT,
+                        ChargeableComponent.addCharge(component)
+                );
+                // Charge only one stick item to prevent abusing sticks by having
+                // 9 of them in inventory
+                return;
+            }
+        }
+    }
+
+    public boolean hitThroughEvasion() {
+        return hitThroughEvasion;
+    }
+
+    public void setHitThroughEvasion(boolean hitThroughEvasion) {
+        this.hitThroughEvasion = hitThroughEvasion;
+    }
+
+    public boolean hasEvaded() {
+        return evaded;
+    }
+
+    public void setEvaded(boolean evaded) {
+        this.evaded = evaded;
     }
 }
