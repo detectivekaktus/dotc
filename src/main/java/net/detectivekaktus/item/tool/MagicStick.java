@@ -41,7 +41,7 @@ public class MagicStick extends DotcItem {
         player.heal(hpRegen);
         mana.increment(manaRegen);
 
-        player.getCooldowns().addCooldown(this, 15 * 20);
+        player.getCooldowns().addCooldown(DotcTools.MAGIC_STICK, 15 * 20);
         player.getCooldowns().addCooldown(DotcTools.MAGIC_WAND, 15 * 20);
         level.playSound(
                 null,
