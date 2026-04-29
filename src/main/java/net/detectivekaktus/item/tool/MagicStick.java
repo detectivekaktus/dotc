@@ -68,7 +68,8 @@ public class MagicStick extends DotcItem {
 
         var component = itemStack.get(DotcComponents.CHARGEABLE_COMPONENT);
 
-        if (Math.abs(level.getGameTime() - component.lastTickSync()) >= DotcItemCooldowns.MAGIC_STICK_CHARGE_INTERVAL) {
+        if (component.charges() < component.maxCharges()
+                && level.getGameTime() - component.lastTickSync() >= DotcItemCooldowns.MAGIC_STICK_CHARGE_INTERVAL) {
             itemStack.set(
                     DotcComponents.CHARGEABLE_COMPONENT,
                     ChargeableComponent.addCharge(component, level)
