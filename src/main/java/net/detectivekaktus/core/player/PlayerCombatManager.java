@@ -10,6 +10,7 @@ import net.minecraft.world.entity.player.Player;
 import net.detectivekaktus.attach.PlayerStats;
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ProcableComponent;
+import net.detectivekaktus.core.item.DotcItemCooldowns;
 import net.detectivekaktus.core.rng.PseudoRandom;
 import net.detectivekaktus.damage.DotcDamageTypes;
 import net.detectivekaktus.item.tool.Critable;
@@ -34,14 +35,14 @@ public class PlayerCombatManager {
         if (player.getRandom().nextFloat() > chance) {
             stack.set(
                     DotcComponents.PROCABLE_COMPONENT,
-                    new ProcableComponent(component.baseChance(), component.scale() + 1)
+                    ProcableComponent.increaseScale(component)
             );
             return damage;
         }
 
         stack.set(
                 DotcComponents.PROCABLE_COMPONENT,
-                new ProcableComponent(component.baseChance(), 0)
+                ProcableComponent.resetScale(component)
         );
 
         var sound = item.getProcSound();
@@ -69,14 +70,14 @@ public class PlayerCombatManager {
         if (player.getRandom().nextFloat() > chance) {
             stack.set(
                     DotcComponents.PROCABLE_COMPONENT,
-                    new ProcableComponent(component.baseChance(), component.scale() + 1)
+                    ProcableComponent.increaseScale(component)
             );
             return;
         }
 
         stack.set(
                 DotcComponents.PROCABLE_COMPONENT,
-                new ProcableComponent(component.baseChance(), 0)
+                ProcableComponent.resetScale(component)
         );
 
         canHitThrough.setHitThroughEvasion(true);
@@ -123,7 +124,7 @@ public class PlayerCombatManager {
             // like in dota the echo sabre attack doesn't crit if the first one did,
             // so there's no f *= 1.5 in case of a crit
 
-            player.getCooldowns().addCooldown(item, 5 * 20);
+            player.getCooldowns().addCooldown(item, DotcItemCooldowns.ECHO_SABRE_COOLDOWN);
             entity.hurt(damageSource, damage);
         }
 
