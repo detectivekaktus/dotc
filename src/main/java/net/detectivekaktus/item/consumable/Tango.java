@@ -33,7 +33,7 @@ public class Tango extends DotcItem {
         stack.consume(1, player);
         level.playSound(player, blockPos, DotcItemSounds.TANGO, SoundSource.BLOCKS, 1.0f, 1.0f);
 
-        return InteractionResult.SUCCESS;
+        return InteractionResult.sidedSuccess(level.isClientSide);
     }
 
     private boolean isUsedOnLeaves(Level level, BlockPos blockPos) {

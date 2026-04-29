@@ -216,6 +216,25 @@ public class DotcTools {
             ),
             "magic_wand"
     );
+    public static final Item DIFFUSAL_BLADE = DotcItems.register(
+            new DiffusalBlade(
+                    DotcToolMaterial.RADIANT_ARTEFACT,
+                    new Item.Properties()
+                            .attributes(DotcSwordItem.createAttributes(
+                                    DotcToolMaterial.RADIANT_ARTEFACT, 2, -1.75f
+                            ))
+                            .component(
+                                    DotcComponents.ITEM_STATS_COMPONENT,
+                                    new ItemStatsComponent(0, 15, 10)
+                            ),
+                    new TooltipBuilder("diffusal_blade")
+                            .description()
+                            .stats(0, 15, 10)
+                            .passive()
+                            .active()
+            ),
+            "diffusal_blade"
+    );
 
     public static void initialize() { }
 }

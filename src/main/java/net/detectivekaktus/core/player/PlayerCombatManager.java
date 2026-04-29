@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 
 import net.detectivekaktus.attach.PlayerStats;
 import net.detectivekaktus.component.DotcComponents;
+import net.detectivekaktus.component.records.ChargeableComponent;
 import net.detectivekaktus.component.records.ProcableComponent;
 import net.detectivekaktus.core.item.DotcItemCooldowns;
 import net.detectivekaktus.core.rng.PseudoRandom;
@@ -183,5 +184,23 @@ public class PlayerCombatManager {
 
         var stats = PlayerStats.get(player);
         return damage * (1.0f - stats.getMagicResistance());
+    }
+
+    public static void addStickCharge(Player player) {
+        var hotbarItems = player.getInventory().items.subList(0, 9);
+        for (var item : hotbarItems) {
+            boolean isTarget = (item.is(DotcTools.MAGIC_STICK) || item.is(DotcTools.MAGIC_WAND))
+                    && item.has(DotcComponents.CHARGEABLE_COMPONENT);
+            if (isTarget) {
+                var component = item.get(DotcComponents.CHARGEABLE_COMPONENT);
+                item.set(
+                        DotcComponents.CHARGEABLE_COMPONENT,
+                        ChargeableComponent.addCharge(component)
+                );
+                // Charge only one stick item to prevent abusing sticks by having
+                // 9 of them in inventory
+                return;
+            }
+        }
     }
 }

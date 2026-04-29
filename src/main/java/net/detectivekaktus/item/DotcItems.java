@@ -77,6 +77,7 @@ public class DotcItems {
                 DotcIngredients.ROBE_OF_THE_MAGI,
 
                 DotcTools.ECHO_SABRE,
+                DotcTools.DIFFUSAL_BLADE,
                 DotcTools.CRYSTALYS,
                 DotcTools.DAEDALUS,
                 DotcTools.BUTTERFLY,
