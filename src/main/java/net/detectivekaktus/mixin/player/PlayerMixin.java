@@ -2,7 +2,6 @@ package net.detectivekaktus.mixin.player;
 
 import com.mojang.authlib.GameProfile;
 
-import net.detectivekaktus.item.tool.DotcTools;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -22,6 +21,7 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
 import net.detectivekaktus.core.player.PlayerCombatManager;
 import net.detectivekaktus.core.util.CombatManagerHolder;
+import net.detectivekaktus.item.tool.DotcTools;
 
 @Mixin(Player.class)
 public class PlayerMixin implements CombatManagerHolder {
@@ -105,14 +105,7 @@ public class PlayerMixin implements CombatManagerHolder {
         if (isNotMixinTarget(player))
             return hurt;
 
-        hurt = dotc$combatManager.proc(entity, hurt);
-
-        var stack = player.getWeaponItem();
-        var hitPlayerThroughEvasion = dotc$combatManager.hitThroughEvasion() && (entity instanceof Player);
-        if (hitPlayerThroughEvasion && stack.is(DotcTools.DIFFUSAL_BLADE))
-            dotc$combatManager.burnMana((Player) entity);
-
-        return hurt;
+        return dotc$combatManager.proc(entity, hurt);
     }
 
     @Inject(
@@ -124,13 +117,20 @@ public class PlayerMixin implements CombatManagerHolder {
             ),
             cancellable = true
     )
-    private void applyEvasion(DamageSource damageSource, float f, CallbackInfo callbackInfo) {
+    private void preDamageAbsorbHook(DamageSource damageSource, float f, CallbackInfo callbackInfo) {
         var player = (Player) (Object) this;
         if (isNotMixinTarget(player))
             return;
 
         if (dotc$combatManager.evade(damageSource))
             callbackInfo.cancel();
+
+        var attacker = damageSource.getEntity();
+        if (!(attacker instanceof Player))
+            return;
+
+        if (attacker.getWeaponItem().is(DotcTools.DIFFUSAL_BLADE))
+            ((CombatManagerHolder) attacker).getCombatManager().burnMana(player);
     }
 
     @ModifyVariable(
@@ -141,7 +141,7 @@ public class PlayerMixin implements CombatManagerHolder {
             ),
             ordinal = 0
     )
-    private float applyDamageReduction(float original, DamageSource damageSource) {
+    private float preMagicDamageAbsorbHook(float original, DamageSource damageSource) {
         var player = (Player) (Object) this;
         if (isNotMixinTarget(player))
             return original;
