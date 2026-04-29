@@ -21,7 +21,6 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
 import net.detectivekaktus.core.player.PlayerCombatManager;
 import net.detectivekaktus.core.util.CombatManagerHolder;
-import net.detectivekaktus.item.tool.DotcTools;
 
 @Mixin(Player.class)
 public class PlayerMixin implements CombatManagerHolder {
@@ -65,13 +64,7 @@ public class PlayerMixin implements CombatManagerHolder {
         if (isNotMixinTarget(player))
             return original;
 
-        var stack = player.getWeaponItem();
-        var damage =  dotc$combatManager.crit(original);
-
-        if (stack.is(DotcTools.DIFFUSAL_BLADE) && (entity instanceof Player attacked))
-            damage += dotc$combatManager.addManaBurnDamage(attacked);
-
-        return damage;
+        return dotc$combatManager.crit(original);
     }
 
     @Inject(
@@ -108,6 +101,26 @@ public class PlayerMixin implements CombatManagerHolder {
         return dotc$combatManager.proc(entity, hurt);
     }
 
+    @ModifyVariable(
+            method = "actuallyHurt",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/entity/player/Player;getDamageAfterArmorAbsorb(Lnet/minecraft/world/damagesource/DamageSource;F)F",
+                    shift = At.Shift.BEFORE
+            ),
+            ordinal = 0
+    )
+    private float applyDamageModifiers(float original, DamageSource damageSource) {
+        var player = (Player) (Object) this;
+        var entity = damageSource.getEntity();
+        if (isNotMixinTarget(player) || !(entity instanceof Player attacker))
+            return original;
+
+        var damage = original + dotc$combatManager.manaBurn(attacker, player);
+        damage = dotc$combatManager.reduceDamage(damage, damageSource);
+        return damage;
+    }
+
     @Inject(
             method = "actuallyHurt",
             at = @At(
@@ -124,28 +137,5 @@ public class PlayerMixin implements CombatManagerHolder {
 
         if (dotc$combatManager.evade(damageSource))
             callbackInfo.cancel();
-
-        var attacker = damageSource.getEntity();
-        if (!(attacker instanceof Player))
-            return;
-
-        if (attacker.getWeaponItem().is(DotcTools.DIFFUSAL_BLADE))
-            ((CombatManagerHolder) attacker).getCombatManager().burnMana(player);
-    }
-
-    @ModifyVariable(
-            method = "actuallyHurt",
-            at = @At(
-                    value = "INVOKE_ASSIGN",
-                    target = "Lnet/minecraft/world/entity/player/Player;getDamageAfterMagicAbsorb(Lnet/minecraft/world/damagesource/DamageSource;F)F"
-            ),
-            ordinal = 0
-    )
-    private float preMagicDamageAbsorbHook(float original, DamageSource damageSource) {
-        var player = (Player) (Object) this;
-        if (isNotMixinTarget(player))
-            return original;
-
-        return dotc$combatManager.reduceDamage(original, damageSource);
     }
 }

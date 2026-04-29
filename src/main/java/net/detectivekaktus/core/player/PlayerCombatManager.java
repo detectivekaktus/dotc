@@ -1,5 +1,6 @@
 package net.detectivekaktus.core.player;
 
+import net.detectivekaktus.DefenseOfTheCraft;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -64,15 +65,15 @@ public class PlayerCombatManager {
         return damage * item.getCritPercent();
     }
 
-    public float addManaBurnDamage(Player attacked) {
-        var mana = PlayerMana.get(attacked);
-        lastManaBurn = Math.min(DotcItemRules.DIFFUSAL_MANA_BURN, mana.getCurrentMana());
-        return lastManaBurn * DotcItemRules.DIFFUSAL_DAMAGE_PER_MANA;
-    }
+    public float manaBurn(Player attacker, Player victim) {
+        if (!attacker.getWeaponItem().is(DotcTools.DIFFUSAL_BLADE))
+            return 0.0f;
 
-    public void burnMana(Player target) {
-        var mana = PlayerMana.get(target);
+        var mana = PlayerMana.get(victim);
+        lastManaBurn = Math.min(DotcItemRules.DIFFUSAL_MANA_BURN, mana.getCurrentMana());
         mana.consume(lastManaBurn);
+
+        return lastManaBurn * DotcItemRules.DIFFUSAL_DAMAGE_PER_MANA;
     }
 
     public void calculateProcs() {
