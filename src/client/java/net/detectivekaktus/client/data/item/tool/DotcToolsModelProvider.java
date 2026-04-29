@@ -34,7 +34,8 @@ public class DotcToolsModelProvider extends FabricModelProvider {
         ).forEach(item -> itemModelGenerator.generateFlatItem(item, ModelTemplates.FLAT_HANDHELD_ITEM));
 
         Stream.of(
-                DotcTools.MAGIC_STICK
+                DotcTools.MAGIC_STICK,
+                DotcTools.MAGIC_WAND
         ).forEach(item -> itemModelGenerator.generateFlatItem(item, ModelTemplates.FLAT_ITEM));
     }
 

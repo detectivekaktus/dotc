@@ -15,12 +15,14 @@ import net.detectivekaktus.item.TooltipBuilder;
 import net.detectivekaktus.sound.item.DotcItemSounds;
 
 public class MagicStick extends DotcItem {
-    private static final int MAX_CHARGES = 10;
+    private final int maxCharges;
     private int charges;
     private int chargeTick = 0;
 
-    public MagicStick(Properties properties, TooltipBuilder tooltipBuilder) {
+    public MagicStick(Properties properties, TooltipBuilder tooltipBuilder, int maxCharges) {
         super(properties, tooltipBuilder);
+        this.maxCharges = maxCharges;
+        this.charges = maxCharges;
     }
 
     @Override
@@ -38,19 +40,15 @@ public class MagicStick extends DotcItem {
         mana.increment(manaRegen);
 
         player.getCooldowns().addCooldown(this, 15 * 20);
-        playUseSound(level, player);
-        setCharges(0);
-
-        return InteractionResultHolder.success(stack);
-    }
-
-    private void playUseSound(Level level, Player player) {
         level.playSound(
                 null,
                 player.getX(), player.getY(), player.getZ(),
                 DotcItemSounds.MAGIC_STICK,
                 SoundSource.PLAYERS
         );
+        setCharges(0);
+
+        return InteractionResultHolder.success(stack);
     }
 
     @Override
@@ -79,6 +77,6 @@ public class MagicStick extends DotcItem {
     public void setCharges(int charges) {
         if (charges < 0)
             return;
-        this.charges = Math.min(charges, MAX_CHARGES);
+        this.charges = Math.min(charges, maxCharges);
     }
 }

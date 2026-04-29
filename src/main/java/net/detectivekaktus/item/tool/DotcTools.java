@@ -188,9 +188,26 @@ public class DotcTools {
                             .stacksTo(1),
                     new TooltipBuilder("magic_stick")
                             .description()
-                            .active()
+                            .active(),
+                    10
             ),
             "magic_stick"
+    );
+    public static final Item MAGIC_WAND = DotcItems.register(
+            new MagicStick(
+                    new Item.Properties()
+                            .stacksTo(1)
+                            .component(
+                                    DotcComponents.ITEM_STATS_COMPONENT,
+                                    new ItemStatsComponent(3, 3, 3)
+                            ),
+                    new TooltipBuilder("magic_wand")
+                            .description()
+                            .stats(3, 3, 3)
+                            .active(),
+                    20
+            ),
+            "magic_wand"
     );
 
     public static void initialize() { }

@@ -47,6 +47,10 @@
   "description.defense-of-the-craft.magic_stick": "A simple wand used to channel magic energies, it is favored by apprentice wizards and great warlocks alike.",
   "active.defense-of-the-craft.magic_stick": "Uses up all charges to instantly heal and replenish the caster's health and mana based on the number of charges.",
 
+  "item.defense-of-the-craft.magic_wand": "Magic Wand",
+  "description.defense-of-the-craft.magic_wand": "A simple wand used to channel magic energies, it is favored by apprentice wizards and great warlocks alike.",
+  "active.defense-of-the-craft.magic_wand": "Uses up all charges to instantly heal and replenish the caster's health and mana based on the number of charges.",
+
 
 
   "item.defense-of-the-craft.blight_stone": "Blight Stone",
