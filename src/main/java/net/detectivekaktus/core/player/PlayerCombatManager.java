@@ -34,14 +34,14 @@ public class PlayerCombatManager {
         if (player.getRandom().nextFloat() > chance) {
             stack.set(
                     DotcComponents.PROCABLE_COMPONENT,
-                    new ProcableComponent(component.baseChance(), component.scale() + 1)
+                    ProcableComponent.increaseScale(component)
             );
             return damage;
         }
 
         stack.set(
                 DotcComponents.PROCABLE_COMPONENT,
-                new ProcableComponent(component.baseChance(), 0)
+                ProcableComponent.resetScale(component)
         );
 
         var sound = item.getProcSound();
@@ -69,14 +69,14 @@ public class PlayerCombatManager {
         if (player.getRandom().nextFloat() > chance) {
             stack.set(
                     DotcComponents.PROCABLE_COMPONENT,
-                    new ProcableComponent(component.baseChance(), component.scale() + 1)
+                    ProcableComponent.increaseScale(component)
             );
             return;
         }
 
         stack.set(
                 DotcComponents.PROCABLE_COMPONENT,
-                new ProcableComponent(component.baseChance(), 0)
+                ProcableComponent.resetScale(component)
         );
 
         canHitThrough.setHitThroughEvasion(true);
