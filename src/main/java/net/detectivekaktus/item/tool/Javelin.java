@@ -28,10 +28,10 @@ public class Javelin extends DotcSpearItem implements HasBonusDamage {
 
     @Override
     public DamageSource getBonusDamageSource(Player player) {
-        return new DamageSource(
-                player.registryAccess()
-                        .registryOrThrow(Registries.DAMAGE_TYPE)
-                        .getHolderOrThrow(DotcDamageTypes.MAGICAL)
+        return player.level().damageSources().source(
+                DotcDamageTypes.MAGICAL,
+                player,
+                player
         );
     }
 

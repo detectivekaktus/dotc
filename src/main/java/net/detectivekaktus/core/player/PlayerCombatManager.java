@@ -126,10 +126,10 @@ public class PlayerCombatManager {
             if (player.getCooldowns().isOnCooldown(item))
                 return hurt;
 
-            var damageSource = new DamageSource(
-                    player.registryAccess()
-                            .registryOrThrow(Registries.DAMAGE_TYPE)
-                            .getHolderOrThrow(DotcDamageTypes.PHYSICAL)
+            var damageSource = player.level().damageSources().source(
+                    DotcDamageTypes.PHYSICAL,
+                    player,
+                    player
             );
 
             var damage = (float) player.getAttributeValue(Attributes.ATTACK_DAMAGE);
