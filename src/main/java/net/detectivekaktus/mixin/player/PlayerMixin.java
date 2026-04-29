@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
 import net.detectivekaktus.core.player.PlayerCombatManager;
-import net.detectivekaktus.mixin.util.CombatManagerHolder;
+import net.detectivekaktus.core.util.CombatManagerHolder;
 
 @Mixin(Player.class)
 public class PlayerMixin implements CombatManagerHolder {

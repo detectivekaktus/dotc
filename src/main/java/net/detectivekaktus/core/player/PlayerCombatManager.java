@@ -1,6 +1,5 @@
 package net.detectivekaktus.core.player;
 
-import net.detectivekaktus.mixin.util.CombatManagerHolder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
@@ -14,6 +13,7 @@ import net.detectivekaktus.component.records.ChargeableComponent;
 import net.detectivekaktus.component.records.ProcableComponent;
 import net.detectivekaktus.core.item.DotcItemCooldowns;
 import net.detectivekaktus.core.rng.PseudoRandom;
+import net.detectivekaktus.core.util.CombatManagerHolder;
 import net.detectivekaktus.damage.DotcDamageTypes;
 import net.detectivekaktus.item.tool.Critable;
 import net.detectivekaktus.item.tool.DotcTools;

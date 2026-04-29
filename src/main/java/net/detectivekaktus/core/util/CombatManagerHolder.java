@@ -1,4 +1,4 @@
-package net.detectivekaktus.mixin.util;
+package net.detectivekaktus.core.util;
 
 import net.detectivekaktus.core.player.PlayerCombatManager;
 
