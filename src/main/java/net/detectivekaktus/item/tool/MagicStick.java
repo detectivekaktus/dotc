@@ -63,10 +63,8 @@ public class MagicStick extends DotcItem {
         if (level.isClientSide)
             return;
 
-        if (!itemStack.has(DotcComponents.CHARGEABLE_COMPONENT)) {
-            DefenseOfTheCraft.LOGGER.error("Tick update failed. Magic stick item ({}) doesn't have chargeable component attached.", this);
+        if (!itemStack.has(DotcComponents.CHARGEABLE_COMPONENT))
             return;
-        }
 
         var component = itemStack.get(DotcComponents.CHARGEABLE_COMPONENT);
 
