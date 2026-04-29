@@ -6,9 +6,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
-import net.minecraft.world.entity.boss.wither.WitherBoss;
-import net.minecraft.world.entity.monster.warden.Warden;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
@@ -20,6 +17,7 @@ import net.detectivekaktus.item.DotcSwordItem;
 import net.detectivekaktus.item.TooltipBuilder;
 import net.detectivekaktus.sound.gui.DotcGuiSounds;
 import net.detectivekaktus.sound.item.DotcItemSounds;
+import net.detectivekaktus.tag.DotcEntityTypeTags;
 
 public class DiffusalBlade extends DotcSwordItem implements HasManaCost {
     public DiffusalBlade(Tier tier, Properties properties, TooltipBuilder tooltipBuilder) {
@@ -46,10 +44,7 @@ public class DiffusalBlade extends DotcSwordItem implements HasManaCost {
             return InteractionResult.PASS;
         }
 
-        boolean isInvalidTarget = livingEntity instanceof EnderDragon
-                || livingEntity instanceof Warden
-                || livingEntity instanceof WitherBoss;
-        if (isInvalidTarget)
+        if (livingEntity.getType().is(DotcEntityTypeTags.DIFFUSAL_BLADE_INVULNERABLE))
             return InteractionResult.FAIL;
 
         if (notEnoughMana)

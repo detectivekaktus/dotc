@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
 import net.detectivekaktus.client.data.DotcBlockTagProvider;
 import net.detectivekaktus.client.data.DotcDynamicRegistryProvider;
+import net.detectivekaktus.client.data.DotcEntityTagProvider;
 import net.detectivekaktus.client.data.DotcItemTagProvider;
 import net.detectivekaktus.client.data.block.building.DotcBuildingBlockLootTableProvider;
 import net.detectivekaktus.client.data.block.building.DotcBuildingBlockModelProvider;
@@ -30,6 +31,7 @@ public class DefenseOfTheCraftDataGenerator implements DataGeneratorEntrypoint {
 		var pack = fabricDataGenerator.createPack();
 		pack.addProvider(DotcItemTagProvider::new);
 		pack.addProvider(DotcBlockTagProvider::new);
+		pack.addProvider(DotcEntityTagProvider::new);
 
 		pack.addProvider(DotcNaturalBlockModelProvider::new);
 		pack.addProvider(DotcNaturalBlockLootTableProvider::new);

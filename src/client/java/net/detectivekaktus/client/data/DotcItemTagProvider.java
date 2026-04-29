@@ -37,7 +37,8 @@ public class DotcItemTagProvider extends FabricTagProvider<Item> {
                 .add(DotcTools.YASHA)
                 .add(DotcTools.KAYA)
                 .add(DotcPrimitives.DIVINE_RAPIER)
-                .add(DotcTools.ECHO_SABRE);
+                .add(DotcTools.ECHO_SABRE)
+                .add(DotcTools.DIFFUSAL_BLADE);
 
         getOrCreateTagBuilder(ItemTags.AXES)
                 .add(DotcPrimitives.OGRE_AXE);
