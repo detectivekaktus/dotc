@@ -8,7 +8,8 @@
 		"DetectiveKaktus"
 	],
 	"contact": {
-		"sources": "https://github.com/detectivekaktus/dotc"
+		"sources": "https://github.com/detectivekaktus/dotc",
+		"issues": "https://github.com/detectivekaktus/dotc/issues"
 	},
 	"license": "MIT",
 	"icon": "assets/defense-of-the-craft/icon.png",
