@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.core;
+package net.detectivekaktus.client.core.render;
 
 import net.minecraft.network.chat.Component;
 

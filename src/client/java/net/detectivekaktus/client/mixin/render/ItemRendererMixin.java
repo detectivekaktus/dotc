@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
-import net.detectivekaktus.client.render.DotcItemModels;
+import net.detectivekaktus.client.core.render.DotcItemModels;
 import net.detectivekaktus.item.primitive.DotcPrimitives;
 import net.detectivekaktus.item.tool.DotcTools;
 

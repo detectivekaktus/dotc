@@ -141,7 +141,7 @@
 
   "item.defense-of-the-craft.diffusal_blade": "Diffusal Blade",
   "description.defense-of-the-craft.diffusal_blade": "An enchanted blade that allows the user to cut straight into the enemy's soul.",
-  "passive.defense-of-the-craft.diffusal_blade": "The wielder's attacks burn 20 of their target's mana and deal damage equal to a percentage of the mana burnt",
+  "passive.defense-of-the-craft.diffusal_blade": "The wielder's attacks burn 20 of their target's mana and deal damage equal to a percentage of the mana burnt.",
   "active.defense-of-the-craft.diffusal_blade": "Greatly slows the target enemy's movement speed, which decays over the duration.",
 
 

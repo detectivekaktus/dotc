@@ -1,14 +1,16 @@
-package net.detectivekaktus.client.render.gui;
+package net.detectivekaktus.client.core.render.gui;
 
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.GameType;
 
 import net.detectivekaktus.DefenseOfTheCraft;
 import net.detectivekaktus.attach.PlayerMana;
 import net.detectivekaktus.attach.PlayerStats;
-import net.minecraft.world.level.GameType;
+
+import net.detectivekaktus.client.core.render.DotcColors;
 
 public class DotcStatusBar {
     private static final ResourceLocation STRENGTH_ICON = ResourceLocation.fromNamespaceAndPath(
@@ -28,14 +30,10 @@ public class DotcStatusBar {
     private static final int HOTBAR_HEIGHT = 22; // vanilla hotbar height
 
     private static final int MANA_BAR_HEIGHT = 9;
-    private static final int CURRENT_MANA_COLOR = 0xFF257DAE;
-    private static final int MANA_BAR_COLOR = 0xFF134D6E;
 
     private static final int ICON_TO_TEXT_MARGIN = 13;
     private static final int STAT_TO_STAT_MARGIN = 25;
     private static final int STATS_TO_MANA_MARGIN = 10;
-
-    private static final int TEXT_COLOR = 0xFFFFFFFF;
 
     private static int getStatusBarYPos(int height) {
         return height - (int) (HOTBAR_HEIGHT * 3.25f);
@@ -51,14 +49,14 @@ public class DotcStatusBar {
         var x2 = statusBarStartX + HOTBAR_WIDTH;
         var manaBarWidth = x2 - x1;
         var y2 = y1 + MANA_BAR_HEIGHT;
-        context.fill(x1, y1, x2, y2, MANA_BAR_COLOR);
+        context.fill(x1, y1, x2, y2, DotcColors.MANA_BAR_COLOR);
 
         var currentManaX = x1 + (int) (manaBarWidth * manaPercent);
-        context.fill(x1, y1, currentManaX, y2, CURRENT_MANA_COLOR);
+        context.fill(x1, y1, currentManaX, y2, DotcColors.CURRENT_MANA_COLOR);
 
         var strX = (x1 + x2) / 2;
         var str = String.valueOf((int) current);
-        context.drawCenteredString(client.font, str, strX, y1, TEXT_COLOR);
+        context.drawCenteredString(client.font, str, strX, y1, DotcColors.TEXT_COLOR);
     }
 
     private static int drawIconAndValue(GuiGraphics context, ResourceLocation icon, int value, int x, int y) {
@@ -67,7 +65,7 @@ public class DotcStatusBar {
 
         var strX = x + ICON_TO_TEXT_MARGIN;
         var strValue = String.valueOf(value);
-        context.drawString(client.font, strValue, strX, y, TEXT_COLOR);
+        context.drawString(client.font, strValue, strX, y, DotcColors.TEXT_COLOR);
 
         return strX + STAT_TO_STAT_MARGIN;
     }

@@ -14,7 +14,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.detectivekaktus.client.render.DotcItemModels;
+import net.detectivekaktus.client.core.render.DotcItemModels;
 
 import java.util.List;
 import java.util.Map;

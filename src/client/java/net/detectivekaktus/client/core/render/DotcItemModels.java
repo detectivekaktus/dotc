@@ -1,4 +1,4 @@
-package net.detectivekaktus.client.render;
+package net.detectivekaktus.client.core.render;
 
 import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.resources.ResourceLocation;
