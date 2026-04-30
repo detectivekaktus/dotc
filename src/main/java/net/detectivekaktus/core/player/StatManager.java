@@ -11,15 +11,15 @@ import net.detectivekaktus.attribute.DotcAttributeModifiers;
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ItemStatsComponent;
 
-public class PlayerStatManager {
+public class StatManager {
     private final Player player;
 
-    public PlayerStatManager(Player player) {
+    public StatManager(Player player) {
         this.player = player;
     }
 
     public void updateStats() {
-        var config = new PlayerStatManager.Config();
+        var config = new StatManager.Config();
         var hotbarItems = player.getInventory().items.subList(0, 9);
 
         for (var item : hotbarItems) {

@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import net.detectivekaktus.core.player.PlayerStatManager;
+import net.detectivekaktus.core.player.StatManager;
 
 @Mixin(ServerPlayer.class)
 public class ServerPlayerMixin {
@@ -39,7 +39,7 @@ public class ServerPlayerMixin {
 
     @Unique
     @Final
-    private PlayerStatManager statManager;
+    private StatManager statManager;
 
     @Inject(
             method = "<init>",
@@ -47,6 +47,6 @@ public class ServerPlayerMixin {
     )
     private void addStatManager(MinecraftServer minecraftServer, ServerLevel serverLevel, GameProfile gameProfile, ClientInformation clientInformation, CallbackInfo callbackInfo) {
         var player = (ServerPlayer) (Object) this;
-        this.statManager = new PlayerStatManager(player);
+        this.statManager = new StatManager(player);
     }
 }

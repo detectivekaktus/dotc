@@ -19,17 +19,17 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
-import net.detectivekaktus.core.player.PlayerCombatManager;
+import net.detectivekaktus.core.player.CombatManager;
 import net.detectivekaktus.core.util.CombatManagerHolder;
 
 @Mixin(Player.class)
 public class PlayerMixin implements CombatManagerHolder {
     @Unique
     @Final
-    public PlayerCombatManager dotc$combatManager;
+    public CombatManager dotc$combatManager;
 
     @Override
-    public PlayerCombatManager getCombatManager() {
+    public CombatManager getCombatManager() {
         return dotc$combatManager;
     }
 
@@ -47,7 +47,7 @@ public class PlayerMixin implements CombatManagerHolder {
         if (isNotMixinTarget(player))
             return;
 
-        this.dotc$combatManager = new PlayerCombatManager(player);
+        this.dotc$combatManager = new CombatManager(player);
     }
 
     @ModifyVariable(

@@ -12,7 +12,7 @@ import net.minecraft.world.item.Tier;
 
 import net.detectivekaktus.attach.PlayerMana;
 import net.detectivekaktus.core.item.DotcItemCooldowns;
-import net.detectivekaktus.core.player.PlayerCombatManager;
+import net.detectivekaktus.core.player.CombatManager;
 import net.detectivekaktus.item.DotcSwordItem;
 import net.detectivekaktus.item.TooltipBuilder;
 import net.detectivekaktus.sound.gui.DotcGuiSounds;
@@ -51,7 +51,7 @@ public class DiffusalBlade extends DotcSwordItem implements HasManaCost {
             return InteractionResult.FAIL;
 
         if (livingEntity instanceof Player interactedPlayer)
-            PlayerCombatManager.addStickCharge(interactedPlayer);
+            CombatManager.addStickCharge(interactedPlayer);
 
         mana.consume(getManaCost());
 

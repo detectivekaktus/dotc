@@ -1,7 +1,5 @@
 package net.detectivekaktus.core.player;
 
-import net.detectivekaktus.DefenseOfTheCraft;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
@@ -23,13 +21,12 @@ import net.detectivekaktus.item.tool.DotcTools;
 import net.detectivekaktus.item.tool.HasBonusDamage;
 import net.detectivekaktus.sound.DotcSounds;
 
-public class PlayerCombatManager {
+public class CombatManager {
     private final Player player;
     private boolean hitThroughEvasion = false;
     private boolean evaded = false;
-    private float lastManaBurn;
 
-    public PlayerCombatManager(Player player) {
+    public CombatManager(Player player) {
         this.player = player;
     }
 
@@ -70,10 +67,10 @@ public class PlayerCombatManager {
             return 0.0f;
 
         var mana = PlayerMana.get(victim);
-        lastManaBurn = Math.min(DotcItemRules.DIFFUSAL_MANA_BURN, mana.getCurrentMana());
-        mana.consume(lastManaBurn);
+        var manaBurn = Math.min(DotcItemRules.DIFFUSAL_MANA_BURN, mana.getCurrentMana());
+        mana.consume(manaBurn);
 
-        return lastManaBurn * DotcItemRules.DIFFUSAL_DAMAGE_PER_MANA;
+        return manaBurn * DotcItemRules.DIFFUSAL_DAMAGE_PER_MANA;
     }
 
     public void calculateProcs() {
