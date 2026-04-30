@@ -4,11 +4,15 @@ import com.mojang.authlib.GameProfile;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 
+import org.spongepowered.asm.mixin.Debug;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -16,12 +20,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
 import net.detectivekaktus.core.player.CombatManager;
 import net.detectivekaktus.core.util.CombatManagerHolder;
+import net.detectivekaktus.sound.gui.DotcGuiSounds;
 
+@Debug(export = true)
 @Mixin(Player.class)
 public class PlayerMixin implements CombatManagerHolder {
     @Unique
@@ -54,8 +61,7 @@ public class PlayerMixin implements CombatManagerHolder {
             method = "attack",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/entity/player/Player;getWeaponItem()Lnet/minecraft/world/item/ItemStack;",
-                    shift = At.Shift.BEFORE
+                    target = "Lnet/minecraft/world/entity/player/Player;getWeaponItem()Lnet/minecraft/world/item/ItemStack;"
             ),
             ordinal = 0
     )
@@ -71,8 +77,7 @@ public class PlayerMixin implements CombatManagerHolder {
             method = "attack",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/entity/Entity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z",
-                    shift = At.Shift.BEFORE
+                    target = "Lnet/minecraft/world/entity/Entity;hurt(Lnet/minecraft/world/damagesource/DamageSource;F)Z"
             )
     )
     private void preTargetHurtHook(Entity entity, CallbackInfo callbackInfo) {
@@ -105,8 +110,7 @@ public class PlayerMixin implements CombatManagerHolder {
             method = "actuallyHurt",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/entity/player/Player;getDamageAfterArmorAbsorb(Lnet/minecraft/world/damagesource/DamageSource;F)F",
-                    shift = At.Shift.BEFORE
+                    target = "Lnet/minecraft/world/entity/player/Player;getDamageAfterArmorAbsorb(Lnet/minecraft/world/damagesource/DamageSource;F)F"
             ),
             ordinal = 0
     )
@@ -125,8 +129,7 @@ public class PlayerMixin implements CombatManagerHolder {
             method = "actuallyHurt",
             at = @At(
                     value = "INVOKE",
-                    target = "Lnet/minecraft/world/entity/player/Player;getDamageAfterArmorAbsorb(Lnet/minecraft/world/damagesource/DamageSource;F)F",
-                    shift = At.Shift.BEFORE
+                    target = "Lnet/minecraft/world/entity/player/Player;getDamageAfterArmorAbsorb(Lnet/minecraft/world/damagesource/DamageSource;F)F"
             ),
             cancellable = true
     )
@@ -137,5 +140,30 @@ public class PlayerMixin implements CombatManagerHolder {
 
         if (dotc$combatManager.evade(damageSource))
             callbackInfo.cancel();
+    }
+
+    @Inject(
+            method = "interactOn",
+            at = @At(
+                    value = "INVOKE",
+                    target = "Lnet/minecraft/world/item/ItemStack;interactLivingEntity(Lnet/minecraft/world/entity/player/Player;Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/InteractionHand;)Lnet/minecraft/world/InteractionResult;"
+            ),
+            cancellable = true
+    )
+    private void cancelInteractWithEntityIfOnCooldown(Entity entity, InteractionHand interactionHand, CallbackInfoReturnable<InteractionResult> callbackInfo) {
+        var player = (Player) (Object) this;
+        if (isNotMixinTarget(player))
+            return;
+
+        var stack = player.getItemInHand(interactionHand);
+        if (player.getCooldowns().isOnCooldown(stack.getItem())) {
+            player.level().playLocalSound(
+                    player,
+                    DotcGuiSounds.UI_COOLDOWN,
+                    SoundSource.PLAYERS,
+                    1.0f, 1.0f
+            );
+            callbackInfo.setReturnValue(InteractionResult.FAIL);
+        }
     }
 }
