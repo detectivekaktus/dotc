@@ -24,6 +24,11 @@
       "defense-of-the-craft:ui_not_enough_mana"
     ]
   },
+  "ui_cooldown": {
+    "sounds": [
+      "defense-of-the-craft:ui_cooldown"
+    ]
+  },
 
   "item_mkb_pierce": {
     "sounds": [
