@@ -12,7 +12,9 @@
     "gui.GuiGraphicsMixin",
 
     "render.ItemRendererMixin",
-    "render.ModelBakeryMixin"
+    "render.ModelBakeryMixin",
+
+    "multiplayer.MultiPlayerGameModeMixin"
   ],
   "injectors": {
     "defaultRequire": 1
