@@ -236,7 +236,7 @@ public class DotcTools {
             "diffusal_blade"
     );
     public static final Item DESOLATOR = DotcItems.register(
-            new DotcHoeItem(
+            new Desolator(
                     DotcToolMaterial.DIRE_ARTEFACT,
                     new Item.Properties()
                             .attributes(DotcHoeItem.createAttributes(
