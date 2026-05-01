@@ -26,7 +26,7 @@ public class ArmorReduction extends MobEffect {
         addAttributeModifier(
                 Attributes.ARMOR,
                 DotcAttributeModifiers.ARMOR_REDUCTION_MODIFIER_ID,
-                -(3 << amplifier),
+                -(4 << amplifier),
                 AttributeModifier.Operation.ADD_VALUE
         );
 
