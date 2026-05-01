@@ -240,7 +240,7 @@ public class DotcTools {
                     DotcToolMaterial.DIRE_ARTEFACT,
                     new Item.Properties()
                             .attributes(DotcHoeItem.createAttributes(
-                                    DotcToolMaterial.DIRE_ARTEFACT, 4, -2.0f
+                                    DotcToolMaterial.DIRE_ARTEFACT, 3, -2.0f
                             )),
                     new TooltipBuilder("desolator")
                             .description()
