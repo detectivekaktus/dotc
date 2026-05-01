@@ -78,6 +78,7 @@ public class DotcItems {
 
                 DotcTools.ECHO_SABRE,
                 DotcTools.DIFFUSAL_BLADE,
+                DotcTools.DESOLATOR,
                 DotcTools.CRYSTALYS,
                 DotcTools.DAEDALUS,
                 DotcTools.BUTTERFLY,

@@ -42,6 +42,9 @@ public class DotcItemTagProvider extends FabricTagProvider<Item> {
 
         getOrCreateTagBuilder(ItemTags.AXES)
                 .add(DotcPrimitives.OGRE_AXE);
+
+        getOrCreateTagBuilder(ItemTags.HOES)
+                .add(DotcTools.DESOLATOR);
     }
 
     @Override

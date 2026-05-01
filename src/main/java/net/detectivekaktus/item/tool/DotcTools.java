@@ -235,6 +235,19 @@ public class DotcTools {
             ),
             "diffusal_blade"
     );
+    public static final Item DESOLATOR = DotcItems.register(
+            new DotcHoeItem(
+                    DotcToolMaterial.DIRE_ARTEFACT,
+                    new Item.Properties()
+                            .attributes(DotcHoeItem.createAttributes(
+                                    DotcToolMaterial.DIRE_ARTEFACT, 4, -2.0f
+                            )),
+                    new TooltipBuilder("desolator")
+                            .description()
+                            .passive()
+            ),
+            "desolator"
+    );
 
     public static void initialize() { }
 }

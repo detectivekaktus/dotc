@@ -144,6 +144,10 @@
   "passive.defense-of-the-craft.diffusal_blade": "The wielder's attacks burn 20 of their target's mana and deal damage equal to a percentage of the mana burnt.",
   "active.defense-of-the-craft.diffusal_blade": "Greatly slows the target enemy's movement speed, which decays over the duration.",
 
+  "item.defense-of-the-craft.desolator": "Desolator",
+  "description.defense-of-the-craft.desolator": "A wicked weapon, used in torturing political criminals.",
+  "passive.defense-of-the-craft.desolator": "The wielder's successful attack applies 4 armor reduction debuff on the affected enemy unit.",
+
 
 
   "item.defense-of-the-craft.sange": "Sange",
