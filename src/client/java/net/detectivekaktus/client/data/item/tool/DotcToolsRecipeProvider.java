@@ -174,6 +174,19 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.BLIGHT_STONE)
                 )
                 .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DotcTools.SKULL_BASHER)
+                .pattern("$@$")
+                .pattern(" # ")
+                .pattern(" # ")
+                .define('#', DotcPrimitives.MITHRIL_HAMMER)
+                .define('@', DotcIngredients.DIRE_CRYSTAL)
+                .define('$', DotcIngredients.BELT_OF_STRENGTH)
+                .unlockedBy(
+                        "has_mithril_hammer",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcPrimitives.MITHRIL_HAMMER)
+                )
+                .save(exporter);
     }
 
     @Override

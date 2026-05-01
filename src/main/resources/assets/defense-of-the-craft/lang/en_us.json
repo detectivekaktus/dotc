@@ -148,6 +148,10 @@
   "description.defense-of-the-craft.desolator": "A wicked weapon, used in torturing political criminals.",
   "passive.defense-of-the-craft.desolator": "The wielder's successful attack applies 4 armor reduction debuff on the affected enemy unit.",
 
+  "item.defense-of-the-craft.skull_basher": "Skull Basher",
+  "description.defense-of-the-craft.skull_basher": "A feared weapon in the right hands, this maul's ability to shatter the defenses of its opponents should not be underestimated.",
+  "passive.defense-of-the-craft.skull_basher": "Grants the wielder's attacks a 25% chance to stun the target and deal bonus physical damage.",
+
 
 
   "item.defense-of-the-craft.sange": "Sange",

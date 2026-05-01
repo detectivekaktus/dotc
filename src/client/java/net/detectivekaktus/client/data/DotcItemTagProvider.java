@@ -22,7 +22,8 @@ public class DotcItemTagProvider extends FabricTagProvider<Item> {
     protected void addTags(HolderLookup.Provider wrapperLookup) {
         getOrCreateTagBuilder(ItemTags.PICKAXES)
                 .add(DotcPrimitives.MITHRIL_HAMMER)
-                .add(DotcTools.DAEDALUS);
+                .add(DotcTools.DAEDALUS)
+                .add(DotcTools.SKULL_BASHER);
 
         getOrCreateTagBuilder(ItemTags.SWORDS)
                 .add(DotcIngredients.BLADES_OF_ATTACK)

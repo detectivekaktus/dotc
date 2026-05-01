@@ -248,6 +248,24 @@ public class DotcTools {
             ),
             "desolator"
     );
+    public static final Item SKULL_BASHER = DotcItems.register(
+            new DotcPickaxeItem(
+                    DotcToolMaterial.DIRE_ARTEFACT,
+                    new Item.Properties()
+                            .attributes(DotcPickaxeItem.createAttributes(
+                                    DotcToolMaterial.DIRE_ARTEFACT, 2, -2.5f
+                            ))
+                            .component(
+                                    DotcComponents.ITEM_STATS_COMPONENT,
+                                    new ItemStatsComponent(10, 0, 0)
+                            ),
+                    new TooltipBuilder("skull_basher")
+                            .description()
+                            .stats(10, 0, 0)
+                            .passive()
+            ),
+            "skull_basher"
+    );
 
     public static void initialize() { }
 }

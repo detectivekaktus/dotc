@@ -82,6 +82,7 @@ public class DotcItems {
                 DotcTools.CRYSTALYS,
                 DotcTools.DAEDALUS,
                 DotcTools.BUTTERFLY,
+                DotcTools.SKULL_BASHER,
                 DotcTools.MONKEY_KING_BAR,
                 DotcPrimitives.DIVINE_RAPIER,
 
