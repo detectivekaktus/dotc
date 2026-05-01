@@ -1,22 +1,18 @@
 {
-  "type": "minecraft:crafting_shapeless",
+  "type": "minecraft:crafting_shaped",
   "category": "misc",
-  "ingredients": [
-    {
-      "item": "minecraft:rotten_flesh"
+  "key": {
+    "#": {
+      "item": "defense-of-the-craft:dire_crystal"
     },
-    {
-      "item": "minecraft:rotten_flesh"
-    },
-    {
-      "item": "minecraft:poisonous_potato"
-    },
-    {
-      "item": "minecraft:spider_eye"
-    },
-    {
+    "@": {
       "item": "minecraft:pufferfish"
     }
+  },
+  "pattern": [
+    " # ",
+    "#@#",
+    " # "
   ],
   "result": {
     "count": 1,

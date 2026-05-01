@@ -40,4 +40,11 @@ public class DotcItemModels {
     public static final ModelResourceLocation DIVINE_RAPIER_IN_HAND = ModelResourceLocation.inventory(
             ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "divine_rapier_in_hand")
     );
+
+    public static final ModelResourceLocation DESOLATOR = ModelResourceLocation.inventory(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "desolator")
+    );
+    public static final ModelResourceLocation DESOLATOR_IN_HAND = ModelResourceLocation.inventory(
+            ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "desolator_in_hand")
+    );
 }

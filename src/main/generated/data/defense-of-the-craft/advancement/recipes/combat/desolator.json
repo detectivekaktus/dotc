@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_dire_crystal": {
+    "has_blight_stone": {
       "conditions": {
         "items": [
           {
-            "items": "defense-of-the-craft:dire_crystal"
+            "items": "defense-of-the-craft:blight_stone"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "defense-of-the-craft:blight_stone"
+        "recipe": "defense-of-the-craft:desolator"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_dire_crystal"
+      "has_blight_stone"
     ]
   ],
   "rewards": {
     "recipes": [
-      "defense-of-the-craft:blight_stone"
+      "defense-of-the-craft:desolator"
     ]
   }
 }

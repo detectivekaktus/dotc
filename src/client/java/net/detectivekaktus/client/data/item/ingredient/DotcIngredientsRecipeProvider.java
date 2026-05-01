@@ -70,14 +70,15 @@ public class DotcIngredientsRecipeProvider extends FabricRecipeProvider {
                 )
                 .save(exporter);
 
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, DotcIngredients.BLIGHT_STONE)
-                .requires(Items.ROTTEN_FLESH, 2)
-                .requires(Items.POISONOUS_POTATO)
-                .requires(Items.SPIDER_EYE)
-                .requires(Items.PUFFERFISH)
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, DotcIngredients.BLIGHT_STONE)
+                .pattern(" # ")
+                .pattern("#@#")
+                .pattern(" # ")
+                .define('@', Items.PUFFERFISH)
+                .define('#', DotcIngredients.DIRE_CRYSTAL)
                 .unlockedBy(
-                        "has_rotten_flesh",
-                        InventoryChangeTrigger.TriggerInstance.hasItems(Items.ROTTEN_FLESH)
+                        "has_dire_crystal",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcIngredients.DIRE_CRYSTAL)
                 )
                 .save(exporter);
 

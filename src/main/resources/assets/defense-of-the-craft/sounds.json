@@ -60,6 +60,11 @@
       "defense-of-the-craft:item_diffusal_blade"
     ]
   },
+  "item_desolator": {
+    "sounds": [
+      "defense-of-the-craft:item_desolator"
+    ]
+  },
 
   "core_evaded": {
     "sounds": [

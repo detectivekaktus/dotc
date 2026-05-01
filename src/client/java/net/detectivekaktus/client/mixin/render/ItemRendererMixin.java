@@ -49,6 +49,8 @@ public class ItemRendererMixin {
             return itemModelShaper.getModelManager().getModel(DotcItemModels.BUTTERFLY_IN_HAND);
         else if (itemStack.is(DotcPrimitives.DIVINE_RAPIER))
             return itemModelShaper.getModelManager().getModel(DotcItemModels.DIVINE_RAPIER_IN_HAND);
+        else if (itemStack.is(DotcTools.DESOLATOR))
+            return itemModelShaper.getModelManager().getModel(DotcItemModels.DESOLATOR_IN_HAND);
         return original;
     }
 
@@ -82,6 +84,8 @@ public class ItemRendererMixin {
                 return itemModelShaper.getModelManager().getModel(DotcItemModels.BUTTERFLY);
             else if (itemStack.is(DotcPrimitives.DIVINE_RAPIER))
                 return itemModelShaper.getModelManager().getModel(DotcItemModels.DIVINE_RAPIER);
+            else if (itemStack.is(DotcTools.DESOLATOR))
+                return itemModelShaper.getModelManager().getModel(DotcItemModels.DESOLATOR);
         }
         return original;
     }
