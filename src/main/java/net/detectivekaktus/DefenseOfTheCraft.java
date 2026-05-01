@@ -10,6 +10,7 @@ import net.detectivekaktus.attribute.DotcAttributeModifiers;
 import net.detectivekaktus.block.DotcBlocks;
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.damage.DotcDamageTypes;
+import net.detectivekaktus.effect.DotcEffects;
 import net.detectivekaktus.event.DotcEvents;
 import net.detectivekaktus.item.DotcItems;
 import net.detectivekaktus.sound.DotcSounds;
@@ -27,11 +28,12 @@ public class DefenseOfTheCraft implements ModInitializer {
 		DotcBlocks.initialize();
 		DotcComponents.initialize();
 		DotcDamageTypes.initialize();
+		DotcEffects.initialize();
 		DotcEntityTypeTags.initialize();
+		DotcEvents.initialize();
 		DotcItems.initialize();
 		DotcSounds.initialize();
 		DotcWorldgen.initialize();
-		DotcEvents.initialize();
 		LOGGER.info("Defense of the Craft has been successfully initialized!");
 	}
 }

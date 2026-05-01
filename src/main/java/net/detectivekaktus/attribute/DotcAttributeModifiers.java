@@ -9,5 +9,7 @@ public class DotcAttributeModifiers {
     public static final ResourceLocation BASE_ARMOR_BONUS_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "base_armor_bonus");
     public static final ResourceLocation ATTACK_SPEED_BONUS_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "attack_speed_bonus");
 
+    public static final ResourceLocation ARMOR_REDUCTION_MODIFIER_ID = ResourceLocation.fromNamespaceAndPath(DefenseOfTheCraft.MOD_ID, "armor_reduction");
+
     public static void initialize() { }
 }
