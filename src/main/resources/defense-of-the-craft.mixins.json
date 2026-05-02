@@ -10,6 +10,7 @@
     "entity.MobMixin",
     "entity.AbstractSkeletonMixin",
     "entity.CreeperMixin",
+    "entity.EnderManMixin",
 
     "item.ItemStackMixin"
   ],
