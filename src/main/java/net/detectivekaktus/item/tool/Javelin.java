@@ -1,8 +1,9 @@
 package net.detectivekaktus.item.tool;
 
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Tier;
 
@@ -13,7 +14,7 @@ import net.detectivekaktus.damage.DotcDamageTypes;
 import net.detectivekaktus.item.DotcSpearItem;
 import net.detectivekaktus.item.TooltipBuilder;
 
-public class Javelin extends DotcSpearItem implements HasBonusDamage {
+public class Javelin extends DotcSpearItem implements HasBonusAttackEffects {
     public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_25;
     private static final float BONUS_DAMAGE = 2.0f;
 
@@ -22,12 +23,12 @@ public class Javelin extends DotcSpearItem implements HasBonusDamage {
     }
 
     @Override
-    public float getBonusDamage() {
+    public float getProcDamage() {
         return BONUS_DAMAGE;
     }
 
     @Override
-    public DamageSource getBonusDamageSource(Player player) {
+    public DamageSource getProcDamageSource(Player player) {
         return player.level().damageSources().source(
                 DotcDamageTypes.MAGICAL,
                 player,
@@ -37,6 +38,11 @@ public class Javelin extends DotcSpearItem implements HasBonusDamage {
 
     @Override
     public Optional<SoundEvent> getProcSound() {
+        return Optional.empty();
+    }
+
+    @Override
+    public Optional<Holder<MobEffect>> getProcEffect() {
         return Optional.empty();
     }
 }

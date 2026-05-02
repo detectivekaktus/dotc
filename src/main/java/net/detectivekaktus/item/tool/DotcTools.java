@@ -249,15 +249,19 @@ public class DotcTools {
             "desolator"
     );
     public static final Item SKULL_BASHER = DotcItems.register(
-            new DotcPickaxeItem(
+            new SkullBasher(
                     DotcToolMaterial.DIRE_ARTEFACT,
                     new Item.Properties()
-                            .attributes(DotcPickaxeItem.createAttributes(
+                            .attributes(SkullBasher.createAttributes(
                                     DotcToolMaterial.DIRE_ARTEFACT, 2, -2.5f
                             ))
                             .component(
                                     DotcComponents.ITEM_STATS_COMPONENT,
                                     new ItemStatsComponent(10, 0, 0)
+                            )
+                            .component(
+                                    DotcComponents.PROCABLE_COMPONENT,
+                                    new ProcableComponent(SkullBasher.BASE_PROC_CHANCE, 0)
                             ),
                     new TooltipBuilder("skull_basher")
                             .description()

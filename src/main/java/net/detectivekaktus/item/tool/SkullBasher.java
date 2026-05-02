@@ -7,43 +7,44 @@ import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Tier;
 
-import java.util.Optional;
-
 import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
 import net.detectivekaktus.damage.DotcDamageTypes;
-import net.detectivekaktus.sound.item.DotcItemSounds;
-import net.detectivekaktus.item.DotcSpearItem;
+import net.detectivekaktus.effect.DotcEffects;
+import net.detectivekaktus.item.DotcPickaxeItem;
 import net.detectivekaktus.item.TooltipBuilder;
+import net.detectivekaktus.sound.item.DotcItemSounds;
 
-public class MonkeyKingBar extends DotcSpearItem implements HasBonusAttackEffects {
-    public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_50;
-    private static final float BONUS_DAMAGE = 4.0f;
+import java.util.Optional;
 
-    public MonkeyKingBar(Tier tier, Properties properties, TooltipBuilder tooltipBuilder) {
+public class SkullBasher extends DotcPickaxeItem implements HasBonusAttackEffects, HasCooldown {
+    public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_25;
+
+    public SkullBasher(Tier tier, Properties properties, TooltipBuilder tooltipBuilder) {
         super(tier, properties, tooltipBuilder);
     }
 
     @Override
     public float getProcDamage() {
-        return BONUS_DAMAGE;
+        return 2.5f;
     }
 
     @Override
     public DamageSource getProcDamageSource(Player player) {
-        return player.level().damageSources().source(
-                DotcDamageTypes.MAGICAL,
-                player,
-                player
-        );
+        return player.damageSources().source(DotcDamageTypes.PHYSICAL, player, player);
     }
 
     @Override
     public Optional<SoundEvent> getProcSound() {
-        return Optional.of(DotcItemSounds.MKB_PIERCE);
+        return Optional.of(DotcItemSounds.SKULL_BASHER);
     }
 
     @Override
     public Optional<Holder<MobEffect>> getProcEffect() {
-        return Optional.empty();
+        return Optional.of(DotcEffects.STUN);
+    }
+
+    @Override
+    public int getCooldownInTicks() {
+        return 3 * 20;
     }
 }

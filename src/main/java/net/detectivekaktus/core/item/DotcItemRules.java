@@ -8,4 +8,6 @@ public class DotcItemRules {
     public static final float DIFFUSAL_DAMAGE_PER_MANA = 0.075f;
 
     public static final int DESOLATOR_ARMOR_REDUCTION_DURATION = 7 * 20;
+
+    public static final int BASH_DURATION = 2 * 20;
 }

@@ -166,21 +166,4 @@ public class PlayerMixin implements CombatManagerHolder {
             callbackInfo.setReturnValue(InteractionResult.FAIL);
         }
     }
-
-    @Inject(
-            method = "travel",
-            at = @At(value = "HEAD"),
-            cancellable = true
-    )
-    private void blockMovement(Vec3 vector, CallbackInfo callbackInfo) {
-        var player = (Player) (Object) this;
-        if (!player.hasEffect(DotcEffects.STUN))
-            return;
-
-        var isNaturallyFalling = !player.onGround() && player.getDeltaMovement().y < 0;
-        if (isNaturallyFalling)
-            return;
-
-        callbackInfo.cancel();
-    }
 }
