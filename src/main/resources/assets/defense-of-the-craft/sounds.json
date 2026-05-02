@@ -29,6 +29,11 @@
       "defense-of-the-craft:ui_cooldown"
     ]
   },
+  "ui_general_deny": {
+    "sounds": [
+      "defense-of-the-craft:ui_general_deny"
+    ]
+  },
 
   "item_mkb_pierce": {
     "sounds": [
