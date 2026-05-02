@@ -8,6 +8,8 @@
 
     "entity.LivingEntityMixin",
     "entity.MobMixin",
+    "entity.AbstractSkeletonMixin",
+    "entity.CreeperMixin",
 
     "item.ItemStackMixin"
   ],
