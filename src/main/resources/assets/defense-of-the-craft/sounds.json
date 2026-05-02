@@ -34,6 +34,11 @@
       "defense-of-the-craft:ui_general_deny"
     ]
   },
+  "ui_debuff": {
+    "sounds": [
+      "defense-of-the-craft:ui_debuff"
+    ]
+  },
 
   "item_mkb_pierce": {
     "sounds": [

@@ -1,10 +1,9 @@
-package net.detectivekaktus.mixin.player;
+package net.detectivekaktus.mixin.entity;
 
 import net.detectivekaktus.effect.DotcEffects;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;

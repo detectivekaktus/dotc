@@ -166,4 +166,20 @@ public class PlayerMixin implements CombatManagerHolder {
             callbackInfo.setReturnValue(InteractionResult.FAIL);
         }
     }
+
+    @Inject(
+            method = "attack",
+            at = @At(value = "HEAD"),
+            cancellable = true
+    )
+    private void cancelAttack(Entity entity, CallbackInfo callbackInfo) {
+        var player = (Player) (Object) (this);
+        if (!player.hasEffect(DotcEffects.STUN))
+            return;
+
+        if (player.level().isClientSide)
+            player.playSound(DotcGuiSounds.UI_DEBUFF);
+
+        callbackInfo.cancel();
+    }
 }

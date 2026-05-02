@@ -12,6 +12,7 @@ public class DotcGuiSounds {
     public static final SoundEvent UI_NOT_ENOUGH_MANA = DotcSounds.register("ui_not_enough_mana");
     public static final SoundEvent UI_COOLDOWN = DotcSounds.register("ui_cooldown");
     public static final SoundEvent UI_GENERAL_DENY = DotcSounds.register("ui_general_deny");
+    public static final SoundEvent UI_DEBUFF = DotcSounds.register("ui_debuff");
 
     public static void initialize() { }
 }

@@ -5,7 +5,9 @@
   "mixins": [
     "player.ServerPlayerMixin",
     "player.PlayerMixin",
-    "player.LivingEntityMixin",
+
+    "entity.LivingEntityMixin",
+    "entity.MobMixin",
 
     "item.ItemStackMixin"
   ],
