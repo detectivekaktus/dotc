@@ -5,6 +5,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Tier;
 
 import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
@@ -14,9 +15,10 @@ import net.detectivekaktus.item.DotcPickaxeItem;
 import net.detectivekaktus.item.TooltipBuilder;
 import net.detectivekaktus.sound.item.DotcItemSounds;
 
+import java.util.List;
 import java.util.Optional;
 
-public class SkullBasher extends DotcPickaxeItem implements HasBonusAttackEffects, HasCooldown {
+public class SkullBasher extends DotcPickaxeItem implements HasBonusAttackEffects, HasCooldown, SharesCooldown {
     public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_25;
 
     public SkullBasher(Tier tier, Properties properties, TooltipBuilder tooltipBuilder) {
@@ -46,5 +48,10 @@ public class SkullBasher extends DotcPickaxeItem implements HasBonusAttackEffect
     @Override
     public int getCooldownInTicks() {
         return 3 * 20;
+    }
+
+    @Override
+    public List<Item> getSharesCooldownWith() {
+        return List.of(DotcTools.ABYSSAL_BLADE);
     }
 }

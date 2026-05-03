@@ -7,6 +7,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 
 import net.detectivekaktus.attach.PlayerMana;
 import net.detectivekaktus.attach.PlayerStats;
@@ -18,10 +19,7 @@ import net.detectivekaktus.core.item.DotcItemRules;
 import net.detectivekaktus.core.rng.PseudoRandom;
 import net.detectivekaktus.core.util.CombatManagerHolder;
 import net.detectivekaktus.damage.DotcDamageTypes;
-import net.detectivekaktus.item.tool.Critable;
-import net.detectivekaktus.item.tool.DotcTools;
-import net.detectivekaktus.item.tool.HasBonusAttackEffects;
-import net.detectivekaktus.item.tool.HasCooldown;
+import net.detectivekaktus.item.tool.*;
 import net.detectivekaktus.sound.DotcSounds;
 
 public class CombatManager {
@@ -128,9 +126,7 @@ public class CombatManager {
             if (effect.isPresent() && entity instanceof LivingEntity livingEntity)
                 livingEntity.addEffect(new MobEffectInstance(effect.get(), DotcItemRules.BASH_DURATION));
 
-            if (item instanceof HasCooldown itemWithCooldown)
-                player.getCooldowns().addCooldown(item, itemWithCooldown.getCooldownInTicks());
-
+            applyCooldown(item);
             entity.hurt(damageSource, damage);
         }
         else if (stack.is(DotcTools.ECHO_SABRE)) {
@@ -156,6 +152,23 @@ public class CombatManager {
         }
 
         return hurt;
+    }
+
+    private void applyCooldown(Item item) {
+        if (!(item instanceof HasCooldown itemWithCooldown))
+            return;
+
+        var cooldowns = player.getCooldowns();
+        if (!cooldowns.isOnCooldown(item))
+            cooldowns.addCooldown(item, itemWithCooldown.getCooldownInTicks());
+
+        if (!(item instanceof SharesCooldown sharesCooldown))
+            return;
+
+        for (var cooldownableItem : sharesCooldown.getSharesCooldownWith()) {
+            if (!cooldowns.isOnCooldown(cooldownableItem))
+                cooldowns.addCooldown(cooldownableItem, itemWithCooldown.getCooldownInTicks());
+        }
     }
 
     private void playEvasionSound() {

@@ -187,6 +187,19 @@ public class DotcToolsRecipeProvider extends FabricRecipeProvider {
                         InventoryChangeTrigger.TriggerInstance.hasItems(DotcPrimitives.MITHRIL_HAMMER)
                 )
                 .save(exporter);
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.COMBAT, DotcTools.ABYSSAL_BLADE)
+                .pattern("  @")
+                .pattern(" # ")
+                .pattern("$$ ")
+                .define('@', DotcTools.SKULL_BASHER)
+                .define('#', DotcTools.SANGE)
+                .define('$', DotcIngredients.DIRE_CRYSTAL)
+                .unlockedBy(
+                        "has_skull_basher",
+                        InventoryChangeTrigger.TriggerInstance.hasItems(DotcTools.SKULL_BASHER)
+                )
+                .save(exporter);
     }
 
     @Override

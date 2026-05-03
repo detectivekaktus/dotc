@@ -80,6 +80,11 @@
       "defense-of-the-craft:item_skull_basher"
     ]
   },
+  "item_abyssal_blade": {
+    "sounds": [
+      "defense-of-the-craft:item_abyssal_blade"
+    ]
+  },
 
   "core_evaded": {
     "sounds": [

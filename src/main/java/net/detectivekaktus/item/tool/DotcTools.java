@@ -270,6 +270,33 @@ public class DotcTools {
             ),
             "skull_basher"
     );
+    public static final Item ABYSSAL_BLADE = DotcItems.register(
+            new AbyssalBlade(
+                    DotcToolMaterial.DIRE_ARTEFACT,
+                    new Item.Properties()
+                            .attributes(SkullBasher.createAttributes(
+                                    DotcToolMaterial.DIRE_ARTEFACT, 3, -2.5f
+                            ))
+                            .component(
+                                    DotcComponents.ITEM_STATS_COMPONENT,
+                                    new ItemStatsComponent(26, 0, 0)
+                            )
+                            .component(
+                                    DotcComponents.PROCABLE_COMPONENT,
+                                    new ProcableComponent(AbyssalBlade.BASE_PROC_CHANCE, 0)
+                            )
+                            .component(
+                                    DotcComponents.HP_REGEN_AMPLIFICATION_COMPONENT,
+                                    0.16f
+                            ),
+                    new TooltipBuilder("abyssal_blade")
+                            .description()
+                            .stats(26, 0, 0)
+                            .passive()
+                            .active()
+            ),
+            "abyssal_blade"
+    );
 
     public static void initialize() { }
 }

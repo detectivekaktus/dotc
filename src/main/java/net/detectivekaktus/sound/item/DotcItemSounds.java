@@ -12,6 +12,7 @@ public class DotcItemSounds {
     public static final SoundEvent DIFFUSAL_BLADE = DotcSounds.register("item_diffusal_blade");
     public static final SoundEvent DESOLATOR = DotcSounds.register("item_desolator");
     public static final SoundEvent SKULL_BASHER = DotcSounds.register("item_skull_basher");
+    public static final SoundEvent ABYSSAL_BLADE = DotcSounds.register("item_abyssal_blade");
 
     public static void initialize() {}
 }
