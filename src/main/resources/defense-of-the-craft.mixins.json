@@ -12,6 +12,7 @@
     "entity.CreeperMixin",
     "entity.EnderManMixin",
     "entity.SlimeMixin",
+    "entity.BlazeMixin",
 
     "item.ItemStackMixin"
   ],
