@@ -48,13 +48,10 @@ public class LivingEntityMixin {
         if (!entity.hasEffect(DotcEffects.STUN))
             return;
 
-        var deltaY = entity.getDeltaMovement().y;
-        var y = deltaY < 0 ? deltaY : 0;
-        entity.setDeltaMovement(
-                0,
-                y,
-                0
-        );
+        if (entity.fallDistance != 0 || !entity.onGround())
+            return;
+
+        entity.setDeltaMovement(0, 0, 0);
         callbackInfo.cancel();
     }
 }
