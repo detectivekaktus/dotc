@@ -23,7 +23,7 @@ public class GameRendererMixin {
     private void renderStunBlur(DeltaTracker deltaTracker, boolean bl, CallbackInfo callbackInfo) {
         var renderer = (GameRenderer) (Object) this;
         var player = renderer.getMinecraft().player;
-        if (player.hasEffect(DotcEffects.STUN))
+        if (player != null && player.hasEffect(DotcEffects.STUN))
             renderer.processBlurEffect(0.25f);
     }
 }
