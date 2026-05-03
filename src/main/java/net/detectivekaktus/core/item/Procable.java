@@ -7,8 +7,9 @@ import net.minecraft.world.entity.player.Player;
 
 import java.util.Optional;
 
-public interface HasBonusAttackEffects extends HasProcSound {
+public interface Procable extends HasProcSound {
     float getProcDamage();
     DamageSource getProcDamageSource(Player player);
     Optional<Holder<MobEffect>> getProcEffect();
+    int getProcCooldownInTicks();
 }

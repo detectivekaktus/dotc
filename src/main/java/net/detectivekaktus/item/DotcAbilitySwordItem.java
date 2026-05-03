@@ -11,13 +11,13 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 
 import net.detectivekaktus.attach.PlayerMana;
-import net.detectivekaktus.core.item.HasCooldown;
+import net.detectivekaktus.core.item.HasUseCooldown;
 import net.detectivekaktus.core.item.HasManaCost;
-import net.detectivekaktus.core.item.SharesCooldown;
+import net.detectivekaktus.core.item.SharesUseCooldown;
 import net.detectivekaktus.core.player.CombatManager;
 import net.detectivekaktus.sound.gui.DotcGuiSounds;
 
-public abstract class DotcAbilitySwordItem extends DotcSwordItem implements HasManaCost, HasCooldown {
+public abstract class DotcAbilitySwordItem extends DotcSwordItem implements HasManaCost, HasUseCooldown {
     public DotcAbilitySwordItem(Tier tier, Properties properties, TooltipBuilder tooltipBuilder) {
         super(tier, properties, tooltipBuilder);
     }
@@ -52,8 +52,8 @@ public abstract class DotcAbilitySwordItem extends DotcSwordItem implements HasM
         playAbilitySound(player);
 
         var cooldowns = player.getCooldowns();
-        if (this instanceof SharesCooldown itemWithSharedCooldown) {
-            cooldowns.addCooldown(this, getCooldownInTicks());
+        cooldowns.addCooldown(this, getCooldownInTicks());
+        if (this instanceof SharesUseCooldown itemWithSharedCooldown) {
             for (var item : itemWithSharedCooldown.getSharesCooldownWith()) {
                 if (cooldowns.isOnCooldown(item))
                     continue;

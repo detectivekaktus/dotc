@@ -4,6 +4,6 @@ import net.minecraft.world.item.Item;
 
 import java.util.List;
 
-public interface SharesCooldown {
+public interface SharesUseCooldown {
     List<Item> getSharesCooldownWith();
 }

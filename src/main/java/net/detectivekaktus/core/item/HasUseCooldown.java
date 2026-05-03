@@ -1,5 +1,5 @@
 package net.detectivekaktus.core.item;
 
-public interface HasCooldown {
+public interface HasUseCooldown {
     int getCooldownInTicks();
 }

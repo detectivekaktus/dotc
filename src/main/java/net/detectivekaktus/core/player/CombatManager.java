@@ -1,6 +1,5 @@
 package net.detectivekaktus.core.player;
 
-import net.detectivekaktus.core.item.*;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -15,6 +14,7 @@ import net.detectivekaktus.attach.PlayerStats;
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ChargeableComponent;
 import net.detectivekaktus.component.records.ProcableComponent;
+import net.detectivekaktus.core.item.*;
 import net.detectivekaktus.core.rng.PseudoRandom;
 import net.detectivekaktus.core.util.CombatManagerHolder;
 import net.detectivekaktus.damage.DotcDamageTypes;
@@ -78,10 +78,10 @@ public class CombatManager {
 
         var stack = player.getMainHandItem();
         var item = stack.getItem();
-        if (!stack.has(DotcComponents.PROCABLE_COMPONENT) || !(stack.getItem() instanceof HasBonusAttackEffects))
+        if (!stack.has(DotcComponents.PROCABLE_COMPONENT) || !(stack.getItem() instanceof Procable))
             return;
 
-        if (item instanceof HasCooldown && player.getCooldowns().isOnCooldown(item))
+        if (((Procable) item).getProcCooldownInTicks() != 0 && player.getCooldowns().isOnCooldown(item))
             return;
 
         var component = stack.get(DotcComponents.PROCABLE_COMPONENT);
@@ -106,7 +106,7 @@ public class CombatManager {
         var stack = player.getMainHandItem();
         var item = stack.getItem();
 
-        if (stack.has(DotcComponents.PROCABLE_COMPONENT) && (item instanceof HasBonusAttackEffects itemWithBonuses)) {
+        if (stack.has(DotcComponents.PROCABLE_COMPONENT) && (item instanceof Procable itemWithBonuses)) {
             if (!hitThroughEvasion())
                 return hurt;
 
@@ -154,19 +154,20 @@ public class CombatManager {
     }
 
     private void applyCooldown(Item item) {
-        if (!(item instanceof HasCooldown itemWithCooldown))
+        var cooldown = ((Procable) item).getProcCooldownInTicks();
+        if (cooldown == 0)
             return;
 
         var cooldowns = player.getCooldowns();
         if (!cooldowns.isOnCooldown(item))
-            cooldowns.addCooldown(item, itemWithCooldown.getCooldownInTicks());
+            cooldowns.addCooldown(item, cooldown);
 
-        if (!(item instanceof SharesCooldown sharesCooldown))
+        if (!(item instanceof SharesProcCooldown sharesCooldown))
             return;
 
-        for (var cooldownableItem : sharesCooldown.getSharesCooldownWith()) {
-            if (!cooldowns.isOnCooldown(cooldownableItem))
-                cooldowns.addCooldown(cooldownableItem, itemWithCooldown.getCooldownInTicks());
+        for (var sharedCooldownItem : sharesCooldown.getSharesProcCooldownWith()) {
+            if (!cooldowns.isOnCooldown(sharedCooldownItem))
+                cooldowns.addCooldown(sharedCooldownItem, cooldown);
         }
     }
 

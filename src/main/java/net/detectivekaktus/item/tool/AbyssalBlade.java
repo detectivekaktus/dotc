@@ -1,76 +1,61 @@
 package net.detectivekaktus.item.tool;
 
-import net.detectivekaktus.core.item.HasManaCost;
-import net.detectivekaktus.core.item.SharesCooldown;
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.core.Holder;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 
-import net.detectivekaktus.attach.PlayerMana;
 import net.detectivekaktus.core.item.DotcItemCooldowns;
 import net.detectivekaktus.core.item.DotcItemRules;
-import net.detectivekaktus.core.player.CombatManager;
+import net.detectivekaktus.core.item.Procable;
+import net.detectivekaktus.core.item.SharesProcCooldown;
+import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
+import net.detectivekaktus.damage.DotcDamageTypes;
 import net.detectivekaktus.effect.DotcEffects;
+import net.detectivekaktus.item.DotcAbilitySwordItem;
 import net.detectivekaktus.item.TooltipBuilder;
-import net.detectivekaktus.sound.gui.DotcGuiSounds;
 import net.detectivekaktus.sound.item.DotcItemSounds;
 import net.detectivekaktus.tag.DotcEntityTypeTags;
 
 import java.util.List;
+import java.util.Optional;
 
-public class AbyssalBlade extends SkullBasher implements HasManaCost, SharesCooldown {
+public class AbyssalBlade extends DotcAbilitySwordItem implements Procable, SharesProcCooldown {
+    public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_25;
+
     public AbyssalBlade(Tier tier, Properties properties, TooltipBuilder tooltipBuilder) {
         super(tier, properties, tooltipBuilder);
     }
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack itemStack, Player player, LivingEntity livingEntity, InteractionHand interactionHand) {
-        var level = player.level();
+        return interactWithItem(player, livingEntity, itemStack).getResult();
+    }
 
-        var mana = PlayerMana.get(player);
-        var notEnoughMana = getManaCost() > mana.getCurrentMana();
+    @Override
+    protected TagKey<EntityType<?>> getInvulnerableTag() {
+        return DotcEntityTypeTags.ABYSSAL_BLADE_INVULNERABLE;
+    }
 
-        if (level.isClientSide) {
-            if (notEnoughMana) {
-                level.playLocalSound(
-                        player,
-                        DotcGuiSounds.UI_NOT_ENOUGH_MANA,
-                        SoundSource.PLAYERS,
-                        1.0f, 1.0f
-                );
-                return InteractionResult.FAIL;
-            }
-            return InteractionResult.PASS;
-        }
+    @Override
+    protected void invokeInteractionAbility(Player player, LivingEntity target) {
+        target.addEffect(new MobEffectInstance(DotcEffects.STUN, DotcItemRules.BASH_DURATION));
+        player.teleportTo(target.getX(), target.getY(), target.getZ());
+    }
 
-        if (livingEntity.getType().is(DotcEntityTypeTags.ABYSSAL_BLADE_INVULNERABLE))
-            return InteractionResult.FAIL;
-
-        if (notEnoughMana)
-            return InteractionResult.FAIL;
-
-        if (livingEntity instanceof Player interactedPlayer)
-            CombatManager.addStickCharge(interactedPlayer);
-
-        mana.consume(getManaCost());
-
-        livingEntity.addEffect(new MobEffectInstance(DotcEffects.STUN, DotcItemRules.BASH_DURATION));
-        player.teleportTo(livingEntity.getX(), livingEntity.getY() + 0.5, livingEntity.getZ());
-        level.playSound(
-                null,
-                player.getX(), player.getY(), player.getZ(),
-                DotcItemSounds.ABYSSAL_BLADE,
-                SoundSource.PLAYERS
-        );
-        player.getCooldowns().addCooldown(this, DotcItemCooldowns.ABYSSAL_BLADE_COOLDOWN);
-
-        return InteractionResult.SUCCESS;
+    @Override
+    protected SoundEvent getAbilitySound() {
+        return DotcItemSounds.ABYSSAL_BLADE;
     }
 
     @Override
@@ -79,7 +64,37 @@ public class AbyssalBlade extends SkullBasher implements HasManaCost, SharesCool
     }
 
     @Override
-    public List<Item> getSharesCooldownWith() {
+    public int getCooldownInTicks() {
+        return DotcItemCooldowns.ABYSSAL_BLADE_COOLDOWN;
+    }
+
+    @Override
+    public float getProcDamage() {
+        return 4.0f;
+    }
+
+    @Override
+    public DamageSource getProcDamageSource(Player player) {
+        return player.damageSources().source(DotcDamageTypes.PHYSICAL);
+    }
+
+    @Override
+    public Optional<Holder<MobEffect>> getProcEffect() {
+        return Optional.of(DotcEffects.STUN);
+    }
+
+    @Override
+    public int getProcCooldownInTicks() {
+        return DotcItemCooldowns.SKULL_BASHER_COOLDOWN;
+    }
+
+    @Override
+    public Optional<SoundEvent> getProcSound() {
+        return Optional.of(DotcItemSounds.SKULL_BASHER);
+    }
+
+    @Override
+    public List<Item> getSharesProcCooldownWith() {
         return List.of(DotcTools.SKULL_BASHER);
     }
 }

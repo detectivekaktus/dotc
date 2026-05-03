@@ -1,6 +1,5 @@
 package net.detectivekaktus.item.tool;
 
-import net.detectivekaktus.core.item.HasBonusAttackEffects;
 import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
@@ -10,13 +9,14 @@ import net.minecraft.world.item.Tier;
 
 import java.util.Optional;
 
+import net.detectivekaktus.core.item.Procable;
 import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
 import net.detectivekaktus.damage.DotcDamageTypes;
 import net.detectivekaktus.sound.item.DotcItemSounds;
 import net.detectivekaktus.item.DotcSpearItem;
 import net.detectivekaktus.item.TooltipBuilder;
 
-public class MonkeyKingBar extends DotcSpearItem implements HasBonusAttackEffects {
+public class MonkeyKingBar extends DotcSpearItem implements Procable {
     public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_50;
     private static final float BONUS_DAMAGE = 4.0f;
 
@@ -46,5 +46,10 @@ public class MonkeyKingBar extends DotcSpearItem implements HasBonusAttackEffect
     @Override
     public Optional<Holder<MobEffect>> getProcEffect() {
         return Optional.empty();
+    }
+
+    @Override
+    public int getProcCooldownInTicks() {
+        return 0;
     }
 }
