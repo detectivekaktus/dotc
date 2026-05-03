@@ -1,4 +1,4 @@
-package net.detectivekaktus.item.tool;
+package net.detectivekaktus.core.item;
 
 import net.minecraft.core.Holder;
 import net.minecraft.world.damagesource.DamageSource;

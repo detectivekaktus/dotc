@@ -1,5 +1,8 @@
 package net.detectivekaktus.item.tool;
 
+import net.detectivekaktus.core.item.HasBonusAttackEffects;
+import net.detectivekaktus.core.item.HasCooldown;
+import net.detectivekaktus.core.item.SharesCooldown;
 import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;

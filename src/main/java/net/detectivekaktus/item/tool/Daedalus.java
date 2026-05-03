@@ -1,5 +1,6 @@
 package net.detectivekaktus.item.tool;
 
+import net.detectivekaktus.core.item.Critable;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.Tier;
 

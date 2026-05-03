@@ -1,5 +1,6 @@
 package net.detectivekaktus.core.player;
 
+import net.detectivekaktus.core.item.*;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -14,8 +15,6 @@ import net.detectivekaktus.attach.PlayerStats;
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ChargeableComponent;
 import net.detectivekaktus.component.records.ProcableComponent;
-import net.detectivekaktus.core.item.DotcItemCooldowns;
-import net.detectivekaktus.core.item.DotcItemRules;
 import net.detectivekaktus.core.rng.PseudoRandom;
 import net.detectivekaktus.core.util.CombatManagerHolder;
 import net.detectivekaktus.damage.DotcDamageTypes;

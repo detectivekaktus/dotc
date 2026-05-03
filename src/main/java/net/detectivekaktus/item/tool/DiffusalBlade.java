@@ -1,5 +1,6 @@
 package net.detectivekaktus.item.tool;
 
+import net.detectivekaktus.core.item.HasManaCost;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
