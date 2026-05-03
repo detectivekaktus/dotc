@@ -2,8 +2,12 @@
   "required": true,
   "package": "net.detectivekaktus.client.mixin",
   "compatibilityLevel": "JAVA_21",
+  "mixinextras": {
+    "minVersion": "0.5.3"
+  },
   "client": [
     "DotcScreenshotMixin",
+    "MouseHandlerMixin",
 
     "gui.DotcAbstractWidgetMixin",
     "gui.DotcWorldSelectionListMixin",
