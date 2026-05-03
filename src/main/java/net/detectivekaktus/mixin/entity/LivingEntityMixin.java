@@ -1,8 +1,10 @@
-package net.detectivekaktus.mixin.player;
+package net.detectivekaktus.mixin.entity;
 
+import net.detectivekaktus.effect.DotcEffects;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.LivingEntity;
 
+import net.minecraft.world.phys.Vec3;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
@@ -33,6 +35,23 @@ public class LivingEntityMixin {
             return;
 
         player.getCombatManager().setEvaded(false);
+        callbackInfo.cancel();
+    }
+
+    @Inject(
+            method = "travel",
+            at = @At(value = "HEAD"),
+            cancellable = true
+    )
+    private void blockMovement(Vec3 vector, CallbackInfo callbackInfo) {
+        var entity = (LivingEntity) (Object) this;
+        if (!entity.hasEffect(DotcEffects.STUN))
+            return;
+
+        if (entity.fallDistance != 0 || !entity.onGround())
+            return;
+
+        entity.setDeltaMovement(0, 0, 0);
         callbackInfo.cancel();
     }
 }

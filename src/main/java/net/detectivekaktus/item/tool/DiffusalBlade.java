@@ -1,74 +1,56 @@
 package net.detectivekaktus.item.tool;
 
-import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Tier;
 
-import net.detectivekaktus.attach.PlayerMana;
 import net.detectivekaktus.core.item.DotcItemCooldowns;
-import net.detectivekaktus.core.player.CombatManager;
-import net.detectivekaktus.item.DotcSwordItem;
+import net.detectivekaktus.core.item.DotcItemRules;
+import net.detectivekaktus.item.DotcAbilitySwordItem;
 import net.detectivekaktus.item.TooltipBuilder;
-import net.detectivekaktus.sound.gui.DotcGuiSounds;
 import net.detectivekaktus.sound.item.DotcItemSounds;
 import net.detectivekaktus.tag.DotcEntityTypeTags;
 
-public class DiffusalBlade extends DotcSwordItem implements HasManaCost {
+public class DiffusalBlade extends DotcAbilitySwordItem {
     public DiffusalBlade(Tier tier, Properties properties, TooltipBuilder tooltipBuilder) {
         super(tier, properties, tooltipBuilder);
     }
 
     @Override
     public InteractionResult interactLivingEntity(ItemStack itemStack, Player player, LivingEntity livingEntity, InteractionHand interactionHand) {
-        var level = player.level();
+        return interactWithItem(player, livingEntity, itemStack).getResult();
+    }
 
-        var mana = PlayerMana.get(player);
-        var notEnoughMana = getManaCost() > mana.getCurrentMana();
+    @Override
+    protected TagKey<EntityType<?>> getInvulnerableTag() {
+        return DotcEntityTypeTags.DIFFUSAL_BLADE_INVULNERABLE;
+    }
 
-        if (level.isClientSide) {
-            if (notEnoughMana) {
-                level.playLocalSound(
-                        player,
-                        DotcGuiSounds.UI_NOT_ENOUGH_MANA,
-                        SoundSource.PLAYERS,
-                        1.0f, 1.0f
-                );
-                return InteractionResult.FAIL;
-            }
-            return InteractionResult.PASS;
-        }
+    @Override
+    protected void invokeInteractionAbility(Player player, LivingEntity target) {
+        target.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, DotcItemRules.DIFFUSAL_SLOW_DURATION, 1));
+    }
 
-        if (livingEntity.getType().is(DotcEntityTypeTags.DIFFUSAL_BLADE_INVULNERABLE))
-            return InteractionResult.FAIL;
-
-        if (notEnoughMana)
-            return InteractionResult.FAIL;
-
-        if (livingEntity instanceof Player interactedPlayer)
-            CombatManager.addStickCharge(interactedPlayer);
-
-        mana.consume(getManaCost());
-
-        livingEntity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 4 * 20, 1));
-        level.playSound(
-                null,
-                player.getX(), player.getY(), player.getZ(),
-                DotcItemSounds.DIFFUSAL_BLADE,
-                SoundSource.PLAYERS
-        );
-        player.getCooldowns().addCooldown(this, DotcItemCooldowns.DIFFUSAL_BLADE_COOLDOWN);
-
-        return InteractionResult.SUCCESS;
+    @Override
+    protected SoundEvent getAbilitySound() {
+        return DotcItemSounds.DIFFUSAL_BLADE;
     }
 
     @Override
     public float getManaCost() {
         return 40.0f;
+    }
+
+    @Override
+    public int getCooldownInTicks() {
+        return DotcItemCooldowns.DIFFUSAL_BLADE_COOLDOWN;
     }
 }

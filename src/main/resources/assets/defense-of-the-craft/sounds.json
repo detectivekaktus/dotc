@@ -29,6 +29,16 @@
       "defense-of-the-craft:ui_cooldown"
     ]
   },
+  "ui_general_deny": {
+    "sounds": [
+      "defense-of-the-craft:ui_general_deny"
+    ]
+  },
+  "ui_debuff": {
+    "sounds": [
+      "defense-of-the-craft:ui_debuff"
+    ]
+  },
 
   "item_mkb_pierce": {
     "sounds": [
@@ -63,6 +73,16 @@
   "item_desolator": {
     "sounds": [
       "defense-of-the-craft:item_desolator"
+    ]
+  },
+  "item_skull_basher": {
+    "sounds": [
+      "defense-of-the-craft:item_skull_basher"
+    ]
+  },
+  "item_abyssal_blade": {
+    "sounds": [
+      "defense-of-the-craft:item_abyssal_blade"
     ]
   },
 

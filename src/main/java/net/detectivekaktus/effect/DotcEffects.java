@@ -12,6 +12,10 @@ public class DotcEffects {
             "armor_reduction",
             new ArmorReduction()
     );
+    public static final Holder<MobEffect> STUN = register(
+            "stun",
+            new Stun()
+    );
 
     public static Holder<MobEffect> register(String id, MobEffect effect) {
         return Registry.registerForHolder(

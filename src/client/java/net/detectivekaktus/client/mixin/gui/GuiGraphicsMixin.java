@@ -17,7 +17,7 @@ import net.detectivekaktus.client.core.render.ItemDecorationsRenderer;
 import net.detectivekaktus.client.core.render.WordWrapper;
 import net.detectivekaktus.client.core.render.DotcColors;
 import net.detectivekaktus.component.DotcComponents;
-import net.detectivekaktus.item.tool.HasManaCost;
+import net.detectivekaktus.core.item.HasManaCost;
 
 @Mixin(GuiGraphics.class)
 public class GuiGraphicsMixin {

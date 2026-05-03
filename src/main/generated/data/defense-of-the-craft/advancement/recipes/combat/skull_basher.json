@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_mithril_hammer": {
+      "conditions": {
+        "items": [
+          {
+            "items": "defense-of-the-craft:mithril_hammer"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "defense-of-the-craft:skull_basher"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_mithril_hammer"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "defense-of-the-craft:skull_basher"
+    ]
+  }
+}

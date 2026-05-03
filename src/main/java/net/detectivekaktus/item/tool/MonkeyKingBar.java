@@ -1,20 +1,22 @@
 package net.detectivekaktus.item.tool;
 
-import net.minecraft.core.registries.Registries;
+import net.minecraft.core.Holder;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Tier;
 
 import java.util.Optional;
 
+import net.detectivekaktus.core.item.Procable;
 import net.detectivekaktus.core.rng.PseudoRandomBaseChances;
 import net.detectivekaktus.damage.DotcDamageTypes;
 import net.detectivekaktus.sound.item.DotcItemSounds;
 import net.detectivekaktus.item.DotcSpearItem;
 import net.detectivekaktus.item.TooltipBuilder;
 
-public class MonkeyKingBar extends DotcSpearItem implements HasBonusDamage {
+public class MonkeyKingBar extends DotcSpearItem implements Procable {
     public static final float BASE_PROC_CHANCE = PseudoRandomBaseChances.AVG_50;
     private static final float BONUS_DAMAGE = 4.0f;
 
@@ -23,12 +25,12 @@ public class MonkeyKingBar extends DotcSpearItem implements HasBonusDamage {
     }
 
     @Override
-    public float getBonusDamage() {
+    public float getProcDamage() {
         return BONUS_DAMAGE;
     }
 
     @Override
-    public DamageSource getBonusDamageSource(Player player) {
+    public DamageSource getProcDamageSource(Player player) {
         return player.level().damageSources().source(
                 DotcDamageTypes.MAGICAL,
                 player,
@@ -39,5 +41,15 @@ public class MonkeyKingBar extends DotcSpearItem implements HasBonusDamage {
     @Override
     public Optional<SoundEvent> getProcSound() {
         return Optional.of(DotcItemSounds.MKB_PIERCE);
+    }
+
+    @Override
+    public Optional<Holder<MobEffect>> getProcEffect() {
+        return Optional.empty();
+    }
+
+    @Override
+    public int getProcCooldownInTicks() {
+        return 0;
     }
 }

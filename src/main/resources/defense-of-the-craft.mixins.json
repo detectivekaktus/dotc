@@ -5,7 +5,16 @@
   "mixins": [
     "player.ServerPlayerMixin",
     "player.PlayerMixin",
-    "player.LivingEntityMixin"
+
+    "entity.LivingEntityMixin",
+    "entity.MobMixin",
+    "entity.AbstractSkeletonMixin",
+    "entity.CreeperMixin",
+    "entity.EnderManMixin",
+    "entity.SlimeMixin",
+    "entity.BlazeMixin",
+
+    "item.ItemStackMixin"
   ],
   "injectors": {
     "defaultRequire": 1

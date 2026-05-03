@@ -11,6 +11,7 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec3;
 
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -25,6 +26,7 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 
 import net.detectivekaktus.core.player.CombatManager;
 import net.detectivekaktus.core.util.CombatManagerHolder;
+import net.detectivekaktus.effect.DotcEffects;
 import net.detectivekaktus.sound.gui.DotcGuiSounds;
 
 @Mixin(Player.class)
@@ -163,5 +165,21 @@ public class PlayerMixin implements CombatManagerHolder {
             );
             callbackInfo.setReturnValue(InteractionResult.FAIL);
         }
+    }
+
+    @Inject(
+            method = "attack",
+            at = @At(value = "HEAD"),
+            cancellable = true
+    )
+    private void cancelAttack(Entity entity, CallbackInfo callbackInfo) {
+        var player = (Player) (Object) (this);
+        if (!player.hasEffect(DotcEffects.STUN))
+            return;
+
+        if (player.level().isClientSide)
+            player.playSound(DotcGuiSounds.UI_DEBUFF);
+
+        callbackInfo.cancel();
     }
 }

@@ -22,5 +22,9 @@ public class DotcEntityTagProvider extends FabricTagProvider<EntityType<?>> {
                 .add(EntityType.ENDER_DRAGON)
                 .add(EntityType.WITHER)
                 .add(EntityType.WARDEN);
+
+        getOrCreateTagBuilder(DotcEntityTypeTags.ABYSSAL_BLADE_INVULNERABLE)
+                .add(EntityType.ENDER_DRAGON)
+                .add(EntityType.WITHER);
     }
 }

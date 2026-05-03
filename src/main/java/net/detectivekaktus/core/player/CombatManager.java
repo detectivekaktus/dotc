@@ -2,23 +2,23 @@ package net.detectivekaktus.core.player;
 
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 
 import net.detectivekaktus.attach.PlayerMana;
 import net.detectivekaktus.attach.PlayerStats;
 import net.detectivekaktus.component.DotcComponents;
 import net.detectivekaktus.component.records.ChargeableComponent;
 import net.detectivekaktus.component.records.ProcableComponent;
-import net.detectivekaktus.core.item.DotcItemCooldowns;
-import net.detectivekaktus.core.item.DotcItemRules;
+import net.detectivekaktus.core.item.*;
 import net.detectivekaktus.core.rng.PseudoRandom;
 import net.detectivekaktus.core.util.CombatManagerHolder;
 import net.detectivekaktus.damage.DotcDamageTypes;
-import net.detectivekaktus.item.tool.Critable;
-import net.detectivekaktus.item.tool.DotcTools;
-import net.detectivekaktus.item.tool.HasBonusDamage;
+import net.detectivekaktus.item.tool.*;
 import net.detectivekaktus.sound.DotcSounds;
 
 public class CombatManager {
@@ -77,7 +77,11 @@ public class CombatManager {
         setHitThroughEvasion(false);
 
         var stack = player.getMainHandItem();
-        if (!stack.has(DotcComponents.PROCABLE_COMPONENT) || !(stack.getItem() instanceof HasBonusDamage))
+        var item = stack.getItem();
+        if (!stack.has(DotcComponents.PROCABLE_COMPONENT) || !(stack.getItem() instanceof Procable))
+            return;
+
+        if (((Procable) item).getProcCooldownInTicks() != 0 && player.getCooldowns().isOnCooldown(item))
             return;
 
         var component = stack.get(DotcComponents.PROCABLE_COMPONENT);
@@ -102,13 +106,14 @@ public class CombatManager {
         var stack = player.getMainHandItem();
         var item = stack.getItem();
 
-        if (stack.has(DotcComponents.PROCABLE_COMPONENT) && (item instanceof HasBonusDamage itemWithBonusDamage)) {
+        if (stack.has(DotcComponents.PROCABLE_COMPONENT) && (item instanceof Procable itemWithBonuses)) {
             if (!hitThroughEvasion())
                 return hurt;
 
-            var damageSource = itemWithBonusDamage.getBonusDamageSource(player);
-            var damage = itemWithBonusDamage.getBonusDamage();
-            var sound = itemWithBonusDamage.getProcSound();
+            var damageSource = itemWithBonuses.getProcDamageSource(player);
+            var damage = itemWithBonuses.getProcDamage();
+            var sound = itemWithBonuses.getProcSound();
+            var effect = itemWithBonuses.getProcEffect();
 
             sound.ifPresent(soundEvent -> player.level().playSound(
                     null,
@@ -117,6 +122,10 @@ public class CombatManager {
                     player.getSoundSource(),
                     1.0f, 1.0f
             ));
+            if (effect.isPresent() && entity instanceof LivingEntity livingEntity)
+                livingEntity.addEffect(new MobEffectInstance(effect.get(), DotcItemRules.BASH_DURATION));
+
+            applyCooldown(item);
             entity.hurt(damageSource, damage);
         }
         else if (stack.is(DotcTools.ECHO_SABRE)) {
@@ -142,6 +151,24 @@ public class CombatManager {
         }
 
         return hurt;
+    }
+
+    private void applyCooldown(Item item) {
+        var cooldown = ((Procable) item).getProcCooldownInTicks();
+        if (cooldown == 0)
+            return;
+
+        var cooldowns = player.getCooldowns();
+        if (!cooldowns.isOnCooldown(item))
+            cooldowns.addCooldown(item, cooldown);
+
+        if (!(item instanceof SharesProcCooldown sharesCooldown))
+            return;
+
+        for (var sharedCooldownItem : sharesCooldown.getSharesProcCooldownWith()) {
+            if (!cooldowns.isOnCooldown(sharedCooldownItem))
+                cooldowns.addCooldown(sharedCooldownItem, cooldown);
+        }
     }
 
     private void playEvasionSound() {

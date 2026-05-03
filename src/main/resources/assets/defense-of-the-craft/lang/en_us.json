@@ -148,6 +148,15 @@
   "description.defense-of-the-craft.desolator": "A wicked weapon, used in torturing political criminals.",
   "passive.defense-of-the-craft.desolator": "The wielder's successful attack applies 4 armor reduction debuff on the affected enemy unit.",
 
+  "item.defense-of-the-craft.skull_basher": "Skull Basher",
+  "description.defense-of-the-craft.skull_basher": "A feared weapon in the right hands, this maul's ability to shatter the defenses of its opponents should not be underestimated.",
+  "passive.defense-of-the-craft.skull_basher": "Grants the wielder's attacks a 25% chance to stun the target and deal bonus physical damage.",
+
+  "item.defense-of-the-craft.abyssal_blade": "Abyssal Blade",
+  "description.defense-of-the-craft.abyssal_blade": "The lost blade of the Commander of the Abyss, this edge cuts into an enemy's soul.",
+  "passive.defense-of-the-craft.abyssal_blade": "Grants the wielder's attacks a 25% chance to stun the target and deal bonus physical damage.",
+  "active.defense-of-the-craft.abyssal_blade": "Instantly stuns the target enemy unit and teleports the wielder to it. Pierces debuff immunity.",
+
 
 
   "item.defense-of-the-craft.sange": "Sange",
@@ -168,6 +177,7 @@
   "death.attack.defense-of-the-craft.physical": "%1$s died from Defense Of The Craft physical damage!",
 
   "effect.defense-of-the-craft.armor_reduction": "Armor Reduction",
+  "effect.defense-of-the-craft.stun": "Stun",
 
 
 

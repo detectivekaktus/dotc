@@ -1,4 +1,4 @@
-package net.detectivekaktus.item.tool;
+package net.detectivekaktus.core.item;
 
 public interface HasManaCost {
     float getManaCost();
