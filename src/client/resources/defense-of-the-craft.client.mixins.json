@@ -13,6 +13,7 @@
 
     "render.ItemRendererMixin",
     "render.ModelBakeryMixin",
+    "render.GameRendererMixin",
 
     "multiplayer.MultiPlayerGameModeMixin"
   ],
